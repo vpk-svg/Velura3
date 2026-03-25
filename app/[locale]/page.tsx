@@ -1,4 +1,5 @@
 import HeroSection from '@/components/HeroSection';
+import FullWidthHeaderImage from '@/components/FullWidthHeaderImage';
 import TrustPillars from '@/components/TrustPillars';
 import MethodsTabs from '@/components/MethodsTabs';
 import ProductShop from '@/components/ProductShop';
@@ -16,6 +17,7 @@ export default function HomePage(): ReactElement {
   return (
     <>
       <HeroSection />
+      <FullWidthHeaderImage />
       <TrustPillars />
       <MethodsTabs />
       <ProductShop />
