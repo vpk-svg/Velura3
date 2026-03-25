@@ -1,1 +1,0 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/vpkartsistanbulhair/Documents/TestTestTest-main/app/[locale]/layout\":[\"static/media/035fb0c8ebaabfcc-s.p.woff2\",\"static/media/e18f83c737786aa7-s.p.woff2\",\"static/media/7b89a4fd5e90ede0-s.p.woff2\",\"static/media/9dd75fadc5b3df29-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"

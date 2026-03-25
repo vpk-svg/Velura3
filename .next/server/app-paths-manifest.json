@@ -1,6 +1,0 @@
-{
-  "/api/checkout/verify/route": "app/api/checkout/verify/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/[locale]/checkout/success/page": "app/[locale]/checkout/success/page.js",
-  "/[locale]/page": "app/[locale]/page.js"
-}
