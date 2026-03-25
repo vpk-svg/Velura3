@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import CheckoutButton from './CheckoutButton';
 import { Star } from 'lucide-react';
