@@ -15,15 +15,15 @@ const config: Config = {
         },
       },
       colors: {
-        "brand-teal-deep": "#0A2E2E",
-        "brand-teal-mid": "#0D4A47",
-        "brand-teal-light": "#1A7A72",
-        "brand-teal-mist": "#E8F4F3",
-        "brand-gold": "#C9A84C",
-        "brand-gold-light": "#E8C96A",
-        "brand-gold-shimmer": "#F7E8B0",
-        "brand-ivory": "#FAF7F2",
-        "brand-charcoal": "#1C1C1C",
+        "primary": "#c6a65d",
+        "secondary": "#3B2A23",
+        "background-light": "#FDFCF0",
+        "background-dark": "#1e1b14",
+        "brand-gold": "#c6a65d",
+        "brand-gold-light": "#d8b56f", // derived lighter version
+        "brand-teal-deep": "#1e1b14", // mapped to background dark for backward compat
+        "brand-teal-mid": "#3B2A23",  // mapped to secondary for backward compat
+        "brand-ivory": "#FDFCF0",     // mapped to background light
       },
       fontFamily: {
         sans: ["var(--font-jost)", "sans-serif"],

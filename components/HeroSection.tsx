@@ -28,7 +28,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative h-[90vh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-brand-teal-deep">
+    <section className="relative h-[90vh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-secondary">
 
       {/* Cinematic Background Image */}
       <motion.div
@@ -43,14 +43,14 @@ export default function HeroSection() {
           alt="Luxury Medical Wellness"
           fill
           priority
-          className="object-cover opacity-60 brightness-[0.7]"
+          className="object-cover opacity-50 brightness-[0.8]"
         />
         {/* Deep Gradient Overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-teal-deep/30 via-transparent to-brand-teal-deep" />
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary/40 via-transparent to-secondary" />
       </motion.div>
 
       {/* Cinematic Noise & Grain Overlay */}
-      <div className="absolute inset-0 z-10 opacity-[0.14] mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+      <div className="absolute inset-0 z-10 opacity-[0.12] mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
 
       {/* Main Content */}
       <motion.div
@@ -60,61 +60,54 @@ export default function HeroSection() {
         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
       >
         {/* Editorial Vertical Lines */}
-        <div className="absolute inset-y-0 left-4 md:left-8 w-px border-l border-dashed border-white/10 hidden sm:block" aria-hidden="true" />
-        <div className="absolute inset-y-0 right-4 md:right-8 w-px border-r border-dashed border-white/10 hidden sm:block" aria-hidden="true" />
+        <div className="absolute inset-y-0 left-4 md:left-8 w-px border-l border-dashed border-primary/20 hidden sm:block" aria-hidden="true" />
+        <div className="absolute inset-y-0 right-4 md:right-8 w-px border-l border-dashed border-primary/20 hidden sm:block" aria-hidden="true" />
 
-        <div className="text-center w-full max-w-4xl mx-auto">
-          <motion.div variants={itemVariants} className="mb-6">
-            <span className="font-label text-brand-gold text-xs md:text-sm tracking-[0.3em] uppercase">
+        <div className="text-center w-full max-w-5xl mx-auto">
+          <motion.div variants={itemVariants} className="mb-10">
+            <span className="font-label text-primary text-xs md:text-sm tracking-[0.5em] uppercase font-bold">
               {t('label')}
             </span>
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.9] tracking-tighter mb-8">
-            <span className="block text-white font-thin">{t('h1_line1')}</span>
-            <span className="block text-brand-gold italic font-medium mt-2">{t('h1_line2')}</span>
+          <motion.h1
+            variants={itemVariants}
+            className="font-display text-7xl md:text-9xl lg:text-[12rem] leading-[0.8] tracking-tighter mb-12"
+          >
+            <span className="block text-background-light font-thin drop-shadow-2xl">FAB</span>
+            <span className="block text-primary italic font-medium -mt-4 drop-shadow-xl pl-12 md:pl-24">CLINIC</span>
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="font-sans font-light text-brand-ivory text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed opacity-90 tracking-wide">
+          <motion.p
+            variants={itemVariants}
+            className="font-sans font-light text-background-light/90 text-lg md:text-2xl max-w-2xl mx-auto mb-16 leading-relaxed tracking-wide"
+          >
             {t('subtext')}
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-4"
+          >
             <MagneticWrapper>
               <a
-                href="#shop"
-                aria-label={t('cta_primary')}
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-brand-gold text-brand-teal-deep rounded-full font-label text-sm tracking-[0.2em] font-medium uppercase hover:bg-brand-gold-light transition-all duration-300 shadow-[0_10px_40px_-10px_rgba(201,168,76,0.6)] hover:shadow-[0_15px_50px_-5px_rgba(201,168,76,0.8)] focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-teal-deep focus-visible:outline-none"
+                href="#treatments"
+                className="group relative inline-flex items-center justify-center px-10 py-5 bg-primary text-white rounded-full font-label text-xs tracking-[0.3em] font-bold uppercase transition-all duration-300 shadow-[0_15px_45px_-10px_rgba(198,166,93,0.6)] hover:shadow-primary/40 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
               >
                 {t('cta_primary')}
               </a>
             </MagneticWrapper>
             <MagneticWrapper>
               <a
-                href="#bmi"
-                aria-label={t('cta_secondary')}
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-transparent border border-white/30 text-white rounded-full font-label text-sm tracking-[0.2em] uppercase hover:bg-white/10 transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+                href="#consult"
+                className="group relative inline-flex items-center justify-center px-10 py-5 bg-transparent border border-primary text-primary rounded-full font-label text-xs tracking-[0.3em] font-bold uppercase hover:bg-primary/5 transition-all duration-300"
               >
-                {t('cta_secondary')}
+                BOEK CONSULTATIE
               </a>
             </MagneticWrapper>
           </motion.div>
         </div>
       </motion.div>
-
-      {/* Marquee Strip */}
-      <div className="absolute bottom-0 left-0 right-0 bg-brand-teal-mid py-3 border-t border-brand-gold/20 overflow-hidden z-20">
-        <motion.div
-          className="whitespace-nowrap flex"
-          style={{ x }}
-        >
-          {Array.from({ length: 12 }).map((_, i) => (
-            <span key={i} className="font-label text-brand-gold/80 text-xs tracking-[0.2em] px-4">
-              {t('marquee')}
-            </span>
-          ))}
-        </motion.div>
-      </div>
     </section>
   );
 }

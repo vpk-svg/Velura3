@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
 import LanguageToggle from './LanguageToggle';
 
 export default function Navbar() {
@@ -13,103 +13,106 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 80) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
+    setIsScrolled(latest > 20);
   });
 
   const navLinks = [
-    { name: t('methods'), href: '#methods' },
-    { name: t('shop'), href: '#shop' },
-    { name: t('bmi'), href: '#bmi' },
-    { name: t('about'), href: '#about' },
-    { name: t('blog'), href: '#blog' },
+    { name: t('home'), href: '/' },
+    { name: t('team'), href: '#team' },
+    { name: t('fillers'), href: '#fillers' },
+    { name: t('botox'), href: '#botox' },
+    { name: t('lifestyle'), href: '#lifestyle' },
+    { name: t('contact'), href: '#contact' },
   ];
 
   return (
     <motion.header
-      className={`fixed left-4 right-4 md:left-8 md:right-8 z-50 transition-all duration-500 rounded-full border ${isScrolled ? 'top-4 bg-brand-teal-deep/80 backdrop-blur-xl border-brand-gold/30 shadow-lg' : 'top-6 bg-transparent border-transparent'
-        }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full border-b ${isScrolled
+          ? 'bg-background-light/95 backdrop-blur-md border-primary/10 shadow-sm py-2'
+          : 'bg-transparent border-transparent py-4'
+        }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <a href="#" className="font-label text-2xl text-brand-gold tracking-widest">
-              VELURA
+      <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
+        <div className="flex justify-between items-center h-16">
+
+          {/* Logo Section */}
+          <div className="flex items-center gap-3 group">
+            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+              <Sparkles size={20} />
+            </div>
+            <a href="/" className="font-label text-xl md:text-2xl text-secondary tracking-tight font-bold">
+              FAB <span className="text-primary">CLINIC</span>
             </a>
           </div>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex space-x-8" role="navigation" aria-label="Main navigation">
+          {/* Desktop Nav Links */}
+          <nav className="hidden lg:flex items-center space-x-10">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-brand-ivory hover:text-brand-gold transition-colors text-sm font-medium focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none rounded-sm px-2 py-1"
+                className="text-secondary/70 hover:text-primary transition-colors text-[13px] font-medium uppercase tracking-[0.1em]"
               >
                 {link.name}
               </a>
             ))}
           </nav>
 
-          {/* Right Actions */}
-          <div className="hidden md:flex items-center space-x-6">
+          {/* Actions & Floating Consult */}
+          <div className="hidden md:flex items-center space-x-8">
             <LanguageToggle />
-            <a
-              href="#shop"
-              className="px-6 py-2 rounded-full border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-teal-deep transition-colors font-label text-sm tracking-wider"
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="#consult"
+              className="px-8 py-3 bg-primary text-white rounded-full font-label text-[12px] uppercase tracking-widest font-semibold shadow-[0_10px_30px_-10px_rgba(198,166,93,0.5)] hover:shadow-primary/40 transition-all"
             >
               {t('cta')}
-            </a>
+            </motion.a>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          {/* Mobile toggle */}
+          <div className="lg:hidden flex items-center gap-4">
+            <LanguageToggle />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-brand-gold p-2 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none rounded-md"
-              aria-expanded={mobileMenuOpen}
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              className="text-secondary p-2"
             >
-              {mobileMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
+              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <motion.div
         initial={false}
-        animate={{ height: mobileMenuOpen ? 'auto' : 0, opacity: mobileMenuOpen ? 1 : 0 }}
-        className="md:hidden overflow-hidden bg-brand-teal-deep border-b border-brand-gold"
+        animate={{
+          height: mobileMenuOpen ? '100vh' : 0,
+          opacity: mobileMenuOpen ? 1 : 0
+        }}
+        className="lg:hidden overflow-hidden bg-background-light fixed inset-x-0 h-screen"
       >
-        <div className="px-4 pt-2 pb-6 space-y-4">
+        <div className="flex flex-col items-center justify-center h-full space-y-8 px-6">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-brand-ivory hover:text-brand-gold text-base font-medium"
+              className="text-2xl font-label text-secondary hover:text-primary tracking-widest"
             >
               {link.name}
             </a>
           ))}
-          <div className="pt-4 flex flex-col space-y-4">
-            <LanguageToggle />
-            <a
-              href="#shop"
-              onClick={() => setMobileMenuOpen(false)}
-              className="inline-block text-center px-6 py-3 rounded-full border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-teal-deep transition-colors font-label text-sm tracking-wider"
-            >
-              {t('cta')}
-            </a>
-          </div>
+          <a
+            href="#consult"
+            onClick={() => setMobileMenuOpen(false)}
+            className="w-full text-center px-10 py-5 bg-primary text-white rounded-full font-label text-sm uppercase tracking-widest transition-all"
+          >
+            {t('cta')}
+          </a>
         </div>
       </motion.div>
     </motion.header>

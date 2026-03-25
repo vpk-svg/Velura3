@@ -3,6 +3,7 @@ import { getMessages } from 'next-intl/server';
 import { Cormorant_Garamond, Jost, Cinzel } from 'next/font/google';
 import '../../src/index.css'; // Assuming we keep index.css for global styles
 import Navbar from '@/components/Navbar';
+import FloatingButtons from '@/components/FloatingButtons';
 import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
 import ScrollProgress from '@/components/ScrollProgress';
@@ -29,8 +30,8 @@ const cinzel = Cinzel({
 });
 
 export const metadata = {
-  title: 'VELURA | Jouw Lichaam. Getransformeerd. Medisch Verantwoord.',
-  description: 'Premium medisch gewichtsverlies platform powered by Wellis.',
+  title: 'FAB CLINIC | Medische Esthetiek & Welzijn',
+  description: 'Premium kliniek voor fillers, botox en lifestyle transformatie.',
 };
 
 export function generateStaticParams() {
@@ -51,11 +52,12 @@ export default async function LocaleLayout({
 
   return (
     <html lang={resolvedParams.locale} className={`${cormorant.variable} ${jost.variable} ${cinzel.variable} scroll-smooth`}>
-      <body className="font-sans antialiased text-brand-charcoal bg-[#FAF7F2] min-h-screen flex flex-col cursor-none">
+      <body className="font-sans antialiased text-secondary bg-background-light min-h-screen flex flex-col cursor-none">
         <NextIntlClientProvider messages={messages} locale={resolvedParams.locale}>
           <CustomCursor />
           <ScrollProgress />
           <Navbar />
+          <FloatingButtons />
           <main className="flex-grow">
             {children}
           </main>

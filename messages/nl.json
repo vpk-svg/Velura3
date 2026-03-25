@@ -1,11 +1,12 @@
 {
   "nav": {
-    "methods": "Methoden",
-    "shop": "Behandelingen",
-    "bmi": "BMI Calculator",
-    "about": "Over Ons",
-    "blog": "Blog",
-    "cta": "Begin Jouw Reis"
+    "home": "Home",
+    "team": "Team",
+    "fillers": "Fillers",
+    "botox": "Botox",
+    "lifestyle": "Lifestyle",
+    "contact": "Contact",
+    "cta": "Boek een Consultatie"
   },
   "hero": {
     "label": "MEDISCH BEGELEID · KLINISCH BEWEZEN",
@@ -182,8 +183,8 @@
     "reviews": "Beoordelingen",
     "careers": "Vacatures",
     "blog": "Blog",
-    "disclaimer": "VELURA aangedreven door Wellis Pharmacy B.V. — Geregistreerde EU-apotheek. Alle behandelingen voorgeschreven door BIG-geregistreerde artsen. Niet beschikbaar voor personen onder de 18 jaar. Raadpleeg altijd een arts voordat u met een medische behandeling begint.",
-    "copyright": "© 2025 VELURA door Wellis · Privacy · Algemene Voorwaarden · Cookies",
+    "disclaimer": "FAB CLINIC — Geregistreerde EU-kliniek. Alle behandelingen uitgevoerd door gecertificeerde specialisten. Niet beschikbaar voor personen onder de 18 jaar.",
+    "copyright": "© 2025 FAB CLINIC · Privacy · Algemene Voorwaarden · Cookies",
     "glp1_injecties": "GLP-1 Injecties",
     "voedingsplannen": "Voedingsplannen",
     "beweging": "Beweging",

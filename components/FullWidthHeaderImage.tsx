@@ -18,7 +18,7 @@ export default function FullWidthHeaderImage() {
     return (
         <section
             ref={containerRef}
-            className="relative w-full h-[70vh] md:h-[100vh] overflow-hidden bg-brand-teal-deep flex items-center justify-center p-4 md:p-12 mb-20"
+            className="relative w-full h-[70vh] md:h-[100vh] overflow-hidden bg-secondary flex items-center justify-center p-4 md:p-12 mb-20"
         >
             <motion.div
                 style={{ scale, y }}
@@ -26,42 +26,42 @@ export default function FullWidthHeaderImage() {
             >
                 <Image
                     src="/images/hero-atmos.png"
-                    alt="Premium Velura Experience"
+                    alt="Premium FAB Clinic Experience"
                     fill
                     priority
-                    className="object-cover opacity-80"
+                    className="object-cover opacity-60"
                 />
-                <div className="absolute inset-0 bg-black/20 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-secondary/30 mix-blend-multiply" />
             </motion.div>
 
             <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-end justify-between gap-8 md:gap-20">
-                <div className="max-w-2xl text-left">
+                <div className="max-w-3xl text-left">
                     <motion.div
                         initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     >
-                        <span className="font-label text-brand-gold text-xs md:text-sm tracking-[0.4em] uppercase mb-4 block">
-                            Luxury Reborn
+                        <span className="font-label text-primary text-xs md:text-sm tracking-[0.5em] uppercase mb-4 block font-bold">
+                            Medical Excellence
                         </span>
-                        <h2 className="font-display text-5xl md:text-8xl lg:text-9xl text-white leading-[0.85] tracking-tighter mix-blend-difference">
-                            The Art of <br />
-                            <span className="italic font-medium text-brand-gold">Transformation</span>
+                        <h2 className="font-display text-6xl md:text-8xl lg:text-[10rem] text-background-light leading-[0.8] tracking-tighter">
+                            Elegance <br />
+                            <span className="italic font-light text-primary tracking-normal">Redefined</span>
                         </h2>
                     </motion.div>
                 </div>
 
                 <motion.div
-                    className="max-w-md text-left pb-4"
+                    className="max-w-md text-left pb-10"
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    <div className="w-12 h-px bg-brand-gold/50 mb-6 hidden md:block" />
-                    <p className="font-sans font-light text-brand-ivory/80 text-lg md:text-xl leading-relaxed tracking-wide">
-                        Discover a new era of medical weight loss. We combine cinematic aesthetics with scientific precision to guide your journey toward a healthier, more vibrant you.
+                    <div className="w-16 h-px bg-primary/50 mb-8" />
+                    <p className="font-sans font-light text-background-light/80 text-lg md:text-2xl leading-relaxed tracking-wide">
+                        Our specialized clinicians combine artistic vision with advanced medical precision to enhance your natural beauty.
                     </p>
                 </motion.div>
             </div>
@@ -72,8 +72,8 @@ export default function FullWidthHeaderImage() {
                 animate={{ y: [0, 10, 0] }}
                 transition={{ repeat: Infinity, duration: 2 }}
             >
-                <div className="w-px h-12 bg-gradient-to-b from-brand-gold to-transparent" />
-                <span className="font-label text-[10px] text-brand-gold tracking-[0.3em] uppercase">Scroll</span>
+                <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent" />
+                <span className="font-label text-[10px] text-primary tracking-[0.3em] uppercase font-bold">Explore</span>
             </motion.div>
         </section>
     );
