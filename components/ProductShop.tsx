@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import CheckoutButton from './CheckoutButton';
-import { Star } from 'lucide-react';
+import { Star, ShieldCheck } from 'lucide-react';
 
 export default function ProductShop() {
   const scrollRef = useRef(null);
@@ -35,7 +35,7 @@ export default function ProductShop() {
       reviews: '2.847',
       badge: 'Rx',
       imgSrc: '/images/products/ozempic.webp',
-      gradient: 'bg-[radial-gradient(circle_at_center,#1A7A72,#0A2E2E)] relative overflow-hidden before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_right,rgba(247,232,176,0.3),transparent_50%)]',
+      gradient: 'bg-[radial-gradient(circle_at_center,#3B2A23,#1e1b14)]',
     },
     {
       id: 'mounjaro',
@@ -50,7 +50,7 @@ export default function ProductShop() {
       badge: 'Rx',
       topBadge: t('mounjaro_badge'),
       imgSrc: '/images/products/mounjaro.webp',
-      gradient: 'bg-[radial-gradient(circle_at_center,#1A7A72,#0A2E2E)] relative overflow-hidden before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_right,rgba(247,232,176,0.3),transparent_50%)]',
+      gradient: 'bg-[radial-gradient(circle_at_center,#3B2A23,#1e1b14)]',
     },
     {
       id: 'wegovy',
@@ -64,7 +64,7 @@ export default function ProductShop() {
       reviews: '1.892',
       badge: 'Rx',
       imgSrc: '/images/products/wegovy.webp',
-      gradient: 'bg-[radial-gradient(circle_at_center,#1A7A72,#0A2E2E)] relative overflow-hidden before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_right,rgba(247,232,176,0.3),transparent_50%)]',
+      gradient: 'bg-[radial-gradient(circle_at_center,#3B2A23,#1e1b14)]',
     },
     {
       id: 'saxenda',
@@ -78,35 +78,48 @@ export default function ProductShop() {
       reviews: '3.411',
       badge: 'Rx',
       imgSrc: '/images/products/saxenda.webp',
-      gradient: 'bg-[radial-gradient(circle_at_center,#1A7A72,#0A2E2E)] relative overflow-hidden before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_right,rgba(247,232,176,0.3),transparent_50%)]',
+      gradient: 'bg-[radial-gradient(circle_at_center,#3B2A23,#1e1b14)]',
     },
   ];
 
   const filteredProducts = filter === 'ALL' ? products : products.filter(p => p.category === filter);
 
   return (
-    <section id="shop" className="py-24 bg-brand-ivory" role="region" aria-label={t('title')}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-brand-teal-deep italic font-light mb-4">
-            {t('title')}
-          </h2>
-          <p className="font-label text-brand-gold tracking-widest text-xs uppercase">
+    <section id="shop" className="py-32 bg-background-light" role="region" aria-label={t('title')}>
+      <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+        <div className="text-center mb-24">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="font-label text-primary text-xs tracking-[0.4em] uppercase mb-6 block font-bold"
+          >
+            Medical Aesthetics & Longevity
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="font-display text-6xl md:text-8xl lg:text-9xl text-secondary mb-8 tracking-tighter"
+          >
+            Apotheek <br />
+            <span className="italic font-light text-primary">FAB Clinic</span>
+          </motion.h2>
+          <p className="font-sans font-light text-secondary/70 text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">
             {t('subtitle')}
           </p>
         </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16" role="tablist">
+        <div className="flex flex-wrap justify-center gap-6 mb-24" role="tablist">
           {filters.map((f) => (
             <button
               key={f.id}
               role="tab"
               aria-selected={filter === f.id}
               onClick={() => setFilter(f.id)}
-              className={`px-6 py-2 rounded-full font-label text-[10px] tracking-widest transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none ${filter === f.id
-                ? 'bg-brand-teal-deep text-white'
-                : 'bg-transparent text-brand-charcoal/60 hover:text-brand-teal-deep border border-brand-charcoal/20'
+              className={`px-10 py-4 rounded-full font-label text-xs tracking-widest transition-all duration-500 uppercase font-bold focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${filter === f.id
+                ? 'bg-secondary text-white shadow-2xl'
+                : 'bg-white border border-secondary/10 text-secondary hover:text-primary hover:border-primary'
                 }`}
             >
               {f.label}
@@ -115,72 +128,77 @@ export default function ProductShop() {
         </div>
 
         {/* Product Grid */}
-        <motion.div layout ref={scrollRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div layout ref={scrollRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           <AnimatePresence>
             {filteredProducts.map((product, idx) => (
               <motion.div
                 key={product.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-                whileHover={{ y: -10, boxShadow: '0 20px 40px -15px rgba(201,168,76,0.3)' }}
-                className={`bg-white rounded-xl overflow-hidden shadow-sm border border-brand-charcoal/5 flex flex-col group ${idx % 2 !== 0 ? 'md:mt-12' : ''}`}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className={`bg-white rounded-[40px] overflow-hidden shadow-sm border border-secondary/5 flex flex-col group relative ${idx % 2 !== 0 ? 'lg:mt-16' : ''}`}
               >
                 {/* Visual Area */}
-                <div className={`w-full aspect-square ${product.gradient} flex items-center justify-center p-6 relative`}>
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="font-label text-brand-gold text-xs tracking-widest bg-brand-teal-deep/80 backdrop-blur-sm px-3 py-1 rounded-full border border-brand-gold/30">
+                <div className={`w-full aspect-[4/5] ${product.gradient} flex items-center justify-center p-12 relative overflow-hidden`}>
+                  <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity bg-[url('/images/noise.png')] pointer-events-none" />
+
+                  <div className="absolute top-6 left-6 z-10 flex gap-2">
+                    <span className="font-label text-primary text-[10px] tracking-[0.2em] bg-secondary/80 backdrop-blur-md px-4 py-2 rounded-full border border-primary/30 uppercase font-bold">
                       {product.badge}
                     </span>
                   </div>
                   {product.topBadge && (
-                    <div className="absolute top-4 right-4 z-10">
-                      <span className="font-label text-brand-teal-deep text-[9px] tracking-widest bg-brand-gold px-2 py-1 rounded-sm shadow-md">
+                    <div className="absolute top-6 right-6 z-10">
+                      <span className="font-label text-white text-[10px] tracking-widest bg-primary px-4 py-2 rounded-full shadow-lg uppercase font-bold">
                         {product.topBadge}
                       </span>
                     </div>
                   )}
                   {/* Fixed Stretched Images Using object-contain and animating background */}
-                  <motion.div style={{ y: parallaxY }} className="relative w-full h-full drop-shadow-2xl opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out z-0 [animation:pulse_8s_cubic-bezier(0.4,0,0.6,1)_infinite]">
+                  <motion.div style={{ y: parallaxY }} className="relative w-full h-full drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] opacity-95 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000 ease-out z-0">
                     <Image
                       src={product.imgSrc}
                       alt={product.name}
                       fill
-                      className="object-contain"
+                      className="object-contain p-4"
                       sizes="(max-width: 768px) 100vw, 25vw"
                     />
                   </motion.div>
                 </div>
 
                 {/* Content Area */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <span className="font-label text-brand-teal-light text-[10px] tracking-widest uppercase mb-2 block">
-                    {product.type}
-                  </span>
-                  <h3 className="font-display text-2xl text-brand-teal-deep font-semibold mb-3">
+                <div className="p-10 flex flex-col flex-grow relative bg-white">
+                  <div className="flex items-center gap-2 mb-4">
+                    <ShieldCheck size={14} className="text-primary" />
+                    <span className="font-label text-primary/80 text-[10px] tracking-widest uppercase font-bold">
+                      {product.type}
+                    </span>
+                  </div>
+
+                  <h3 className="font-display text-3xl text-secondary font-bold mb-4 italic group-hover:text-primary transition-colors">
                     {product.name}
                   </h3>
-                  <p className="font-sans font-light text-brand-charcoal/60 text-sm leading-relaxed mb-6 flex-grow">
+                  <p className="font-sans font-light text-secondary/60 text-lg leading-relaxed mb-10 flex-grow">
                     {product.desc}
                   </p>
 
-                  <div className="flex items-center mb-6">
-                    <div className="flex text-brand-gold mr-2" aria-label={`${product.rating} stars`}>
+                  <div className="flex items-center mb-10 pb-6 border-b border-secondary/5">
+                    <div className="flex text-primary mr-3">
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
-                    <span className="font-sans font-light text-xs text-brand-charcoal/50">
+                    <span className="font-sans font-bold text-xs text-secondary/40 tracking-wider">
                       {product.rating} ({product.reviews} {t('reviews')})
                     </span>
                   </div>
 
-                  <div className="flex items-baseline mb-6">
-                    <span className="font-display text-3xl text-brand-gold mr-2">{product.price}</span>
-                    <span className="font-sans font-light text-xs text-brand-charcoal/50">{t('per_month')}</span>
+                  <div className="flex items-end gap-3 mb-10">
+                    <span className="font-display text-5xl text-secondary leading-none">{product.price}</span>
+                    <span className="font-sans font-bold text-[10px] text-secondary/40 uppercase tracking-[0.2em] mb-1">{t('per_month')}</span>
                   </div>
 
                   <CheckoutButton

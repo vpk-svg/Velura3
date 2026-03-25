@@ -1,26 +1,29 @@
 'use client';
 
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import { FileSearch, ClipboardCheck, Package } from 'lucide-react';
 
 export default function HowItWorks() {
+  const t = useTranslations('how');
+
   const steps = [
     {
       num: '1',
-      title: 'Consultatie & Analyse',
-      desc: 'Beantwoord enkele vragen over je wensen en medische achtergrond.',
+      title: t('step1_title'),
+      desc: t('step1_desc'),
       icon: <FileSearch className="w-10 h-10" strokeWidth={1.5} />,
     },
     {
       num: '2',
-      title: 'Specialistisch Advies',
-      desc: 'Onze arts beoordeelt je profiel en stelt een persoonlijk behandelplan op.',
+      title: t('step2_title'),
+      desc: t('step2_desc'),
       icon: <ClipboardCheck className="w-10 h-10" strokeWidth={1.5} />,
     },
     {
       num: '3',
-      title: 'Behandeling & Nazorg',
-      desc: 'Plan je afspraak en geniet van professionele zorg in onze kliniek.',
+      title: t('step3_title'),
+      desc: t('step3_desc'),
       icon: <Package className="w-10 h-10" strokeWidth={1.5} />,
     },
   ];
@@ -40,21 +43,21 @@ export default function HowItWorks() {
 
   return (
     <section className="py-32 bg-background-light overflow-hidden" aria-labelledby="how-it-works-title">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20 md:mb-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-24 md:mb-32">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="font-label text-primary text-xs tracking-[0.4em] uppercase mb-6 block font-bold"
           >
-            Your Journey
+            {t('label')}
           </motion.span>
-          <h2 id="how-it-works-title" className="font-display text-5xl md:text-7xl lg:text-8xl text-secondary tracking-tight mb-8">
-            Hoe <span className="italic font-light text-primary">FAB Clinic</span> Werkt
+          <h2 id="how-it-works-title" className="font-display text-5xl md:text-8xl text-secondary tracking-tight mb-8">
+            {t('title')} <span className="italic font-light text-primary">{t('subtitle')}</span>
           </h2>
-          <p className="font-sans text-secondary/70 text-xl max-w-2xl mx-auto font-light leading-relaxed">
-            Wij begeleiden je stap voor stap naar je beste zelf – veilig, professioneel en volledig afgestemd op jouw natuurlijke schoonheid.
+          <p className="font-sans text-secondary/70 text-xl md:text-2xl max-w-3xl mx-auto font-light leading-relaxed">
+            {t('desc')}
           </p>
         </div>
 
@@ -80,7 +83,7 @@ export default function HowItWorks() {
                     </span>
                   </div>
                   <span className="absolute -top-8 font-label text-primary text-[10px] tracking-widest uppercase font-bold">
-                    Stap {step.num}
+                    {t('step_prefix')} {step.num}
                   </span>
                 </div>
 

@@ -1,10 +1,13 @@
 'use client';
 
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import { Heart, Activity, Coffee } from 'lucide-react';
 import Image from 'next/image';
 
 export default function LifestyleSection() {
+    const t = useTranslations('lifestyle');
+
     return (
         <section id="lifestyle" className="relative py-32 bg-background-light overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -37,24 +40,24 @@ export default function LifestyleSection() {
                             viewport={{ once: true }}
                             className="font-label text-primary text-xs tracking-[0.4em] uppercase mb-6 block font-bold"
                         >
-                            Medical Wellness
+                            {t('label')}
                         </motion.span>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            className="font-display text-6xl md:text-8xl text-secondary tracking-tighter mb-12"
+                            className="font-display text-4xl md:text-8xl text-secondary tracking-tighter mb-12"
                         >
-                            Holistic <br />
-                            <span className="italic font-light text-primary">Lifestyle</span>
+                            {t('title')} <br />
+                            <span className="italic font-light text-primary">{t('subtitle')}</span>
                         </motion.h2>
 
                         <div className="space-y-12">
                             {[
-                                { icon: <Heart size={28} />, title: 'Anti-Aging Diets', desc: 'Personalized nutritional protocols that promote longevity and skin radiance from within.' },
-                                { icon: <Activity size={28} />, title: 'Movement Guidance', desc: 'Bespoke fitness routines designed to maintain lean muscle mass and metabolic health.' },
-                                { icon: <Coffee size={28} />, title: 'Stress Recovery', desc: 'Clinical techniques to manage cortisol levels and optimize sleep for peak aesthetic results.' }
+                                { icon: <Heart size={28} />, title: t('item1_title'), desc: t('item1_desc') },
+                                { icon: <Activity size={28} />, title: t('item2_title'), desc: t('item2_desc') },
+                                { icon: <Coffee size={28} />, title: t('item3_title'), desc: t('item3_desc') }
                             ].map((item, idx) => (
                                 <motion.div
                                     key={item.title}
@@ -83,7 +86,7 @@ export default function LifestyleSection() {
                             transition={{ delay: 0.5 }}
                         >
                             <a href="#consult" className="font-label text-sm text-primary tracking-widest uppercase font-bold group">
-                                Learn about our Lifestyle Plans <span className="ml-4 transition-transform group-hover:translate-x-3 inline-block">→</span>
+                                {t('cta')} <span className="ml-4 transition-transform group-hover:translate-x-3 inline-block">→</span>
                             </a>
                         </motion.div>
                     </div>

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Loader2 } from 'lucide-react';
+import { Loader2, PlusCircle } from 'lucide-react';
 
 interface CheckoutButtonProps {
     productId: string;
@@ -60,10 +60,10 @@ export default function CheckoutButton({
         }
     };
 
-    const baseStyles = "w-full py-4 rounded-md font-label text-xs tracking-widest uppercase transition-all duration-300 flex items-center justify-center relative overflow-hidden";
-    const variants = {
-        primary: "bg-brand-gold text-brand-teal-deep hover:bg-brand-gold-light",
-        ghost: "bg-transparent border border-brand-teal-deep text-brand-teal-deep hover:bg-brand-teal-deep/5",
+    const baseStyles = "w-full py-5 rounded-full font-label text-[11px] tracking-[0.2em] uppercase transition-all duration-500 flex items-center justify-center relative overflow-hidden font-bold";
+    const variantStyles = {
+        primary: "bg-primary text-white shadow-xl hover:shadow-primary/40 hover:-translate-y-1 active:scale-95",
+        ghost: "bg-transparent border border-primary text-primary hover:bg-primary/5 active:scale-95",
     };
 
     return (
@@ -71,17 +71,17 @@ export default function CheckoutButton({
             <motion.button
                 onClick={handleCheckout}
                 disabled={isLoading}
-                whileHover={{ scale: 1.02, boxShadow: '0 0 15px rgba(201,168,76,0.3)' }}
-                whileTap={{ scale: 0.98 }}
-                className={`${baseStyles} ${variants[variant]}`}
+                className={`${baseStyles} ${variantStyles[variant]}`}
             >
                 {isLoading ? (
-                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                ) : null}
+                    <Loader2 className="w-5 h-5 animate-spin mr-3" />
+                ) : (
+                    <PlusCircle className="w-5 h-5 mr-3 transition-transform group-hover:rotate-90" />
+                )}
                 <span>{isLoading ? t('loading') : label}</span>
             </motion.button>
             {error && (
-                <p className="mt-2 text-red-500 text-[10px] text-center font-sans tracking-wide">
+                <p className="mt-4 text-red-500 text-[10px] text-center font-sans tracking-[0.1em] font-bold uppercase">
                     {error}
                 </p>
             )}

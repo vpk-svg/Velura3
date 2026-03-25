@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 
 export default function BlogPreview() {
   const t = useTranslations('blog');
@@ -11,58 +12,85 @@ export default function BlogPreview() {
       tag: t('b1_tag'),
       title: t('b1_title'),
       excerpt: t('b1_excerpt'),
-      date: '12 Okt 2025',
+      date: '12 OCT 2025',
+      img: '/images/hero-atmos.png'
     },
     {
       tag: t('b2_tag'),
       title: t('b2_title'),
       excerpt: t('b2_excerpt'),
-      date: '05 Okt 2025',
+      date: '05 OCT 2025',
+      img: '/images/cta-atmos.png'
     },
     {
       tag: t('b3_tag'),
       title: t('b3_title'),
       excerpt: t('b3_excerpt'),
-      date: '28 Sep 2025',
+      date: '28 SEP 2025',
+      img: '/images/hero-atmos.png'
     },
   ];
 
   return (
-    <section id="blog" className="py-24 bg-brand-ivory">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-brand-teal-deep italic font-light">
-            {t('title')}
-          </h2>
+    <section id="blog" className="py-32 bg-background-light overflow-hidden">
+      <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
+        <div className="text-center mb-24 md:mb-32">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-label text-primary text-xs tracking-[0.5em] uppercase mb-6 block font-bold"
+          >
+            Insights
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-display text-5xl md:text-8xl text-secondary tracking-tighter mb-8"
+          >
+            Clinical <span className="italic font-light text-primary">Journal</span>
+          </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
           {articles.map((article, index) => (
             <motion.article
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white rounded-xl overflow-hidden shadow-sm border border-brand-charcoal/5 flex flex-col group"
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="group flex flex-col h-full bg-white rounded-[40px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 hover:-translate-y-4 border border-primary/5"
             >
-              <div className="h-48 bg-gradient-to-br from-brand-teal-light to-brand-teal-deep relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8cGF0aCBkPSJNMCAwTDggOFpNOCAwTDAgOFoiIHN0cm9rZT0iI2ZmZiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz4KPC9zdmc+')] opacity-20 mix-blend-overlay"></div>
+              <div className="relative h-72 md:h-80 overflow-hidden">
+                <Image
+                  src={article.img}
+                  alt={article.title}
+                  fill
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:rotate-1"
+                />
+                <div className="absolute inset-0 bg-primary/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                <div className="absolute top-8 left-8">
+                  <span className="px-5 py-2 bg-white/90 backdrop-blur-md rounded-full font-label text-[10px] tracking-[0.2em] text-secondary uppercase font-bold shadow-xl">
+                    {article.tag}
+                  </span>
+                </div>
               </div>
-              <div className="p-8 flex flex-col flex-grow">
-                <span className="font-label text-brand-gold text-[10px] tracking-widest uppercase mb-4 block">
-                  {article.tag}
+
+              <div className="p-10 md:p-12 flex flex-col flex-grow">
+                <span className="font-sans text-[11px] text-primary tracking-widest uppercase mb-6 font-bold opacity-60">
+                  {article.date}
                 </span>
-                <h3 className="font-display text-2xl text-brand-teal-deep font-semibold mb-3 leading-snug group-hover:text-brand-teal-light transition-colors">
+                <h3 className="font-display text-3xl text-secondary mb-6 leading-[1.2] group-hover:text-primary transition-colors italic">
                   {article.title}
                 </h3>
-                <p className="font-sans font-light text-brand-charcoal/60 text-sm leading-relaxed mb-6 flex-grow">
+                <p className="font-sans font-light text-secondary/70 text-lg leading-relaxed mb-10 flex-grow">
                   {article.excerpt}
                 </p>
-                <div className="flex items-center justify-between mt-auto pt-6 border-t border-brand-charcoal/10">
-                  <span className="font-sans text-xs text-brand-charcoal/40">{article.date}</span>
-                  <a href="#" className="font-label text-brand-gold text-xs tracking-widest hover:text-brand-gold-light transition-colors">
-                    {t('read_more')}
+                <div className="pt-8 border-t border-secondary/5 mt-auto">
+                  <a href="#" className="inline-flex items-center font-label text-primary text-xs tracking-[0.3em] uppercase font-bold group/link">
+                    Read Article <span className="ml-4 transition-transform duration-500 group-hover/link:translate-x-3">→</span>
                   </a>
                 </div>
               </div>
