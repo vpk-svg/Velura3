@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { useTranslations } from 'next-intl';
