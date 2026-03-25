@@ -7,21 +7,21 @@ export default function HowItWorks() {
   const steps = [
     {
       num: '1',
-      title: 'Beantwoord een aantal gezondheidsvragen',
-      desc: 'Vertel ons kort iets over je gezondheid en klachten.',
-      icon: <FileSearch className="w-10 h-10 text-brand-teal-deep opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 ease-out" strokeWidth={1.5} />,
+      title: 'Consultatie & Analyse',
+      desc: 'Beantwoord enkele vragen over je wensen en medische achtergrond.',
+      icon: <FileSearch className="w-10 h-10" strokeWidth={1.5} />,
     },
     {
       num: '2',
-      title: 'Onze arts beoordeelt je aanvraag',
-      desc: 'Je ontvangt binnen 1 werkdag een persoonlijk medisch advies.',
-      icon: <ClipboardCheck className="w-10 h-10 text-brand-teal-deep opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 ease-out" strokeWidth={1.5} />,
+      title: 'Specialistisch Advies',
+      desc: 'Onze arts beoordeelt je profiel en stelt een persoonlijk behandelplan op.',
+      icon: <ClipboardCheck className="w-10 h-10" strokeWidth={1.5} />,
     },
     {
       num: '3',
-      title: 'Je behandeling wordt bezorgd',
-      desc: 'Snel en discreet geleverd, gewoon bij je thuis.',
-      icon: <Package className="w-10 h-10 text-brand-teal-deep opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 ease-out" strokeWidth={1.5} />,
+      title: 'Behandeling & Nazorg',
+      desc: 'Plan je afspraak en geniet van professionele zorg in onze kliniek.',
+      icon: <Package className="w-10 h-10" strokeWidth={1.5} />,
     },
   ];
 
@@ -39,14 +39,22 @@ export default function HowItWorks() {
   };
 
   return (
-    <section className="py-24 bg-[#e6f4f1] overflow-hidden" aria-labelledby="how-it-works-title">
+    <section className="py-32 bg-background-light overflow-hidden" aria-labelledby="how-it-works-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 md:mb-24">
-          <h2 id="how-it-works-title" className="font-display text-4xl md:text-5xl lg:text-6xl text-brand-teal-deep italic font-light tracking-tight mb-6">
-            Zo werkt Velura
+        <div className="text-center mb-20 md:mb-32">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-label text-primary text-xs tracking-[0.4em] uppercase mb-6 block font-bold"
+          >
+            Your Journey
+          </motion.span>
+          <h2 id="how-it-works-title" className="font-display text-5xl md:text-7xl lg:text-8xl text-secondary tracking-tight mb-8">
+            Hoe <span className="italic font-light text-primary">FAB Clinic</span> Werkt
           </h2>
-          <p className="font-sans text-brand-teal-deep text-lg max-w-2xl mx-auto font-light leading-relaxed">
-            Ons team van erkende professionals staat voor je klaar om je te begeleiden – snel geregeld, duidelijk en volledig afgestemd op jou.
+          <p className="font-sans text-secondary/70 text-xl max-w-2xl mx-auto font-light leading-relaxed">
+            Wij begeleiden je stap voor stap naar je beste zelf – veilig, professioneel en volledig afgestemd op jouw natuurlijke schoonheid.
           </p>
         </div>
 
@@ -58,41 +66,40 @@ export default function HowItWorks() {
           viewport={{ once: true, margin: "-100px" }}
         >
           {/* Connecting Line (Desktop) */}
-          <div className="hidden md:block absolute top-[16px] left-[16.666%] right-[16.666%] h-[2px] border-t-2 border-dashed border-brand-teal-deep/20 z-0" aria-hidden="true" />
+          <div className="hidden md:block absolute top-[16px] left-[16.666%] right-[16.666%] h-[2px] border-t-2 border-dashed border-primary/20 z-0" aria-hidden="true" />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20 relative z-10">
             {steps.map((step, index) => (
               <motion.div key={index} variants={itemVariants} className="flex flex-col relative group">
 
                 {/* Step Badge */}
-                <div className="mx-auto flex justify-center mb-8 relative z-20">
-                  <div className="w-8 h-8 rounded-full bg-brand-teal-deep flex items-center justify-center shadow-md ring-4 ring-[#e6f4f1]">
-                    <span className="font-sans text-white text-sm font-semibold">
+                <div className="mx-auto flex justify-center mb-10 relative z-20">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-xl ring-8 ring-background-light">
+                    <span className="font-label text-white text-sm font-bold">
                       {step.num}
                     </span>
                   </div>
-                  {/* Subtle 'Stap N' text above or to the side could go here if needed, but numbering works beautifully */}
-                  <span className="absolute -top-6 font-label text-brand-teal-deep text-[10px] tracking-widest uppercase">
+                  <span className="absolute -top-8 font-label text-primary text-[10px] tracking-widest uppercase font-bold">
                     Stap {step.num}
                   </span>
                 </div>
 
                 {/* Card */}
-                <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 border border-transparent hover:border-brand-teal-mid/30 flex-grow flex flex-col overflow-hidden">
+                <div className="bg-white rounded-[40px] shadow-sm hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-3 border border-primary/5 hover:border-primary/20 flex-grow flex flex-col overflow-hidden">
 
                   {/* Icon Container */}
-                  <div className="relative w-full aspect-video bg-[#f8fcfb] flex items-center justify-center overflow-hidden border-b border-brand-teal-deep/5">
-                    <div className="w-24 h-24 rounded-full bg-[#e6f4f1] border border-brand-teal-light/20 shadow-sm flex items-center justify-center group-hover:bg-brand-teal-deep/5 transition-colors duration-500">
+                  <div className="relative w-full aspect-video bg-secondary/5 flex items-center justify-center overflow-hidden border-b border-primary/5">
+                    <div className="w-24 h-24 rounded-3xl bg-white border border-primary/10 shadow-sm flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-700 text-primary">
                       {step.icon}
                     </div>
                   </div>
 
                   {/* Text Container */}
-                  <div className="p-8 flex flex-col flex-grow text-center">
-                    <h3 className="font-display text-2xl text-brand-teal-deep font-semibold mb-3">
+                  <div className="p-10 flex flex-col flex-grow text-center">
+                    <h3 className="font-display text-3xl text-secondary mb-4 italic">
                       {step.title}
                     </h3>
-                    <p className="font-sans font-light text-brand-charcoal/70 text-base leading-relaxed">
+                    <p className="font-sans font-light text-secondary/70 text-lg leading-relaxed">
                       {step.desc}
                     </p>
                   </div>

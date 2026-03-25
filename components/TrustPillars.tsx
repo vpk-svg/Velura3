@@ -44,7 +44,7 @@ export default function TrustPillars() {
   };
 
   return (
-    <section className="py-24 bg-brand-ivory">
+    <section className="py-24 bg-background-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12"
@@ -55,11 +55,13 @@ export default function TrustPillars() {
         >
           {pillars.map((pillar, index) => (
             <motion.div key={index} variants={itemVariants} className="flex flex-col items-center text-center">
-              {pillar.icon}
-              <h3 className="font-label text-brand-teal-deep text-sm tracking-widest uppercase mb-3">
+              <div className="text-primary mb-4">
+                {pillar.icon}
+              </div>
+              <h3 className="font-label text-secondary text-sm tracking-widest uppercase mb-3 font-bold">
                 {pillar.title}
               </h3>
-              <p className="font-sans font-light text-brand-charcoal/70 text-sm leading-relaxed max-w-xs">
+              <p className="font-sans font-light text-secondary/70 text-sm leading-relaxed max-w-xs">
                 {pillar.desc}
               </p>
             </motion.div>

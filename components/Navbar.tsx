@@ -29,31 +29,33 @@ export default function Navbar() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full border-b ${isScrolled
-          ? 'bg-background-light/95 backdrop-blur-md border-primary/10 shadow-sm py-2'
-          : 'bg-transparent border-transparent py-4'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 w-full border-b ${isScrolled
+          ? 'bg-background-light/95 backdrop-blur-md border-primary/20 shadow-sm py-2'
+          : 'bg-transparent border-transparent py-6'
         }`}
     >
       <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
         <div className="flex justify-between items-center h-16">
 
           {/* Logo Section */}
-          <div className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
-              <Sparkles size={20} />
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+              <Sparkles size={24} />
             </div>
-            <a href="/" className="font-label text-xl md:text-2xl text-secondary tracking-tight font-bold">
-              FAB <span className="text-primary">CLINIC</span>
+            <a href="/" className={`font-label text-2xl md:text-3xl tracking-tight font-bold transition-colors ${isScrolled ? 'text-secondary' : 'text-background-light'
+              }`}>
+              FAB <span className="text-primary italic">CLINIC</span>
             </a>
           </div>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center space-x-10">
+          <nav className="hidden lg:flex items-center space-x-12">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-secondary/70 hover:text-primary transition-colors text-[13px] font-medium uppercase tracking-[0.1em]"
+                className={`transition-colors text-[14px] font-bold uppercase tracking-[0.15em] hover:text-primary ${isScrolled ? 'text-secondary/80' : 'text-background-light'
+                  }`}
               >
                 {link.name}
               </a>
