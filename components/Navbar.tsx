@@ -5,7 +5,6 @@ import { motion, useScroll, useMotionValueEvent } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { Menu, X } from 'lucide-react';
 import LanguageToggle from './LanguageToggle';
-import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const t = useTranslations('nav');
@@ -31,7 +30,7 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className={`fixed left-4 right-4 md:left-8 md:right-8 z-50 transition-all duration-500 rounded-full border ${isScrolled ? 'top-4 bg-brand-surface/80 backdrop-blur-xl border-brand-gold/30 shadow-lg' : 'top-6 bg-transparent border-transparent'
+      className={`fixed left-4 right-4 md:left-8 md:right-8 z-50 transition-all duration-500 rounded-full border ${isScrolled ? 'top-4 bg-brand-teal-deep/80 backdrop-blur-xl border-brand-gold/30 shadow-lg' : 'top-6 bg-transparent border-transparent'
         }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -52,7 +51,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-brand-teal-deep hover:text-brand-gold transition-colors text-xs font-label uppercase tracking-widest focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none rounded-sm px-2 py-1"
+                className="text-brand-ivory hover:text-brand-gold transition-colors text-sm font-medium focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none rounded-sm px-2 py-1"
               >
                 {link.name}
               </a>
@@ -61,7 +60,6 @@ export default function Navbar() {
 
           {/* Right Actions */}
           <div className="hidden md:flex items-center space-x-6">
-            <ThemeToggle />
             <LanguageToggle />
             <a
               href="#shop"
@@ -89,7 +87,7 @@ export default function Navbar() {
       <motion.div
         initial={false}
         animate={{ height: mobileMenuOpen ? 'auto' : 0, opacity: mobileMenuOpen ? 1 : 0 }}
-        className="md:hidden overflow-hidden bg-brand-surface border-b border-brand-gold transition-colors duration-500"
+        className="md:hidden overflow-hidden bg-brand-teal-deep border-b border-brand-gold"
       >
         <div className="px-4 pt-2 pb-6 space-y-4">
           {navLinks.map((link) => (
@@ -97,13 +95,12 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-brand-teal-deep hover:text-brand-gold text-base font-medium"
+              className="block text-brand-ivory hover:text-brand-gold text-base font-medium"
             >
               {link.name}
             </a>
           ))}
           <div className="pt-4 flex flex-col space-y-4">
-            <ThemeToggle />
             <LanguageToggle />
             <a
               href="#shop"

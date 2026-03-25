@@ -1,27 +1,18 @@
 'use client';
 
-import { motion, useScroll, useVelocity, useTransform, useSpring } from 'motion/react';
+import { motion, useScroll, useVelocity, useTransform, useSpring, useReducedMotion } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import MagneticWrapper from './MagneticWrapper';
-
-const ParticleCanvas = dynamic(() => import('./ParticleCanvas'), { ssr: false });
 
 export default function HeroSection() {
   const t = useTranslations('hero');
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
+  const shouldReduceMotion = useReducedMotion();
 
   const { scrollY } = useScroll();
+  const parallaxY = useTransform(scrollY, [0, 500], [0, 150]);
+  const heroScale = useTransform(scrollY, [0, 800], [1.1, 1]);
+
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], { clamp: false });
@@ -37,20 +28,36 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-brand-teal-deep transition-colors duration-500">
-      {/* Background Gradients & Cinematic Overlays */}
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_15%_60%,rgb(var(--brand-primary-mid)),transparent_55%),radial-gradient(ellipse_at_85%_20%,rgb(var(--brand-primary-light)),transparent_50%)]" />
-      <div className="absolute inset-0 z-0 opacity-10 mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+    <section className="relative h-[90vh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-brand-teal-deep">
 
-      {/* Particle Canvas */}
-      <ParticleCanvas />
+      {/* Cinematic Background Image */}
+      <motion.div
+        style={{
+          scale: shouldReduceMotion ? 1 : heroScale,
+          y: shouldReduceMotion ? 0 : parallaxY
+        }}
+        className="absolute inset-0 z-0"
+      >
+        <Image
+          src="/images/hero-atmos.png"
+          alt="Luxury Medical Wellness"
+          fill
+          priority
+          className="object-cover opacity-60 brightness-[0.7]"
+        />
+        {/* Deep Gradient Overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-teal-deep/30 via-transparent to-brand-teal-deep" />
+      </motion.div>
+
+      {/* Cinematic Noise & Grain Overlay */}
+      <div className="absolute inset-0 z-10 opacity-[0.14] mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
 
       {/* Main Content */}
       <motion.div
         className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center items-center text-center pt-20"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
       >
         {/* Editorial Vertical Lines */}
         <div className="absolute inset-y-0 left-4 md:left-8 w-px border-l border-dashed border-white/10 hidden sm:block" aria-hidden="true" />

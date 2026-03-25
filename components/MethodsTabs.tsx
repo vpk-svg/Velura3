@@ -70,8 +70,8 @@ export default function MethodsTabs() {
               aria-selected={activeTab === tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`px-6 py-3 rounded-full font-label text-xs tracking-widest transition-all duration-300 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none ${activeTab === tab.id
-                  ? 'bg-brand-gold text-brand-teal-deep'
-                  : 'bg-transparent border border-brand-gold/30 text-brand-gold hover:bg-brand-gold/10'
+                ? 'bg-brand-gold text-brand-teal-deep'
+                : 'bg-transparent border border-brand-gold/30 text-brand-gold hover:bg-brand-gold/10'
                 }`}
             >
               {tab.label}
