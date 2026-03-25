@@ -1,13 +1,14 @@
-'use client';
-
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { useTranslations } from 'next-intl';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
 import CheckoutButton from './CheckoutButton';
 import { Star } from 'lucide-react';
 
 export default function ProductShop() {
+  const scrollRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: scrollRef, offset: ["start end", "end start"] });
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -40]);
+
   const t = useTranslations('shop');
   const [filter, setFilter] = useState('ALL');
 
@@ -111,18 +112,19 @@ export default function ProductShop() {
         </div>
 
         {/* Product Grid */}
-        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div layout ref={scrollRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <AnimatePresence>
-            {filteredProducts.map((product) => (
+            {filteredProducts.map((product, idx) => (
               <motion.div
                 key={product.id}
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
                 whileHover={{ y: -10, boxShadow: '0 20px 40px -15px rgba(201,168,76,0.3)' }}
-                className="bg-white rounded-xl overflow-hidden shadow-sm border border-brand-charcoal/5 flex flex-col group"
+                className={`bg-white rounded-xl overflow-hidden shadow-sm border border-brand-charcoal/5 flex flex-col group ${idx % 2 !== 0 ? 'md:mt-12' : ''}`}
               >
                 {/* Visual Area */}
                 <div className={`w-full aspect-square ${product.gradient} flex items-center justify-center p-6 relative`}>
@@ -139,7 +141,7 @@ export default function ProductShop() {
                     </div>
                   )}
                   {/* Fixed Stretched Images Using object-contain and animating background */}
-                  <div className="relative w-full h-full drop-shadow-2xl opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out z-0 [animation:pulse_8s_cubic-bezier(0.4,0,0.6,1)_infinite]">
+                  <motion.div style={{ y: parallaxY }} className="relative w-full h-full drop-shadow-2xl opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out z-0 [animation:pulse_8s_cubic-bezier(0.4,0,0.6,1)_infinite]">
                     <Image
                       src={product.imgSrc}
                       alt={product.name}
@@ -147,7 +149,7 @@ export default function ProductShop() {
                       className="object-contain"
                       sizes="(max-width: 768px) 100vw, 25vw"
                     />
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Content Area */}

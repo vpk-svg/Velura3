@@ -2408,6 +2408,10 @@ video {
     margin-bottom: 6rem;
   }
 
+  .md\:mt-12 {
+    margin-top: 3rem;
+  }
+
   .md\:block {
     display: block;
   }
