@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"components/HeroSection.tsx -> ./ParticleCanvas\":{\"id\":\"components/HeroSection.tsx -> ./ParticleCanvas\",\"files\":[\"static/chunks/_app-pages-browser_components_ParticleCanvas_tsx.js\"]}}"
