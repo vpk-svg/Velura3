@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* Default Velura Theme (Teal & Gold) */
+    --brand-bg: 250 247 242; /* #FAF7F2 */
+    --brand-surface: 250 247 242;
+    --brand-primary: 10 46 46; /* #0A2E2E */
+    --brand-primary-mid: 13 74 71; /* #0D4A47 */
+    --brand-primary-light: 26 122 114; /* #1A7A72 */
+    --brand-accent: 201 168 76; /* #C9A84C */
+    --brand-accent-light: 232 201 106; /* #E8C96A */
+    --brand-text-body: 28 28 28; /* #1C1C1C */
+    --brand-text-heading: 10 46 46;
+    --brand-border: 13 74 71;
+  }
+
+  .theme-clinic {
+    /* Luxury Clinic Theme (Warm Ivory & Walnut) */
+    --brand-bg: 247 244 236; /* #F7F4EC */
+    --brand-surface: 230 223 210; /* #E6DFD2 */
+    --brand-primary: 30 27 18; /* #1E1B12 espresso */
+    --brand-primary-mid: 58 41 34; /* #3A2922 walnut */
+    --brand-primary-light: 90 58 40; /* #5A3A28 dark walnut */
+    --brand-accent: 201 162 74; /* #C9A24A champagne gold */
+    --brand-accent-light: 212 180 106; /* #D4B46A champagne gold light */
+    --brand-text-body: 36 26 23; /* #241A17 charcoal */
+    --brand-text-heading: 30 27 18;
+    --brand-border: 168 155 141; /* #A89B8D taupe */
+  }
+}
+
+body {
+  @apply bg-[rgb(var(--brand-bg))] text-[rgb(var(--brand-text-body))] transition-colors duration-500;
+}

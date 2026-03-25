@@ -39,7 +39,7 @@ export default function HowItWorks() {
   };
 
   return (
-    <section className="py-24 bg-[#e6f4f1] overflow-hidden" aria-labelledby="how-it-works-title">
+    <section className="py-24 bg-brand-surface transition-colors duration-500 overflow-hidden" aria-labelledby="how-it-works-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 md:mb-24">
           <h2 id="how-it-works-title" className="font-display text-4xl md:text-5xl lg:text-6xl text-brand-teal-deep italic font-light tracking-tight mb-6">
@@ -66,8 +66,8 @@ export default function HowItWorks() {
 
                 {/* Step Badge */}
                 <div className="mx-auto flex justify-center mb-8 relative z-20">
-                  <div className="w-8 h-8 rounded-full bg-brand-teal-deep flex items-center justify-center shadow-md ring-4 ring-[#e6f4f1]">
-                    <span className="font-sans text-white text-sm font-semibold">
+                  <div className="w-8 h-8 rounded-full bg-brand-teal-deep flex items-center justify-center shadow-md ring-4 ring-brand-surface group-hover:ring-brand-gold/20 transition-all duration-500">
+                    <span className="font-sans text-brand-ivory text-sm font-semibold">
                       {step.num}
                     </span>
                   </div>
@@ -81,8 +81,8 @@ export default function HowItWorks() {
                 <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 border border-transparent hover:border-brand-teal-mid/30 flex-grow flex flex-col overflow-hidden">
 
                   {/* Icon Container */}
-                  <div className="relative w-full aspect-video bg-[#f8fcfb] flex items-center justify-center overflow-hidden border-b border-brand-teal-deep/5">
-                    <div className="w-24 h-24 rounded-full bg-[#e6f4f1] border border-brand-teal-light/20 shadow-sm flex items-center justify-center group-hover:bg-brand-teal-deep/5 transition-colors duration-500">
+                  <div className="relative w-full aspect-video bg-brand-ivory flex items-center justify-center overflow-hidden border-b border-brand-teal-deep/5 transition-colors duration-500">
+                    <div className="w-24 h-24 rounded-full bg-brand-surface border border-brand-teal-light/20 shadow-sm flex items-center justify-center group-hover:bg-brand-gold/10 transition-all duration-500">
                       {step.icon}
                     </div>
                   </div>

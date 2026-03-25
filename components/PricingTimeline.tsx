@@ -43,7 +43,7 @@ export default function PricingTimeline() {
     const currentTimeline = timelineData[activePlan];
 
     return (
-        <section className="py-24 bg-brand-ivory" aria-labelledby="pricing-timeline-title">
+        <section className="py-24 bg-brand-ivory transition-colors duration-500" aria-labelledby="pricing-timeline-title">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Header Section */}
@@ -71,7 +71,7 @@ export default function PricingTimeline() {
                                 {activePlan === plan.id && (
                                     <motion.div
                                         layoutId="pricingTabHighlight"
-                                        className="absolute inset-0 bg-[#e6f4f1] rounded-full border border-brand-teal-light/20 -z-10 shadow-sm"
+                                        className="absolute inset-0 bg-brand-surface rounded-full border border-brand-teal-light/20 -z-10 shadow-sm"
                                         initial={false}
                                         transition={{ type: "spring", stiffness: 400, damping: 30 }}
                                     />
@@ -112,7 +112,7 @@ export default function PricingTimeline() {
                                     </div>
 
                                     {/* Dosage Indicator */}
-                                    <div className="bg-[#e6f4f1] px-5 py-2.5 rounded-full mb-8 shadow-sm">
+                                    <div className="bg-brand-surface px-5 py-2.5 rounded-full mb-8 shadow-sm group-hover:bg-brand-gold/10 transition-colors duration-500">
                                         <p className="font-label text-brand-teal-deep text-[10px] uppercase tracking-widest font-semibold">
                                             {item.dosage}
                                         </p>

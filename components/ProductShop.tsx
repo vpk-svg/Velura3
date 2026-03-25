@@ -35,7 +35,7 @@ export default function ProductShop() {
       reviews: '2.847',
       badge: 'Rx',
       imgSrc: '/images/products/ozempic.webp',
-      gradient: 'bg-[radial-gradient(circle_at_center,#1A7A72,#0A2E2E)] relative overflow-hidden before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_right,rgba(247,232,176,0.3),transparent_50%)]',
+      gradient: 'bg-[radial-gradient(circle_at_center,rgb(var(--brand-primary-light)),rgb(var(--brand-primary)))] relative overflow-hidden before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_right,rgba(var(--brand-accent),0.3),transparent_50%)]',
     },
     {
       id: 'mounjaro',
@@ -50,7 +50,7 @@ export default function ProductShop() {
       badge: 'Rx',
       topBadge: t('mounjaro_badge'),
       imgSrc: '/images/products/mounjaro.webp',
-      gradient: 'bg-[radial-gradient(circle_at_center,#1A7A72,#0A2E2E)] relative overflow-hidden before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_right,rgba(247,232,176,0.3),transparent_50%)]',
+      gradient: 'bg-[radial-gradient(circle_at_center,rgb(var(--brand-primary-light)),rgb(var(--brand-primary)))] relative overflow-hidden before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_right,rgba(var(--brand-accent),0.3),transparent_50%)]',
     },
     {
       id: 'wegovy',
@@ -64,7 +64,7 @@ export default function ProductShop() {
       reviews: '1.892',
       badge: 'Rx',
       imgSrc: '/images/products/wegovy.webp',
-      gradient: 'bg-[radial-gradient(circle_at_center,#1A7A72,#0A2E2E)] relative overflow-hidden before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_right,rgba(247,232,176,0.3),transparent_50%)]',
+      gradient: 'bg-[radial-gradient(circle_at_center,rgb(var(--brand-primary-light)),rgb(var(--brand-primary)))] relative overflow-hidden before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_right,rgba(var(--brand-accent),0.3),transparent_50%)]',
     },
     {
       id: 'saxenda',
@@ -78,14 +78,14 @@ export default function ProductShop() {
       reviews: '3.411',
       badge: 'Rx',
       imgSrc: '/images/products/saxenda.webp',
-      gradient: 'bg-[radial-gradient(circle_at_center,#1A7A72,#0A2E2E)] relative overflow-hidden before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_right,rgba(247,232,176,0.3),transparent_50%)]',
+      gradient: 'bg-[radial-gradient(circle_at_center,rgb(var(--brand-primary-light)),rgb(var(--brand-primary)))] relative overflow-hidden before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_right,rgba(var(--brand-accent),0.3),transparent_50%)]',
     },
   ];
 
   const filteredProducts = filter === 'ALL' ? products : products.filter(p => p.category === filter);
 
   return (
-    <section id="shop" className="py-24 bg-brand-ivory" role="region" aria-label={t('title')}>
+    <section id="shop" className="py-24 bg-brand-ivory transition-colors duration-500" role="region" aria-label={t('title')}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-brand-teal-deep italic font-light mb-4">
