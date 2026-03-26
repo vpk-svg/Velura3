@@ -21,15 +21,16 @@ export default function TreatmentsDualRow() {
                         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                         className="relative group bg-white rounded-[48px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 border border-secondary/5 flex flex-col"
                     >
-                        <div className="relative aspect-[16/10] overflow-hidden">
+                        <div className="relative aspect-[16/10] overflow-hidden bg-secondary/5">
                             <Image
-                                src="/images/hero-atmos.png"
-                                alt="Bespoke Botox"
+                                src="/images/botox-example.png"
+                                alt="Clinical Botox Procedure Example"
                                 fill
-                                className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                                priority
                             />
-                            <div className="absolute inset-0 bg-secondary/10 group-hover:bg-transparent transition-colors duration-1000" />
-                            <div className="absolute top-10 left-10 text-white/20 font-display text-8xl pointer-events-none group-hover:opacity-40 transition-opacity">01</div>
+                            <div className="absolute inset-0 bg-secondary/5 group-hover:bg-transparent transition-colors duration-1000" />
+                            <div className="absolute top-10 left-10 text-secondary/10 font-display text-8xl pointer-events-none group-hover:opacity-40 transition-opacity italic">01</div>
                         </div>
                         <div className="p-12 md:p-16 flex flex-col flex-grow">
                             <span className="font-label text-brand-gold-dark text-xs tracking-[0.5em] uppercase mb-8 block font-bold">
@@ -60,15 +61,16 @@ export default function TreatmentsDualRow() {
                         transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                         className="relative group bg-white rounded-[48px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 border border-secondary/5 flex flex-col"
                     >
-                        <div className="relative aspect-[16/10] overflow-hidden">
+                        <div className="relative aspect-[16/10] overflow-hidden bg-secondary/5">
                             <Image
-                                src="/images/lifestyle-atmos.png"
-                                alt="Dermal Fillers"
+                                src="/images/filler-example.png"
+                                alt="Dermal Filler Lip Enhancement Result"
                                 fill
-                                className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                                priority
                             />
-                            <div className="absolute inset-0 bg-secondary/10 group-hover:bg-transparent transition-colors duration-1000" />
-                            <div className="absolute top-10 right-10 text-white/20 font-display text-8xl pointer-events-none group-hover:opacity-40 transition-opacity">02</div>
+                            <div className="absolute inset-0 bg-secondary/5 group-hover:bg-transparent transition-colors duration-1000" />
+                            <div className="absolute top-10 right-10 text-secondary/10 font-display text-8xl pointer-events-none group-hover:opacity-40 transition-opacity italic">02</div>
                         </div>
                         <div className="p-12 md:p-16 flex flex-col flex-grow">
                             <span className="font-label text-brand-gold-dark text-xs tracking-[0.5em] uppercase mb-8 block font-bold">
