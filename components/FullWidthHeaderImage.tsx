@@ -35,7 +35,7 @@ export default function FullWidthHeaderImage() {
                 <div className="absolute inset-0 bg-secondary/30 mix-blend-multiply" />
             </motion.div>
 
-            <div className="relative z-10 w-full max-w-[1700px] mx-auto flex flex-col md:flex-row items-end justify-between gap-8 md:gap-20">
+            <div className="relative z-10 w-full max-w-[1800px] mx-auto flex flex-col md:flex-row items-end justify-between gap-8 md:gap-20">
                 <div className="max-w-4xl text-left">
                     <motion.div
                         initial={{ opacity: 0, x: -40 }}

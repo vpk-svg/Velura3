@@ -23,7 +23,7 @@ export default function TreatmentsDualRow() {
                     >
                         <div className="relative aspect-[16/10] overflow-hidden bg-secondary/5">
                             <Image
-                                src="/images/botox-example.png"
+                                src="/images/treatments/botox.jpg"
                                 alt="Clinical Botox Procedure Example"
                                 fill
                                 className="object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -63,7 +63,7 @@ export default function TreatmentsDualRow() {
                     >
                         <div className="relative aspect-[16/10] overflow-hidden bg-secondary/5">
                             <Image
-                                src="/images/filler-example.png"
+                                src="/images/treatments/fillers.jpg"
                                 alt="Dermal Filler Lip Enhancement Result"
                                 fill
                                 className="object-cover transition-transform duration-1000 group-hover:scale-105"

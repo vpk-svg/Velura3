@@ -11,17 +11,17 @@ export default function TeamSection() {
         {
             name: t('dr1_name'),
             role: t('dr1_role'),
-            img: "/images/order steps/dokter.png.webp",
+            img: "/images/team/team1.jpg",
         },
         {
             name: t('dr2_name'),
             role: t('dr2_role'),
-            img: "/images/order steps/vrouw-telefoon.png.webp",
+            img: "/images/team/team2.jpg",
         },
         {
             name: t('dr3_name'),
             role: t('dr3_role'),
-            img: "/images/order steps/pakketjev3.png.webp",
+            img: "/images/team/team3.jpg",
         }
     ];
 
