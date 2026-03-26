@@ -8,7 +8,7 @@ export default function SplitTreatments() {
     const t = useTranslations('treatments');
 
     return (
-        <section className="relative w-full overflow-hidden bg-background-light">
+        <section id="treatments" className="py-20 md:py-32 bg-background-light overflow-hidden">
             <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row min-h-[600px]">
 
                 {/* Botox - Left Side */}

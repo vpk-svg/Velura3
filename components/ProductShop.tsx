@@ -85,7 +85,7 @@ export default function ProductShop() {
   const filteredProducts = filter === 'ALL' ? products : products.filter(p => p.category === filter);
 
   return (
-    <section id="shop" className="py-32 bg-background-light" role="region" aria-label={t('title')}>
+    <section id="shop" className="py-20 md:py-32 bg-background-light" role="region" aria-label={t('title')}>
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         <div className="text-center mb-24">
           <motion.span
@@ -139,7 +139,7 @@ export default function ProductShop() {
                 viewport={{ once: true }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className={`bg-white rounded-[40px] overflow-hidden shadow-sm border border-secondary/5 flex flex-col group relative ${idx % 2 !== 0 ? 'lg:mt-16' : ''}`}
+                className={`bg-white rounded-[48px] overflow-hidden shadow-sm border border-secondary/5 flex flex-col group relative ${idx % 2 !== 0 ? 'lg:mt-16' : ''}`}
               >
                 {/* Visual Area */}
                 <div className={`w-full aspect-[4/5] ${product.gradient} flex items-center justify-center p-12 relative overflow-hidden`}>

@@ -212,6 +212,23 @@
   },
   "footer": {
     "disclaimer": "FAB CLINIC — Registered EU Clinic. Authorized specialists.",
-    "copyright": "© 2025 FAB CLINIC · All rights reserved"
+    "copyright": "© 2025 FAB CLINIC · All rights reserved",
+    "treatments": "Treatments",
+    "practice": "Practice",
+    "assessments": "Assessments",
+    "legal": "Legal",
+    "about_text": "The new standard in medical aesthetics. Boutique procedures with clinical precision.",
+    "link_botox": "Bespoke Botox",
+    "link_fillers": "Dermal Fillers",
+    "link_wellness": "Medical Wellness",
+    "link_specialists": "Our Specialists",
+    "link_methodology": "Methodology",
+    "link_locations": "Locations",
+    "link_bmi": "BMI Calculator",
+    "link_consult": "Online Consult",
+    "link_booking": "Private Booking",
+    "link_privacy": "Privacy Policy",
+    "link_terms": "Patient Terms",
+    "link_cookies": "Cookie Policy"
   }
 }

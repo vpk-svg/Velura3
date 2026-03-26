@@ -9,18 +9,18 @@ export default function LifestyleSection() {
     const t = useTranslations('lifestyle');
 
     return (
-        <section id="lifestyle" className="relative py-32 bg-background-light overflow-hidden">
+        <section id="lifestyle" className="relative py-20 bg-background-light overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row items-center gap-20">
 
                     {/* Left: Interactive Image Component */}
-                    <div className="flex-1 relative w-full h-[500px] md:h-[700px] rounded-[100px] overflow-hidden group">
+                    <div className="flex-1 relative w-full h-[500px] md:h-[700px] rounded-[48px] overflow-hidden group">
                         <motion.div
-                            initial={{ scale: 1.1 }}
-                            whileInView={{ scale: 1 }}
+                            initial={{ x: -100, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 1.5 }}
-                            className="h-full w-full"
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            className="flex-1 relative w-full h-[500px] md:h-[700px] rounded-[48px] overflow-hidden group shadow-2xl"
                         >
                             <Image
                                 src="/images/cta-atmos.png"

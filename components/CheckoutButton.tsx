@@ -37,8 +37,6 @@ export default function CheckoutButton({
                 },
                 body: JSON.stringify({
                     productId,
-                    priceEur,
-                    productName,
                     locale,
                 }),
             });

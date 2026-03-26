@@ -1,14 +1,23 @@
 import { NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
+import { getProduct } from '@/lib/products';
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { productId, priceEur, productName, locale } = body;
+        const { productId, locale } = body;
 
-        if (!productId || !priceEur || !productName || !locale) {
+        if (!productId || !locale) {
             return NextResponse.json(
                 { error: 'Missing required fields' },
+                { status: 400 }
+            );
+        }
+
+        const product = getProduct(productId);
+        if (!product) {
+            return NextResponse.json(
+                { error: 'Invalid product ID' },
                 { status: 400 }
             );
         }
@@ -22,9 +31,9 @@ export async function POST(req: Request) {
                     price_data: {
                         currency: 'eur',
                         product_data: {
-                            name: productName,
+                            name: product.name,
                         },
-                        unit_amount: priceEur,
+                        unit_amount: product.priceCents,
                         recurring: {
                             interval: 'month',
                         },
@@ -37,7 +46,7 @@ export async function POST(req: Request) {
             locale: locale === 'nl' ? 'nl' : 'en',
             metadata: {
                 productId,
-                productName,
+                productName: product.name,
                 veluraSource: 'webshop',
             },
         });

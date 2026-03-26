@@ -11,29 +11,29 @@ export default function TeamSection() {
         {
             name: t('dr1_name'),
             role: t('dr1_role'),
-            img: '/images/hero-atmos.png', // Placeholder until actual doctor images
+            img: "/images/order steps/dokter.png.webp",
         },
         {
             name: t('dr2_name'),
             role: t('dr2_role'),
-            img: '/images/cta-atmos.png',
+            img: "/images/order steps/vrouw-telefoon.png.webp",
         },
         {
             name: t('dr3_name'),
             role: t('dr3_role'),
-            img: '/images/hero-atmos.png',
-        },
+            img: "/images/order steps/pakketjev3.png.webp",
+        }
     ];
 
     return (
-        <section id="team" className="py-32 bg-background-light overflow-hidden">
+        <section id="team" className="py-20 md:py-32 bg-background-light overflow-hidden">
             <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
                 <div className="text-center mb-24 md:mb-40">
                     <motion.span
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="font-label text-primary text-xs tracking-[0.5em] uppercase mb-6 block font-bold"
+                        className="font-label text-brand-gold-dark text-xs tracking-[0.5em] uppercase mb-6 block font-bold"
                     >
                         {t('label')}
                     </motion.span>
@@ -60,7 +60,7 @@ export default function TeamSection() {
                             transition={{ duration: 1, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                             className="group flex flex-col items-center text-center"
                         >
-                            <div className="relative w-full aspect-[4/5] rounded-[60px] overflow-hidden mb-12 shadow-2xl group-hover:shadow-primary/20 transition-all duration-700">
+                            <div className="relative w-full aspect-[4/5] rounded-[48px] overflow-hidden mb-12 shadow-2xl group-hover:shadow-primary/20 transition-all duration-700">
                                 <Image
                                     src={member.img}
                                     alt={member.name}

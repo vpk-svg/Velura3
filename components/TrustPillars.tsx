@@ -31,7 +31,7 @@ export default function TrustPillars() {
   ];
 
   return (
-    <section className="py-32 bg-background-light border-y border-secondary/5">
+    <section className="py-20 md:py-32 bg-background-light border-y border-secondary/5">
       <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-24">
           {pillars.map((pillar, index) => (
@@ -43,10 +43,10 @@ export default function TrustPillars() {
               transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="group flex flex-col items-center text-center"
             >
-              <div className="text-primary mb-8 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
+              <div className="text-brand-gold-dark mb-8 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
                 {pillar.icon}
               </div>
-              <h3 className="font-label text-secondary text-sm md:text-md tracking-[0.3em] uppercase mb-4 font-bold group-hover:text-primary transition-colors">
+              <h3 className="font-label text-secondary text-sm md:text-md tracking-[0.3em] uppercase mb-4 font-bold group-hover:text-brand-gold-dark transition-colors">
                 {pillar.title}
               </h3>
               <p className="font-sans font-light text-secondary/60 text-md leading-relaxed max-w-xs transition-colors group-hover:text-secondary">

@@ -45,7 +45,7 @@ export default function Navbar() {
             </div>
             <a href="/" className={`font-label text-2xl md:text-3xl tracking-tight font-bold transition-colors duration-500 ${isScrolled ? 'text-secondary' : 'text-background-light'
               }`}>
-              FAB <span className="text-primary italic">CLINIC</span>
+              FAB <span className={`${isScrolled ? 'text-brand-gold-dark' : 'text-primary'} italic`}>CLINIC</span>
             </a>
           </div>
 
@@ -97,9 +97,10 @@ export default function Navbar() {
           height: mobileMenuOpen ? '100vh' : 0,
           opacity: mobileMenuOpen ? 1 : 0
         }}
-        className="lg:hidden overflow-hidden bg-background-light fixed inset-x-0 h-screen"
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="lg:hidden overflow-hidden bg-background-light fixed inset-x-0 h-screen shadow-2xl"
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-8 px-6 pb-20 overflow-y-auto">
+        <div className="flex flex-col items-center justify-center h-full space-y-12 px-10 pb-32 overflow-y-auto">
           {navLinks.map((link) => (
             <a
               key={link.name}

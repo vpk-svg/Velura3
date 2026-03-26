@@ -63,9 +63,9 @@ export default function BmiCalculator() {
   };
 
   return (
-    <section id="bmi" className="py-32 bg-background-light text-secondary">
+    <section id="bmi" className="py-20 md:py-32 bg-background-light text-secondary">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-24 md:mb-32">
+        <div className="text-center mb-20 md:mb-32">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -79,7 +79,7 @@ export default function BmiCalculator() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-display text-5xl md:text-8xl lg:text-9xl text-secondary mb-8"
+            className="font-display text-5xl md:text-8xl lg:text-9xl text-secondary mb-8 tracking-tighter"
           >
             {t('title')} <span className="italic font-light text-primary">Calculator</span>
           </motion.h2>
@@ -88,20 +88,20 @@ export default function BmiCalculator() {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto bg-white border border-primary/20 rounded-[40px] p-10 md:p-24 shadow-2xl shadow-primary/5">
+        <div className="max-w-4xl mx-auto bg-white border border-primary/20 rounded-[48px] p-10 md:p-24 shadow-2xl shadow-primary/5">
           {/* Unit Toggle */}
           <div className="flex justify-center mb-16">
-            <div className="bg-secondary/5 rounded-full p-2 flex shadow-inner">
+            <div className="bg-secondary/5 p-2 rounded-full flex shadow-inner border border-secondary/5">
               <button
                 onClick={() => setUnit('metric')}
-                className={`px-12 py-4 rounded-full font-label text-xs tracking-widest transition-all duration-500 uppercase font-bold ${unit === 'metric' ? 'bg-primary text-white shadow-xl' : 'text-secondary/60 hover:text-primary'
+                className={`px-10 py-4 rounded-full font-label text-xs tracking-widest transition-all duration-500 uppercase font-bold ${unit === 'metric' ? 'bg-primary text-white shadow-xl' : 'text-secondary/60 hover:text-primary'
                   }`}
               >
                 {t('unit_metric')}
               </button>
               <button
                 onClick={() => setUnit('imperial')}
-                className={`px-12 py-4 rounded-full font-label text-xs tracking-widest transition-all duration-500 uppercase font-bold ${unit === 'imperial' ? 'bg-primary text-white shadow-xl' : 'text-secondary/60 hover:text-primary'
+                className={`px-10 py-4 rounded-full font-label text-xs tracking-widest transition-all duration-500 uppercase font-bold ${unit === 'imperial' ? 'bg-primary text-white shadow-xl' : 'text-secondary/60 hover:text-primary'
                   }`}
               >
                 {t('unit_imperial')}

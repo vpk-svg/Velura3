@@ -42,9 +42,9 @@ export default function HowItWorks() {
   };
 
   return (
-    <section className="py-32 bg-background-light overflow-hidden" aria-labelledby="how-it-works-title">
+    <section className="py-20 md:py-32 bg-background-light overflow-hidden" aria-labelledby="how-it-works-title">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-24 md:mb-32">
+        <div className="text-center mb-20 md:mb-32">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -88,7 +88,7 @@ export default function HowItWorks() {
                 </div>
 
                 {/* Card */}
-                <div className="bg-white rounded-[40px] shadow-sm hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-3 border border-primary/5 hover:border-primary/20 flex-grow flex flex-col overflow-hidden">
+                <div className="bg-white rounded-[48px] shadow-sm hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-3 border border-primary/5 hover:border-primary/20 flex-grow flex flex-col overflow-hidden">
 
                   {/* Icon Container */}
                   <div className="relative w-full aspect-video bg-secondary/5 flex items-center justify-center overflow-hidden border-b border-primary/5">

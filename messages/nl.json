@@ -212,6 +212,23 @@
   },
   "footer": {
     "disclaimer": "FAB CLINIC — Geregistreerde EU-kliniek. Geautoriseerde specialisten.",
-    "copyright": "© 2025 FAB CLINIC · Alle rechten voorbehouden"
+    "copyright": "© 2025 FAB CLINIC · Alle rechten voorbehouden",
+    "treatments": "Behandelingen",
+    "practice": "Praktijk",
+    "assessments": "Beoordelingen",
+    "legal": "Juridisch",
+    "about_text": "De nieuwe standaard in medische esthetiek. Boutique procedures met klinische precisie.",
+    "link_botox": "Bespoke Botox",
+    "link_fillers": "Dermal Fillers",
+    "link_wellness": "Medische Wellness",
+    "link_specialists": "Onze Specialisten",
+    "link_methodology": "Methodiek",
+    "link_locations": "Locaties",
+    "link_bmi": "BMI Calculator",
+    "link_consult": "Online Consult",
+    "link_booking": "Privé Boeking",
+    "link_privacy": "Privacybeleid",
+    "link_terms": "Patiëntenvoorwaarden",
+    "link_cookies": "Cookiebeleid"
   }
 }

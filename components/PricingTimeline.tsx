@@ -45,11 +45,11 @@ export default function PricingTimeline() {
     const currentTimeline = timelineData[activePlan];
 
     return (
-        <section id="pricing" className="py-32 bg-background-light overflow-hidden" aria-labelledby="pricing-timeline-title">
+        <section id="pricing" className="py-20 md:py-32 bg-background-light overflow-hidden" aria-labelledby="pricing-timeline-title">
             <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
 
                 {/* Header Section */}
-                <div className="text-center mb-24 md:mb-32">
+                <div className="text-center mb-20 md:mb-32">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -103,7 +103,7 @@ export default function PricingTimeline() {
                             {currentTimeline.map((item, idx) => (
                                 <div
                                     key={idx}
-                                    className={`flex-none w-[320px] md:w-[400px] snap-center bg-white rounded-[40px] p-12 border transition-all duration-700 hover:-translate-y-4 hover:shadow-2xl ${item.optional ? 'border-dashed border-primary/20 bg-white/50' : 'border-primary/5 shadow-sm shadow-primary/5'
+                                    className={`flex-none w-[320px] md:w-[400px] snap-center bg-white rounded-[48px] p-12 border transition-all duration-700 hover:-translate-y-4 hover:shadow-2xl ${item.optional ? 'border-dashed border-primary/20 bg-white/50' : 'border-primary/5 shadow-sm shadow-primary/5'
                                         } flex flex-col items-center justify-between min-h-[350px]`}
                                 >
                                     {/* Top Label */}

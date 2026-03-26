@@ -20,47 +20,47 @@ export default function Footer() {
           <div className="col-span-2 lg:col-span-1">
             <h3 className="font-label text-white text-2xl mb-8 font-bold tracking-tighter">FAB <span className="text-primary italic">CLINIC</span></h3>
             <p className="font-sans font-light text-background-light/50 text-sm leading-relaxed max-w-xs mb-10">
-              The new standard in medical aesthetics. Boutique procedures with clinical precision.
+              {t('about_text')}
             </p>
           </div>
           <div>
             <h4 className="font-label text-primary text-[11px] tracking-[0.3em] uppercase mb-10 font-bold">
-              Treatments
+              {t('treatments')}
             </h4>
             <ul className="space-y-6 font-sans font-light text-sm text-background-light/70 uppercase tracking-[0.15em]">
-              <li><a href="#botox" className="hover:text-primary transition-colors block">Bespoke Botox</a></li>
-              <li><a href="#fillers" className="hover:text-primary transition-colors block">Dermal Fillers</a></li>
-              <li><a href="#lifestyle" className="hover:text-primary transition-colors block">Medical Wellness</a></li>
+              <li><a href="#botox" className="hover:text-primary transition-colors block">{t('link_botox')}</a></li>
+              <li><a href="#fillers" className="hover:text-primary transition-colors block">{t('link_fillers')}</a></li>
+              <li><a href="#lifestyle" className="hover:text-primary transition-colors block">{t('link_wellness')}</a></li>
             </ul>
           </div>
           <div>
             <h4 className="font-label text-primary text-[11px] tracking-[0.3em] uppercase mb-10 font-bold">
-              Practice
+              {t('practice')}
             </h4>
             <ul className="space-y-6 font-sans font-light text-sm text-background-light/70 uppercase tracking-[0.15em]">
-              <li><a href="#team" className="hover:text-primary transition-colors block">Our Specialists</a></li>
-              <li><a href="#how" className="hover:text-primary transition-colors block">Methodology</a></li>
-              <li><a href="#contact" className="hover:text-primary transition-colors block">Locations</a></li>
+              <li><a href="#team" className="hover:text-primary transition-colors block">{t('link_specialists')}</a></li>
+              <li><a href="#how" className="hover:text-primary transition-colors block">{t('link_methodology')}</a></li>
+              <li><a href="#contact" className="hover:text-primary transition-colors block">{t('link_locations')}</a></li>
             </ul>
           </div>
           <div>
             <h4 className="font-label text-primary text-[11px] tracking-[0.3em] uppercase mb-10 font-bold">
-              Assessments
+              {t('assessments')}
             </h4>
             <ul className="space-y-6 font-sans font-light text-sm text-background-light/70 uppercase tracking-[0.15em]">
-              <li><a href="#bmi" className="hover:text-primary transition-colors block">BMI Calculator</a></li>
-              <li><a href="#consult" className="hover:text-primary transition-colors block">Online Consult</a></li>
-              <li><a href="#team" className="hover:text-primary transition-colors block">Private Booking</a></li>
+              <li><a href="#bmi" className="hover:text-primary transition-colors block">{t('link_bmi')}</a></li>
+              <li><a href="#consult" className="hover:text-primary transition-colors block">{t('link_consult')}</a></li>
+              <li><a href="#team" className="hover:text-primary transition-colors block">{t('link_booking')}</a></li>
             </ul>
           </div>
           <div>
             <h4 className="font-label text-primary text-[11px] tracking-[0.3em] uppercase mb-10 font-bold">
-              Legal
+              {t('legal')}
             </h4>
             <ul className="space-y-6 font-sans font-light text-sm text-background-light/70 uppercase tracking-[0.15em]">
-              <li><a href="#" className="hover:text-primary transition-colors block">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors block">Patient Terms</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors block">Cookie Policy</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors block">{t('link_privacy')}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors block">{t('link_terms')}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors block">{t('link_cookies')}</a></li>
             </ul>
           </div>
         </div>

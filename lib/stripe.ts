@@ -16,6 +16,6 @@ if (!secretKey) {
 
 // Initialize with either the key or a dummy string to prevent the build from crashing
 export const stripe = new Stripe(secretKey || 'sk_test_mock_for_build', {
-  apiVersion: '2026-02-25.clover' as any,
+  apiVersion: '2024-06-20' as any,
   typescript: true,
 });

@@ -32,38 +32,43 @@ export default function BlogPreview() {
   ];
 
   return (
-    <section id="blog" className="py-32 bg-background-light overflow-hidden">
+    <section id="blog" className="py-20 md:py-32 bg-background-light">
       <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
-        <div className="text-center mb-24 md:mb-32">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-label text-primary text-xs tracking-[0.5em] uppercase mb-6 block font-bold"
-          >
-            Insights
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-display text-5xl md:text-8xl text-secondary tracking-tighter mb-8"
-          >
-            Clinical <span className="italic font-light text-primary">Journal</span>
-          </motion.h2>
+        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-10">
+          <div className="max-w-3xl">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="font-label text-primary text-xs tracking-[0.5em] uppercase mb-6 block font-bold"
+            >
+              Medical Journal
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="font-display text-5xl md:text-8xl text-secondary tracking-tighter"
+            >
+              {t('title')}
+            </motion.h2>
+          </div>
+          <a href="#" className="font-label text-secondary hover:text-primary transition-colors text-xs tracking-widest uppercase font-bold border-b border-secondary/20 pb-2">
+            View All Articles
+          </a>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
           {articles.map((article, index) => (
-            <motion.article
+            <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="group flex flex-col h-full bg-white rounded-[40px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 hover:-translate-y-4 border border-primary/5"
+              transition={{ delay: index * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="group cursor-pointer"
             >
-              <div className="relative h-72 md:h-80 overflow-hidden">
+              <div className="relative aspect-[16/10] bg-secondary/5 rounded-[48px] overflow-hidden mb-10 border border-secondary/5 ring-1 ring-secondary/5 group-hover:ring-primary/20 transition-all duration-500">
                 <Image
                   src={article.img}
                   alt={article.title}
@@ -82,7 +87,7 @@ export default function BlogPreview() {
                 <span className="font-sans text-[11px] text-primary tracking-widest uppercase mb-6 font-bold opacity-60">
                   {article.date}
                 </span>
-                <h3 className="font-display text-3xl text-secondary mb-6 leading-[1.2] group-hover:text-primary transition-colors italic">
+                <h3 className="font-display text-3xl text-secondary mb-6 leading-[1.2] group-hover:text-primary transition-colors italic font-bold">
                   {article.title}
                 </h3>
                 <p className="font-sans font-light text-secondary/70 text-lg leading-relaxed mb-10 flex-grow">
@@ -94,7 +99,7 @@ export default function BlogPreview() {
                   </a>
                 </div>
               </div>
-            </motion.article>
+            </motion.div>
           ))}
         </div>
       </div>

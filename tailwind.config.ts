@@ -20,8 +20,9 @@ const config: Config = {
         "background-light": "#FDFCF0",
         "background-dark": "#1e1b14",
         "brand-gold": "#c6a65d",
-        "brand-gold-light": "#d8b56f", // derived lighter version
-        "brand-teal-deep": "#1e1b14", // mapped to background dark for backward compat
+        "brand-gold-light": "#d8b56f",
+        "brand-gold-dark": "#a68b4c", // added for contrast/accessibility
+        "brand-teal-deep": "#1e1b14",
         "brand-teal-mid": "#3B2A23",  // mapped to secondary for backward compat
         "brand-ivory": "#FDFCF0",     // mapped to background light
       },
