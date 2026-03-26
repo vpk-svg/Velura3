@@ -53,18 +53,22 @@ export default function CtaBanner() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-8"
           >
-            <a
+            <motion.a
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
               href="#shop"
-              className="w-full sm:w-auto px-12 py-6 bg-secondary text-white rounded-full font-label text-xs tracking-[0.3em] uppercase font-bold hover:shadow-2xl transition-all duration-300"
+              className="w-full sm:w-auto px-12 py-6 bg-secondary text-white rounded-full font-label text-xs tracking-[0.3em] uppercase font-bold shadow-xl hover:shadow-2xl transition-all duration-300"
             >
               Start Consultation
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
               href="#bmi"
               className="w-full sm:w-auto px-12 py-6 bg-transparent border border-secondary text-secondary rounded-full font-label text-xs tracking-[0.3em] uppercase font-bold hover:bg-secondary/5 transition-all duration-300"
             >
               Calculate BMI
-            </a>
+            </motion.a>
           </motion.div>
         </div>
       </motion.div>

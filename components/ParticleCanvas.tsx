@@ -72,12 +72,21 @@ export default function ParticleCanvas() {
       }
     };
 
+    let isVisible = true;
+    const observer = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+    }, { threshold: 0.1 });
+
+    observer.observe(canvas);
+
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((particle) => {
-        particle.update();
-        particle.draw();
-      });
+      if (isVisible && ctx && canvas) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((particle) => {
+          particle.update();
+          particle.draw();
+        });
+      }
       animationFrameId = requestAnimationFrame(animate);
     };
 
@@ -88,6 +97,7 @@ export default function ParticleCanvas() {
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
     };
   }, []);
 

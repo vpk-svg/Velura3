@@ -214,19 +214,30 @@ export default function BmiCalculator() {
                   </div>
                 </div>
 
-                {/* Scale Bar */}
-                <div className="relative h-4 bg-secondary/5 rounded-full mb-20 px-1 flex items-center">
+                {/* Scale Bar (Ghost State) */}
+                <div className="relative h-6 bg-secondary/5 rounded-full mb-20 px-1 flex items-center border border-secondary/5 shadow-inner">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-green-400 via-amber-400 via-orange-500 to-red-500 opacity-20 rounded-full" />
+
+                  {/* Category Threshold Indicators */}
+                  <div className="absolute inset-0 flex justify-between px-[10%] pointer-events-none">
+                    <div className="w-px h-full bg-secondary/10" />
+                    <div className="w-px h-full bg-secondary/10" />
+                    <div className="w-px h-full bg-secondary/10" />
+                    <div className="w-px h-full bg-secondary/10" />
+                  </div>
+
                   <motion.div
                     initial={{ left: '0%' }}
                     animate={{ left: getBmiCategory(bmiResult).position }}
-                    transition={{ type: 'spring', stiffness: 50, damping: 20 }}
-                    className="absolute top-1/2 -translate-y-1/2 w-8 h-8 bg-white border-4 border-primary rounded-full shadow-2xl z-10"
-                  />
+                    transition={{ type: 'spring', stiffness: 40, damping: 15, mass: 1 }}
+                    className="absolute top-1/2 -translate-y-1/2 w-10 h-10 bg-white border-4 border-primary rounded-full shadow-2xl z-20 flex items-center justify-center"
+                  >
+                    <div className="w-2 h-2 bg-primary rounded-full" />
+                  </motion.div>
                 </div>
 
                 {/* Advice Box */}
-                <div className="bg-secondary p-12 md:p-20 rounded-[40px] text-center text-white relative overflow-hidden group">
+                <div className="bg-secondary p-12 md:p-20 rounded-[48px] text-center text-white relative overflow-hidden group shadow-2xl">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 opacity-50 transition-opacity group-hover:opacity-100" />
                   <h4 className="font-label text-primary text-[12px] tracking-widest uppercase mb-8 font-bold">
                     {t('advice_title')}

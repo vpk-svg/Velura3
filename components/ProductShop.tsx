@@ -137,9 +137,13 @@ export default function ProductShop() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
+                whileHover={{
+                  y: -10,
+                  transition: { type: 'spring', stiffness: 300, damping: 20 }
+                }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className={`bg-white rounded-[48px] overflow-hidden shadow-sm border border-secondary/5 flex flex-col group relative ${idx % 2 !== 0 ? 'lg:mt-16' : ''}`}
+                className={`bg-white rounded-[48px] overflow-hidden shadow-sm border border-secondary/5 flex flex-col group relative cursor-pointer ${idx % 2 !== 0 ? 'lg:mt-16' : ''}`}
               >
                 {/* Visual Area */}
                 <div className={`w-full aspect-[4/5] ${product.gradient} flex items-center justify-center p-12 relative overflow-hidden`}>

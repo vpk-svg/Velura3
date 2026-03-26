@@ -55,7 +55,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className={`transition-colors duration-500 text-[13px] font-bold uppercase tracking-[0.15em] hover:text-primary ${isScrolled ? 'text-secondary/80' : 'text-background-light'
+                className={`transition-all duration-500 text-[13px] font-bold uppercase tracking-[0.15em] hover:tracking-[0.2em] hover:text-primary ${isScrolled ? 'text-secondary/80' : 'text-background-light'
                   }`}
               >
                 {link.name}

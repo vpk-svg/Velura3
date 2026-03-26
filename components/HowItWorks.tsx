@@ -87,27 +87,33 @@ export default function HowItWorks() {
                   </span>
                 </div>
 
-                {/* Card */}
-                <div className="bg-white rounded-[48px] shadow-sm hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-3 border border-primary/5 hover:border-primary/20 flex-grow flex flex-col overflow-hidden">
-
+                <motion.div
+                  whileHover={{
+                    y: -12,
+                    transition: { type: 'spring', stiffness: 400, damping: 25 }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  className="bg-white rounded-[48px] shadow-sm hover:shadow-2xl transition-all duration-500 ease-in-out border border-primary/5 hover:border-primary/20 flex-grow flex flex-col overflow-hidden group/card cursor-pointer"
+                >
                   {/* Icon Container */}
                   <div className="relative w-full aspect-video bg-secondary/5 flex items-center justify-center overflow-hidden border-b border-primary/5">
-                    <div className="w-24 h-24 rounded-3xl bg-white border border-primary/10 shadow-sm flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-700 text-primary">
+                    <div className="absolute inset-0 bg-primary opacity-0 group-hover/card:opacity-5 transition-opacity duration-700" />
+                    <div className="text-brand-gold-dark transform transition-all duration-700 group-hover/card:scale-110 group-hover/card:rotate-3">
                       {step.icon}
                     </div>
                   </div>
 
                   {/* Text Container */}
-                  <div className="p-10 flex flex-col flex-grow text-center">
-                    <h3 className="font-display text-3xl text-secondary mb-4 italic">
+                  <motion.div className="p-10 md:p-12 flex flex-col flex-grow items-center text-center">
+                    <h3 className="font-display text-3xl text-secondary mb-6 leading-tight group-hover/card:text-primary transition-colors italic font-bold">
                       {step.title}
                     </h3>
                     <p className="font-sans font-light text-secondary/70 text-lg leading-relaxed">
                       {step.desc}
                     </p>
-                  </div>
+                  </motion.div>
 
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
