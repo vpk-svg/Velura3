@@ -5,6 +5,7 @@ import { motion, useScroll, useMotionValueEvent } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { Menu, X, Sparkles } from 'lucide-react';
 import LanguageToggle from './LanguageToggle';
+import MagneticWrapper from './MagneticWrapper';
 
 export default function Navbar() {
   const t = useTranslations('nav');
@@ -66,14 +67,16 @@ export default function Navbar() {
           {/* Actions & Floating Consult */}
           <div className="hidden md:flex items-center space-x-10">
             <LanguageToggle isScrolled={isScrolled} />
-            <motion.a
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              href="#consult"
-              className="px-8 py-3 bg-primary text-white rounded-full font-label text-[12px] uppercase tracking-[0.2em] font-bold shadow-[0_15px_45px_-10px_rgba(198,166,93,0.5)] hover:shadow-primary/40 transition-all"
-            >
-              {t('cta')}
-            </motion.a>
+            <MagneticWrapper>
+              <motion.a
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                href="#consult"
+                className="px-8 py-3 bg-primary text-white rounded-full font-label text-[12px] uppercase tracking-[0.2em] font-bold shadow-[0_15px_45px_-10px_rgba(198,166,93,0.5)] hover:shadow-primary/40 transition-all"
+              >
+                {t('cta')}
+              </motion.a>
+            </MagneticWrapper>
           </div>
 
           {/* Mobile toggle */}

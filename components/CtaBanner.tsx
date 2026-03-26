@@ -1,7 +1,6 @@
-'use client';
-
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
+import MagneticWrapper from './MagneticWrapper';
 
 export default function CtaBanner() {
   const t = useTranslations('blog'); // Reusing blog translations or fallback if cta_banner not fully setup
@@ -53,22 +52,26 @@ export default function CtaBanner() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-8"
           >
-            <motion.a
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              href="#shop"
-              className="w-full sm:w-auto px-12 py-6 bg-secondary text-white rounded-full font-label text-xs tracking-[0.3em] uppercase font-bold shadow-xl hover:shadow-2xl transition-all duration-300"
-            >
-              Start Consultation
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              href="#bmi"
-              className="w-full sm:w-auto px-12 py-6 bg-transparent border border-secondary text-secondary rounded-full font-label text-xs tracking-[0.3em] uppercase font-bold hover:bg-secondary/5 transition-all duration-300"
-            >
-              Calculate BMI
-            </motion.a>
+            <MagneticWrapper>
+              <motion.a
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                href="#shop"
+                className="w-full sm:w-auto px-12 py-6 bg-secondary text-white rounded-full font-label text-xs tracking-[0.3em] uppercase font-bold shadow-xl hover:shadow-2xl transition-all duration-300"
+              >
+                Start Consultation
+              </motion.a>
+            </MagneticWrapper>
+            <MagneticWrapper>
+              <motion.a
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                href="#bmi"
+                className="w-full sm:w-auto px-12 py-6 bg-transparent border border-secondary text-secondary rounded-full font-label text-xs tracking-[0.3em] uppercase font-bold hover:bg-secondary/5 transition-all duration-300"
+              >
+                Calculate BMI
+              </motion.a>
+            </MagneticWrapper>
           </motion.div>
         </div>
       </motion.div>

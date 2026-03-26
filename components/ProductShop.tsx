@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import CheckoutButton from './CheckoutButton';
+import MagneticWrapper from './MagneticWrapper';
 import { Star, ShieldCheck } from 'lucide-react';
 
 export default function ProductShop() {
@@ -134,19 +135,29 @@ export default function ProductShop() {
               <motion.div
                 key={product.id}
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
                 whileHover={{
-                  y: -10,
-                  transition: { type: 'spring', stiffness: 300, damping: 20 }
+                  y: -15,
+                  transition: { type: 'spring', stiffness: 400, damping: 25 }
                 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className={`bg-white rounded-[48px] overflow-hidden shadow-sm border border-secondary/5 flex flex-col group relative cursor-pointer ${idx % 2 !== 0 ? 'lg:mt-16' : ''}`}
+                transition={{
+                  duration: 1.2,
+                  delay: idx * 0.1,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
+                className={`bg-white rounded-[48px] overflow-hidden shadow-sm hover:shadow-2xl border border-secondary/5 flex flex-col group relative cursor-pointer ${idx % 2 !== 0 ? 'lg:mt-16' : ''}`}
               >
-                {/* Visual Area */}
+                {/* Visual Area with Advanced Glassmorphism */}
                 <div className={`w-full aspect-[4/5] ${product.gradient} flex items-center justify-center p-12 relative overflow-hidden`}>
+                  {/* Decorative Glass Elements */}
+                  <div className="absolute inset-0 z-0 flex items-center justify-center opacity-30">
+                    <div className="w-64 h-64 bg-white/10 backdrop-blur-3xl rounded-full blur-2xl animate-pulse" />
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-2xl rounded-full -translate-y-1/2 translate-x-1/2" />
+                  </div>
+
                   <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity bg-[url('/images/noise.png')] pointer-events-none" />
 
                   <div className="absolute top-6 left-6 z-10 flex gap-2">
