@@ -15,7 +15,7 @@ export default function Testimonials(): ReactElement {
     { quote: t('t3_quote'), author: t('t3_author') },
   ];
 
-  const containerVariants = {
+  const containerVariants: any = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -23,13 +23,13 @@ export default function Testimonials(): ReactElement {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: any = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
   };
 
   return (
-    <section className="py-32 bg-secondary text-background-light overflow-hidden">
+    <section className="py-20 md:py-32 bg-secondary text-background-light overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         <div className="text-center mb-24 md:mb-40">
           <motion.span
@@ -62,7 +62,7 @@ export default function Testimonials(): ReactElement {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="bg-white rounded-[40px] p-12 shadow-2xl relative group hover:-translate-y-4 transition-transform duration-700 ease-out"
+              className="bg-white rounded-[48px] p-12 shadow-2xl relative group hover:-translate-y-4 transition-transform duration-700 ease-out"
             >
               <div className="flex text-primary mb-10">
                 {[...Array(5)].map((_, i) => (
