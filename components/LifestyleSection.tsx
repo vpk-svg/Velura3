@@ -14,21 +14,21 @@ export default function LifestyleSection() {
                 <div className="flex flex-col lg:flex-row items-center gap-20">
 
                     {/* Left: Interactive Image Component */}
-                    <div className="flex-1 relative w-full h-[500px] md:h-[700px] rounded-[48px] overflow-hidden group">
+                    <div className="flex-1 relative w-full h-[500px] md:h-[700px] rounded-[48px] overflow-hidden group shadow-2xl bg-secondary/5">
                         <motion.div
                             initial={{ x: -100, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                            className="flex-1 relative w-full h-[500px] md:h-[700px] rounded-[48px] overflow-hidden group shadow-2xl"
+                            className="w-full h-full relative"
                         >
                             <Image
-                                src="/images/cta-atmos.png"
-                                alt="Elite Aesthetics Lifestyle"
+                                src="/images/lifestyle-coaching.png"
+                                alt="Personalized Lifestyle Coaching Session"
                                 fill
-                                className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                className="object-cover transition-transform duration-1000 group-hover:scale-105"
                             />
-                            <div className="absolute inset-0 bg-primary/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                            <div className="absolute inset-0 bg-secondary/5 group-hover:opacity-0 transition-opacity duration-700" />
                         </motion.div>
                     </div>
 

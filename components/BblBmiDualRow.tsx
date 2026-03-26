@@ -20,44 +20,36 @@ export default function BblBmiDualRow() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative group bg-secondary rounded-[48px] overflow-hidden shadow-2xl flex flex-col"
+                        className="relative group bg-white rounded-[48px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 border border-secondary/5 flex flex-col"
                     >
-                        {/* Background Atmos */}
-                        <div className="absolute inset-0 z-0">
+                        <div className="relative aspect-[16/10] overflow-hidden bg-secondary/5">
                             <Image
-                                src="/images/hero-atmos.png"
-                                alt="BBL Aesthetic Contouring"
+                                src="/images/bbl-example.png"
+                                alt="Liquid BBL Contouring Illustration"
                                 fill
-                                className="object-cover opacity-30 grayscale-[0.5] scale-110"
+                                className="object-cover transition-transform duration-1000 group-hover:scale-105"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-b from-secondary/40 to-secondary" />
+                            <div className="absolute inset-0 bg-secondary/5 group-hover:bg-transparent transition-colors duration-1000" />
+                            <div className="absolute top-8 left-8 text-secondary/10 font-display text-7xl pointer-events-none group-hover:opacity-40 transition-opacity italic">BBL</div>
                         </div>
-
-                        <div className="relative z-10 p-12 md:p-16 flex flex-col h-full justify-center">
-                            <span className="font-label text-primary text-xs tracking-[0.5em] uppercase mb-8 block font-bold">
+                        <div className="p-12 md:p-16 flex flex-col flex-grow">
+                            <span className="font-label text-brand-gold-dark text-xs tracking-[0.5em] uppercase mb-8 block font-bold">
                                 {t_bbl('label')}
                             </span>
-                            <h3 className="font-display text-5xl md:text-8xl text-white mb-10 italic">
+                            <h3 className="font-display text-5xl md:text-7xl text-secondary mb-10 italic leading-tight">
                                 {t_bbl('title1')} <span className="text-primary not-italic">{t_bbl('title2')}</span>
                             </h3>
-                            <p className="font-sans font-light text-background-light/70 text-xl md:text-2xl leading-relaxed mb-12">
+                            <p className="font-sans font-light text-secondary/70 text-xl md:text-2xl leading-relaxed mb-12 flex-grow">
                                 {t_bbl('desc')}
                             </p>
                             <MagneticWrapper>
                                 <a
                                     href="#consult"
-                                    className="inline-flex px-12 py-5 bg-primary text-white rounded-full font-label text-xs tracking-[0.3em] uppercase font-bold hover:shadow-2xl transition-all duration-300 shadow-xl"
+                                    className="inline-flex px-12 py-5 bg-secondary text-white rounded-full font-label text-xs tracking-[0.3em] uppercase font-bold hover:shadow-2xl transition-all duration-300 shadow-xl"
                                 >
                                     {t_bbl('cta')}
                                 </a>
                             </MagneticWrapper>
-                        </div>
-
-                        {/* Cinematic Accent */}
-                        <div className="absolute bottom-10 right-10 hidden md:block">
-                            <div className="relative w-32 h-32 border border-primary/20 rounded-full flex items-center justify-center animate-spin-slow">
-                                <span className="font-label text-primary text-[6px] tracking-[0.2em] uppercase font-bold text-center px-2">FAB CLINIC · BODY · ESTHETICS ·</span>
-                            </div>
                         </div>
                     </motion.div>
 
