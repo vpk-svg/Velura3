@@ -22,7 +22,7 @@ const imperialSchema = z.object({
   gender: z.enum(['male', 'female']),
 });
 
-export default function BmiCalculator() {
+export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }) {
   const t = useTranslations('bmi');
   const [unit, setUnit] = useState<'metric' | 'imperial'>('metric');
   const [bmiResult, setBmiResult] = useState<number | null>(null);
@@ -62,6 +62,196 @@ export default function BmiCalculator() {
     return { text: t('advice_over35'), cta: t('cta_over35'), link: '#consult' };
   };
 
+  const innerContent = (
+    <div className={isEmbed ? 'w-full' : 'max-w-4xl mx-auto bg-white border border-primary/20 rounded-[48px] p-10 md:p-24 shadow-2xl shadow-primary/5'}>
+      {/* Unit Toggle */}
+      <div className="flex justify-center mb-16">
+        <div className="bg-secondary/5 p-2 rounded-full flex shadow-inner border border-secondary/5">
+          <button
+            type="button"
+            onClick={() => setUnit('metric')}
+            className={`px-10 py-4 rounded-full font-label text-xs tracking-widest transition-all duration-500 uppercase font-bold ${unit === 'metric' ? 'bg-primary text-white shadow-xl' : 'text-secondary/60 hover:text-primary'
+              }`}
+          >
+            {t('unit_metric')}
+          </button>
+          <button
+            type="button"
+            onClick={() => setUnit('imperial')}
+            className={`px-10 py-4 rounded-full font-label text-xs tracking-widest transition-all duration-500 uppercase font-bold ${unit === 'imperial' ? 'bg-primary text-white shadow-xl' : 'text-secondary/60 hover:text-primary'
+              }`}
+          >
+            {t('unit_imperial')}
+          </button>
+        </div>
+      </div>
+
+      {/* Form */}
+      <form onSubmit={unit === 'metric' ? handleMetricSubmit(calculateMetric) : handleImperialSubmit(calculateImperial)} className="space-y-12">
+        {unit === 'metric' ? (
+          <div className="grid grid-cols-2 gap-8 md:gap-12">
+            <div className="group">
+              <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('height_cm')}</label>
+              <input
+                type="number"
+                {...registerMetric('heightCm', { valueAsNumber: true })}
+                className="w-full bg-transparent border-b-2 border-secondary/10 focus:border-primary text-secondary font-display text-4xl py-4 outline-none transition-all placeholder:text-secondary/20"
+              />
+            </div>
+            <div className="group">
+              <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('weight_kg')}</label>
+              <input
+                type="number"
+                {...registerMetric('weightKg', { valueAsNumber: true })}
+                className="w-full bg-transparent border-b-2 border-secondary/10 focus:border-primary text-secondary font-display text-4xl py-4 outline-none transition-all placeholder:text-secondary/20"
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-8 md:gap-12">
+            <div className="flex space-x-4 md:space-x-8">
+              <div className="w-1/2">
+                <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('height_ft')}</label>
+                <input
+                  type="number"
+                  {...registerImperial('heightFt', { valueAsNumber: true })}
+                  className="w-full bg-transparent border-b-2 border-secondary/10 focus:border-primary text-secondary font-display text-4xl py-4 outline-none transition-all"
+                />
+              </div>
+              <div className="w-1/2">
+                <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('height_in')}</label>
+                <input
+                  type="number"
+                  {...registerImperial('heightIn', { valueAsNumber: true })}
+                  className="w-full bg-transparent border-b-2 border-secondary/10 focus:border-primary text-secondary font-display text-4xl py-4 outline-none transition-all"
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('weight_lbs')}</label>
+              <input
+                type="number"
+                {...registerImperial('weightLbs', { valueAsNumber: true })}
+                className="w-full bg-transparent border-b-2 border-secondary/10 focus:border-primary text-secondary font-display text-4xl py-4 outline-none transition-all"
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          <div>
+            <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('age')}</label>
+            <input
+              type="number"
+              {...(unit === 'metric' ? registerMetric('age', { valueAsNumber: true }) : registerImperial('age', { valueAsNumber: true }))}
+              className="w-full bg-transparent border-b-2 border-secondary/10 focus:border-primary text-secondary font-display text-4xl py-4 outline-none transition-all"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('gender')}</label>
+            <div className="flex space-x-8 md:space-x-12 mt-4 h-full items-center">
+              <label className="flex items-center space-x-4 cursor-pointer group">
+                <input type="radio" value="male" {...(unit === 'metric' ? registerMetric('gender') : registerImperial('gender'))} className="w-6 h-6 text-primary focus:ring-primary bg-transparent border-secondary/20 transition-all" />
+                <span className="font-label text-xs uppercase tracking-widest text-secondary/70 group-hover:text-primary transition-colors font-bold">{t('male')}</span>
+              </label>
+              <label className="flex items-center space-x-4 cursor-pointer group">
+                <input type="radio" value="female" {...(unit === 'metric' ? registerMetric('gender') : registerImperial('gender'))} className="w-6 h-6 text-primary focus:ring-primary bg-transparent border-secondary/20 transition-all" />
+                <span className="font-label text-xs uppercase tracking-widest text-secondary/70 group-hover:text-primary transition-colors font-bold">{t('female')}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          type="submit"
+          className="w-full py-6 md:py-8 mt-4 md:mt-12 bg-primary text-white font-label text-sm tracking-[0.4em] uppercase rounded-full shadow-2xl shadow-primary/40 hover:shadow-primary/60 transition-all font-bold"
+        >
+          {t('calculate')}
+        </motion.button>
+      </form>
+
+      {/* Results Panel */}
+      <AnimatePresence>
+        {bmiResult && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.98, y: 30 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-16 pt-16 border-t border-secondary/5"
+          >
+            <div className="text-center mb-12">
+              <span className={`font-display text-7xl md:text-9xl leading-none ${getBmiCategory(bmiResult).color}`}>
+                {bmiResult}
+              </span>
+              <div className="font-label text-xs tracking-[0.5em] uppercase mt-6 text-secondary/60 font-bold">
+                {getBmiCategory(bmiResult).label}
+              </div>
+            </div>
+
+            {/* Scale Bar (Ghost State) */}
+            <div className="relative h-4 bg-secondary/5 rounded-full mb-16 px-1 flex items-center border border-secondary/5 shadow-inner">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-green-400 via-amber-400 via-orange-500 to-red-500 opacity-20 rounded-full" />
+              <div className="absolute inset-0 flex justify-between px-[10%] pointer-events-none text-[8px] opacity-30 font-bold font-label">
+                <div className="w-px h-full bg-secondary/10" />
+                <div className="w-px h-full bg-secondary/10" />
+                <div className="w-px h-full bg-secondary/10" />
+                <div className="w-px h-full bg-secondary/10" />
+              </div>
+              <motion.div
+                initial={{ left: '0%' }}
+                animate={{ left: getBmiCategory(bmiResult).position }}
+                transition={{ type: 'spring', stiffness: 40, damping: 15 }}
+                className="absolute top-1/2 -translate-y-1/2 w-8 h-8 bg-white border-4 border-primary rounded-full shadow-2xl z-20 flex items-center justify-center"
+              >
+                <div className="w-2 h-2 bg-primary rounded-full" />
+              </motion.div>
+            </div>
+
+            {/* Advice Box */}
+            <div className="bg-secondary p-8 md:p-12 rounded-[40px] text-center text-white relative overflow-hidden group shadow-2xl">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-primary/20 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 opacity-50" />
+              <h4 className="font-label text-primary text-[10px] tracking-widest uppercase mb-6 font-bold">
+                {t('advice_title')}
+              </h4>
+              <p className="font-sans font-light text-lg md:text-xl leading-relaxed mb-10 text-background-light/90 italic">
+                "{getAdvice(bmiResult).text}"
+              </p>
+              <a
+                href={getAdvice(bmiResult).link}
+                className="inline-flex px-10 py-4 bg-primary text-white rounded-full font-label text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-secondary transition-all shadow-xl"
+              >
+                {getAdvice(bmiResult).cta}
+              </a>
+            </div>
+
+            <p className="font-sans text-[10px] italic text-secondary/30 text-center mt-12 uppercase tracking-[0.2em] font-bold">
+              {t('disclaimer')}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+
+  if (isEmbed) {
+    return (
+      <div className="w-full">
+        <div className="mb-10">
+          <span className="font-label text-primary text-[10px] tracking-[0.4em] uppercase mb-4 block font-bold">
+            {t('label')}
+          </span>
+          <h3 className="font-display text-4xl md:text-5xl text-secondary italic">
+            BMI <span className="text-primary not-italic">Calculator</span>
+          </h3>
+        </div>
+        {innerContent}
+      </div>
+    );
+  }
+
   return (
     <section id="bmi" className="py-20 md:py-32 bg-background-light text-secondary">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -87,179 +277,7 @@ export default function BmiCalculator() {
             {t('subtitle')}
           </p>
         </div>
-
-        <div className="max-w-4xl mx-auto bg-white border border-primary/20 rounded-[48px] p-10 md:p-24 shadow-2xl shadow-primary/5">
-          {/* Unit Toggle */}
-          <div className="flex justify-center mb-16">
-            <div className="bg-secondary/5 p-2 rounded-full flex shadow-inner border border-secondary/5">
-              <button
-                onClick={() => setUnit('metric')}
-                className={`px-10 py-4 rounded-full font-label text-xs tracking-widest transition-all duration-500 uppercase font-bold ${unit === 'metric' ? 'bg-primary text-white shadow-xl' : 'text-secondary/60 hover:text-primary'
-                  }`}
-              >
-                {t('unit_metric')}
-              </button>
-              <button
-                onClick={() => setUnit('imperial')}
-                className={`px-10 py-4 rounded-full font-label text-xs tracking-widest transition-all duration-500 uppercase font-bold ${unit === 'imperial' ? 'bg-primary text-white shadow-xl' : 'text-secondary/60 hover:text-primary'
-                  }`}
-              >
-                {t('unit_imperial')}
-              </button>
-            </div>
-          </div>
-
-          {/* Form */}
-          <form onSubmit={unit === 'metric' ? handleMetricSubmit(calculateMetric) : handleImperialSubmit(calculateImperial)} className="space-y-12">
-            {unit === 'metric' ? (
-              <div className="grid grid-cols-2 gap-12">
-                <div className="group">
-                  <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('height_cm')}</label>
-                  <input
-                    type="number"
-                    {...registerMetric('heightCm', { valueAsNumber: true })}
-                    className="w-full bg-transparent border-b-2 border-secondary/10 focus:border-primary text-secondary font-display text-4xl md:text-5xl py-4 outline-none transition-all placeholder:text-secondary/20"
-                  />
-                </div>
-                <div className="group">
-                  <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('weight_kg')}</label>
-                  <input
-                    type="number"
-                    {...registerMetric('weightKg', { valueAsNumber: true })}
-                    className="w-full bg-transparent border-b-2 border-secondary/10 focus:border-primary text-secondary font-display text-4xl md:text-5xl py-4 outline-none transition-all placeholder:text-secondary/20"
-                  />
-                </div>
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-12">
-                <div className="flex space-x-8">
-                  <div className="w-1/2">
-                    <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('height_ft')}</label>
-                    <input
-                      type="number"
-                      {...registerImperial('heightFt', { valueAsNumber: true })}
-                      className="w-full bg-transparent border-b-2 border-secondary/10 focus:border-primary text-secondary font-display text-4xl md:text-5xl py-4 outline-none transition-all"
-                    />
-                  </div>
-                  <div className="w-1/2">
-                    <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('height_in')}</label>
-                    <input
-                      type="number"
-                      {...registerImperial('heightIn', { valueAsNumber: true })}
-                      className="w-full bg-transparent border-b-2 border-secondary/10 focus:border-primary text-secondary font-display text-4xl md:text-5xl py-4 outline-none transition-all"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('weight_lbs')}</label>
-                  <input
-                    type="number"
-                    {...registerImperial('weightLbs', { valueAsNumber: true })}
-                    className="w-full bg-transparent border-b-2 border-secondary/10 focus:border-primary text-secondary font-display text-4xl md:text-5xl py-4 outline-none transition-all"
-                  />
-                </div>
-              </div>
-            )}
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div>
-                <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('age')}</label>
-                <input
-                  type="number"
-                  {...(unit === 'metric' ? registerMetric('age', { valueAsNumber: true }) : registerImperial('age', { valueAsNumber: true }))}
-                  className="w-full bg-transparent border-b-2 border-secondary/10 focus:border-primary text-secondary font-display text-4xl md:text-5xl py-4 outline-none transition-all"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-4 font-bold">{t('gender')}</label>
-                <div className="flex space-x-12 mt-4 h-full items-center">
-                  <label className="flex items-center space-x-4 cursor-pointer group">
-                    <input type="radio" value="male" {...(unit === 'metric' ? registerMetric('gender') : registerImperial('gender'))} className="w-6 h-6 text-primary focus:ring-primary bg-transparent border-secondary/20 transition-all" />
-                    <span className="font-label text-xs md:text-sm uppercase tracking-widest text-secondary/70 group-hover:text-primary transition-colors font-bold">{t('male')}</span>
-                  </label>
-                  <label className="flex items-center space-x-4 cursor-pointer group">
-                    <input type="radio" value="female" {...(unit === 'metric' ? registerMetric('gender') : registerImperial('gender'))} className="w-6 h-6 text-primary focus:ring-primary bg-transparent border-secondary/20 transition-all" />
-                    <span className="font-label text-xs md:text-sm uppercase tracking-widest text-secondary/70 group-hover:text-primary transition-colors font-bold">{t('female')}</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              type="submit"
-              className="w-full py-8 mt-12 bg-primary text-white font-label text-sm tracking-[0.4em] uppercase rounded-full shadow-2xl shadow-primary/40 hover:shadow-primary/60 transition-all font-bold"
-            >
-              {t('calculate')}
-            </motion.button>
-          </form>
-
-          {/* Results Panel */}
-          <AnimatePresence>
-            {bmiResult && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.98, y: 30 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.98, y: 30 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-20 pt-20 border-t border-secondary/5"
-              >
-                <div className="text-center mb-16">
-                  <span className={`font-display text-8xl md:text-[12rem] leading-none ${getBmiCategory(bmiResult).color}`}>
-                    {bmiResult}
-                  </span>
-                  <div className="font-label text-[14px] tracking-[0.5em] uppercase mt-8 text-secondary/60 font-bold">
-                    {getBmiCategory(bmiResult).label}
-                  </div>
-                </div>
-
-                {/* Scale Bar (Ghost State) */}
-                <div className="relative h-6 bg-secondary/5 rounded-full mb-20 px-1 flex items-center border border-secondary/5 shadow-inner">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-green-400 via-amber-400 via-orange-500 to-red-500 opacity-20 rounded-full" />
-
-                  {/* Category Threshold Indicators */}
-                  <div className="absolute inset-0 flex justify-between px-[10%] pointer-events-none">
-                    <div className="w-px h-full bg-secondary/10" />
-                    <div className="w-px h-full bg-secondary/10" />
-                    <div className="w-px h-full bg-secondary/10" />
-                    <div className="w-px h-full bg-secondary/10" />
-                  </div>
-
-                  <motion.div
-                    initial={{ left: '0%' }}
-                    animate={{ left: getBmiCategory(bmiResult).position }}
-                    transition={{ type: 'spring', stiffness: 40, damping: 15, mass: 1 }}
-                    className="absolute top-1/2 -translate-y-1/2 w-10 h-10 bg-white border-4 border-primary rounded-full shadow-2xl z-20 flex items-center justify-center"
-                  >
-                    <div className="w-2 h-2 bg-primary rounded-full" />
-                  </motion.div>
-                </div>
-
-                {/* Advice Box */}
-                <div className="bg-secondary p-12 md:p-20 rounded-[48px] text-center text-white relative overflow-hidden group shadow-2xl">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 opacity-50 transition-opacity group-hover:opacity-100" />
-                  <h4 className="font-label text-primary text-[12px] tracking-widest uppercase mb-8 font-bold">
-                    {t('advice_title')}
-                  </h4>
-                  <p className="font-sans font-light text-2xl md:text-3xl leading-relaxed mb-12 text-background-light/90 italic">
-                    "{getAdvice(bmiResult).text}"
-                  </p>
-                  <a
-                    href={getAdvice(bmiResult).link}
-                    className="inline-flex px-12 py-5 bg-primary text-white rounded-full font-label text-[12px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-secondary transition-all shadow-xl"
-                  >
-                    {getAdvice(bmiResult).cta}
-                  </a>
-                </div>
-
-                <p className="font-sans text-[11px] italic text-secondary/30 text-center mt-16 uppercase tracking-[0.3em] font-bold">
-                  {t('disclaimer')}
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        {innerContent}
       </div>
     </section>
   );

@@ -42,16 +42,16 @@
     "explore": "Ontdek"
   },
   "lifestyle": {
-    "label": "MEDISCHE WELLNESS",
-    "title": "Holistische",
-    "subtitle": "Lifestyle",
-    "item1_title": "Anti-Aging Diëten",
-    "item1_desc": "Gepersonaliseerde voedingsprotocollen die gericht zijn op een stralende huid van binnenuit.",
-    "item2_title": "Bewegingsadvies",
-    "item2_desc": "Training gericht op het behoud van spiermassa en een gezonde stofwisseling.",
-    "item3_title": "Stressherstel",
-    "item3_desc": "Klinische technieken om cortisolniveaus te beheersen voor optimale esthetische resultaten.",
-    "cta": "Leer meer over onze plannen"
+    "label": "PERSOONLIJKE BEGELEIDING",
+    "title": "Lifestyle",
+    "subtitle": "Coaching",
+    "item1_title": "Habit Coaching",
+    "item1_desc": "Eén-op-één sessies om duurzame routines op te bouwen die uw esthetische en gezondheidsdoelen ondersteunen.",
+    "item2_title": "Wellness Planning",
+    "item2_desc": "Uitgebreide stappenplannen voor voeding, slaap en activiteit, afgestemd op uw biologie.",
+    "item3_title": "Continue Support",
+    "item3_desc": "Constant contact met onze specialisten voor begeleiding, aanpassingen en klinische aanmoediging.",
+    "cta": "Bekijk coaching trajecten"
   },
   "bmi": {
     "title": "BMI",

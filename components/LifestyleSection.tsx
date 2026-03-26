@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { Heart, Activity, Coffee } from 'lucide-react';
+import { UserCheck, Compass, MessageSquare } from 'lucide-react';
 import Image from 'next/image';
 
 export default function LifestyleSection() {
@@ -55,9 +55,9 @@ export default function LifestyleSection() {
 
                         <div className="space-y-12">
                             {[
-                                { icon: <Heart size={28} />, title: t('item1_title'), desc: t('item1_desc') },
-                                { icon: <Activity size={28} />, title: t('item2_title'), desc: t('item2_desc') },
-                                { icon: <Coffee size={28} />, title: t('item3_title'), desc: t('item3_desc') }
+                                { icon: <UserCheck size={28} />, title: t('item1_title'), desc: t('item1_desc') },
+                                { icon: <Compass size={28} />, title: t('item2_title'), desc: t('item2_desc') },
+                                { icon: <MessageSquare size={28} />, title: t('item3_title'), desc: t('item3_desc') }
                             ].map((item, idx) => (
                                 <motion.div
                                     key={item.title}

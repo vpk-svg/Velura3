@@ -42,16 +42,16 @@
     "explore": "Explore"
   },
   "lifestyle": {
-    "label": "MEDICAL WELLNESS",
-    "title": "Holistic",
-    "subtitle": "Lifestyle",
-    "item1_title": "Anti-Aging Diets",
-    "item1_desc": "Personalized nutritional protocols that promote longevity and skin radiance from within.",
-    "item2_title": "Movement Guidance",
-    "item2_desc": "Bespoke fitness routines designed to maintain lean muscle mass and metabolic health.",
-    "item3_title": "Stress Recovery",
-    "item3_desc": "Clinical techniques to manage cortisol levels and optimize sleep for peak aesthetic results.",
-    "cta": "Learn more about our plans"
+    "label": "PERSONALIZED GUIDANCE",
+    "title": "Lifestyle",
+    "subtitle": "Coaching",
+    "item1_title": "Habit Coaching",
+    "item1_desc": "One-on-one sessions to build sustainable routines that support your aesthetic and health goals.",
+    "item2_title": "Wellness Planning",
+    "item2_desc": "Comprehensive roadmaps covering nutrition, sleep, and activity tailored to your biology.",
+    "item3_title": "Ongoing Support",
+    "item3_desc": "Constant access to our specialists for guidance, adjustments, and clinical encouragement.",
+    "cta": "View coaching programs"
   },
   "bmi": {
     "title": "BMI",
