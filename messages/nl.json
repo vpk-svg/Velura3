@@ -13,14 +13,14 @@
     "label": "MEDISCH BEGELEID · KLINISCH BEWEZEN",
     "h1_line1": "FAB",
     "h1_line2": "CLINIC",
-    "subtext": "Uw vertrouwde kliniek voor medische esthetiek. Wij combineren vakmanschap met persoonlijke aandacht — voor een resultaat dat bij u past.",
+    "subtext": "Uw vertrouwde kliniek voor medische esthetiek. Wij combineren vakmanschap met persoonlijke aandacht, voor een resultaat dat bij u past.",
     "cta_primary": "Bekijk Behandelingen",
     "cta_secondary": "Gratis Consult"
   },
   "treatments": {
     "botox_title": "Op maat",
     "botox_subtitle": "Botox",
-    "botox_desc": "Subtiel en natuurlijk. Onze artsen werken met microdoseringen zodat u er fris en ontspannen uitziet — zonder dat iemand het merkt.",
+    "botox_desc": "Subtiel en natuurlijk. Onze artsen werken met microdoseringen zodat u er fris en ontspannen uitziet, zonder dat iemand het merkt.",
     "botox_cta": "Plan een Afspraak",
     "fillers_title": "Dermal",
     "fillers_subtitle": "Fillers",
@@ -48,7 +48,7 @@
     "item1_title": "Gedragscoaching",
     "item1_desc": "Samen bouwen we aan gezonde gewoontes die passen bij uw leven en doelen.",
     "item2_title": "Op maat gemaakt plan",
-    "item2_desc": "Een persoonlijk stappenplan voor voeding, beweging en herstel — afgestemd op uw lichaam.",
+    "item2_desc": "Een persoonlijk stappenplan voor voeding, beweging en herstel. Afgestemd op uw lichaam.",
     "item3_title": "Doorlopende begeleiding",
     "item3_desc": "Onze specialisten staan klaar voor vragen, bijsturing en motivatie gedurende het hele traject.",
     "cta": "Bekijk onze trajecten"
@@ -89,7 +89,7 @@
     "label": "ZO WERKT HET",
     "title": "Hoe werkt",
     "subtitle": "FAB Clinic?",
-    "desc": "In drie stappen naar een resultaat dat bij u past — veilig, professioneel en volledig op maat.",
+    "desc": "In drie stappen naar een resultaat dat bij u past: veilig, professioneel en volledig op maat.",
     "step1_title": "Intake & Kennismaking",
     "step1_desc": "Vul een korte vragenlijst in over uw wensen en gezondheid.",
     "step2_title": "Adviesgesprek",
@@ -145,7 +145,7 @@
     "content2_b3": "Laser Resurfacing",
     "content2_b4": "Peelings",
     "content3_title": "Lichaamscontouring",
-    "content3_text": "Verfijn uw silhouet zonder operatie — met technieken die direct resultaat geven.",
+    "content3_text": "Verfijn uw silhouet zonder operatie. Met technieken die direct resultaat geven.",
     "content3_b1": "Liquid BBL",
     "content3_b2": "HIFU Body",
     "content3_b3": "Cryolipolyse",
@@ -248,7 +248,7 @@
     "consent": "Ik ga akkoord met de communicatievoorwaarden"
   },
   "footer": {
-    "disclaimer": "FAB CLINIC — Geregistreerde kliniek. Alle behandelingen onder medisch toezicht.",
+    "disclaimer": "FAB CLINIC · Geregistreerde kliniek. Alle behandelingen onder medisch toezicht.",
     "copyright": "© 2025 FAB CLINIC · Alle rechten voorbehouden",
     "treatments": "Behandelingen",
     "practice": "Praktijk",
@@ -309,7 +309,7 @@
     "welcome_point1": "2 minuten",
     "welcome_point2": "Vertrouwelijk",
     "welcome_point3": "Gratis",
-    "welcome_time": "Duurt ongeveer 2 minuten — uw gegevens worden veilig en vertrouwelijk behandeld.",
+    "welcome_time": "Duurt ongeveer 2 minuten. Uw gegevens worden veilig en vertrouwelijk behandeld.",
 
     "sex_label": "Persoonlijke gegevens",
     "sex_title": "Wat is uw biologisch geslacht?",
@@ -338,8 +338,8 @@
     "bmi_overweight": "Overgewicht",
     "bmi_obese1": "Obesitas klasse I",
     "bmi_obese2": "Obesitas klasse II+",
-    "bmi_qualifies_directly": "Op basis van uw BMI komt u mogelijk direct in aanmerking voor medicatie. Laten we doorgaan met een aantal gezondsheidsvragen.",
-    "bmi_qualifies_with_conditions": "Uw BMI ligt tussen 27 en 30. U kunt in aanmerking komen als u ook aan bepaalde gezondsheidsvoorwaarden voldoet. We stellen u hierna een paar vragen.",
+    "bmi_qualifies_directly": "Op basis van uw BMI komt u mogelijk direct in aanmerking voor medicatie. Laten we doorgaan met een aantal gezondheidsvragen.",
+    "bmi_qualifies_with_conditions": "Uw BMI ligt tussen 27 en 30. U kunt in aanmerking komen als u ook aan bepaalde gezondheidsvoorwaarden voldoet. We stellen u hierna een paar vragen.",
 
     "target_label": "Uw Doel",
     "target_title": "Wat is uw streefgewicht?",
@@ -348,7 +348,7 @@
 
     "attempts_label": "Achtergrond",
     "attempts_title": "Wat heeft u al geprobeerd om af te vallen?",
-    "attempts_desc": "Selecteer alles wat van toepassing is. Dit helpt ons arts de medische noodzaak te beoordelen.",
+    "attempts_desc": "Selecteer alles wat van toepassing is. Dit helpt onze arts uw achtergrond te begrijpen.",
     "attempts_diets": "Diëten (keto, caloriebeperking, intermittent fasting, etc.)",
     "attempts_exercise": "Regelmatige lichaamsbeweging",
     "attempts_otc_supplements": "Voedingssupplementen of afslankpillen (vrij verkrijgbaar)",
@@ -366,14 +366,14 @@
     "comorbid_pcos": "PCOS (Polycysteus-ovariumsyndroom)",
 
     "contra_label": "Veiligheid",
-    "contra_title": "Gelden een van de volgende situaties voor u?",
-    "contra_desc": "Selecteer alles wat van toepassing is. Deze vragen zijn essentieel voor uw veiligheid.",
+    "contra_title": "Geldt een van de volgende situaties voor u?",
+    "contra_desc": "Selecteer alles wat van toepassing is. We stellen deze vragen voor uw veiligheid.",
     "contra_pregnant": "Ik ben zwanger of geef borstvoeding",
     "contra_mtc_men2": "Ik (of een familielid) heb medullair schildkliercarcinoom (MTC) of MEN 2",
-    "contra_eating_disorder": "Ik heb (gehad) een ernstige eetstoornis",
+    "contra_eating_disorder": "Ik heb, of heb gehad, een ernstige eetstoornis",
 
     "contact_label": "Uw Gegevens",
-    "contact_title": "Bijna klaar — nog even uw gegevens",
+    "contact_title": "Bijna klaar, nog even uw gegevens",
     "contact_desc": "Zodat onze arts contact met u kan opnemen voor een persoonlijk adviesgesprek.",
     "contact_first": "Voornaam",
     "contact_last": "Achternaam",
@@ -388,19 +388,19 @@
     "dq_bmi_low_desc": "Op basis van uw BMI (lager dan 27) komt u niet in aanmerking voor afvalmedicatie op recept. Dit soort medicatie is alleen bedoeld voor mensen met een verhoogd gezondheidsrisico door overgewicht. Misschien is ons lifestyle coaching programma iets voor u?",
     "dq_bmi_low_cta": "Bekijk Lifestyle Coaching",
 
-    "dq_bmi_27_no_comorbidity_title": "Net niet — maar we denken graag mee",
+    "dq_bmi_27_no_comorbidity_title": "Net niet, maar we denken graag mee",
     "dq_bmi_27_no_comorbidity_desc": "Uw BMI ligt tussen 27 en 30, maar u heeft geen bijkomende aandoeningen die medicatie rechtvaardigen. Volgens de richtlijnen is medicatie in dit geval helaas niet mogelijk. Neem gerust contact op met uw huisarts voor persoonlijk advies.",
 
     "dq_contraindication_title": "Uw veiligheid gaat voor",
-    "dq_contraindication_desc": "Op basis van uw antwoorden is GLP-1 medicatie op dit moment niet veilig voor u. Dit is geen afwijzing — het is een beschermingsmaatregel. Wij raden u aan dit met uw huisarts of specialist te bespreken.",
+    "dq_contraindication_desc": "Op basis van uw antwoorden is GLP-1 medicatie op dit moment niet veilig voor u. Dit is geen afwijzing, het is een beschermingsmaatregel. Wij raden u aan dit met uw huisarts of specialist te bespreken.",
 
     "dq_back_home": "Terug naar de homepage"
   },
 
   "qualified": {
     "hero_label": "U BENT GESCHIKT",
-    "hero_title": "Goed nieuws — u komt in aanmerking!",
-    "hero_title_personal": "Goed nieuws, {name} — u komt in aanmerking!",
+    "hero_title": "Goed nieuws: u komt in aanmerking!",
+    "hero_title_personal": "Goed nieuws, {name}: u komt in aanmerking!",
     "hero_desc": "Op basis van uw antwoorden komt u in aanmerking voor medisch begeleide afvalmedicatie. Onze artsen staan klaar om samen met u een persoonlijk behandelplan op te stellen.",
     "stat_to_lose": "Streefverlies",
 
@@ -408,11 +408,11 @@
     "process_title": "Hoe gaat het verder?",
     "step_prefix": "Stap",
     "step1_title": "Doktersconsult",
-    "step1_desc": "Een van onze artsen beoordeelt uw intake en bespreekt de beste opties met u — telefonisch of via videocall.",
+    "step1_desc": "Een van onze artsen beoordeelt uw intake en bespreekt de beste opties met u, telefonisch of via videocall.",
     "step2_title": "Recept & Levering",
     "step2_desc": "Na goedkeuring schrijft de arts uw medicatie voor. Deze wordt discreet thuisbezorgd via onze partnerapotheek.",
     "step3_title": "Begeleiding & Nazorg",
-    "step3_desc": "U krijgt doorlopende begeleiding van ons team — met regelmatige check-ins en doseeraanpassingen waar nodig.",
+    "step3_desc": "U krijgt doorlopende begeleiding van ons team, met regelmatige check-ins en doseeraanpassingen waar nodig.",
 
     "options_label": "UW OPTIES",
     "options_title": "Beschikbare Medicatie",
@@ -433,7 +433,7 @@
     "trust_4_desc": "Beoordeeld door honderden patiënten",
 
     "cta_title": "Klaar om te beginnen?",
-    "cta_desc": "Plan vandaag nog uw gratis consult en zet de eerste stap naar een gezonder gewicht — begeleid door onze artsen.",
+    "cta_desc": "Plan vandaag nog uw gratis consult en zet de eerste stap naar een gezonder gewicht, begeleid door onze artsen.",
     "cta_schedule": "Plan Gratis Consult",
     "cta_close": "Sluiten",
     "cta_call": "Bel Direct"
