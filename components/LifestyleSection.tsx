@@ -79,7 +79,7 @@ export default function LifestyleSection() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.5 }}
                         >
-                            <a href="#consult" className="font-sans text-sm text-primary tracking-widest uppercase font-semibold group inline-flex items-center gap-3 hover:gap-5 transition-all duration-300">
+                            <a href="/trajecten" className="font-sans text-sm text-primary tracking-widest uppercase font-semibold group inline-flex items-center gap-3 hover:gap-5 transition-all duration-300">
                                 {t('cta')} <span aria-hidden="true">→</span>
                             </a>
                         </motion.div>

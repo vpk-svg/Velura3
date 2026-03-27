@@ -3,7 +3,7 @@ import WeightlossHeader from '@/components/WeightlossHeader';
 import TreatmentsDualRow from '@/components/TreatmentsDualRow';
 import LifestyleSection from '@/components/LifestyleSection';
 import Testimonials from '@/components/Testimonials';
-import ProductShop from '@/components/ProductShop';
+import HowItWorks from '@/components/HowItWorks';
 import PharmacyDisclaimer from '@/components/PharmacyDisclaimer';
 
 export default function HomePage() {
@@ -21,11 +21,11 @@ export default function HomePage() {
       {/* 4. Full-width Lifestyle Coaching */}
       <LifestyleSection />
 
-      {/* 5. Google Reviews / Testimonials */}
-      <Testimonials />
+      {/* 5. How It Works */}
+      <HowItWorks />
 
-      {/* 6. Product Shop — Pens */}
-      <ProductShop />
+      {/* 6. Google Reviews / Testimonials */}
+      <Testimonials />
 
       {/* 7. Partner Pharmacy Disclaimer */}
       <PharmacyDisclaimer />

@@ -38,9 +38,9 @@ export default function Navbar() {
 
   const navLinks = [
     { name: t('home'), href: '/' },
-    { name: t('weightloss'), href: '#shop' },
-    { name: t('botox'), href: '#botox' },
-    { name: t('lifestyle'), href: '#lifestyle' },
+    { name: t('trajecten'), href: '/trajecten' },
+    { name: t('medicatie'), href: '/medicatie' },
+    { name: t('fillers'), href: '/fillers' },
     { name: t('team'), href: '/team' },
     { name: t('contact'), href: '/contact' },
   ];

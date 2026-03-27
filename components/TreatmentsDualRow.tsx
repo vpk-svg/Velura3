@@ -84,7 +84,7 @@ export default function TreatmentsDualRow() {
                                 <p className="font-sans font-light text-secondary/70 text-lg md:text-xl leading-relaxed mb-10 flex-grow">
                                     {t('fillers_desc')}
                                 </p>
-                                <Button href="#consult" variant="secondary" size="md">
+                                <Button href="/fillers" variant="secondary" size="md">
                                     {t('fillers_cta')}
                                 </Button>
                             </div>

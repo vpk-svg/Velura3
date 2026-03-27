@@ -29,17 +29,17 @@ export default function Footer() {
 
           {[
             { title: t('treatments'), links: [
-              { href: '#botox', label: t('link_botox') },
-              { href: '#fillers', label: t('link_fillers') },
-              { href: '#lifestyle', label: t('link_wellness') },
+              { href: '/fillers', label: t('link_fillers') },
+              { href: '/medicatie', label: t('link_botox') },
+              { href: '/trajecten', label: t('link_wellness') },
             ]},
             { title: t('practice'), links: [
               { href: '/team', label: t('link_specialists') },
-              { href: '/team', label: t('link_methodology') },
+              { href: '/trajecten', label: t('link_methodology') },
               { href: '/contact', label: t('link_locations') },
             ]},
             { title: t('assessments'), links: [
-              { href: '#shop', label: t('link_bmi') },
+              { href: '/medicatie', label: t('link_bmi') },
               { href: '/contact', label: t('link_consult') },
               { href: '/contact', label: t('link_booking') },
             ]},

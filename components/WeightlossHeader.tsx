@@ -60,7 +60,7 @@ export default function WeightlossHeader() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
           >
-            <Button href="#shop" variant="primary" size="lg">
+            <Button href="/medicatie" variant="primary" size="lg">
               {t('cta')}
             </Button>
           </motion.div>
