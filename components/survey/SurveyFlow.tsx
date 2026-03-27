@@ -4,13 +4,14 @@ import {
   useState, useCallback, useMemo, useEffect, useRef,
   createContext, useContext, type ReactNode, type ElementType,
 } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useSpring, useTransform } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { EASE_PREMIUM } from '@/lib/motion';
 import {
   ArrowRight, ArrowLeft, User, Ruler, Weight, Calendar, Target,
   Heart, ShieldAlert, Mail, Phone, CheckCircle2, XCircle,
   Activity, Scale, X, Shield, Stethoscope, Package, HeartPulse, Star,
+  Check,
 } from 'lucide-react';
 
 /* ═══════════════════════════════════════════════════
@@ -61,46 +62,86 @@ export function SurveyTrigger({ children, className }: { children: ReactNode; cl
 }
 
 /* ═══════════════════════════════════════════════════
-   Shared UI — OUTSIDE the overlay to avoid re-creation
+   Premium Sub-Components (extracted, never re-mount)
    ═══════════════════════════════════════════════════ */
+
+/* --- Option Button (radio-style, single select) --- */
 function SurveyOption({ selected, onClick, children }: {
   selected: boolean; onClick: () => void; children: ReactNode;
 }) {
   return (
-    <button type="button" onClick={onClick}
-      className={`w-full text-left px-5 py-4 rounded-md border-2 transition-all duration-200 font-sans text-sm active:scale-[0.98] ${
+    <motion.button
+      type="button"
+      onClick={onClick}
+      whileTap={{ scale: 0.975 }}
+      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+      className={`group w-full text-left px-5 py-4.5 rounded-lg border-[1.5px] transition-all duration-300 ease-premium font-sans text-sm relative overflow-hidden ${
         selected
-          ? 'border-primary bg-primary/10 text-secondary'
-          : 'border-secondary/10 bg-white text-secondary/70 active:border-primary/40'
-      }`}>
-      <span className="flex items-center justify-between">
-        <span>{children}</span>
-        {selected && <CheckCircle2 size={18} className="text-primary shrink-0" />}
+          ? 'border-primary/60 bg-gradient-to-br from-primary/[0.06] to-primary/[0.02] text-secondary shadow-option-selected'
+          : 'border-secondary/[0.07] bg-surface-elevated text-secondary/60 hover:border-secondary/15 hover:bg-white shadow-input-rest'
+      }`}
+    >
+      <span className="flex items-center justify-between relative z-10">
+        <span className="font-medium">{children}</span>
+        {/* Custom radio indicator */}
+        <span className={`w-5 h-5 rounded-full border-[1.5px] flex items-center justify-center shrink-0 transition-all duration-300 ${
+          selected
+            ? 'border-primary bg-primary'
+            : 'border-secondary/15 group-hover:border-secondary/25'
+        }`}>
+          {selected && (
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 600, damping: 20 }}
+            >
+              <Check size={11} strokeWidth={3} className="text-white" />
+            </motion.span>
+          )}
+        </span>
       </span>
-    </button>
+    </motion.button>
   );
 }
 
+/* --- Checkbox Button (multi-select) --- */
 function SurveyCheck({ on, onClick, children }: {
   on: boolean; onClick: () => void; children: ReactNode;
 }) {
   return (
-    <button type="button" onClick={onClick}
-      className={`w-full text-left px-4 py-3.5 rounded-md border-2 transition-all duration-200 font-sans text-sm active:scale-[0.98] ${
-        on ? 'border-primary bg-primary/10 text-secondary' : 'border-secondary/10 bg-white text-secondary/70'
-      }`}>
+    <motion.button
+      type="button"
+      onClick={onClick}
+      whileTap={{ scale: 0.975 }}
+      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+      className={`group w-full text-left px-4 py-4 rounded-lg border-[1.5px] transition-all duration-300 ease-premium font-sans text-sm ${
+        on
+          ? 'border-primary/60 bg-gradient-to-br from-primary/[0.06] to-primary/[0.02] text-secondary shadow-option-selected'
+          : 'border-secondary/[0.07] bg-surface-elevated text-secondary/60 hover:border-secondary/15 shadow-input-rest'
+      }`}
+    >
       <span className="flex items-center gap-3">
-        <span className={`w-5 h-5 rounded shrink-0 border-2 flex items-center justify-center transition-all ${
-          on ? 'border-primary bg-primary' : 'border-secondary/20'
+        {/* Custom checkbox */}
+        <span className={`w-[18px] h-[18px] rounded-[5px] shrink-0 border-[1.5px] flex items-center justify-center transition-all duration-300 ${
+          on ? 'border-primary bg-primary' : 'border-secondary/15 group-hover:border-secondary/25'
         }`}>
-          {on && <CheckCircle2 size={12} className="text-white" />}
+          {on && (
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 600, damping: 20 }}
+            >
+              <Check size={10} strokeWidth={3} className="text-white" />
+            </motion.span>
+          )}
         </span>
         <span className="leading-snug">{children}</span>
       </span>
-    </button>
+    </motion.button>
   );
 }
 
+/* --- Premium Text Input --- */
 function SurveyInput({ icon: Ic, label, value, onChange, inputMode, placeholder, unit, autoFocus, type = 'text' }: {
   icon: ElementType; label: string; value: string;
   onChange: (v: string) => void; type?: string;
@@ -108,10 +149,10 @@ function SurveyInput({ icon: Ic, label, value, onChange, inputMode, placeholder,
   placeholder?: string; unit?: string; autoFocus?: boolean;
 }) {
   const ref = useRef<HTMLInputElement>(null);
+  const [focused, setFocused] = useState(false);
 
   useEffect(() => {
     if (autoFocus && ref.current) {
-      // Small delay so the slide animation finishes and the element is in the DOM
       const id = setTimeout(() => ref.current?.focus(), 320);
       return () => clearTimeout(id);
     }
@@ -119,8 +160,9 @@ function SurveyInput({ icon: Ic, label, value, onChange, inputMode, placeholder,
 
   return (
     <div className="space-y-2">
-      <label className="flex items-center gap-2 text-[10px] font-sans font-semibold uppercase tracking-[0.2em] text-secondary/50">
-        <Ic size={13} /> {label}
+      <label className="flex items-center gap-2 text-[10px] font-sans font-semibold uppercase tracking-[0.2em] text-secondary/40">
+        <Ic size={12} className={`transition-colors duration-300 ${focused ? 'text-primary' : 'text-secondary/30'}`} />
+        {label}
       </label>
       <div className="relative">
         <input
@@ -129,14 +171,18 @@ function SurveyInput({ icon: Ic, label, value, onChange, inputMode, placeholder,
           inputMode={inputMode}
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
           placeholder={placeholder}
           autoComplete="off"
-          className="w-full px-4 py-3.5 rounded-md border-2 border-secondary/10 bg-white font-sans
-            text-secondary text-base focus:border-primary focus:ring-2 focus:ring-primary/20
-            outline-none transition-all cursor-text"
+          className="input-glow w-full px-4 py-4 rounded-lg border-[1.5px] border-secondary/[0.07] bg-surface-elevated font-sans
+            text-secondary text-base shadow-input-rest outline-none cursor-text
+            placeholder:text-secondary/20"
         />
         {unit && (
-          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-sans text-secondary/30 uppercase pointer-events-none">
+          <span className={`absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-sans uppercase tracking-[0.15em] pointer-events-none transition-colors duration-300 ${
+            focused ? 'text-primary/50' : 'text-secondary/25'
+          }`}>
             {unit}
           </span>
         )}
@@ -145,19 +191,38 @@ function SurveyInput({ icon: Ic, label, value, onChange, inputMode, placeholder,
   );
 }
 
+/* --- Step Header --- */
 function StepHeader({ icon: Ic, label, title, center }: {
   icon: ElementType; label: string; title: string; center?: boolean;
 }) {
   return (
     <div className={center ? 'text-center' : ''}>
-      <div className={`flex items-center gap-2 mb-2 ${center ? 'justify-center' : ''}`}>
-        <Ic size={14} className="text-primary" />
-        <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-secondary/40 font-semibold">
+      <div className={`flex items-center gap-2 mb-3 ${center ? 'justify-center' : ''}`}>
+        <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+          <Ic size={12} className="text-primary" />
+        </span>
+        <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-secondary/35 font-semibold">
           {label}
         </span>
       </div>
-      <h2 className="font-display text-2xl md:text-3xl text-secondary italic">{title}</h2>
+      <h2 className="font-display text-[clamp(1.5rem,3vw,1.875rem)] text-secondary italic leading-tight">{title}</h2>
     </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   Animated Counter (for BMI reveal)
+   ═══════════════════════════════════════════════════ */
+function AnimatedBMI({ value }: { value: number }) {
+  const spring = useSpring(0, { stiffness: 80, damping: 20 });
+  const display = useTransform(spring, (v) => v.toFixed(1));
+
+  useEffect(() => {
+    spring.set(value);
+  }, [value, spring]);
+
+  return (
+    <motion.span>{display}</motion.span>
   );
 }
 
@@ -191,10 +256,30 @@ const STEP_ORDER: Step[] = [
 
 /* Only fade — no x-slide so inputs stay mounted in position */
 const fadeVariants = {
-  enter: { opacity: 0 },
-  center: { opacity: 1 },
-  exit: { opacity: 0 },
+  enter: { opacity: 0, y: 6 },
+  center: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -4 },
 };
+
+/* ═══════════════════════════════════════════════════
+   Segmented Progress Bar
+   ═══════════════════════════════════════════════════ */
+function SegmentedProgress({ current, total }: { current: number; total: number }) {
+  return (
+    <div className="flex gap-1 px-6 pt-4 pb-1">
+      {Array.from({ length: total }, (_, i) => (
+        <div key={i} className="h-[3px] flex-1 rounded-pill overflow-hidden bg-secondary/[0.04]">
+          <motion.div
+            className="h-full rounded-pill bg-gradient-to-r from-primary to-primary-light"
+            initial={{ width: 0 }}
+            animate={{ width: i < current ? '100%' : i === current ? '50%' : '0%' }}
+            transition={{ duration: 0.5, ease: EASE_PREMIUM }}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
 
 /* ═══════════════════════════════════════════════════
    The Survey Overlay
@@ -221,9 +306,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
   }, [f.height, f.weight]);
 
   const idx = STEP_ORDER.indexOf(step);
-  const pct = step === 'disqualified' || step === 'qualified'
-    ? 100
-    : Math.round(((idx + 1) / STEP_ORDER.length) * 100);
+  const totalSteps = STEP_ORDER.length;
 
   const upd = useCallback(<K extends keyof FormState>(k: K, v: FormState[K]) =>
     setF((p) => ({ ...p, [k]: v })), []);
@@ -332,7 +415,9 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
     return t('bmi_obese2');
   }, [bmi, t]);
 
-  const bmiClr = bmi < 25 ? 'text-green-600' : bmi < 30 ? 'text-amber-600' : 'text-red-600';
+  const bmiClr = bmi < 25 ? 'text-mint-dark' : bmi < 30 ? 'text-amber-600' : 'text-rose-dark';
+  const bmiRingClr = bmi < 25 ? 'ring-mint-dark/20' : bmi < 30 ? 'ring-amber-500/20' : 'ring-rose-dark/20';
+  const bmiBgClr = bmi < 25 ? 'bg-mint' : bmi < 30 ? 'bg-amber-soft' : 'bg-rose-soft';
   const wLoss = parseFloat(f.weight) - parseFloat(f.targetWeight);
 
   /* ── Digit-only filter for age & height ─── */
@@ -349,30 +434,37 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
     switch (step) {
       case 'welcome':
         return (
-          <div className="text-center space-y-6">
-            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-              <Activity size={24} className="text-primary" />
+          <div className="text-center space-y-7">
+            {/* Animated icon with subtle pulse ring */}
+            <div className="relative w-16 h-16 mx-auto">
+              <span className="absolute inset-0 rounded-full bg-primary/8 animate-subtle-pulse" />
+              <span className="relative w-16 h-16 rounded-full bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center">
+                <Activity size={26} className="text-primary" />
+              </span>
             </div>
-            <h2 className="font-display text-2xl md:text-3xl text-secondary italic">
+            <h2 className="font-display text-[clamp(1.5rem,4vw,1.875rem)] text-secondary italic leading-tight">
               {t('welcome_title')}
             </h2>
-            <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed max-w-md mx-auto">
+            <p className="font-sans font-light text-secondary/50 text-[15px] leading-relaxed max-w-sm mx-auto">
               {t('welcome_desc')}
             </p>
-            <div className="flex items-center justify-center gap-6 flex-wrap">
+            <div className="flex items-center justify-center gap-5 flex-wrap">
               {(['welcome_point1', 'welcome_point2', 'welcome_point3'] as const).map((k) => (
-                <span key={k} className="flex items-center gap-1.5 text-xs text-secondary/50 font-sans">
-                  <CheckCircle2 size={13} className="text-primary" /> {t(k)}
+                <span key={k} className="flex items-center gap-1.5 text-xs text-secondary/40 font-sans font-medium">
+                  <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Check size={9} strokeWidth={3} className="text-primary" />
+                  </span>
+                  {t(k)}
                 </span>
               ))}
             </div>
-            <p className="text-[11px] text-secondary/30 font-sans">{t('welcome_time')}</p>
+            <p className="text-[11px] text-secondary/25 font-sans">{t('welcome_time')}</p>
           </div>
         );
 
       case 'sex':
         return (
-          <div className="space-y-5">
+          <div className="space-y-6">
             <StepHeader icon={User} label={t('sex_label')} title={t('sex_title')} />
             <div className="grid grid-cols-2 gap-3">
               <SurveyOption selected={f.sex === 'male'} onClick={() => upd('sex', 'male')}>
@@ -387,7 +479,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 
       case 'age':
         return (
-          <div className="space-y-5">
+          <div className="space-y-6">
             <StepHeader icon={Calendar} label={t('age_label')} title={t('age_title')} />
             <SurveyInput
               icon={Calendar} label={t('age_input_label')}
@@ -399,7 +491,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 
       case 'height':
         return (
-          <div className="space-y-5">
+          <div className="space-y-6">
             <StepHeader icon={Ruler} label={t('height_label')} title={t('height_title')} />
             <SurveyInput
               icon={Ruler} label={t('height_input_label')}
@@ -411,7 +503,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 
       case 'weight':
         return (
-          <div className="space-y-5">
+          <div className="space-y-6">
             <StepHeader icon={Weight} label={t('weight_label')} title={t('weight_title')} />
             <SurveyInput
               icon={Scale} label={t('weight_input_label')}
@@ -423,16 +515,24 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 
       case 'bmi_result':
         return (
-          <div className="space-y-6 text-center">
+          <div className="space-y-7 text-center">
             <StepHeader icon={Activity} label={t('bmi_label')} title={t('bmi_title')} center />
-            <div className="bg-ivory rounded-md p-6 border border-secondary/5">
-              <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-secondary/40 mb-1">
+            {/* Premium BMI display with ring accent */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.15 }}
+              className={`inline-flex flex-col items-center justify-center w-36 h-36 rounded-full ${bmiBgClr} ring-1 ${bmiRingClr} mx-auto`}
+            >
+              <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-secondary/30 mb-0.5">
                 {t('bmi_your_bmi')}
               </p>
-              <p className={`font-display text-5xl font-semibold ${bmiClr}`}>{bmi}</p>
-              <p className={`font-sans text-xs mt-1 ${bmiClr}`}>{bmiLabel}</p>
-            </div>
-            <p className="font-sans font-light text-secondary/50 text-xs leading-relaxed max-w-sm mx-auto">
+              <p className={`font-display text-[2.75rem] font-semibold leading-none ${bmiClr}`}>
+                <AnimatedBMI value={bmi} />
+              </p>
+              <p className={`font-sans text-xs mt-1 font-medium ${bmiClr}`}>{bmiLabel}</p>
+            </motion.div>
+            <p className="font-sans font-light text-secondary/45 text-[13px] leading-relaxed max-w-sm mx-auto">
               {bmi >= 30 ? t('bmi_qualifies_directly') : t('bmi_qualifies_with_conditions')}
             </p>
           </div>
@@ -440,7 +540,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 
       case 'target_weight':
         return (
-          <div className="space-y-5">
+          <div className="space-y-6">
             <StepHeader icon={Target} label={t('target_label')} title={t('target_title')} />
             <SurveyInput
               icon={Target} label={t('target_input_label')}
@@ -448,19 +548,23 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
               inputMode="decimal" placeholder="72" unit="kg" autoFocus
             />
             {f.targetWeight && wLoss > 0 && (
-              <p className="text-xs font-sans text-secondary/40 text-center">
+              <motion.p
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-xs font-sans text-secondary/35 text-center"
+              >
                 {t('target_loss_label')}:{' '}
                 <span className="font-semibold text-primary">{wLoss.toFixed(1)} kg</span>
-              </p>
+              </motion.p>
             )}
           </div>
         );
 
       case 'previous_attempts':
         return (
-          <div className="space-y-4">
+          <div className="space-y-5">
             <StepHeader icon={Heart} label={t('attempts_label')} title={t('attempts_title')} />
-            <p className="font-sans font-light text-secondary/50 text-xs">{t('attempts_desc')}</p>
+            <p className="font-sans font-light text-secondary/40 text-[13px]">{t('attempts_desc')}</p>
             <div className="space-y-2">
               {PREV_KEYS.map((k) => (
                 <SurveyCheck key={k} on={f.previousAttempts.includes(k)} onClick={() => tog('previousAttempts', k)}>
@@ -473,11 +577,11 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 
       case 'comorbidities':
         return (
-          <div className="space-y-4">
+          <div className="space-y-5">
             <StepHeader icon={Heart} label={t('comorbid_label')} title={t('comorbid_title')} />
-            <p className="font-sans font-light text-secondary/50 text-xs">{t('comorbid_desc')}</p>
+            <p className="font-sans font-light text-secondary/40 text-[13px]">{t('comorbid_desc')}</p>
             {bmi < 30 && (
-              <div className="bg-amber-50 border border-amber-200 rounded-md px-3 py-2.5 text-[11px] font-sans text-amber-800 leading-snug">
+              <div className="bg-amber-soft border border-amber-200/60 rounded-lg px-4 py-3 text-[12px] font-sans text-amber-700 leading-relaxed">
                 {t('comorbid_required_notice')}
               </div>
             )}
@@ -493,9 +597,9 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 
       case 'contraindications':
         return (
-          <div className="space-y-4">
+          <div className="space-y-5">
             <StepHeader icon={ShieldAlert} label={t('contra_label')} title={t('contra_title')} />
-            <p className="font-sans font-light text-secondary/50 text-xs">{t('contra_desc')}</p>
+            <p className="font-sans font-light text-secondary/40 text-[13px]">{t('contra_desc')}</p>
             <div className="space-y-2">
               {CONTRA_KEYS.map((k) => (
                 <SurveyCheck key={k} on={f.contraindications.includes(k)} onClick={() => tog('contraindications', k)}>
@@ -508,9 +612,9 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 
       case 'contact':
         return (
-          <div className="space-y-4">
+          <div className="space-y-5">
             <StepHeader icon={Mail} label={t('contact_label')} title={t('contact_title')} />
-            <p className="font-sans font-light text-secondary/50 text-xs">{t('contact_desc')}</p>
+            <p className="font-sans font-light text-secondary/40 text-[13px]">{t('contact_desc')}</p>
             <div className="grid grid-cols-2 gap-3">
               <SurveyInput
                 icon={User} label={t('contact_first')}
@@ -533,17 +637,26 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
               value={f.phone} onChange={(v) => upd('phone', v)}
               type="tel" inputMode="tel" placeholder="+31 6 12345678"
             />
+            {/* Consent checkbox */}
             <button
               type="button"
               onClick={() => upd('consent', !f.consent)}
-              className="flex items-start gap-3 w-full text-left active:scale-[0.99] transition-transform"
+              className="flex items-start gap-3 w-full text-left active:scale-[0.995] transition-transform"
             >
-              <span className={`w-5 h-5 mt-0.5 rounded shrink-0 border-2 flex items-center justify-center transition-all ${
-                f.consent ? 'border-primary bg-primary' : 'border-secondary/20'
+              <span className={`w-[18px] h-[18px] mt-0.5 rounded-[5px] shrink-0 border-[1.5px] flex items-center justify-center transition-all duration-300 ${
+                f.consent ? 'border-primary bg-primary' : 'border-secondary/15'
               }`}>
-                {f.consent && <CheckCircle2 size={12} className="text-white" />}
+                {f.consent && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 600, damping: 20 }}
+                  >
+                    <Check size={10} strokeWidth={3} className="text-white" />
+                  </motion.span>
+                )}
               </span>
-              <span className="font-sans text-[11px] text-secondary/50 leading-relaxed">
+              <span className="font-sans text-[11px] text-secondary/40 leading-relaxed">
                 {t('contact_consent')}
               </span>
             </button>
@@ -552,21 +665,26 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 
       case 'disqualified':
         return (
-          <div className="text-center space-y-6 py-4">
-            <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center mx-auto">
-              <XCircle size={24} className="text-red-400" />
-            </div>
-            <h2 className="font-display text-2xl text-secondary italic">
+          <div className="text-center space-y-7 py-4">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+              className="w-16 h-16 rounded-full bg-rose-soft ring-1 ring-rose-dark/10 flex items-center justify-center mx-auto"
+            >
+              <XCircle size={28} className="text-rose-dark/70" />
+            </motion.div>
+            <h2 className="font-display text-[clamp(1.4rem,3vw,1.75rem)] text-secondary italic leading-tight">
               {t(`dq_${dqReason}_title`)}
             </h2>
-            <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed max-w-md mx-auto">
+            <p className="font-sans font-light text-secondary/50 text-[14px] leading-relaxed max-w-md mx-auto">
               {t(`dq_${dqReason}_desc`)}
             </p>
             {dqReason === 'bmi_low' && (
               <a
                 href="#lifestyle"
                 onClick={onClose}
-                className="inline-flex items-center justify-center px-6 py-3 rounded-pill bg-secondary text-white font-sans text-[10px] uppercase tracking-[0.15em] font-bold transition-all hover:bg-secondary-deep active:scale-95"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded-pill bg-secondary text-white font-sans text-[10px] uppercase tracking-[0.15em] font-bold transition-all hover:bg-secondary-deep shadow-soft-md hover:shadow-soft-lg active:scale-[0.97]"
               >
                 {t('dq_bmi_low_cta')}
               </a>
@@ -574,7 +692,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
             <button
               type="button"
               onClick={onClose}
-              className="block mx-auto font-sans text-sm text-primary hover:text-primary-dark transition-colors underline underline-offset-4"
+              className="block mx-auto font-sans text-sm text-primary hover:text-primary-dark transition-colors underline underline-offset-4 decoration-primary/30"
             >
               {t('dq_back_home')}
             </button>
@@ -603,55 +721,61 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
+      transition={{ duration: 0.3 }}
       className="fixed inset-0 z-[9999] flex items-end md:items-center justify-center"
     >
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
+      {/* Backdrop — frosted dark */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="absolute inset-0 bg-secondary-deep/40 backdrop-blur-md"
+        onClick={onClose}
+      />
 
-      {/* Panel */}
+      {/* Panel — glassmorphism on desktop, full-height mobile */}
       <motion.div
         initial={{ y: '100%', opacity: 0.8 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: '100%', opacity: 0 }}
-        transition={{ duration: 0.35, ease: EASE_PREMIUM }}
+        transition={{ duration: 0.4, ease: EASE_PREMIUM }}
         onClick={(e) => e.stopPropagation()}
         className="relative z-10 w-full h-[100dvh] md:h-auto md:max-h-[88vh] md:max-w-lg
-          md:rounded-md bg-background-light shadow-soft-xl flex flex-col overflow-hidden"
+          md:rounded-xl glass-heavy md:shadow-panel md:ring-1 md:ring-secondary/[0.04]
+          flex flex-col overflow-hidden"
       >
-        {/* Progress bar */}
-        <div className="h-1 bg-secondary/5 shrink-0">
-          <motion.div
-            className="h-full bg-primary"
-            animate={{ width: `${pct}%` }}
-            transition={{ duration: 0.4, ease: EASE_PREMIUM }}
-          />
-        </div>
+        {/* Segmented Progress */}
+        {step !== 'disqualified' && step !== 'qualified' && (
+          <SegmentedProgress current={idx} total={totalSteps} />
+        )}
 
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-3 border-b border-secondary/5 shrink-0">
+        <div className="flex items-center justify-between px-6 py-3.5 shrink-0">
           <span className="font-display text-lg text-primary font-semibold tracking-tight">
             FAB <span className="italic">CLINIC</span>
           </span>
           <div className="flex items-center gap-4">
             {step !== 'welcome' && step !== 'disqualified' && step !== 'qualified' && (
-              <span className="font-sans text-[9px] tracking-[0.15em] uppercase text-secondary/30">
+              <span className="font-sans text-[9px] tracking-[0.15em] uppercase text-secondary/25 font-medium">
                 {t('step_counter', { current: idx, total: STEP_ORDER.length - 1 })}
               </span>
             )}
             <button
               type="button"
               onClick={onClose}
-              className="p-2 -mr-2 text-secondary/40 hover:text-secondary transition-colors"
+              className="p-2 -mr-2 rounded-full text-secondary/30 hover:text-secondary/60 hover:bg-secondary/[0.04] transition-all duration-200"
               aria-label="Sluiten"
             >
-              <X size={20} />
+              <X size={18} strokeWidth={1.5} />
             </button>
           </div>
         </div>
 
-        {/* Content — scrollable */}
-        <div className="flex-grow overflow-y-auto overscroll-contain px-5 py-6 md:px-8 md:py-8">
+        {/* Subtle separator */}
+        <div className="h-px bg-gradient-to-r from-transparent via-secondary/[0.06] to-transparent mx-6" />
+
+        {/* Content — scrollable with generous padding */}
+        <div className="flex-grow overflow-y-auto overscroll-contain px-6 py-7 md:px-8 md:py-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={step}
@@ -659,25 +783,26 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.2, ease: 'easeInOut' }}
+              transition={{ duration: 0.25, ease: 'easeInOut' }}
             >
               {renderStep()}
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Bottom nav */}
+        {/* Bottom nav — elevated with subtle top border */}
         {step !== 'disqualified' && step !== 'qualified' && (
           <div
-            className="shrink-0 px-5 py-4 border-t border-secondary/5 bg-background-light"
+            className="shrink-0 px-6 py-4 bg-surface/80 backdrop-blur-sm"
             style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}
           >
+            <div className="h-px bg-gradient-to-r from-transparent via-secondary/[0.06] to-transparent mb-4" />
             <div className="flex items-center justify-between gap-3">
               {step !== 'welcome' ? (
                 <button
                   type="button"
                   onClick={back}
-                  className="flex items-center gap-1.5 px-4 py-3 rounded-pill font-sans text-[10px] uppercase tracking-[0.15em] font-bold text-secondary/40 hover:text-secondary transition-colors active:scale-95"
+                  className="flex items-center gap-1.5 px-5 py-3 rounded-pill font-sans text-[10px] uppercase tracking-[0.15em] font-bold text-secondary/30 hover:text-secondary/60 transition-colors active:scale-95"
                 >
                   <ArrowLeft size={14} /> {t('back')}
                 </button>
@@ -686,25 +811,35 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
               )}
 
               {step === 'contact' ? (
-                <button
+                <motion.button
                   type="button"
                   onClick={submit}
                   disabled={!valid || submitting}
-                  className="flex items-center gap-2 px-8 py-3.5 rounded-pill font-sans text-[10px] uppercase tracking-[0.2em] font-bold bg-primary text-white shadow-gold-glow transition-all disabled:opacity-40 disabled:pointer-events-none active:scale-[0.97]"
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                  className="flex items-center gap-2 px-8 py-3.5 rounded-pill font-sans text-[10px] uppercase tracking-[0.2em] font-bold
+                    bg-gradient-to-r from-primary to-primary-light text-white shadow-gold-glow
+                    transition-all disabled:opacity-40 disabled:pointer-events-none
+                    hover:shadow-soft-xl"
                 >
                   {submitting ? t('submitting') : t('submit_cta')}{' '}
                   {!submitting && <ArrowRight size={14} />}
-                </button>
+                </motion.button>
               ) : (
-                <button
+                <motion.button
                   type="button"
                   onClick={next}
                   disabled={!valid}
-                  className="flex items-center gap-2 px-8 py-3.5 rounded-pill font-sans text-[10px] uppercase tracking-[0.2em] font-bold bg-primary text-white shadow-gold-glow transition-all disabled:opacity-40 disabled:pointer-events-none active:scale-[0.97]"
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                  className="flex items-center gap-2 px-8 py-3.5 rounded-pill font-sans text-[10px] uppercase tracking-[0.2em] font-bold
+                    bg-gradient-to-r from-primary to-primary-light text-white shadow-gold-glow
+                    transition-all disabled:opacity-40 disabled:pointer-events-none
+                    hover:shadow-soft-xl"
                 >
                   {step === 'welcome' ? t('start_cta') : t('next')}{' '}
                   <ArrowRight size={14} />
-                </button>
+                </motion.button>
               )}
             </div>
           </div>
@@ -715,7 +850,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 }
 
 /* ═══════════════════════════════════════════════════
-   Qualified — inline result shown inside the modal
+   Qualified — premium result screen
    ═══════════════════════════════════════════════════ */
 function QualifiedInline({ name, bmi, weightLoss, t, onClose }: {
   name: string; bmi: number; weightLoss: number;
@@ -737,90 +872,141 @@ function QualifiedInline({ name, bmi, weightLoss, t, onClose }: {
   return (
     <div className="space-y-8 py-2">
       {/* Hero */}
-      <div className="text-center space-y-4">
-        <div className="w-16 h-16 rounded-full bg-primary/15 flex items-center justify-center mx-auto">
-          <CheckCircle2 size={32} className="text-primary" />
-        </div>
-        <span className="font-sans text-primary text-[10px] tracking-[0.2em] uppercase block font-semibold">
-          {t('hero_label')}
-        </span>
-        <h2 className="font-display text-2xl md:text-3xl text-secondary italic leading-tight">
-          {name ? t('hero_title_personal', { name }) : t('hero_title')}
-        </h2>
-        <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed">
-          {t('hero_desc')}
-        </p>
+      <div className="text-center space-y-5">
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.1 }}
+          className="w-[72px] h-[72px] rounded-full bg-gradient-to-br from-primary/20 to-primary/5 ring-1 ring-primary/20 flex items-center justify-center mx-auto"
+        >
+          <motion.span
+            initial={{ scale: 0, rotate: -45 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 15, delay: 0.3 }}
+          >
+            <CheckCircle2 size={34} className="text-primary" />
+          </motion.span>
+        </motion.div>
 
-        {/* Stats */}
-        <div className="flex items-center justify-center gap-6">
-          <div className="text-center">
+        <motion.span
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25 }}
+          className="font-sans text-primary text-[10px] tracking-[0.2em] uppercase block font-semibold"
+        >
+          {t('hero_label')}
+        </motion.span>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          className="font-display text-[clamp(1.5rem,4vw,1.875rem)] text-secondary italic leading-tight"
+        >
+          {name ? t('hero_title_personal', { name }) : t('hero_title')}
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.45 }}
+          className="font-sans font-light text-secondary/50 text-[14px] leading-relaxed"
+        >
+          {t('hero_desc')}
+        </motion.p>
+
+        {/* Stats in frosted pills */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="flex items-center justify-center gap-4"
+        >
+          <div className="text-center px-5 py-3 rounded-xl bg-surface-elevated shadow-soft-sm ring-1 ring-secondary/[0.04]">
             <p className="font-display text-2xl text-primary font-semibold">{bmi}</p>
-            <p className="font-sans text-[9px] uppercase tracking-[0.15em] text-secondary/40">BMI</p>
+            <p className="font-sans text-[9px] uppercase tracking-[0.15em] text-secondary/30 mt-0.5">BMI</p>
           </div>
-          <div className="w-px h-8 bg-secondary/10" />
-          <div className="text-center">
+          <div className="text-center px-5 py-3 rounded-xl bg-surface-elevated shadow-soft-sm ring-1 ring-secondary/[0.04]">
             <p className="font-display text-2xl text-primary font-semibold">
               {weightLoss > 0 ? `${weightLoss.toFixed(1)} kg` : '—'}
             </p>
-            <p className="font-sans text-[9px] uppercase tracking-[0.15em] text-secondary/40">
+            <p className="font-sans text-[9px] uppercase tracking-[0.15em] text-secondary/30 mt-0.5">
               {t('stat_to_lose')}
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Process steps */}
       <div className="space-y-1">
-        <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-primary font-semibold mb-3">
+        <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-primary font-semibold mb-4">
           {t('process_label')}
         </p>
         {processSteps.map((s, i) => (
-          <div key={i} className="flex items-start gap-3 py-3 border-b border-secondary/5 last:border-0">
-            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6 + i * 0.1 }}
+            className="flex items-start gap-3.5 py-3.5 border-b border-secondary/[0.04] last:border-0"
+          >
+            <div className="w-9 h-9 rounded-lg bg-primary/[0.07] flex items-center justify-center shrink-0 mt-0.5">
               <s.icon size={16} className="text-primary" />
             </div>
             <div>
               <p className="font-sans text-sm font-semibold text-secondary">
                 {t('step_prefix')} {i + 1}: {s.title}
               </p>
-              <p className="font-sans text-xs text-secondary/50 font-light leading-relaxed">
+              <p className="font-sans text-[13px] text-secondary/40 font-light leading-relaxed mt-0.5">
                 {s.desc}
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
-      {/* Trust */}
-      <div className="grid grid-cols-2 gap-3">
+      {/* Trust — frosted grid */}
+      <div className="grid grid-cols-2 gap-2.5">
         {trust.map((item, i) => (
-          <div key={i} className="flex items-start gap-2 p-3 rounded-md bg-ivory border border-secondary/5">
-            <item.icon size={16} className="text-primary shrink-0 mt-0.5" />
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9 + i * 0.08 }}
+            className="flex items-start gap-2.5 p-3.5 rounded-lg bg-surface-elevated ring-1 ring-secondary/[0.04] shadow-soft-sm"
+          >
+            <span className="w-7 h-7 rounded-md bg-primary/[0.07] flex items-center justify-center shrink-0">
+              <item.icon size={14} className="text-primary" />
+            </span>
             <div>
-              <p className="font-sans text-xs font-semibold text-secondary leading-tight">
+              <p className="font-sans text-[12px] font-semibold text-secondary leading-tight">
                 {item.title}
               </p>
-              <p className="font-sans text-[10px] text-secondary/40 font-light">
+              <p className="font-sans text-[10px] text-secondary/35 font-light mt-0.5">
                 {item.desc}
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
       {/* CTAs */}
       <div className="space-y-3" style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))' }}>
-        <a
+        <motion.a
           href="#shop"
           onClick={onClose}
-          className="flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-pill bg-primary text-white font-sans text-[10px] uppercase tracking-[0.2em] font-bold shadow-gold-glow transition-all active:scale-[0.97]"
+          whileTap={{ scale: 0.97 }}
+          className="flex items-center justify-center gap-2 w-full px-6 py-4 rounded-pill
+            bg-gradient-to-r from-primary to-primary-light text-white
+            font-sans text-[10px] uppercase tracking-[0.2em] font-bold
+            shadow-gold-glow transition-all hover:shadow-soft-xl"
         >
           {t('cta_schedule')} <ArrowRight size={14} />
-        </a>
+        </motion.a>
         <button
           type="button"
           onClick={onClose}
-          className="w-full px-6 py-3 rounded-pill border border-secondary/10 font-sans text-[10px] uppercase tracking-[0.15em] font-bold text-secondary/50 hover:text-secondary transition-all active:scale-[0.97]"
+          className="w-full px-6 py-3 rounded-pill border border-secondary/[0.07] font-sans text-[10px] uppercase tracking-[0.15em] font-bold text-secondary/40 hover:text-secondary/60 hover:border-secondary/15 transition-all active:scale-[0.97]"
         >
           {t('cta_close')}
         </button>
