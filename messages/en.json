@@ -303,6 +303,14 @@
     "start_cta": "Start the Check",
     "submit_cta": "Submit & Schedule Consultation",
     "submitting": "Processing…",
+    "close": "Close survey",
+    "dialog_label": "Eligibility check for weight loss medication",
+
+    "error_age_range": "Our treatments are available for adults aged 18 and over.",
+    "error_height_range": "Please enter your height in cm, between 100 and 250.",
+    "error_weight_range": "Please enter your weight in kg, between 30 and 300.",
+    "error_target_too_low": "Please enter a target weight of at least 30 kg.",
+    "error_target_not_lower": "Your target weight should be lower than your current weight.",
 
     "welcome_title": "Could you qualify for weight loss medication?",
     "welcome_desc": "Answer a few quick questions so our doctor can assess whether GLP-1 treatment is right for you. Everything is strictly confidential.",
