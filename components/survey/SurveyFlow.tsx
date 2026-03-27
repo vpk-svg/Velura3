@@ -420,6 +420,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: '100%', opacity: 0 }}
         transition={{ duration: 0.35, ease: EASE_PREMIUM }}
+        onClick={(e) => e.stopPropagation()}
         className="relative z-10 w-full h-[100dvh] md:h-auto md:max-h-[88vh] md:max-w-lg md:rounded-md
           bg-background-light shadow-soft-xl flex flex-col overflow-hidden"
       >

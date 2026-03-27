@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -12,15 +11,6 @@ import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function ProductShop() {
   const t = useTranslations('shop');
-  const [filter, setFilter] = useState('ALL');
-
-  const filters = [
-    { id: 'ALL', label: t('filter_all') },
-    { id: 'GLP-1', label: t('filter_glp1') },
-    { id: 'SUPPLEMENTS', label: t('filter_supplements') },
-    { id: 'PROGRAMS', label: t('filter_programs') },
-  ];
-
   const products = [
     {
       id: 'ozempic',
@@ -81,7 +71,7 @@ export default function ProductShop() {
     },
   ];
 
-  const filteredProducts = filter === 'ALL' ? products : products.filter(p => p.category === filter);
+  const filteredProducts = products;
 
   return (
     <section id="shop" className="py-section-y bg-background-light" aria-labelledby="shop-title">
@@ -92,29 +82,9 @@ export default function ProductShop() {
           subtitle={t('subtitle')}
         />
 
-        {/* Filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16 md:mb-20" role="tablist" aria-label="Product filters">
-          {filters.map((f) => (
-            <button
-              key={f.id}
-              role="tab"
-              aria-selected={filter === f.id}
-              aria-controls="product-grid"
-              onClick={() => setFilter(f.id)}
-              className={`px-8 py-3.5 rounded-pill font-sans text-xs tracking-widest transition-all duration-300 ease-premium uppercase font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${filter === f.id
-                ? 'bg-secondary text-white shadow-soft-lg'
-                : 'bg-white border border-secondary/10 text-secondary hover:text-primary hover:border-primary'
-                }`}
-            >
-              {f.label}
-            </button>
-          ))}
-        </div>
-
         {/* Product Grid */}
         <motion.div
           id="product-grid"
-          role="tabpanel"
           layout
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10"
         >

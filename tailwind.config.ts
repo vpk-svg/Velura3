@@ -64,7 +64,7 @@ const config: Config = {
         floating:   "200",
         overlay:    "300",
         nav:        "400",
-        top:        "500",
+        top:        "99999",
       },
 
       /* ── Transition timing ─────────────────────────── */
