@@ -303,6 +303,14 @@
     "start_cta": "Start de Check",
     "submit_cta": "Verstuur & Plan Consult",
     "submitting": "Bezig met verwerken…",
+    "close": "Sluit de vragenlijst",
+    "dialog_label": "Geschiktheidscheck voor afvalmedicatie",
+
+    "error_age_range": "Onze behandelingen zijn beschikbaar voor volwassenen van 18 jaar en ouder.",
+    "error_height_range": "Voer uw lengte in cm in, tussen 100 en 250.",
+    "error_weight_range": "Voer uw gewicht in kg in, tussen 30 en 300.",
+    "error_target_too_low": "Voer een streefgewicht in van minimaal 30 kg.",
+    "error_target_not_lower": "Uw streefgewicht moet lager zijn dan uw huidige gewicht.",
 
     "welcome_title": "Komt u in aanmerking voor afvalmedicatie?",
     "welcome_desc": "Beantwoord een paar korte vragen zodat onze arts kan beoordelen of een GLP-1 behandeling geschikt is voor u. Alles strikt vertrouwelijk.",

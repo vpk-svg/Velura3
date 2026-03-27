@@ -101,18 +101,25 @@ function SurveyCheck({ on, onClick, children }: {
   );
 }
 
-function SurveyInput({ icon: Ic, label, value, onChange, inputMode, placeholder, unit, autoFocus, type = 'text' }: {
+function SurveyInput({ icon: Ic, label, value, onChange, inputMode, placeholder, unit, autoFocus, type, error }: {
   icon: ElementType; label: string; value: string;
   onChange: (v: string) => void; type?: string;
   inputMode?: 'numeric' | 'decimal' | 'text' | 'email' | 'tel';
-  placeholder?: string; unit?: string; autoFocus?: boolean;
+  placeholder?: string; unit?: string; autoFocus?: boolean; error?: string;
 }) {
   const ref = useRef<HTMLInputElement>(null);
 
+  // Derive the best <input type> for the field:
+  // "tel" avoids Android IME auto-completion blur for integer numeric fields.
+  const resolvedType = type ?? (inputMode === 'numeric' ? 'tel' : 'text');
+
   useEffect(() => {
     if (autoFocus && ref.current) {
-      // Small delay so the slide animation finishes and the element is in the DOM
-      const id = setTimeout(() => ref.current?.focus(), 320);
+      // Wait for modal + step-transition animations to finish before focusing.
+      const id = setTimeout(() => {
+        ref.current?.focus();
+        ref.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 400);
       return () => clearTimeout(id);
     }
   }, [autoFocus]);
@@ -125,15 +132,24 @@ function SurveyInput({ icon: Ic, label, value, onChange, inputMode, placeholder,
       <div className="relative">
         <input
           ref={ref}
-          type={type}
+          type={resolvedType}
           inputMode={inputMode}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           autoComplete="off"
-          className="w-full px-4 py-3.5 rounded-md border-2 border-secondary/10 bg-white font-sans
-            text-secondary text-base focus:border-primary focus:ring-2 focus:ring-primary/20
-            outline-none transition-all cursor-text"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck={false}
+          aria-invalid={!!error}
+          aria-describedby={error ? `${label}-error` : undefined}
+          className={`w-full px-4 py-3.5 rounded-md border-2 bg-white font-sans
+            text-secondary text-base focus:ring-2 focus:ring-primary/20
+            outline-none transition-all cursor-text ${
+            error
+              ? 'border-red-400 focus:border-red-500'
+              : 'border-secondary/10 focus:border-primary'
+          }`}
         />
         {unit && (
           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-sans text-secondary/30 uppercase pointer-events-none">
@@ -141,6 +157,11 @@ function SurveyInput({ icon: Ic, label, value, onChange, inputMode, placeholder,
           </span>
         )}
       </div>
+      {error && (
+        <p id={`${label}-error`} role="alert" className="text-xs font-sans text-red-500 leading-snug pt-0.5">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
@@ -189,29 +210,59 @@ const STEP_ORDER: Step[] = [
   'contraindications', 'contact',
 ];
 
-/* Only fade — no x-slide so inputs stay mounted in position */
-const fadeVariants = {
-  enter: { opacity: 0 },
-  center: { opacity: 1 },
-  exit: { opacity: 0 },
+/* Slide-up-fade — premium feel without disrupting keyboard/focus */
+const stepVariants = {
+  enter: { opacity: 0, y: 12 },
+  center: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -8 },
 };
 
 /* ═══════════════════════════════════════════════════
    The Survey Overlay
    ═══════════════════════════════════════════════════ */
+
+const SURVEY_STORAGE_KEY = 'fab_survey_v2';
+
+const DEFAULT_FORM: FormState = {
+  sex: '', age: '', height: '', weight: '', targetWeight: '',
+  previousAttempts: [], comorbidities: [], contraindications: [],
+  firstName: '', lastName: '', email: '', phone: '', consent: false,
+};
+
+function readPersistedState(): { form: FormState; step: Step } | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = localStorage.getItem(SURVEY_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    // Only restore navigable steps, not terminal states
+    const step: Step = STEP_ORDER.includes(parsed.step) ? parsed.step : 'welcome';
+    return { form: { ...DEFAULT_FORM, ...parsed.form }, step };
+  } catch {
+    return null;
+  }
+}
+
 function SurveyOverlay({ onClose }: { onClose: () => void }) {
   const t = useTranslations('survey');
   const tQ = useTranslations('qualified');
 
-  const [step, setStep] = useState<Step>('welcome');
+  const persisted = useMemo(() => readPersistedState(), []);
+
+  const [step, setStep] = useState<Step>(persisted?.step ?? 'welcome');
   const [dqReason, setDqReason] = useState<DqReason | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  const [f, setF] = useState<FormState>({
-    sex: '', age: '', height: '', weight: '', targetWeight: '',
-    previousAttempts: [], comorbidities: [], contraindications: [],
-    firstName: '', lastName: '', email: '', phone: '', consent: false,
-  });
+  const [f, setF] = useState<FormState>(persisted?.form ?? DEFAULT_FORM);
+
+  // Persist form state + step to localStorage on every change
+  useEffect(() => {
+    try {
+      localStorage.setItem(SURVEY_STORAGE_KEY, JSON.stringify({ form: f, step }));
+    } catch {
+      // localStorage may be unavailable (private mode, full quota)
+    }
+  }, [f, step]);
 
   /* ── Helpers ─── */
   const bmi = useMemo(() => {
@@ -282,6 +333,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
   const submit = useCallback(async () => {
     setSubmitting(true);
     await new Promise((r) => setTimeout(r, 600));
+    try { localStorage.removeItem(SURVEY_STORAGE_KEY); } catch { /* ignore */ }
     go('qualified');
     setSubmitting(false);
   }, [go]);
@@ -293,20 +345,21 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       case 'sex': return f.sex !== '';
       case 'age': {
         const a = parseInt(f.age, 10);
-        return !isNaN(a) && a > 0 && a < 120;
+        return !isNaN(a) && a >= 18 && a < 120;
       }
       case 'height': {
         const h = parseFloat(f.height);
-        return !isNaN(h) && h > 100 && h < 250;
+        return !isNaN(h) && h >= 100 && h <= 250;
       }
       case 'weight': {
         const w = parseFloat(f.weight);
-        return !isNaN(w) && w > 30 && w < 300;
+        return !isNaN(w) && w >= 30 && w <= 300;
       }
       case 'bmi_result': return true;
       case 'target_weight': {
         const tw = parseFloat(f.targetWeight);
-        return !isNaN(tw) && tw > 30 && tw < 300;
+        const w = parseFloat(f.weight);
+        return !isNaN(tw) && tw >= 30 && tw < w;
       }
       case 'previous_attempts': return f.previousAttempts.length > 0;
       case 'comorbidities': return true;
@@ -385,7 +438,11 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           </div>
         );
 
-      case 'age':
+      case 'age': {
+        const ageVal = parseInt(f.age, 10);
+        const ageError = f.age && (isNaN(ageVal) || ageVal < 18 || ageVal > 119)
+          ? t('error_age_range')
+          : undefined;
         return (
           <div className="space-y-5">
             <StepHeader icon={Calendar} label={t('age_label')} title={t('age_title')} />
@@ -393,11 +450,17 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
               icon={Calendar} label={t('age_input_label')}
               value={f.age} onChange={(v) => upd('age', digits(v))}
               inputMode="numeric" placeholder="35" unit={t('age_unit')} autoFocus
+              error={ageError}
             />
           </div>
         );
+      }
 
-      case 'height':
+      case 'height': {
+        const heightVal = parseFloat(f.height);
+        const heightError = f.height && (isNaN(heightVal) || heightVal < 100 || heightVal > 250)
+          ? t('error_height_range')
+          : undefined;
         return (
           <div className="space-y-5">
             <StepHeader icon={Ruler} label={t('height_label')} title={t('height_title')} />
@@ -405,11 +468,17 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
               icon={Ruler} label={t('height_input_label')}
               value={f.height} onChange={(v) => upd('height', digits(v))}
               inputMode="numeric" placeholder="175" unit="cm" autoFocus
+              error={heightError}
             />
           </div>
         );
+      }
 
-      case 'weight':
+      case 'weight': {
+        const weightVal = parseFloat(f.weight);
+        const weightError = f.weight && (isNaN(weightVal) || weightVal < 30 || weightVal > 300)
+          ? t('error_weight_range')
+          : undefined;
         return (
           <div className="space-y-5">
             <StepHeader icon={Weight} label={t('weight_label')} title={t('weight_title')} />
@@ -417,19 +486,26 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
               icon={Scale} label={t('weight_input_label')}
               value={f.weight} onChange={(v) => upd('weight', decimal(v))}
               inputMode="decimal" placeholder="85" unit="kg" autoFocus
+              error={weightError}
             />
           </div>
         );
+      }
 
       case 'bmi_result':
         return (
           <div className="space-y-6 text-center">
             <StepHeader icon={Activity} label={t('bmi_label')} title={t('bmi_title')} center />
-            <div className="bg-ivory rounded-md p-6 border border-secondary/5">
+            <div
+              role="status"
+              aria-live="polite"
+              aria-label={`${t('bmi_your_bmi')}: ${bmi}, ${bmiLabel}`}
+              className="bg-ivory rounded-md p-6 border border-secondary/5 min-h-[96px] flex flex-col items-center justify-center"
+            >
               <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-secondary/40 mb-1">
                 {t('bmi_your_bmi')}
               </p>
-              <p className={`font-display text-5xl font-semibold ${bmiClr}`}>{bmi}</p>
+              <p className={`font-display text-5xl font-semibold tabular-nums ${bmiClr}`}>{bmi}</p>
               <p className={`font-sans text-xs mt-1 ${bmiClr}`}>{bmiLabel}</p>
             </div>
             <p className="font-sans font-light text-secondary/50 text-xs leading-relaxed max-w-sm mx-auto">
@@ -438,7 +514,14 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           </div>
         );
 
-      case 'target_weight':
+      case 'target_weight': {
+        const twVal = parseFloat(f.targetWeight);
+        const wVal = parseFloat(f.weight);
+        const twError = f.targetWeight && (isNaN(twVal) || twVal < 30)
+          ? t('error_target_too_low')
+          : f.targetWeight && twVal >= wVal
+          ? t('error_target_not_lower')
+          : undefined;
         return (
           <div className="space-y-5">
             <StepHeader icon={Target} label={t('target_label')} title={t('target_title')} />
@@ -446,8 +529,9 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
               icon={Target} label={t('target_input_label')}
               value={f.targetWeight} onChange={(v) => upd('targetWeight', decimal(v))}
               inputMode="decimal" placeholder="72" unit="kg" autoFocus
+              error={twError}
             />
-            {f.targetWeight && wLoss > 0 && (
+            {f.targetWeight && wLoss > 0 && !twError && (
               <p className="text-xs font-sans text-secondary/40 text-center">
                 {t('target_loss_label')}:{' '}
                 <span className="font-semibold text-primary">{wLoss.toFixed(1)} kg</span>
@@ -455,6 +539,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
             )}
           </div>
         );
+      }
 
       case 'previous_attempts':
         return (
@@ -616,6 +701,9 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
         exit={{ y: '100%', opacity: 0 }}
         transition={{ duration: 0.35, ease: EASE_PREMIUM }}
         onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label={t('dialog_label')}
         className="relative z-10 w-full h-[100dvh] md:h-auto md:max-h-[88vh] md:max-w-lg
           md:rounded-md bg-background-light shadow-soft-xl flex flex-col overflow-hidden"
       >
@@ -643,7 +731,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
               type="button"
               onClick={onClose}
               className="p-2 -mr-2 text-secondary/40 hover:text-secondary transition-colors"
-              aria-label="Sluiten"
+              aria-label={t('close')}
             >
               <X size={20} />
             </button>
@@ -655,11 +743,11 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <AnimatePresence mode="wait">
             <motion.div
               key={step}
-              variants={fadeVariants}
+              variants={stepVariants}
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.2, ease: 'easeInOut' }}
+              transition={{ duration: 0.22, ease: EASE_PREMIUM }}
             >
               {renderStep()}
             </motion.div>
