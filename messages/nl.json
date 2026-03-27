@@ -296,5 +296,148 @@
     "point3": "Geen contra-indicaties",
     "point4": "Bereid tot medische begeleiding",
     "cta": "Doe de Check"
+  },
+
+  "survey": {
+    "step_counter": "Stap {current} van {total}",
+    "back": "Terug",
+    "next": "Volgende",
+    "start_cta": "Start de Check",
+    "submit_cta": "Verstuur & Plan Consult",
+    "submitting": "Bezig met verwerken…",
+
+    "welcome_title": "Komt u in aanmerking voor afvalmedicatie?",
+    "welcome_desc": "Beantwoord een paar korte vragen zodat onze arts kan beoordelen of een GLP-1 behandeling geschikt is voor u. Alles strikt vertrouwelijk.",
+    "welcome_point1": "2 minuten",
+    "welcome_point2": "Vertrouwelijk",
+    "welcome_point3": "Gratis",
+    "welcome_time": "Duurt ongeveer 2 minuten — uw gegevens worden veilig en vertrouwelijk behandeld.",
+
+    "sex_label": "Persoonlijke gegevens",
+    "sex_title": "Wat is uw biologisch geslacht?",
+    "sex_male": "Man",
+    "sex_female": "Vrouw",
+
+    "age_label": "Leeftijd",
+    "age_title": "Hoe oud bent u?",
+    "age_input_label": "Uw leeftijd",
+    "age_unit": "jaar",
+
+    "height_label": "Lichaamsgegevens",
+    "height_title": "Hoe lang bent u?",
+    "height_input_label": "Uw lengte",
+
+    "weight_label": "Lichaamsgegevens",
+    "weight_title": "Wat is uw huidige gewicht?",
+    "weight_input_label": "Uw gewicht",
+
+    "bmi_label": "Uw Resultaat",
+    "bmi_title": "Uw BMI is berekend",
+    "bmi_your_bmi": "Uw BMI",
+    "bmi_underweight": "Ondergewicht",
+    "bmi_healthy": "Gezond gewicht",
+    "bmi_overweight_low": "Licht overgewicht",
+    "bmi_overweight": "Overgewicht",
+    "bmi_obese1": "Obesitas klasse I",
+    "bmi_obese2": "Obesitas klasse II+",
+    "bmi_qualifies_directly": "Op basis van uw BMI komt u mogelijk direct in aanmerking voor medicatie. Laten we doorgaan met een aantal gezondsheidsvragen.",
+    "bmi_qualifies_with_conditions": "Uw BMI ligt tussen 27 en 30. U kunt in aanmerking komen als u ook aan bepaalde gezondsheidsvoorwaarden voldoet. We stellen u hierna een paar vragen.",
+
+    "target_label": "Uw Doel",
+    "target_title": "Wat is uw streefgewicht?",
+    "target_input_label": "Streefgewicht",
+    "target_loss_label": "Te verliezen",
+
+    "attempts_label": "Achtergrond",
+    "attempts_title": "Wat heeft u al geprobeerd om af te vallen?",
+    "attempts_desc": "Selecteer alles wat van toepassing is. Dit helpt ons arts de medische noodzaak te beoordelen.",
+    "attempts_diets": "Diëten (keto, caloriebeperking, intermittent fasting, etc.)",
+    "attempts_exercise": "Regelmatige lichaamsbeweging",
+    "attempts_otc_supplements": "Voedingssupplementen of afslankpillen (vrij verkrijgbaar)",
+    "attempts_other_rx": "Eerder voorgeschreven afvalmedicatie",
+    "attempts_none": "Ik heb nog niets specifieks geprobeerd",
+
+    "comorbid_label": "Gezondheid",
+    "comorbid_title": "Heeft u een van de volgende aandoeningen?",
+    "comorbid_desc": "Selecteer alles wat van toepassing is.",
+    "comorbid_required_notice": "Omdat uw BMI tussen 27 en 30 ligt, is minimaal één gerelateerde aandoening vereist om in aanmerking te komen voor medicatie.",
+    "comorbid_diabetes_type2": "Diabetes type 2",
+    "comorbid_high_bp": "Hoge bloeddruk",
+    "comorbid_high_cholesterol": "Hoog cholesterol",
+    "comorbid_sleep_apnea": "Slaapapneu",
+    "comorbid_pcos": "PCOS (Polycysteus-ovariumsyndroom)",
+
+    "contra_label": "Veiligheid",
+    "contra_title": "Gelden een van de volgende situaties voor u?",
+    "contra_desc": "Selecteer alles wat van toepassing is. Deze vragen zijn essentieel voor uw veiligheid.",
+    "contra_pregnant": "Ik ben zwanger of geef borstvoeding",
+    "contra_mtc_men2": "Ik (of een familielid) heb medullair schildkliercarcinoom (MTC) of MEN 2",
+    "contra_eating_disorder": "Ik heb (gehad) een ernstige eetstoornis",
+
+    "contact_label": "Uw Gegevens",
+    "contact_title": "Bijna klaar — nog even uw gegevens",
+    "contact_desc": "Zodat onze arts contact met u kan opnemen voor een persoonlijk adviesgesprek.",
+    "contact_first": "Voornaam",
+    "contact_last": "Achternaam",
+    "contact_email": "E-mailadres",
+    "contact_phone": "Telefoonnummer",
+    "contact_consent": "Ik geef toestemming voor de verwerking van mijn medische gegevens conform de AVG. Mijn data wordt uitsluitend gebruikt voor medische beoordeling door FAB Clinic.",
+
+    "dq_age_title": "Helaas, u komt niet in aanmerking",
+    "dq_age_desc": "Onze afvalbehandelingen zijn uitsluitend beschikbaar voor volwassenen van 18 jaar en ouder. Wij raden u aan om met uw huisarts te overleggen over mogelijkheden die bij uw leeftijd passen.",
+
+    "dq_bmi_low_title": "U komt momenteel niet in aanmerking",
+    "dq_bmi_low_desc": "Op basis van uw BMI (lager dan 27) komt u niet in aanmerking voor afvalmedicatie op recept. Dit soort medicatie is alleen bedoeld voor mensen met een verhoogd gezondheidsrisico door overgewicht. Misschien is ons lifestyle coaching programma iets voor u?",
+    "dq_bmi_low_cta": "Bekijk Lifestyle Coaching",
+
+    "dq_bmi_27_no_comorbidity_title": "Net niet — maar we denken graag mee",
+    "dq_bmi_27_no_comorbidity_desc": "Uw BMI ligt tussen 27 en 30, maar u heeft geen bijkomende aandoeningen die medicatie rechtvaardigen. Volgens de richtlijnen is medicatie in dit geval helaas niet mogelijk. Neem gerust contact op met uw huisarts voor persoonlijk advies.",
+
+    "dq_contraindication_title": "Uw veiligheid gaat voor",
+    "dq_contraindication_desc": "Op basis van uw antwoorden is GLP-1 medicatie op dit moment niet veilig voor u. Dit is geen afwijzing — het is een beschermingsmaatregel. Wij raden u aan dit met uw huisarts of specialist te bespreken.",
+
+    "dq_back_home": "Terug naar de homepage"
+  },
+
+  "qualified": {
+    "hero_label": "U BENT GESCHIKT",
+    "hero_title": "Goed nieuws — u komt in aanmerking!",
+    "hero_title_personal": "Goed nieuws, {name} — u komt in aanmerking!",
+    "hero_desc": "Op basis van uw antwoorden komt u in aanmerking voor medisch begeleide afvalmedicatie. Onze artsen staan klaar om samen met u een persoonlijk behandelplan op te stellen.",
+    "stat_to_lose": "Streefverlies",
+
+    "process_label": "UW BEHANDELTRAJECT",
+    "process_title": "Hoe gaat het verder?",
+    "step_prefix": "Stap",
+    "step1_title": "Doktersconsult",
+    "step1_desc": "Een van onze artsen beoordeelt uw intake en bespreekt de beste opties met u — telefonisch of via videocall.",
+    "step2_title": "Recept & Levering",
+    "step2_desc": "Na goedkeuring schrijft de arts uw medicatie voor. Deze wordt discreet thuisbezorgd via onze partnerapotheek.",
+    "step3_title": "Begeleiding & Nazorg",
+    "step3_desc": "U krijgt doorlopende begeleiding van ons team — met regelmatige check-ins en doseeraanpassingen waar nodig.",
+
+    "options_label": "UW OPTIES",
+    "options_title": "Beschikbare Medicatie",
+    "options_desc": "Onze arts adviseert welk middel het beste bij uw situatie past. Hieronder een overzicht van de mogelijkheden.",
+    "product_ozempic": "Het meest voorgeschreven middel. Bewezen effectief voor medisch begeleid afvallen.",
+    "product_mounjaro": "Nieuwste generatie. Dubbele werking voor optimaal resultaat.",
+    "product_badge": "Meest Effectief",
+    "product_wegovy": "Speciaal ontwikkeld voor langdurig gewichtsbeheer.",
+    "product_saxenda": "Dagelijkse toediening. Helpt bij het verminderen van eetlust.",
+
+    "trust_1_title": "BIG-geregistreerd",
+    "trust_1_desc": "Elk recept door een erkende arts",
+    "trust_2_title": "Medisch Toezicht",
+    "trust_2_desc": "Doorlopende begeleiding bij uw traject",
+    "trust_3_title": "Discrete Levering",
+    "trust_3_desc": "Gratis thuisbezorgd in neutrale verpakking",
+    "trust_4_title": "4.8 Gemiddeld",
+    "trust_4_desc": "Beoordeeld door honderden patiënten",
+
+    "cta_title": "Klaar om te beginnen?",
+    "cta_desc": "Plan vandaag nog uw gratis consult en zet de eerste stap naar een gezonder gewicht — begeleid door onze artsen.",
+    "cta_schedule": "Plan Gratis Consult",
+    "cta_close": "Sluiten",
+    "cta_call": "Bel Direct"
   }
 }

@@ -4,10 +4,10 @@ import { getMessages } from 'next-intl/server';
 import { Cormorant_Garamond, Jost } from 'next/font/google';
 import '../../src/index.css';
 import Navbar from '@/components/Navbar';
-
 import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
 import ScrollProgress from '@/components/ScrollProgress';
+import { SurveyProvider } from '@/components/survey/SurveyFlow';
 import { routing } from '@/lib/i18n';
 
 const cormorant = Cormorant_Garamond({
@@ -46,17 +46,18 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html lang={resolvedParams.locale} className={`${cormorant.variable} ${jost.variable}`}>
       <body className="font-sans antialiased min-h-screen flex flex-col cursor-dot-active">
         <NextIntlClientProvider messages={messages} locale={resolvedParams.locale}>
-          {/* Skip-to-main for keyboard a11y */}
-          <a href="#main-content" className="skip-link">
-            Skip to main content
-          </a>
-          <CustomCursor />
-          <ScrollProgress />
-          <Navbar />
-          <main id="main-content" className="flex-grow">
-            {children}
-          </main>
-          <Footer />
+          <SurveyProvider>
+            <a href="#main-content" className="skip-link">
+              Skip to main content
+            </a>
+            <CustomCursor />
+            <ScrollProgress />
+            <Navbar />
+            <main id="main-content" className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </SurveyProvider>
         </NextIntlClientProvider>
       </body>
     </html>

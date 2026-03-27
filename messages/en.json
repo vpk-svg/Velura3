@@ -296,5 +296,148 @@
     "point3": "No contraindications",
     "point4": "Willing to be medically supervised",
     "cta": "Take the Check"
+  },
+
+  "survey": {
+    "step_counter": "Step {current} of {total}",
+    "back": "Back",
+    "next": "Continue",
+    "start_cta": "Start the Check",
+    "submit_cta": "Submit & Schedule Consultation",
+    "submitting": "Processing…",
+
+    "welcome_title": "Could you qualify for weight loss medication?",
+    "welcome_desc": "Answer a few quick questions so our doctor can assess whether GLP-1 treatment is right for you. Everything is strictly confidential.",
+    "welcome_point1": "2 minutes",
+    "welcome_point2": "Confidential",
+    "welcome_point3": "Free",
+    "welcome_time": "Takes about 2 minutes — your data is handled securely and confidentially.",
+
+    "sex_label": "Personal Details",
+    "sex_title": "What is your biological sex?",
+    "sex_male": "Male",
+    "sex_female": "Female",
+
+    "age_label": "Age",
+    "age_title": "How old are you?",
+    "age_input_label": "Your age",
+    "age_unit": "years",
+
+    "height_label": "Body Measurements",
+    "height_title": "How tall are you?",
+    "height_input_label": "Your height",
+
+    "weight_label": "Body Measurements",
+    "weight_title": "What is your current weight?",
+    "weight_input_label": "Your weight",
+
+    "bmi_label": "Your Result",
+    "bmi_title": "Your BMI has been calculated",
+    "bmi_your_bmi": "Your BMI",
+    "bmi_underweight": "Underweight",
+    "bmi_healthy": "Healthy weight",
+    "bmi_overweight_low": "Slightly overweight",
+    "bmi_overweight": "Overweight",
+    "bmi_obese1": "Obesity class I",
+    "bmi_obese2": "Obesity class II+",
+    "bmi_qualifies_directly": "Based on your BMI, you may qualify directly for medication. Let's continue with a few health questions.",
+    "bmi_qualifies_with_conditions": "Your BMI is between 27 and 30. You may qualify if you also meet certain health criteria. We'll ask a few more questions next.",
+
+    "target_label": "Your Goal",
+    "target_title": "What is your target weight?",
+    "target_input_label": "Target weight",
+    "target_loss_label": "To lose",
+
+    "attempts_label": "Background",
+    "attempts_title": "What have you already tried to lose weight?",
+    "attempts_desc": "Select all that apply. This helps our doctor assess medical necessity.",
+    "attempts_diets": "Diets (keto, calorie restriction, intermittent fasting, etc.)",
+    "attempts_exercise": "Regular exercise",
+    "attempts_otc_supplements": "Over-the-counter supplements or diet pills",
+    "attempts_other_rx": "Previously prescribed weight loss medication",
+    "attempts_none": "I haven't tried anything specific yet",
+
+    "comorbid_label": "Health",
+    "comorbid_title": "Do you have any of the following conditions?",
+    "comorbid_desc": "Select all that apply.",
+    "comorbid_required_notice": "Because your BMI is between 27 and 30, at least one related condition is required to qualify for medication.",
+    "comorbid_diabetes_type2": "Type 2 diabetes",
+    "comorbid_high_bp": "High blood pressure",
+    "comorbid_high_cholesterol": "High cholesterol",
+    "comorbid_sleep_apnea": "Sleep apnea",
+    "comorbid_pcos": "PCOS (Polycystic ovary syndrome)",
+
+    "contra_label": "Safety",
+    "contra_title": "Do any of the following apply to you?",
+    "contra_desc": "Select all that apply. These questions are essential for your safety.",
+    "contra_pregnant": "I am pregnant or breastfeeding",
+    "contra_mtc_men2": "I (or a family member) have Medullary Thyroid Carcinoma (MTC) or MEN 2",
+    "contra_eating_disorder": "I have (had) a severe eating disorder",
+
+    "contact_label": "Your Details",
+    "contact_title": "Almost done — just a few more details",
+    "contact_desc": "So our doctor can reach out to you for a personal consultation.",
+    "contact_first": "First name",
+    "contact_last": "Last name",
+    "contact_email": "Email address",
+    "contact_phone": "Phone number",
+    "contact_consent": "I consent to the processing of my medical data in accordance with GDPR. My data will only be used for medical assessment by FAB Clinic.",
+
+    "dq_age_title": "Unfortunately, you don't qualify",
+    "dq_age_desc": "Our weight loss treatments are only available for adults aged 18 and over. We recommend discussing options with your general practitioner that are appropriate for your age.",
+
+    "dq_bmi_low_title": "You don't currently qualify",
+    "dq_bmi_low_desc": "Based on your BMI (below 27), you don't qualify for prescription weight loss medication. This type of medication is only intended for individuals with an elevated health risk due to excess weight. Perhaps our lifestyle coaching programme would be a good fit?",
+    "dq_bmi_low_cta": "View Lifestyle Coaching",
+
+    "dq_bmi_27_no_comorbidity_title": "Close — but not quite eligible",
+    "dq_bmi_27_no_comorbidity_desc": "Your BMI is between 27 and 30, but you don't have any associated conditions that justify medication. According to prescribing guidelines, medication isn't an option in this case. Please consult your GP for personalised advice.",
+
+    "dq_contraindication_title": "Your safety comes first",
+    "dq_contraindication_desc": "Based on your answers, GLP-1 medication is not safe for you at this time. This isn't a rejection — it's a safety measure. We strongly recommend discussing this with your GP or specialist.",
+
+    "dq_back_home": "Back to homepage"
+  },
+
+  "qualified": {
+    "hero_label": "YOU QUALIFY",
+    "hero_title": "Great news — you're eligible!",
+    "hero_title_personal": "Great news, {name} — you're eligible!",
+    "hero_desc": "Based on your answers, you qualify for medically supervised weight loss medication. Our doctors are ready to create a personalised treatment plan with you.",
+    "stat_to_lose": "Target loss",
+
+    "process_label": "YOUR TREATMENT JOURNEY",
+    "process_title": "What happens next?",
+    "step_prefix": "Step",
+    "step1_title": "Doctor's Consultation",
+    "step1_desc": "One of our doctors reviews your intake and discusses the best options with you — by phone or video call.",
+    "step2_title": "Prescription & Delivery",
+    "step2_desc": "Once approved, the doctor prescribes your medication. It's delivered discreetly to your door via our partner pharmacy.",
+    "step3_title": "Guidance & Aftercare",
+    "step3_desc": "You receive ongoing support from our team — with regular check-ins and dosage adjustments as needed.",
+
+    "options_label": "YOUR OPTIONS",
+    "options_title": "Available Medications",
+    "options_desc": "Our doctor will advise which medication best suits your situation. Here's an overview of the options.",
+    "product_ozempic": "The most widely prescribed option. Proven effective for medically guided weight loss.",
+    "product_mounjaro": "Latest generation. Dual action for optimal results.",
+    "product_badge": "Most Effective",
+    "product_wegovy": "Specifically developed for long-term weight management.",
+    "product_saxenda": "Daily administration. Helps reduce appetite.",
+
+    "trust_1_title": "Licensed Doctors",
+    "trust_1_desc": "Every prescription by a registered physician",
+    "trust_2_title": "Medical Oversight",
+    "trust_2_desc": "Ongoing guidance throughout your journey",
+    "trust_3_title": "Discreet Delivery",
+    "trust_3_desc": "Free home delivery in neutral packaging",
+    "trust_4_title": "4.8 Average",
+    "trust_4_desc": "Rated by hundreds of patients",
+
+    "cta_title": "Ready to get started?",
+    "cta_desc": "Schedule your free consultation today and take the first step towards a healthier weight — guided by our doctors.",
+    "cta_schedule": "Schedule Free Consultation",
+    "cta_close": "Close",
+    "cta_call": "Call Now"
   }
 }

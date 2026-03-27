@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { Menu, X } from 'lucide-react';
 import LanguageToggle from './LanguageToggle';
 import Container from './ui/Container';
-import Button from './ui/Button';
+import { SurveyTrigger } from './survey/SurveyFlow';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function Navbar() {
@@ -82,9 +82,9 @@ export default function Navbar() {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-8">
             <LanguageToggle isScrolled={isScrolled} />
-            <Button href="#consult" size="sm" variant="primary">
+            <SurveyTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-3 text-[10px] tracking-[0.2em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
               {t('cta')}
-            </Button>
+            </SurveyTrigger>
           </div>
 
           {/* Mobile toggle */}
@@ -126,16 +126,13 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-          <Button
-            href="#consult"
-            size="lg"
-            variant="primary"
-            magnetic={false}
-            className="w-full max-w-xs text-center"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            {t('cta')}
-          </Button>
+          <div onClick={() => setMobileMenuOpen(false)}>
+            <SurveyTrigger
+              className="w-full max-w-xs inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
+            >
+              {t('cta')}
+            </SurveyTrigger>
+          </div>
         </div>
       </motion.nav>
     </motion.header>

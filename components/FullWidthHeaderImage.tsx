@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useRef } from 'react';
 import BmiCalculator from './BmiCalculator';
-import Button from './ui/Button';
+import { SurveyTrigger } from './survey/SurveyFlow';
 import { EASE_PREMIUM } from '@/lib/motion';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 
@@ -76,9 +76,9 @@ export default function FullWidthHeaderImage() {
                                 </li>
                             ))}
                         </ul>
-                        <Button href="#shop" variant="primary" size="md" className="w-full justify-center mt-auto">
+                        <SurveyTrigger className="w-full inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 mt-auto active:scale-[0.97]">
                             {tElig('cta')} <ArrowRight size={16} className="ml-2" />
-                        </Button>
+                        </SurveyTrigger>
                     </div>
                 </motion.div>
 
