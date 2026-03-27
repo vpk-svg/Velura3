@@ -2,7 +2,6 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
@@ -19,14 +18,7 @@ const config: Config = {
         ivory:              "#FDFCF0",
         "background-light": "#FDFCF0",
         "background-dark":  "#1e1b14",
-        /* legacy aliases kept for backward-compat */
-        "brand-gold":       "#c6a65d",
-        "brand-gold-light": "#d8b56f",
-        "brand-gold-dark":  "#a68b4c",
-        "brand-ivory":      "#FDFCF0",
-        "brand-teal-deep":  "#1e1b14",
-        "brand-teal-mid":   "#3B2A23",
-        "brand-charcoal":   "#3B2A23",
+
       },
 
       /* ── Typography ────────────────────────────────── */

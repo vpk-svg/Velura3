@@ -25,7 +25,7 @@ export default function MagneticWrapper({ children, className = '' }: MagneticWr
             const { height, width, left, top } = element.getBoundingClientRect();
             const middleX = clientX - (left + width / 2);
             const middleY = clientY - (top + height / 2);
-            x.set(middleX * 0.2); // Adjust the multi-plier (0.2) to increase/decrease magnetic strength
+            x.set(middleX * 0.2); // Adjust the multiplier (0.2) to increase/decrease magnetic strength
             y.set(middleY * 0.2);
         }
     };

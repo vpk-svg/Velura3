@@ -7,16 +7,12 @@ import { Loader2, PlusCircle } from 'lucide-react';
 
 interface CheckoutButtonProps {
     productId: string;
-    priceEur: number;
-    productName: string;
     label: string;
     variant: 'primary' | 'ghost';
 }
 
 export default function CheckoutButton({
     productId,
-    priceEur,
-    productName,
     label,
     variant,
 }: CheckoutButtonProps) {
@@ -50,7 +46,7 @@ export default function CheckoutButton({
             if (data.url) {
                 window.location.href = data.url;
             }
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error('Checkout error:', err);
             setError(t('error'));
         } finally {

@@ -23,6 +23,12 @@ export const PRODUCTS = {
 
 export type ProductId = keyof typeof PRODUCTS;
 
+/** Type guard to validate a product ID string. */
+export function isValidProductId(id: string): id is ProductId {
+  return id in PRODUCTS;
+}
+
+/** Retrieve a product by ID, or null if not found. */
 export function getProduct(id: string) {
-    return PRODUCTS[id as ProductId] || null;
+  return isValidProductId(id) ? PRODUCTS[id] : null;
 }

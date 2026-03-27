@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
+import { clsx } from 'clsx';
 
 interface ContainerProps {
   children: ReactNode;
@@ -8,15 +9,14 @@ interface ContainerProps {
 
 /**
  * Consistent max-width container used across all sections.
- * Replaces the mix of max-w-[1600px] / max-w-[1800px] / max-w-7xl scattered everywhere.
  */
 export default function Container({
   children,
-  className = '',
+  className,
   as: Tag = 'div',
 }: ContainerProps) {
   return (
-    <Tag className={`max-w-container mx-auto px-6 lg:px-12 ${className}`}>
+    <Tag className={clsx('max-w-container mx-auto px-6 lg:px-12', className)}>
       {children}
     </Tag>
   );

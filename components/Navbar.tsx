@@ -5,6 +5,7 @@ import { motion, useScroll, useMotionValueEvent } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { Menu, X, Sparkles } from 'lucide-react';
 import LanguageToggle from './LanguageToggle';
+import Container from './ui/Container';
 import Button from './ui/Button';
 import { EASE_PREMIUM } from '@/lib/motion';
 
@@ -56,7 +57,7 @@ export default function Navbar() {
         }`}
       role="banner"
     >
-      <div className="max-w-container mx-auto px-6 lg:px-12">
+      <Container>
         <div className="flex justify-between items-center h-16">
 
           {/* Logo */}
@@ -104,7 +105,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </div>
+      </Container>
 
       {/* Mobile Menu Overlay */}
       <motion.nav

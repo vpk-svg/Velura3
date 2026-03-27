@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
+import { clsx } from 'clsx';
 
 interface CardProps {
   children: ReactNode;
@@ -9,23 +10,21 @@ interface CardProps {
 
 /**
  * Unified card shell.
- * Replaces the identical bg-white rounded-[48px] shadow-sm border pattern
- * duplicated 15+ times across treatment, product, testimonial, and blog cards.
+ * Consistent rounded-card + shadow + border treatment across the site.
  */
 export default function Card({
   children,
-  className = '',
+  className,
   hover = true,
   as: Tag = 'article',
 }: CardProps) {
   return (
     <Tag
-      className={`
-        bg-white rounded-card overflow-hidden border border-secondary/5
-        shadow-soft-sm
-        ${hover ? 'transition-shadow duration-300 ease-premium hover:shadow-soft-lg' : ''}
-        ${className}
-      `}
+      className={clsx(
+        'bg-white rounded-card overflow-hidden border border-secondary/5 shadow-soft-sm',
+        hover && 'transition-shadow duration-300 ease-premium hover:shadow-soft-lg',
+        className,
+      )}
     >
       {children}
     </Tag>

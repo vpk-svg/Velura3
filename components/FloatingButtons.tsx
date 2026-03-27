@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { MessageCircle, MessageSquare } from 'lucide-react';
+import { MessageSquare, MessageCircle } from 'lucide-react';
 
 export default function FloatingButtons() {
     return (

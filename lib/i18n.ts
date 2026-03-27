@@ -8,14 +8,11 @@ export const routing = defineRouting({
 
 export default getRequestConfig(async ({ requestLocale }) => {
   const locale = await requestLocale;
-  if (!locale || !routing.locales.includes(locale as "nl" | "en")) {
-    return {
-      locale: routing.defaultLocale,
-      messages: (await import(`../messages/${routing.defaultLocale}.json`)).default
-    };
-  }
+  const isValid = locale && routing.locales.includes(locale as (typeof routing.locales)[number]);
+  const resolvedLocale = isValid ? locale : routing.defaultLocale;
+
   return {
-    locale,
-    messages: (await import(`../messages/${locale}.json`)).default
+    locale: resolvedLocale,
+    messages: (await import(`../messages/${resolvedLocale}.json`)).default,
   };
 });

@@ -12,9 +12,7 @@ import Testimonials from '@/components/Testimonials';
 import ContactSection from '@/components/ContactSection';
 import NewsletterSection from '@/components/NewsletterSection';
 
-import { ReactElement } from 'react';
-
-export default function HomePage(): ReactElement {
+export default function HomePage() {
   return (
     <>
       {/* 1. Full-width Header */}

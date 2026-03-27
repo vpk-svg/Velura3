@@ -3,8 +3,8 @@ import { stripe } from '@/lib/stripe';
 import { Resend } from 'resend';
 import * as React from 'react';
 import OrderConfirmationEmail from '@/components/emails/OrderConfirmation';
+import type Stripe from 'stripe';
 
-// Ensure Resend is only initialized if the key exists to avoid runtime crashes
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function POST(req: Request) {
@@ -21,16 +21,17 @@ export async function POST(req: Request) {
 
     try {
         event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
-    } catch (error: any) {
-        console.error(`[WEBHOOK_ERROR] Stripe signature verification failed. Did you use the right webhook secret? Error:`, error.message);
-        return NextResponse.json({ error: `Webhook Error: ${error.message}` }, { status: 400 });
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : 'Unknown error';
+        console.error(`[WEBHOOK_ERROR] Stripe signature verification failed:`, message);
+        return NextResponse.json({ error: `Webhook Error: ${message}` }, { status: 400 });
     }
 
     console.log(`[WEBHOOK_EVENT] Received event: ${event.type}`);
 
     if (event.type === 'checkout.session.completed') {
-        const session = event.data.object as any;
-        const customerEmail = session.customer_details?.email || session.customer_email || 'Klant';
+        const session = event.data.object as Stripe.Checkout.Session;
+        const customerEmail = session.customer_details?.email ?? 'Klant';
         const amountTotal = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: session.currency || 'EUR' }).format((session.amount_total || 0) / 100);
         const productName = session.metadata?.productName || 'Velura Behandeling';
         const orderNumber = session.id.slice(-8).toUpperCase();

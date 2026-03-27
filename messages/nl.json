@@ -86,7 +86,7 @@
     "disclaimer": "BMI IS EEN SCREENINGSINSTRUMENT, GEEN DIAGNOSE."
   },
   "how": {
-    "label": "YOUR JOURNEY",
+    "label": "UW TRAJECT",
     "title": "Hoe",
     "subtitle": "FAB Clinic Werkt",
     "desc": "Wij begeleiden je stap voor stap naar je beste zelf – veilig, professioneel en volledig afgestemd op jouw natuurlijke schoonheid.",
@@ -102,7 +102,7 @@
     "title": "Apotheek",
     "subtitle": "Klinisch geteste ondersteuning voor uw esthetische doelen.",
     "filter_all": "Alles",
-    "filter_glp1": "Weightloss",
+    "filter_glp1": "Afvallen",
     "filter_supplements": "Supplementen",
     "filter_programs": "Trajecten",
     "ozempic_name": "Ozempic",
@@ -127,9 +127,9 @@
     "title": "Medische",
     "subtitle": "Methodes",
     "tab1": "Injectables",
-    "tab2": "Skin Rejuvenation",
+    "tab2": "Huidverjonging",
     "tab3": "Body Contouring",
-    "tab4": "Nutrition",
+    "tab4": "Voeding",
     "tab5": "Longevity",
     "content1_title": "Precisie Injecties",
     "content1_text": "Onze artsen gebruiken micro-doseringen voor het meest natuurlijke resultaat.",
@@ -220,9 +220,9 @@
     "support_desc": "Onbeperkt contact met specialisten gedurende je traject"
   },
   "testimonials": {
-    "label": "Kind Words",
-    "title": "Client",
-    "subtitle": "Experiences",
+    "label": "Lovende Woorden",
+    "title": "Cliënt",
+    "subtitle": "Ervaringen",
     "t1_quote": "Zeer natuurlijke resultaten, ik voel me weer helemaal zelfverzekerd.",
     "t1_author": "Sarah K. · Gezichtscorrectie",
     "t2_quote": "Professioneel team en een prachtige kliniek. Een echte aanrader.",

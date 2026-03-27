@@ -2,13 +2,25 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/navigation';
 import { Check } from 'lucide-react';
 
-async function getSession(sessionId: string) {
+interface CheckoutSession {
+  status: string;
+  customer_email: string;
+  amount_total: number;
+  currency: string;
+  product_name?: string;
+}
+
+async function getSession(sessionId: string): Promise<CheckoutSession | null> {
+  try {
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-    const res = await fetch(`${appUrl}/api/checkout/verify?session_id=${sessionId}`, {
-        cache: 'no-store',
+    const res = await fetch(`${appUrl}/api/checkout/verify?session_id=${encodeURIComponent(sessionId)}`, {
+      cache: 'no-store',
     });
     if (!res.ok) return null;
     return res.json();
+  } catch {
+    return null;
+  }
 }
 
 export default async function SuccessPage({

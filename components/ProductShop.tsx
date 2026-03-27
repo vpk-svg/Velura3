@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import CheckoutButton from './CheckoutButton';
@@ -11,10 +11,6 @@ import { Star, ShieldCheck } from 'lucide-react';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function ProductShop() {
-  const scrollRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: scrollRef, offset: ["start end", "end start"] });
-  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -40]);
-
   const t = useTranslations('shop');
   const [filter, setFilter] = useState('ALL');
 
@@ -120,7 +116,6 @@ export default function ProductShop() {
           id="product-grid"
           role="tabpanel"
           layout
-          ref={scrollRef}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10"
         >
           <AnimatePresence>
@@ -160,7 +155,7 @@ export default function ProductShop() {
                       {product.topBadge}
                     </span>
                   )}
-                  <motion.div style={{ y: parallaxY }} className="relative w-full h-full drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)] opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-premium z-0">
+                  <div className="relative w-full h-full drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)] opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-premium z-0">
                     <Image
                       src={product.imgSrc}
                       alt={product.name}
@@ -169,7 +164,7 @@ export default function ProductShop() {
                       className="object-contain p-4"
                       sizes="(max-width: 768px) 100vw, 25vw"
                     />
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Content */}
@@ -206,8 +201,6 @@ export default function ProductShop() {
 
                   <CheckoutButton
                     productId={product.id}
-                    priceEur={product.priceCents}
-                    productName={product.name}
                     label={t('cta')}
                     variant="primary"
                   />

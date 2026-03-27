@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
+import { clsx } from 'clsx';
 import MagneticWrapper from '@/components/MagneticWrapper';
 
 interface ButtonProps {
@@ -17,17 +18,17 @@ interface ButtonProps {
   'aria-label'?: string;
 }
 
-const variantStyles = {
+const VARIANT_STYLES = {
   primary:   'bg-primary text-white shadow-gold-glow hover:shadow-soft-xl',
   secondary: 'bg-secondary text-white shadow-soft-md hover:shadow-soft-lg hover:bg-secondary-deep',
   ghost:     'bg-transparent border border-secondary/10 text-secondary hover:border-primary hover:text-primary',
-};
+} as const;
 
-const sizeStyles = {
+const SIZE_STYLES = {
   sm: 'px-8 py-3 text-[10px] tracking-[0.2em]',
   md: 'px-10 py-4 text-[11px] tracking-[0.25em]',
   lg: 'px-12 py-5 text-xs tracking-[0.3em]',
-};
+} as const;
 
 /**
  * Unified CTA button.
@@ -40,27 +41,31 @@ export default function Button({
   size = 'md',
   type = 'button',
   magnetic = true,
-  className = '',
+  className,
   onClick,
   disabled,
-  ...rest
+  'aria-label': ariaLabel,
 }: ButtonProps) {
-  const base = `
-    inline-flex items-center justify-center rounded-pill font-label uppercase font-bold
-    transition-all duration-300 ease-premium
-    focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
-    active:scale-[0.97]
-    disabled:opacity-50 disabled:pointer-events-none
-    ${variantStyles[variant]} ${sizeStyles[size]} ${className}
-  `;
+  const classes = clsx(
+    'inline-flex items-center justify-center rounded-pill font-label uppercase font-bold',
+    'transition-all duration-300 ease-premium',
+    'focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
+    'active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none',
+    VARIANT_STYLES[variant],
+    SIZE_STYLES[size],
+    className,
+  );
+
+  const hoverAnimation = { scale: 1.03, y: -2 };
+  const tapAnimation = { scale: 0.97 };
 
   const inner = href ? (
     <motion.a
       href={href}
-      whileHover={{ scale: 1.03, y: -2 }}
-      whileTap={{ scale: 0.97 }}
-      className={base}
-      {...rest}
+      whileHover={hoverAnimation}
+      whileTap={tapAnimation}
+      className={classes}
+      aria-label={ariaLabel}
     >
       {children}
     </motion.a>
@@ -69,18 +74,14 @@ export default function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      whileHover={{ scale: 1.03, y: -2 }}
-      whileTap={{ scale: 0.97 }}
-      className={base}
-      {...rest}
+      whileHover={hoverAnimation}
+      whileTap={tapAnimation}
+      className={classes}
+      aria-label={ariaLabel}
     >
       {children}
     </motion.button>
   );
 
-  if (magnetic) {
-    return <MagneticWrapper>{inner}</MagneticWrapper>;
-  }
-
-  return inner;
+  return magnetic ? <MagneticWrapper>{inner}</MagneticWrapper> : inner;
 }

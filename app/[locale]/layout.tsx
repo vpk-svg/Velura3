@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Cormorant_Garamond, Jost, Cinzel } from 'next/font/google';
@@ -8,7 +9,6 @@ import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
 import ScrollProgress from '@/components/ScrollProgress';
 import { routing } from '@/lib/i18n';
-import { ReactElement } from 'react';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -29,9 +29,10 @@ const cinzel = Cinzel({
   variable: '--font-cinzel',
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'FAB CLINIC | Medische Esthetiek & Welzijn',
   description: 'Premium kliniek voor fillers, botox en lifestyle transformatie.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://fabclinic.be'),
 };
 
 export function generateStaticParams() {
@@ -43,10 +44,7 @@ type LocaleLayoutProps = {
   params: Promise<{ locale: string }>;
 };
 
-export default async function LocaleLayout({
-  children,
-  params
-}: LocaleLayoutProps): Promise<ReactElement> {
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const resolvedParams = await params;
   const messages = await getMessages({ locale: resolvedParams.locale });
 

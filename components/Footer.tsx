@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import Container from './ui/Container';
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -9,7 +10,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-secondary text-background-light pt-section-y pb-16" role="contentinfo">
-      <div className="max-w-container mx-auto px-6 lg:px-12">
+      <Container>
         {/* Wordmark */}
         <div className="text-center mb-20" aria-hidden="true">
           <span className="font-label text-6xl md:text-8xl lg:text-[10rem] text-primary tracking-[0.2em] font-bold opacity-[0.06] select-none">
@@ -82,7 +83,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }
