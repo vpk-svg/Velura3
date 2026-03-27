@@ -37,14 +37,14 @@ export default function FullWidthHeaderImage() {
             {/* Parallax background */}
             <motion.div style={{ scale, y }} className="absolute inset-0 z-0">
                 <Image
-                    src="/images/hero-atmos.png"
-                    alt=""
+                    src="/images/hero-atmos.webp"
+                    alt="FAB Clinic — The Skin Centre"
                     fill
                     priority
-                    className="object-cover opacity-50"
+                    className="object-cover opacity-75"
                     sizes="100vw"
                 />
-                <div className="absolute inset-0 bg-secondary/40 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-secondary/55 mix-blend-multiply" />
             </motion.div>
 
             {/* 3-Column Content */}
