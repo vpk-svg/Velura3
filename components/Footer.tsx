@@ -34,14 +34,14 @@ export default function Footer() {
               { href: '#lifestyle', label: t('link_wellness') },
             ]},
             { title: t('practice'), links: [
-              { href: '#team', label: t('link_specialists') },
-              { href: '#how', label: t('link_methodology') },
-              { href: '#contact', label: t('link_locations') },
+              { href: '/team', label: t('link_specialists') },
+              { href: '/team', label: t('link_methodology') },
+              { href: '/contact', label: t('link_locations') },
             ]},
             { title: t('assessments'), links: [
-              { href: '#bmi', label: t('link_bmi') },
-              { href: '#consult', label: t('link_consult') },
-              { href: '#team', label: t('link_booking') },
+              { href: '#shop', label: t('link_bmi') },
+              { href: '/contact', label: t('link_consult') },
+              { href: '/contact', label: t('link_booking') },
             ]},
             { title: t('legal'), links: [
               { href: '#', label: t('link_privacy') },

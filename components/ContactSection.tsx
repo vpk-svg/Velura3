@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { Mail, Phone, MapPin, Instagram } from 'lucide-react';
+import { Mail, MessageCircle, MapPin, Clock } from 'lucide-react';
 import Image from 'next/image';
 import Container from './ui/Container';
 import Button from './ui/Button';
@@ -12,10 +12,10 @@ export default function ContactSection() {
     const t = useTranslations('contact');
 
     const contactItems = [
-        { icon: <Mail className="text-primary" />, title: t('email'), desc: 'info@fabclinic.be', href: 'mailto:info@fabclinic.be' },
-        { icon: <Phone className="text-primary" />, title: t('phone'), desc: '+32 400 000 000', href: 'tel:+32400000000' },
-        { icon: <MapPin className="text-primary" />, title: t('visit'), desc: t('address'), href: '#' },
-        { icon: <Instagram className="text-primary" />, title: t('follow'), desc: '@fabclinic', href: '#' }
+        { icon: <Mail className="text-primary" />, title: t('email'), desc: 'info@fabclinic.nl', href: 'mailto:info@fabclinic.nl' },
+        { icon: <MessageCircle className="text-primary" />, title: t('whatsapp'), desc: 'WhatsApp', href: 'https://wa.me/31600000000' },
+        { icon: <MapPin className="text-primary" />, title: t('visit'), desc: t('address'), href: 'https://maps.google.com/?q=Waldorpstraat+215+Den+Haag' },
+        { icon: <Clock className="text-primary" />, title: t('hours'), desc: t('hours_desc'), href: '#' }
     ];
 
     return (

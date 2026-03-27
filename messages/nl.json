@@ -235,10 +235,11 @@
     "title": "Laat ons",
     "subtitle": "Verbinden.",
     "email": "Email Ons",
-    "phone": "Bel Ons",
+    "whatsapp": "WhatsApp",
     "visit": "Bezoek Ons",
-    "follow": "Volg Ons",
-    "address": "Kouter 1, Gent, België",
+    "hours": "Openingstijden",
+    "hours_desc": "Ma–Vr 9:00–17:00",
+    "address": "Waldorpstraat 215, 2521 CJ Den Haag",
     "cta": "Start een Online Consultatie"
   },
   "newsletter": {
@@ -268,5 +269,21 @@
     "link_privacy": "Privacybeleid",
     "link_terms": "Patiëntenvoorwaarden",
     "link_cookies": "Cookiebeleid"
+  },
+  "weightloss_header": {
+    "label": "MEDISCH AFVALLEN",
+    "title": "Medisch",
+    "title_accent": "Afvallen",
+    "desc": "Veilig en effectief afvallen met GLP-1 medicatie zoals Ozempic, Mounjaro en Wegovy. Onder begeleiding van erkende artsen.",
+    "cta": "Bekijk Medicatie"
+  },
+  "pharmacy": {
+    "label": "PARTNER APOTHEEK",
+    "title": "Gecertificeerde Verstrekking",
+    "desc": "Alle medicatie wordt voorgeschreven door geregistreerde artsen en verstrekt door onze erkende partnerapotheek in Nederland.",
+    "pharmacy_name": "Apotheek Lemelerveld",
+    "pharmacy_address": "Vilstersestraat 33",
+    "pharmacy_city": "8152 AA Lemelerveld",
+    "disclaimer": "Alle medicatie vereist een geldig recept. FAB Clinic werkt samen met erkende apotheken."
   }
 }

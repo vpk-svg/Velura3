@@ -1,44 +1,34 @@
 import FullWidthHeaderImage from '@/components/FullWidthHeaderImage';
+import WeightlossHeader from '@/components/WeightlossHeader';
 import TreatmentsDualRow from '@/components/TreatmentsDualRow';
-import BblBmiDualRow from '@/components/BblBmiDualRow';
-import ProductShop from '@/components/ProductShop';
 import LifestyleSection from '@/components/LifestyleSection';
-import PricingTimeline from '@/components/PricingTimeline';
-import MethodsTabs from '@/components/MethodsTabs';
-import TeamSection from '@/components/TeamSection';
-import HowItWorks from '@/components/HowItWorks';
-import TrustPillars from '@/components/TrustPillars';
 import Testimonials from '@/components/Testimonials';
-import ContactSection from '@/components/ContactSection';
-import NewsletterSection from '@/components/NewsletterSection';
+import ProductShop from '@/components/ProductShop';
+import PharmacyDisclaimer from '@/components/PharmacyDisclaimer';
 
 export default function HomePage() {
   return (
     <>
-      {/* 1. Full-width Header */}
+      {/* 1. Hero Header + BMI Calculator */}
       <FullWidthHeaderImage />
 
-      {/* 2. Botox + Fillers (50/50 Desktop) */}
+      {/* 2. Full-width Weightloss Section */}
+      <WeightlossHeader />
+
+      {/* 3. Botox + Fillers (50/50 Desktop) */}
       <TreatmentsDualRow />
 
-      {/* 3. BBL + BMI Calculator (50/50 Desktop) */}
-      <BblBmiDualRow />
-
-      {/* 4. Ozempic & Similar Medications */}
-      <ProductShop />
-
-      {/* 5. Lifestyle Coaching */}
+      {/* 4. Full-width Lifestyle Coaching */}
       <LifestyleSection />
 
-      {/* Rest of the page components */}
-      <PricingTimeline />
-      <MethodsTabs />
-      <TeamSection />
-      <HowItWorks />
-      <TrustPillars />
+      {/* 5. Google Reviews / Testimonials */}
       <Testimonials />
-      <ContactSection />
-      <NewsletterSection />
+
+      {/* 6. Product Shop — Pens */}
+      <ProductShop />
+
+      {/* 7. Partner Pharmacy Disclaimer */}
+      <PharmacyDisclaimer />
     </>
   );
 }

@@ -136,7 +136,7 @@ export default function ProductShop() {
                   delay: idx * 0.08,
                   ease: EASE_PREMIUM,
                 }}
-                className={`bg-white rounded-md overflow-hidden shadow-soft-sm hover:shadow-soft-lg border border-secondary/5 flex flex-col group relative ${idx % 2 !== 0 ? 'lg:mt-12' : ''}`}
+                className="bg-white rounded-md overflow-hidden shadow-soft-sm hover:shadow-soft-lg border border-secondary/5 flex flex-col group relative"
               >
                 {/* Visual Area */}
                 <div className={`w-full aspect-[4/5] ${product.gradient} flex items-center justify-center p-10 relative overflow-hidden`}>

@@ -38,12 +38,11 @@ export default function Navbar() {
 
   const navLinks = [
     { name: t('home'), href: '/' },
-    { name: t('contact'), href: '#contact' },
-    { name: t('team'), href: '#team' },
-    { name: t('weightloss'), href: '#bmi' },
+    { name: t('weightloss'), href: '#shop' },
     { name: t('botox'), href: '#botox' },
-    { name: t('bbl'), href: '#bbl' },
     { name: t('lifestyle'), href: '#lifestyle' },
+    { name: t('team'), href: '/team' },
+    { name: t('contact'), href: '/contact' },
   ];
 
   return (
