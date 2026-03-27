@@ -22,9 +22,9 @@ export default function LanguageToggle({ isScrolled = false }: LanguageTogglePro
     });
   };
 
-  const activeColorClass = isScrolled ? 'bg-secondary text-background-light' : 'bg-background-light text-secondary';
-  const inactiveColorClass = isScrolled ? 'text-secondary/60 hover:text-primary' : 'text-background-light/70 hover:text-primary';
-  const borderColor = isScrolled ? 'border-secondary/20' : 'border-background-light/20';
+  const activeColorClass = 'bg-secondary text-background-light';
+  const inactiveColorClass = 'text-secondary/60 hover:text-primary';
+  const borderColor = 'border-secondary/20';
 
   return (
     <div className={`flex items-center space-x-1 bg-transparent border ${borderColor} rounded-full p-1.5 font-sans text-[10px] tracking-[0.2em] transition-all duration-500`}>

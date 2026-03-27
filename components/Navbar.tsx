@@ -52,7 +52,7 @@ export default function Navbar() {
       transition={{ duration: 0.8, ease: EASE_PREMIUM }}
       className={`fixed top-0 left-0 right-0 z-nav transition-all duration-500 w-full border-b ${isScrolled
         ? 'bg-background-light/95 backdrop-blur-md border-primary/10 shadow-soft-sm py-2'
-        : 'bg-transparent border-transparent py-6'
+        : 'bg-background-light/80 backdrop-blur-sm border-transparent py-4'
         }`}
       role="banner"
     >
@@ -72,7 +72,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-              className={`transition-all duration-300 ease-premium text-xs font-semibold uppercase tracking-[0.15em] hover:text-primary focus-visible:text-primary ${isScrolled ? 'text-secondary/80' : 'text-background-light'}`}
+              className={`transition-all duration-300 ease-premium text-xs font-semibold uppercase tracking-[0.15em] hover:text-primary focus-visible:text-primary text-secondary/80`}
               >
                 {link.name}
               </a>
@@ -95,7 +95,7 @@ export default function Navbar() {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav"
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-              className={`p-2 transition-colors duration-300 ${isScrolled ? 'text-secondary' : 'text-background-light'}`}
+              className={`p-2 transition-colors duration-300 text-secondary`}
             >
               {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>

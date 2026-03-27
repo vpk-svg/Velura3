@@ -20,11 +20,6 @@ export default function TeamSection() {
             name: t('dr2_name'),
             role: t('dr2_role'),
             img: "/images/team/team2.jpg",
-        },
-        {
-            name: t('dr3_name'),
-            role: t('dr3_role'),
-            img: "/images/team/team3.jpg",
         }
     ];
 
@@ -37,7 +32,7 @@ export default function TeamSection() {
                     subtitle={t('desc')}
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 max-w-4xl mx-auto">
                     {team.map((member, index) => (
                         <motion.article
                             key={index}

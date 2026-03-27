@@ -220,19 +220,20 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
     </button>
   );
 
-  const Inp = ({ icon: Ic, label, value, onChange, type = 'text', ph, unit }: {
+  const Inp = ({ icon: Ic, label, value, onChange, type = 'text', ph, unit, mode }: {
     icon: React.ElementType; label: string; value: string; onChange: (v: string) => void;
-    type?: string; ph?: string; unit?: string;
+    type?: string; ph?: string; unit?: string; mode?: 'numeric' | 'decimal' | 'text' | 'email' | 'tel';
   }) => (
     <div className="space-y-2">
       <label className="flex items-center gap-2 text-[10px] font-sans font-semibold uppercase tracking-[0.2em] text-secondary/50">
         <Ic size={13} /> {label}
       </label>
       <div className="relative">
-        <input type={type} inputMode={type === 'number' ? 'decimal' : undefined}
+        <input type={type}
+          inputMode={mode ?? (type === 'number' ? 'decimal' : undefined)}
           value={value} onChange={(e) => onChange(e.target.value)} placeholder={ph}
           className="w-full px-4 py-3.5 rounded-md border-2 border-secondary/10 bg-white font-sans text-secondary text-base
-            focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" />
+            focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all cursor-text" />
         {unit && <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-sans text-secondary/30 uppercase">{unit}</span>}
       </div>
     </div>
@@ -282,19 +283,19 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       case 'age':
         return (<div className="space-y-5">
           <Hdr icon={Calendar} label={t('age_label')} title={t('age_title')} />
-          <Inp icon={Calendar} label={t('age_input_label')} value={f.age} onChange={(v) => upd('age', v)} type="number" ph="35" unit={t('age_unit')} />
+          <Inp icon={Calendar} label={t('age_input_label')} value={f.age} onChange={(v) => upd('age', v.replace(/[^0-9]/g, ''))} type="text" mode="numeric" ph="35" unit={t('age_unit')} />
         </div>);
 
       case 'height':
         return (<div className="space-y-5">
           <Hdr icon={Ruler} label={t('height_label')} title={t('height_title')} />
-          <Inp icon={Ruler} label={t('height_input_label')} value={f.height} onChange={(v) => upd('height', v)} type="number" ph="175" unit="cm" />
+          <Inp icon={Ruler} label={t('height_input_label')} value={f.height} onChange={(v) => upd('height', v.replace(/[^0-9]/g, ''))} type="text" mode="numeric" ph="175" unit="cm" />
         </div>);
 
       case 'weight':
         return (<div className="space-y-5">
           <Hdr icon={Weight} label={t('weight_label')} title={t('weight_title')} />
-          <Inp icon={Scale} label={t('weight_input_label')} value={f.weight} onChange={(v) => upd('weight', v)} type="number" ph="85" unit="kg" />
+          <Inp icon={Scale} label={t('weight_input_label')} value={f.weight} onChange={(v) => upd('weight', v.replace(/[^0-9.]/g, ''))} type="text" mode="decimal" ph="85" unit="kg" />
         </div>);
 
       case 'bmi_result':
@@ -313,7 +314,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       case 'target_weight':
         return (<div className="space-y-5">
           <Hdr icon={Target} label={t('target_label')} title={t('target_title')} />
-          <Inp icon={Target} label={t('target_input_label')} value={f.targetWeight} onChange={(v) => upd('targetWeight', v)} type="number" ph="72" unit="kg" />
+          <Inp icon={Target} label={t('target_input_label')} value={f.targetWeight} onChange={(v) => upd('targetWeight', v.replace(/[^0-9.]/g, ''))} type="text" mode="decimal" ph="72" unit="kg" />
           {f.targetWeight && wLoss > 0 && (
             <p className="text-xs font-sans text-secondary/40 text-center">
               {t('target_loss_label')}: <span className="font-semibold text-primary">{wLoss.toFixed(1)} kg</span>
