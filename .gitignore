@@ -10,3 +10,4 @@ coverage/
 node_modules
 .env.local
 .DS_Store
+tsconfig.tsbuildinfo
