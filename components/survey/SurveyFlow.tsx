@@ -1,6 +1,9 @@
 'use client';
 
-import { useState, useCallback, useMemo, useEffect, createContext, useContext } from 'react';
+import {
+  useState, useCallback, useMemo, useEffect, useRef,
+  createContext, useContext, type ReactNode, type ElementType,
+} from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { EASE_PREMIUM } from '@/lib/motion';
@@ -11,7 +14,7 @@ import {
 } from 'lucide-react';
 
 /* ═══════════════════════════════════════════════════
-   Context — any button on the page can open the survey
+   Context — any CTA on the page can open the survey
    ═══════════════════════════════════════════════════ */
 const SurveyCtx = createContext<{ open: () => void }>({ open: () => {} });
 export const useSurvey = () => useContext(SurveyCtx);
@@ -19,7 +22,7 @@ export const useSurvey = () => useContext(SurveyCtx);
 /* ═══════════════════════════════════════════════════
    Provider — wraps the app, renders the overlay
    ═══════════════════════════════════════════════════ */
-export function SurveyProvider({ children }: { children: React.ReactNode }) {
+export function SurveyProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const open = useCallback(() => setIsOpen(true), []);
   const close = useCallback(() => setIsOpen(false), []);
@@ -48,12 +51,113 @@ export function SurveyProvider({ children }: { children: React.ReactNode }) {
 /* ═══════════════════════════════════════════════════
    Trigger — reusable button that opens the survey
    ═══════════════════════════════════════════════════ */
-export function SurveyTrigger({ children, className }: { children: React.ReactNode; className?: string }) {
+export function SurveyTrigger({ children, className }: { children: ReactNode; className?: string }) {
   const { open } = useSurvey();
   return (
     <button type="button" onClick={open} className={className}>
       {children}
     </button>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   Shared UI — OUTSIDE the overlay to avoid re-creation
+   ═══════════════════════════════════════════════════ */
+function SurveyOption({ selected, onClick, children }: {
+  selected: boolean; onClick: () => void; children: ReactNode;
+}) {
+  return (
+    <button type="button" onClick={onClick}
+      className={`w-full text-left px-5 py-4 rounded-md border-2 transition-all duration-200 font-sans text-sm active:scale-[0.98] ${
+        selected
+          ? 'border-primary bg-primary/10 text-secondary'
+          : 'border-secondary/10 bg-white text-secondary/70 active:border-primary/40'
+      }`}>
+      <span className="flex items-center justify-between">
+        <span>{children}</span>
+        {selected && <CheckCircle2 size={18} className="text-primary shrink-0" />}
+      </span>
+    </button>
+  );
+}
+
+function SurveyCheck({ on, onClick, children }: {
+  on: boolean; onClick: () => void; children: ReactNode;
+}) {
+  return (
+    <button type="button" onClick={onClick}
+      className={`w-full text-left px-4 py-3.5 rounded-md border-2 transition-all duration-200 font-sans text-sm active:scale-[0.98] ${
+        on ? 'border-primary bg-primary/10 text-secondary' : 'border-secondary/10 bg-white text-secondary/70'
+      }`}>
+      <span className="flex items-center gap-3">
+        <span className={`w-5 h-5 rounded shrink-0 border-2 flex items-center justify-center transition-all ${
+          on ? 'border-primary bg-primary' : 'border-secondary/20'
+        }`}>
+          {on && <CheckCircle2 size={12} className="text-white" />}
+        </span>
+        <span className="leading-snug">{children}</span>
+      </span>
+    </button>
+  );
+}
+
+function SurveyInput({ icon: Ic, label, value, onChange, inputMode, placeholder, unit, autoFocus, type = 'text' }: {
+  icon: ElementType; label: string; value: string;
+  onChange: (v: string) => void; type?: string;
+  inputMode?: 'numeric' | 'decimal' | 'text' | 'email' | 'tel';
+  placeholder?: string; unit?: string; autoFocus?: boolean;
+}) {
+  const ref = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (autoFocus && ref.current) {
+      // Small delay so the slide animation finishes and the element is in the DOM
+      const id = setTimeout(() => ref.current?.focus(), 320);
+      return () => clearTimeout(id);
+    }
+  }, [autoFocus]);
+
+  return (
+    <div className="space-y-2">
+      <label className="flex items-center gap-2 text-[10px] font-sans font-semibold uppercase tracking-[0.2em] text-secondary/50">
+        <Ic size={13} /> {label}
+      </label>
+      <div className="relative">
+        <input
+          ref={ref}
+          type={type}
+          inputMode={inputMode}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          autoComplete="off"
+          className="w-full px-4 py-3.5 rounded-md border-2 border-secondary/10 bg-white font-sans
+            text-secondary text-base focus:border-primary focus:ring-2 focus:ring-primary/20
+            outline-none transition-all cursor-text"
+        />
+        {unit && (
+          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-sans text-secondary/30 uppercase pointer-events-none">
+            {unit}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function StepHeader({ icon: Ic, label, title, center }: {
+  icon: ElementType; label: string; title: string; center?: boolean;
+}) {
+  return (
+    <div className={center ? 'text-center' : ''}>
+      <div className={`flex items-center gap-2 mb-2 ${center ? 'justify-center' : ''}`}>
+        <Ic size={14} className="text-primary" />
+        <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-secondary/40 font-semibold">
+          {label}
+        </span>
+      </div>
+      <h2 className="font-display text-2xl md:text-3xl text-secondary italic">{title}</h2>
+    </div>
   );
 }
 
@@ -67,7 +171,7 @@ type Step =
   | 'comorbidities' | 'contraindications' | 'contact'
   | 'disqualified' | 'qualified';
 
-interface FormData {
+interface FormState {
   sex: Sex; age: string; height: string; weight: string; targetWeight: string;
   previousAttempts: string[]; comorbidities: string[]; contraindications: string[];
   firstName: string; lastName: string; email: string; phone: string; consent: boolean;
@@ -85,10 +189,11 @@ const STEP_ORDER: Step[] = [
   'contraindications', 'contact',
 ];
 
-const slide = {
-  enter: (d: number) => ({ x: d > 0 ? 50 : -50, opacity: 0 }),
-  center: { x: 0, opacity: 1 },
-  exit: (d: number) => ({ x: d > 0 ? -50 : 50, opacity: 0 }),
+/* Only fade — no x-slide so inputs stay mounted in position */
+const fadeVariants = {
+  enter: { opacity: 0 },
+  center: { opacity: 1 },
+  exit: { opacity: 0 },
 };
 
 /* ═══════════════════════════════════════════════════
@@ -99,16 +204,16 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
   const tQ = useTranslations('qualified');
 
   const [step, setStep] = useState<Step>('welcome');
-  const [dir, setDir] = useState(1);
   const [dqReason, setDqReason] = useState<DqReason | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  const [f, setF] = useState<FormData>({
+  const [f, setF] = useState<FormState>({
     sex: '', age: '', height: '', weight: '', targetWeight: '',
     previousAttempts: [], comorbidities: [], contraindications: [],
     firstName: '', lastName: '', email: '', phone: '', consent: false,
   });
 
+  /* ── Helpers ─── */
   const bmi = useMemo(() => {
     const h = parseFloat(f.height) / 100;
     const w = parseFloat(f.weight);
@@ -116,44 +221,63 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
   }, [f.height, f.weight]);
 
   const idx = STEP_ORDER.indexOf(step);
-  const pct = step === 'disqualified' || step === 'qualified' ? 100 : Math.round(((idx + 1) / STEP_ORDER.length) * 100);
+  const pct = step === 'disqualified' || step === 'qualified'
+    ? 100
+    : Math.round(((idx + 1) / STEP_ORDER.length) * 100);
 
-  const upd = useCallback(<K extends keyof FormData>(k: K, v: FormData[K]) =>
+  const upd = useCallback(<K extends keyof FormState>(k: K, v: FormState[K]) =>
     setF((p) => ({ ...p, [k]: v })), []);
 
-  const tog = useCallback((k: 'previousAttempts' | 'comorbidities' | 'contraindications', v: string) =>
-    setF((p) => ({ ...p, [k]: p[k].includes(v) ? p[k].filter((x) => x !== v) : [...p[k], v] })), []);
+  const tog = useCallback(
+    (k: 'previousAttempts' | 'comorbidities' | 'contraindications', v: string) =>
+      setF((p) => ({
+        ...p,
+        [k]: p[k].includes(v) ? p[k].filter((x) => x !== v) : [...p[k], v],
+      })),
+    [],
+  );
 
-  const go = useCallback((s: Step, d = 1) => { setDir(d); setStep(s); }, []);
+  const go = useCallback((s: Step) => setStep(s), []);
   const dq = useCallback((r: DqReason) => { setDqReason(r); go('disqualified'); }, [go]);
 
+  /* ── Navigation logic ─── */
   const next = useCallback(() => {
     switch (step) {
       case 'welcome': go('sex'); break;
       case 'sex': go('age'); break;
-      case 'age': { if (parseInt(f.age) < 18) { dq('age'); return; } go('height'); break; }
+      case 'age': {
+        const a = parseInt(f.age, 10);
+        if (isNaN(a) || a < 18) { dq('age'); return; }
+        go('height');
+        break;
+      }
       case 'height': go('weight'); break;
       case 'weight': {
         const h = parseFloat(f.height) / 100;
         const w = parseFloat(f.weight);
         if (h > 0 && w / (h * h) < 27) { dq('bmi_low'); return; }
-        go('bmi_result'); break;
+        go('bmi_result');
+        break;
       }
       case 'bmi_result': go('target_weight'); break;
       case 'target_weight': go('previous_attempts'); break;
       case 'previous_attempts': go('comorbidities'); break;
       case 'comorbidities': {
         if (bmi < 30 && f.comorbidities.length === 0) { dq('bmi_27_no_comorbidity'); return; }
-        go('contraindications'); break;
+        go('contraindications');
+        break;
       }
       case 'contraindications': {
         if (f.contraindications.length > 0) { dq('contraindication'); return; }
-        go('contact'); break;
+        go('contact');
+        break;
       }
     }
   }, [step, f, bmi, go, dq]);
 
-  const back = useCallback(() => { if (idx > 0) go(STEP_ORDER[idx - 1], -1); }, [idx, go]);
+  const back = useCallback(() => {
+    if (idx > 0) go(STEP_ORDER[idx - 1]);
+  }, [idx, go]);
 
   const submit = useCallback(async () => {
     setSubmitting(true);
@@ -162,21 +286,39 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
     setSubmitting(false);
   }, [go]);
 
+  /* ── Validation ─── */
   const valid = useMemo(() => {
     switch (step) {
       case 'welcome': return true;
       case 'sex': return f.sex !== '';
-      case 'age': { const a = parseInt(f.age); return a > 0 && a < 120; }
-      case 'height': { const h = parseFloat(f.height); return h > 100 && h < 250; }
-      case 'weight': { const w = parseFloat(f.weight); return w > 30 && w < 300; }
+      case 'age': {
+        const a = parseInt(f.age, 10);
+        return !isNaN(a) && a > 0 && a < 120;
+      }
+      case 'height': {
+        const h = parseFloat(f.height);
+        return !isNaN(h) && h > 100 && h < 250;
+      }
+      case 'weight': {
+        const w = parseFloat(f.weight);
+        return !isNaN(w) && w > 30 && w < 300;
+      }
       case 'bmi_result': return true;
-      case 'target_weight': { const tw = parseFloat(f.targetWeight); return tw > 30 && tw < 300; }
+      case 'target_weight': {
+        const tw = parseFloat(f.targetWeight);
+        return !isNaN(tw) && tw > 30 && tw < 300;
+      }
       case 'previous_attempts': return f.previousAttempts.length > 0;
       case 'comorbidities': return true;
       case 'contraindications': return true;
       case 'contact':
-        return f.firstName.trim().length > 0 && f.lastName.trim().length > 0
-          && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email) && f.phone.trim().length >= 6 && f.consent;
+        return (
+          f.firstName.trim().length > 0 &&
+          f.lastName.trim().length > 0 &&
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email) &&
+          f.phone.trim().length >= 6 &&
+          f.consent
+        );
       default: return false;
     }
   }, [step, f]);
@@ -193,63 +335,16 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
   const bmiClr = bmi < 25 ? 'text-green-600' : bmi < 30 ? 'text-amber-600' : 'text-red-600';
   const wLoss = parseFloat(f.weight) - parseFloat(f.targetWeight);
 
-  /* ── Shared UI ─── */
-  const Opt = ({ sel, onClick, children }: { sel: boolean; onClick: () => void; children: React.ReactNode }) => (
-    <button type="button" onClick={onClick}
-      className={`w-full text-left px-5 py-4 rounded-md border-2 transition-all duration-200 font-sans text-sm active:scale-[0.98] ${
-        sel ? 'border-primary bg-primary/10 text-secondary' : 'border-secondary/10 bg-white text-secondary/70 active:border-primary/40'
-      }`}>
-      <span className="flex items-center justify-between">
-        <span>{children}</span>
-        {sel && <CheckCircle2 size={18} className="text-primary shrink-0" />}
-      </span>
-    </button>
-  );
+  /* ── Digit-only filter for age & height ─── */
+  const digits = (v: string) => v.replace(/[^0-9]/g, '');
+  /* Allow one decimal point for weight fields */
+  const decimal = (v: string) => {
+    const cleaned = v.replace(/[^0-9.]/g, '');
+    const parts = cleaned.split('.');
+    return parts.length <= 2 ? cleaned : parts[0] + '.' + parts.slice(1).join('');
+  };
 
-  const Chk = ({ on, onClick, children }: { on: boolean; onClick: () => void; children: React.ReactNode }) => (
-    <button type="button" onClick={onClick}
-      className={`w-full text-left px-4 py-3.5 rounded-md border-2 transition-all duration-200 font-sans text-sm active:scale-[0.98] ${
-        on ? 'border-primary bg-primary/10 text-secondary' : 'border-secondary/10 bg-white text-secondary/70'
-      }`}>
-      <span className="flex items-center gap-3">
-        <span className={`w-5 h-5 rounded shrink-0 border-2 flex items-center justify-center transition-all ${on ? 'border-primary bg-primary' : 'border-secondary/20'}`}>
-          {on && <CheckCircle2 size={12} className="text-white" />}
-        </span>
-        <span className="leading-snug">{children}</span>
-      </span>
-    </button>
-  );
-
-  const Inp = ({ icon: Ic, label, value, onChange, type = 'text', ph, unit, mode }: {
-    icon: React.ElementType; label: string; value: string; onChange: (v: string) => void;
-    type?: string; ph?: string; unit?: string; mode?: 'numeric' | 'decimal' | 'text' | 'email' | 'tel';
-  }) => (
-    <div className="space-y-2">
-      <label className="flex items-center gap-2 text-[10px] font-sans font-semibold uppercase tracking-[0.2em] text-secondary/50">
-        <Ic size={13} /> {label}
-      </label>
-      <div className="relative">
-        <input type={type}
-          inputMode={mode ?? (type === 'number' ? 'decimal' : undefined)}
-          value={value} onChange={(e) => onChange(e.target.value)} placeholder={ph}
-          className="w-full px-4 py-3.5 rounded-md border-2 border-secondary/10 bg-white font-sans text-secondary text-base
-            focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all cursor-text" />
-        {unit && <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-sans text-secondary/30 uppercase">{unit}</span>}
-      </div>
-    </div>
-  );
-
-  const Hdr = ({ icon: Ic, label, title, center }: { icon: React.ElementType; label: string; title: string; center?: boolean }) => (
-    <div className={center ? 'text-center' : ''}>
-      <div className={`flex items-center gap-2 mb-2 ${center ? 'justify-center' : ''}`}>
-        <Ic size={14} className="text-primary" />
-        <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-secondary/40 font-semibold">{label}</span>
-      </div>
-      <h2 className="font-display text-2xl md:text-3xl text-secondary italic">{title}</h2>
-    </div>
-  );
-
-  /* ── Steps ─── */
+  /* ── Render current step ─── */
   const renderStep = () => {
     switch (step) {
       case 'welcome':
@@ -258,10 +353,14 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
             <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
               <Activity size={24} className="text-primary" />
             </div>
-            <h2 className="font-display text-2xl md:text-3xl text-secondary italic">{t('welcome_title')}</h2>
-            <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed max-w-md mx-auto">{t('welcome_desc')}</p>
+            <h2 className="font-display text-2xl md:text-3xl text-secondary italic">
+              {t('welcome_title')}
+            </h2>
+            <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed max-w-md mx-auto">
+              {t('welcome_desc')}
+            </p>
             <div className="flex items-center justify-center gap-6 flex-wrap">
-              {['welcome_point1', 'welcome_point2', 'welcome_point3'].map((k) => (
+              {(['welcome_point1', 'welcome_point2', 'welcome_point3'] as const).map((k) => (
                 <span key={k} className="flex items-center gap-1.5 text-xs text-secondary/50 font-sans">
                   <CheckCircle2 size={13} className="text-primary" /> {t(k)}
                 </span>
@@ -272,134 +371,229 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
         );
 
       case 'sex':
-        return (<div className="space-y-5">
-          <Hdr icon={User} label={t('sex_label')} title={t('sex_title')} />
-          <div className="grid grid-cols-2 gap-3">
-            <Opt sel={f.sex === 'male'} onClick={() => upd('sex', 'male')}>{t('sex_male')}</Opt>
-            <Opt sel={f.sex === 'female'} onClick={() => upd('sex', 'female')}>{t('sex_female')}</Opt>
+        return (
+          <div className="space-y-5">
+            <StepHeader icon={User} label={t('sex_label')} title={t('sex_title')} />
+            <div className="grid grid-cols-2 gap-3">
+              <SurveyOption selected={f.sex === 'male'} onClick={() => upd('sex', 'male')}>
+                {t('sex_male')}
+              </SurveyOption>
+              <SurveyOption selected={f.sex === 'female'} onClick={() => upd('sex', 'female')}>
+                {t('sex_female')}
+              </SurveyOption>
+            </div>
           </div>
-        </div>);
+        );
 
       case 'age':
-        return (<div className="space-y-5">
-          <Hdr icon={Calendar} label={t('age_label')} title={t('age_title')} />
-          <Inp icon={Calendar} label={t('age_input_label')} value={f.age} onChange={(v) => upd('age', v.replace(/[^0-9]/g, ''))} type="text" mode="numeric" ph="35" unit={t('age_unit')} />
-        </div>);
+        return (
+          <div className="space-y-5">
+            <StepHeader icon={Calendar} label={t('age_label')} title={t('age_title')} />
+            <SurveyInput
+              icon={Calendar} label={t('age_input_label')}
+              value={f.age} onChange={(v) => upd('age', digits(v))}
+              inputMode="numeric" placeholder="35" unit={t('age_unit')} autoFocus
+            />
+          </div>
+        );
 
       case 'height':
-        return (<div className="space-y-5">
-          <Hdr icon={Ruler} label={t('height_label')} title={t('height_title')} />
-          <Inp icon={Ruler} label={t('height_input_label')} value={f.height} onChange={(v) => upd('height', v.replace(/[^0-9]/g, ''))} type="text" mode="numeric" ph="175" unit="cm" />
-        </div>);
+        return (
+          <div className="space-y-5">
+            <StepHeader icon={Ruler} label={t('height_label')} title={t('height_title')} />
+            <SurveyInput
+              icon={Ruler} label={t('height_input_label')}
+              value={f.height} onChange={(v) => upd('height', digits(v))}
+              inputMode="numeric" placeholder="175" unit="cm" autoFocus
+            />
+          </div>
+        );
 
       case 'weight':
-        return (<div className="space-y-5">
-          <Hdr icon={Weight} label={t('weight_label')} title={t('weight_title')} />
-          <Inp icon={Scale} label={t('weight_input_label')} value={f.weight} onChange={(v) => upd('weight', v.replace(/[^0-9.]/g, ''))} type="text" mode="decimal" ph="85" unit="kg" />
-        </div>);
+        return (
+          <div className="space-y-5">
+            <StepHeader icon={Weight} label={t('weight_label')} title={t('weight_title')} />
+            <SurveyInput
+              icon={Scale} label={t('weight_input_label')}
+              value={f.weight} onChange={(v) => upd('weight', decimal(v))}
+              inputMode="decimal" placeholder="85" unit="kg" autoFocus
+            />
+          </div>
+        );
 
       case 'bmi_result':
-        return (<div className="space-y-6 text-center">
-          <Hdr icon={Activity} label={t('bmi_label')} title={t('bmi_title')} center />
-          <div className="bg-ivory rounded-md p-6 border border-secondary/5">
-            <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-secondary/40 mb-1">{t('bmi_your_bmi')}</p>
-            <p className={`font-display text-5xl font-semibold ${bmiClr}`}>{bmi}</p>
-            <p className={`font-sans text-xs mt-1 ${bmiClr}`}>{bmiLabel}</p>
+        return (
+          <div className="space-y-6 text-center">
+            <StepHeader icon={Activity} label={t('bmi_label')} title={t('bmi_title')} center />
+            <div className="bg-ivory rounded-md p-6 border border-secondary/5">
+              <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-secondary/40 mb-1">
+                {t('bmi_your_bmi')}
+              </p>
+              <p className={`font-display text-5xl font-semibold ${bmiClr}`}>{bmi}</p>
+              <p className={`font-sans text-xs mt-1 ${bmiClr}`}>{bmiLabel}</p>
+            </div>
+            <p className="font-sans font-light text-secondary/50 text-xs leading-relaxed max-w-sm mx-auto">
+              {bmi >= 30 ? t('bmi_qualifies_directly') : t('bmi_qualifies_with_conditions')}
+            </p>
           </div>
-          <p className="font-sans font-light text-secondary/50 text-xs leading-relaxed max-w-sm mx-auto">
-            {bmi >= 30 ? t('bmi_qualifies_directly') : t('bmi_qualifies_with_conditions')}
-          </p>
-        </div>);
+        );
 
       case 'target_weight':
-        return (<div className="space-y-5">
-          <Hdr icon={Target} label={t('target_label')} title={t('target_title')} />
-          <Inp icon={Target} label={t('target_input_label')} value={f.targetWeight} onChange={(v) => upd('targetWeight', v.replace(/[^0-9.]/g, ''))} type="text" mode="decimal" ph="72" unit="kg" />
-          {f.targetWeight && wLoss > 0 && (
-            <p className="text-xs font-sans text-secondary/40 text-center">
-              {t('target_loss_label')}: <span className="font-semibold text-primary">{wLoss.toFixed(1)} kg</span>
-            </p>
-          )}
-        </div>);
+        return (
+          <div className="space-y-5">
+            <StepHeader icon={Target} label={t('target_label')} title={t('target_title')} />
+            <SurveyInput
+              icon={Target} label={t('target_input_label')}
+              value={f.targetWeight} onChange={(v) => upd('targetWeight', decimal(v))}
+              inputMode="decimal" placeholder="72" unit="kg" autoFocus
+            />
+            {f.targetWeight && wLoss > 0 && (
+              <p className="text-xs font-sans text-secondary/40 text-center">
+                {t('target_loss_label')}:{' '}
+                <span className="font-semibold text-primary">{wLoss.toFixed(1)} kg</span>
+              </p>
+            )}
+          </div>
+        );
 
       case 'previous_attempts':
-        return (<div className="space-y-4">
-          <Hdr icon={Heart} label={t('attempts_label')} title={t('attempts_title')} />
-          <p className="font-sans font-light text-secondary/50 text-xs">{t('attempts_desc')}</p>
-          <div className="space-y-2">
-            {PREV_KEYS.map((k) => (
-              <Chk key={k} on={f.previousAttempts.includes(k)} onClick={() => tog('previousAttempts', k)}>{t(`attempts_${k}`)}</Chk>
-            ))}
+        return (
+          <div className="space-y-4">
+            <StepHeader icon={Heart} label={t('attempts_label')} title={t('attempts_title')} />
+            <p className="font-sans font-light text-secondary/50 text-xs">{t('attempts_desc')}</p>
+            <div className="space-y-2">
+              {PREV_KEYS.map((k) => (
+                <SurveyCheck key={k} on={f.previousAttempts.includes(k)} onClick={() => tog('previousAttempts', k)}>
+                  {t(`attempts_${k}`)}
+                </SurveyCheck>
+              ))}
+            </div>
           </div>
-        </div>);
+        );
 
       case 'comorbidities':
-        return (<div className="space-y-4">
-          <Hdr icon={Heart} label={t('comorbid_label')} title={t('comorbid_title')} />
-          <p className="font-sans font-light text-secondary/50 text-xs">{t('comorbid_desc')}</p>
-          {bmi < 30 && (
-            <div className="bg-amber-50 border border-amber-200 rounded-md px-3 py-2.5 text-[11px] font-sans text-amber-800 leading-snug">
-              {t('comorbid_required_notice')}
+        return (
+          <div className="space-y-4">
+            <StepHeader icon={Heart} label={t('comorbid_label')} title={t('comorbid_title')} />
+            <p className="font-sans font-light text-secondary/50 text-xs">{t('comorbid_desc')}</p>
+            {bmi < 30 && (
+              <div className="bg-amber-50 border border-amber-200 rounded-md px-3 py-2.5 text-[11px] font-sans text-amber-800 leading-snug">
+                {t('comorbid_required_notice')}
+              </div>
+            )}
+            <div className="space-y-2">
+              {COMORBID_KEYS.map((k) => (
+                <SurveyCheck key={k} on={f.comorbidities.includes(k)} onClick={() => tog('comorbidities', k)}>
+                  {t(`comorbid_${k}`)}
+                </SurveyCheck>
+              ))}
             </div>
-          )}
-          <div className="space-y-2">
-            {COMORBID_KEYS.map((k) => (
-              <Chk key={k} on={f.comorbidities.includes(k)} onClick={() => tog('comorbidities', k)}>{t(`comorbid_${k}`)}</Chk>
-            ))}
           </div>
-        </div>);
+        );
 
       case 'contraindications':
-        return (<div className="space-y-4">
-          <Hdr icon={ShieldAlert} label={t('contra_label')} title={t('contra_title')} />
-          <p className="font-sans font-light text-secondary/50 text-xs">{t('contra_desc')}</p>
-          <div className="space-y-2">
-            {CONTRA_KEYS.map((k) => (
-              <Chk key={k} on={f.contraindications.includes(k)} onClick={() => tog('contraindications', k)}>{t(`contra_${k}`)}</Chk>
-            ))}
+        return (
+          <div className="space-y-4">
+            <StepHeader icon={ShieldAlert} label={t('contra_label')} title={t('contra_title')} />
+            <p className="font-sans font-light text-secondary/50 text-xs">{t('contra_desc')}</p>
+            <div className="space-y-2">
+              {CONTRA_KEYS.map((k) => (
+                <SurveyCheck key={k} on={f.contraindications.includes(k)} onClick={() => tog('contraindications', k)}>
+                  {t(`contra_${k}`)}
+                </SurveyCheck>
+              ))}
+            </div>
           </div>
-        </div>);
+        );
 
       case 'contact':
-        return (<div className="space-y-4">
-          <Hdr icon={Mail} label={t('contact_label')} title={t('contact_title')} />
-          <p className="font-sans font-light text-secondary/50 text-xs">{t('contact_desc')}</p>
-          <div className="grid grid-cols-2 gap-3">
-            <Inp icon={User} label={t('contact_first')} value={f.firstName} onChange={(v) => upd('firstName', v)} ph="Jan" />
-            <Inp icon={User} label={t('contact_last')} value={f.lastName} onChange={(v) => upd('lastName', v)} ph="Jansen" />
+        return (
+          <div className="space-y-4">
+            <StepHeader icon={Mail} label={t('contact_label')} title={t('contact_title')} />
+            <p className="font-sans font-light text-secondary/50 text-xs">{t('contact_desc')}</p>
+            <div className="grid grid-cols-2 gap-3">
+              <SurveyInput
+                icon={User} label={t('contact_first')}
+                value={f.firstName} onChange={(v) => upd('firstName', v)}
+                placeholder="Jan" autoFocus
+              />
+              <SurveyInput
+                icon={User} label={t('contact_last')}
+                value={f.lastName} onChange={(v) => upd('lastName', v)}
+                placeholder="Jansen"
+              />
+            </div>
+            <SurveyInput
+              icon={Mail} label={t('contact_email')}
+              value={f.email} onChange={(v) => upd('email', v)}
+              type="email" inputMode="email" placeholder="jan@voorbeeld.nl"
+            />
+            <SurveyInput
+              icon={Phone} label={t('contact_phone')}
+              value={f.phone} onChange={(v) => upd('phone', v)}
+              type="tel" inputMode="tel" placeholder="+31 6 12345678"
+            />
+            <button
+              type="button"
+              onClick={() => upd('consent', !f.consent)}
+              className="flex items-start gap-3 w-full text-left active:scale-[0.99] transition-transform"
+            >
+              <span className={`w-5 h-5 mt-0.5 rounded shrink-0 border-2 flex items-center justify-center transition-all ${
+                f.consent ? 'border-primary bg-primary' : 'border-secondary/20'
+              }`}>
+                {f.consent && <CheckCircle2 size={12} className="text-white" />}
+              </span>
+              <span className="font-sans text-[11px] text-secondary/50 leading-relaxed">
+                {t('contact_consent')}
+              </span>
+            </button>
           </div>
-          <Inp icon={Mail} label={t('contact_email')} value={f.email} onChange={(v) => upd('email', v)} type="email" ph="jan@voorbeeld.nl" />
-          <Inp icon={Phone} label={t('contact_phone')} value={f.phone} onChange={(v) => upd('phone', v)} type="tel" ph="+31 6 12345678" />
-          <button type="button" onClick={() => upd('consent', !f.consent)} className="flex items-start gap-3 w-full text-left active:scale-[0.99] transition-transform">
-            <span className={`w-5 h-5 mt-0.5 rounded shrink-0 border-2 flex items-center justify-center transition-all ${f.consent ? 'border-primary bg-primary' : 'border-secondary/20'}`}>
-              {f.consent && <CheckCircle2 size={12} className="text-white" />}
-            </span>
-            <span className="font-sans text-[11px] text-secondary/50 leading-relaxed">{t('contact_consent')}</span>
-          </button>
-        </div>);
+        );
 
       case 'disqualified':
-        return (<div className="text-center space-y-6 py-4">
-          <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center mx-auto">
-            <XCircle size={24} className="text-red-400" />
+        return (
+          <div className="text-center space-y-6 py-4">
+            <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center mx-auto">
+              <XCircle size={24} className="text-red-400" />
+            </div>
+            <h2 className="font-display text-2xl text-secondary italic">
+              {t(`dq_${dqReason}_title`)}
+            </h2>
+            <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed max-w-md mx-auto">
+              {t(`dq_${dqReason}_desc`)}
+            </p>
+            {dqReason === 'bmi_low' && (
+              <a
+                href="#lifestyle"
+                onClick={onClose}
+                className="inline-flex items-center justify-center px-6 py-3 rounded-pill bg-secondary text-white font-sans text-[10px] uppercase tracking-[0.15em] font-bold transition-all hover:bg-secondary-deep active:scale-95"
+              >
+                {t('dq_bmi_low_cta')}
+              </a>
+            )}
+            <button
+              type="button"
+              onClick={onClose}
+              className="block mx-auto font-sans text-sm text-primary hover:text-primary-dark transition-colors underline underline-offset-4"
+            >
+              {t('dq_back_home')}
+            </button>
           </div>
-          <h2 className="font-display text-2xl text-secondary italic">{t(`dq_${dqReason}_title`)}</h2>
-          <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed max-w-md mx-auto">{t(`dq_${dqReason}_desc`)}</p>
-          {dqReason === 'bmi_low' && (
-            <a href="#lifestyle" onClick={onClose}
-              className="inline-flex items-center justify-center px-6 py-3 rounded-pill bg-secondary text-white font-sans text-[10px] uppercase tracking-[0.15em] font-bold transition-all hover:bg-secondary-deep active:scale-95">
-              {t('dq_bmi_low_cta')}
-            </a>
-          )}
-          <button type="button" onClick={onClose} className="block mx-auto font-sans text-sm text-primary hover:text-primary-dark transition-colors underline underline-offset-4">
-            {t('dq_back_home')}
-          </button>
-        </div>);
+        );
 
       case 'qualified':
-        return <QualifiedInline name={f.firstName} bmi={bmi} weightLoss={wLoss} t={tQ} onClose={onClose} />;
+        return (
+          <QualifiedInline
+            name={f.firstName}
+            bmi={bmi}
+            weightLoss={wLoss}
+            t={tQ}
+            onClose={onClose}
+          />
+        );
 
-      default: return null;
+      default:
+        return null;
     }
   };
 
@@ -415,19 +609,23 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
 
-      {/* Panel: full-screen mobile, centered card on desktop */}
+      {/* Panel */}
       <motion.div
         initial={{ y: '100%', opacity: 0.8 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: '100%', opacity: 0 }}
         transition={{ duration: 0.35, ease: EASE_PREMIUM }}
         onClick={(e) => e.stopPropagation()}
-        className="relative z-10 w-full h-[100dvh] md:h-auto md:max-h-[88vh] md:max-w-lg md:rounded-md
-          bg-background-light shadow-soft-xl flex flex-col overflow-hidden"
+        className="relative z-10 w-full h-[100dvh] md:h-auto md:max-h-[88vh] md:max-w-lg
+          md:rounded-md bg-background-light shadow-soft-xl flex flex-col overflow-hidden"
       >
-        {/* Progress */}
+        {/* Progress bar */}
         <div className="h-1 bg-secondary/5 shrink-0">
-          <motion.div className="h-full bg-primary" animate={{ width: `${pct}%` }} transition={{ duration: 0.4, ease: EASE_PREMIUM }} />
+          <motion.div
+            className="h-full bg-primary"
+            animate={{ width: `${pct}%` }}
+            transition={{ duration: 0.4, ease: EASE_PREMIUM }}
+          />
         </div>
 
         {/* Header */}
@@ -441,7 +639,12 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                 {t('step_counter', { current: idx, total: STEP_ORDER.length - 1 })}
               </span>
             )}
-            <button type="button" onClick={onClose} className="p-2 -mr-2 text-secondary/40 hover:text-secondary transition-colors" aria-label="Sluiten">
+            <button
+              type="button"
+              onClick={onClose}
+              className="p-2 -mr-2 text-secondary/40 hover:text-secondary transition-colors"
+              aria-label="Sluiten"
+            >
               <X size={20} />
             </button>
           </div>
@@ -449,35 +652,58 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 
         {/* Content — scrollable */}
         <div className="flex-grow overflow-y-auto overscroll-contain px-5 py-6 md:px-8 md:py-8">
-          <AnimatePresence mode="wait" custom={dir}>
-            <motion.div key={step} custom={dir} variants={slide} initial="enter" animate="center" exit="exit"
-              transition={{ duration: 0.28, ease: EASE_PREMIUM }}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={step}
+              variants={fadeVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.2, ease: 'easeInOut' }}
+            >
               {renderStep()}
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Bottom nav — fixed at bottom, safe area for iPhone notch */}
+        {/* Bottom nav */}
         {step !== 'disqualified' && step !== 'qualified' && (
-          <div className="shrink-0 px-5 py-4 border-t border-secondary/5 bg-background-light"
-            style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}>
+          <div
+            className="shrink-0 px-5 py-4 border-t border-secondary/5 bg-background-light"
+            style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}
+          >
             <div className="flex items-center justify-between gap-3">
               {step !== 'welcome' ? (
-                <button type="button" onClick={back}
-                  className="flex items-center gap-1.5 px-4 py-3 rounded-pill font-sans text-[10px] uppercase tracking-[0.15em] font-bold text-secondary/40 hover:text-secondary transition-colors active:scale-95">
+                <button
+                  type="button"
+                  onClick={back}
+                  className="flex items-center gap-1.5 px-4 py-3 rounded-pill font-sans text-[10px] uppercase tracking-[0.15em] font-bold text-secondary/40 hover:text-secondary transition-colors active:scale-95"
+                >
                   <ArrowLeft size={14} /> {t('back')}
                 </button>
-              ) : <div />}
+              ) : (
+                <div />
+              )}
 
               {step === 'contact' ? (
-                <button type="button" onClick={submit} disabled={!valid || submitting}
-                  className="flex items-center gap-2 px-8 py-3.5 rounded-pill font-sans text-[10px] uppercase tracking-[0.2em] font-bold bg-primary text-white shadow-gold-glow transition-all disabled:opacity-40 disabled:pointer-events-none active:scale-[0.97]">
-                  {submitting ? t('submitting') : t('submit_cta')} {!submitting && <ArrowRight size={14} />}
+                <button
+                  type="button"
+                  onClick={submit}
+                  disabled={!valid || submitting}
+                  className="flex items-center gap-2 px-8 py-3.5 rounded-pill font-sans text-[10px] uppercase tracking-[0.2em] font-bold bg-primary text-white shadow-gold-glow transition-all disabled:opacity-40 disabled:pointer-events-none active:scale-[0.97]"
+                >
+                  {submitting ? t('submitting') : t('submit_cta')}{' '}
+                  {!submitting && <ArrowRight size={14} />}
                 </button>
               ) : (
-                <button type="button" onClick={next} disabled={!valid}
-                  className="flex items-center gap-2 px-8 py-3.5 rounded-pill font-sans text-[10px] uppercase tracking-[0.2em] font-bold bg-primary text-white shadow-gold-glow transition-all disabled:opacity-40 disabled:pointer-events-none active:scale-[0.97]">
-                  {step === 'welcome' ? t('start_cta') : t('next')} <ArrowRight size={14} />
+                <button
+                  type="button"
+                  onClick={next}
+                  disabled={!valid}
+                  className="flex items-center gap-2 px-8 py-3.5 rounded-pill font-sans text-[10px] uppercase tracking-[0.2em] font-bold bg-primary text-white shadow-gold-glow transition-all disabled:opacity-40 disabled:pointer-events-none active:scale-[0.97]"
+                >
+                  {step === 'welcome' ? t('start_cta') : t('next')}{' '}
+                  <ArrowRight size={14} />
                 </button>
               )}
             </div>
@@ -495,7 +721,7 @@ function QualifiedInline({ name, bmi, weightLoss, t, onClose }: {
   name: string; bmi: number; weightLoss: number;
   t: ReturnType<typeof useTranslations>; onClose: () => void;
 }) {
-  const steps = [
+  const processSteps = [
     { icon: Stethoscope, title: t('step1_title'), desc: t('step1_desc') },
     { icon: Package, title: t('step2_title'), desc: t('step2_desc') },
     { icon: HeartPulse, title: t('step3_title'), desc: t('step3_desc') },
@@ -515,11 +741,15 @@ function QualifiedInline({ name, bmi, weightLoss, t, onClose }: {
         <div className="w-16 h-16 rounded-full bg-primary/15 flex items-center justify-center mx-auto">
           <CheckCircle2 size={32} className="text-primary" />
         </div>
-        <span className="font-sans text-primary text-[10px] tracking-[0.2em] uppercase block font-semibold">{t('hero_label')}</span>
+        <span className="font-sans text-primary text-[10px] tracking-[0.2em] uppercase block font-semibold">
+          {t('hero_label')}
+        </span>
         <h2 className="font-display text-2xl md:text-3xl text-secondary italic leading-tight">
           {name ? t('hero_title_personal', { name }) : t('hero_title')}
         </h2>
-        <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed">{t('hero_desc')}</p>
+        <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed">
+          {t('hero_desc')}
+        </p>
 
         {/* Stats */}
         <div className="flex items-center justify-center gap-6">
@@ -529,23 +759,33 @@ function QualifiedInline({ name, bmi, weightLoss, t, onClose }: {
           </div>
           <div className="w-px h-8 bg-secondary/10" />
           <div className="text-center">
-            <p className="font-display text-2xl text-primary font-semibold">{weightLoss > 0 ? `${weightLoss.toFixed(1)} kg` : '—'}</p>
-            <p className="font-sans text-[9px] uppercase tracking-[0.15em] text-secondary/40">{t('stat_to_lose')}</p>
+            <p className="font-display text-2xl text-primary font-semibold">
+              {weightLoss > 0 ? `${weightLoss.toFixed(1)} kg` : '—'}
+            </p>
+            <p className="font-sans text-[9px] uppercase tracking-[0.15em] text-secondary/40">
+              {t('stat_to_lose')}
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Next steps */}
+      {/* Process steps */}
       <div className="space-y-1">
-        <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-primary font-semibold mb-3">{t('process_label')}</p>
-        {steps.map((s, i) => (
+        <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-primary font-semibold mb-3">
+          {t('process_label')}
+        </p>
+        {processSteps.map((s, i) => (
           <div key={i} className="flex items-start gap-3 py-3 border-b border-secondary/5 last:border-0">
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
               <s.icon size={16} className="text-primary" />
             </div>
             <div>
-              <p className="font-sans text-sm font-semibold text-secondary">{t('step_prefix')} {i + 1}: {s.title}</p>
-              <p className="font-sans text-xs text-secondary/50 font-light leading-relaxed">{s.desc}</p>
+              <p className="font-sans text-sm font-semibold text-secondary">
+                {t('step_prefix')} {i + 1}: {s.title}
+              </p>
+              <p className="font-sans text-xs text-secondary/50 font-light leading-relaxed">
+                {s.desc}
+              </p>
             </div>
           </div>
         ))}
@@ -557,8 +797,12 @@ function QualifiedInline({ name, bmi, weightLoss, t, onClose }: {
           <div key={i} className="flex items-start gap-2 p-3 rounded-md bg-ivory border border-secondary/5">
             <item.icon size={16} className="text-primary shrink-0 mt-0.5" />
             <div>
-              <p className="font-sans text-xs font-semibold text-secondary leading-tight">{item.title}</p>
-              <p className="font-sans text-[10px] text-secondary/40 font-light">{item.desc}</p>
+              <p className="font-sans text-xs font-semibold text-secondary leading-tight">
+                {item.title}
+              </p>
+              <p className="font-sans text-[10px] text-secondary/40 font-light">
+                {item.desc}
+              </p>
             </div>
           </div>
         ))}
@@ -566,12 +810,18 @@ function QualifiedInline({ name, bmi, weightLoss, t, onClose }: {
 
       {/* CTAs */}
       <div className="space-y-3" style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))' }}>
-        <a href="#shop" onClick={onClose}
-          className="flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-pill bg-primary text-white font-sans text-[10px] uppercase tracking-[0.2em] font-bold shadow-gold-glow transition-all active:scale-[0.97]">
+        <a
+          href="#shop"
+          onClick={onClose}
+          className="flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-pill bg-primary text-white font-sans text-[10px] uppercase tracking-[0.2em] font-bold shadow-gold-glow transition-all active:scale-[0.97]"
+        >
           {t('cta_schedule')} <ArrowRight size={14} />
         </a>
-        <button type="button" onClick={onClose}
-          className="w-full px-6 py-3 rounded-pill border border-secondary/10 font-sans text-[10px] uppercase tracking-[0.15em] font-bold text-secondary/50 hover:text-secondary transition-all active:scale-[0.97]">
+        <button
+          type="button"
+          onClick={onClose}
+          className="w-full px-6 py-3 rounded-pill border border-secondary/10 font-sans text-[10px] uppercase tracking-[0.15em] font-bold text-secondary/50 hover:text-secondary transition-all active:scale-[0.97]"
+        >
           {t('cta_close')}
         </button>
       </div>
