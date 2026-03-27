@@ -5,6 +5,8 @@ import * as React from 'react';
 import OrderConfirmationEmail from '@/components/emails/OrderConfirmation';
 import type Stripe from 'stripe';
 
+export const dynamic = 'force-dynamic';
+
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function POST(req: Request) {
