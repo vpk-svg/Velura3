@@ -4,7 +4,7 @@ import { getMessages } from 'next-intl/server';
 import { Cormorant_Garamond, Jost } from 'next/font/google';
 import '../../src/index.css';
 import Navbar from '@/components/Navbar';
-import FloatingButtons from '@/components/FloatingButtons';
+
 import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
 import ScrollProgress from '@/components/ScrollProgress';
@@ -53,7 +53,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           <CustomCursor />
           <ScrollProgress />
           <Navbar />
-          <FloatingButtons />
           <main id="main-content" className="flex-grow">
             {children}
           </main>

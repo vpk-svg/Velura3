@@ -21,7 +21,7 @@ export default function Footer() {
         {/* Links Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-16 mb-20">
           <div className="col-span-2 lg:col-span-1">
-            <h3 className="font-display text-white text-xl mb-6 font-bold tracking-tighter">FAB <span className="text-primary italic">CLINIC</span></h3>
+            <h3 className="font-display text-white text-xl mb-6 font-bold tracking-tighter">FAB <span className="text-primary italic drop-shadow-[0_0_10px_rgba(198,166,93,0.4)]">CLINIC</span></h3>
             <p className="font-sans font-light text-background-light/50 text-sm leading-relaxed max-w-xs">
               {t('about_text')}
             </p>

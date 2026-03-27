@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import LanguageToggle from './LanguageToggle';
 import Container from './ui/Container';
 import Button from './ui/Button';
@@ -60,12 +60,9 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
 
           {/* Logo */}
-          <a href="/" className="flex items-center gap-4 group" aria-label="FAB CLINIC — Home">
-            <div className="w-11 h-11 bg-primary rounded-full flex items-center justify-center text-white shadow-gold-glow group-hover:scale-110 transition-transform duration-300 ease-premium">
-              <Sparkles size={22} />
-            </div>
-            <span className={`font-display text-2xl md:text-3xl tracking-tight font-semibold transition-colors duration-500 ${isScrolled ? 'text-secondary' : 'text-background-light'}`}>
-              FAB <span className={`${isScrolled ? 'text-primary-dark' : 'text-primary'} italic`}>CLINIC</span>
+          <a href="/" className="flex items-center group" aria-label="FAB CLINIC — Home">
+            <span className="font-display text-2xl md:text-3xl tracking-tight font-semibold text-primary drop-shadow-[0_0_12px_rgba(198,166,93,0.5)] group-hover:drop-shadow-[0_0_20px_rgba(198,166,93,0.7)] transition-all duration-500">
+              FAB <span className="italic">CLINIC</span>
             </span>
           </a>
 
