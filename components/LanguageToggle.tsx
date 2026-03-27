@@ -27,7 +27,7 @@ export default function LanguageToggle({ isScrolled = false }: LanguageTogglePro
   const borderColor = isScrolled ? 'border-secondary/20' : 'border-background-light/20';
 
   return (
-    <div className={`flex items-center space-x-1 bg-transparent border ${borderColor} rounded-full p-1.5 font-label text-[10px] tracking-[0.2em] transition-all duration-500`}>
+    <div className={`flex items-center space-x-1 bg-transparent border ${borderColor} rounded-full p-1.5 font-sans text-[10px] tracking-[0.2em] transition-all duration-500`}>
       <button
         onClick={() => handleLocaleChange('nl')}
         disabled={isPending}

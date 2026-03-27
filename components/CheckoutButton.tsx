@@ -54,7 +54,7 @@ export default function CheckoutButton({
         }
     };
 
-    const baseStyles = "w-full py-5 rounded-full font-label text-[11px] tracking-[0.2em] uppercase transition-all duration-500 flex items-center justify-center relative overflow-hidden font-bold";
+    const baseStyles = "w-full py-5 rounded-full font-sans text-[11px] tracking-[0.2em] uppercase transition-all duration-500 flex items-center justify-center relative overflow-hidden font-semibold";
     const variantStyles = {
         primary: "bg-primary text-white shadow-xl hover:shadow-primary/40 hover:-translate-y-1 active:scale-95",
         ghost: "bg-transparent border border-primary text-primary hover:bg-primary/5 active:scale-95",
@@ -75,7 +75,7 @@ export default function CheckoutButton({
                 <span>{isLoading ? t('loading') : label}</span>
             </motion.button>
             {error && (
-                <p className="mt-4 text-red-500 text-[10px] text-center font-sans tracking-[0.1em] font-bold uppercase">
+                <p className="mt-4 text-red-500 text-[10px] text-center font-sans tracking-[0.1em] font-semibold uppercase">
                     {error}
                 </p>
             )}

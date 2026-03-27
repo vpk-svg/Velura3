@@ -53,7 +53,7 @@ export default function CustomCursor() {
     return (
         <>
             <motion.div
-                className="fixed top-0 left-0 w-4 h-4 rounded-full bg-primary pointer-events-none z-cursor-dot mix-blend-difference"
+                className="fixed top-0 left-0 w-4 h-4 rounded-full bg-primary pointer-events-none z-top mix-blend-difference"
                 animate={{
                     x: mousePosition.x - 8,
                     y: mousePosition.y - 8,
@@ -68,7 +68,7 @@ export default function CustomCursor() {
                 }}
             />
             <motion.div
-                className="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary/50 pointer-events-none z-cursor"
+                className="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary/50 pointer-events-none z-top"
                 animate={{
                     x: mousePosition.x - 16,
                     y: mousePosition.y - 16,

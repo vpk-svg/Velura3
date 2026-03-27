@@ -47,7 +47,7 @@ export default function Button({
   'aria-label': ariaLabel,
 }: ButtonProps) {
   const classes = clsx(
-    'inline-flex items-center justify-center rounded-pill font-label uppercase font-bold',
+    'inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold',
     'transition-all duration-300 ease-premium',
     'focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
     'active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none',

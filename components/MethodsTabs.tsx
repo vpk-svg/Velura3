@@ -73,7 +73,7 @@ export default function MethodsTabs() {
               aria-controls={`methods-panel-${tab.id}`}
               id={`methods-tab-${tab.id}`}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-8 py-4 rounded-pill font-label text-xs tracking-[0.25em] transition-all duration-300 ease-premium uppercase font-bold focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${activeTab === tab.id
+              className={`px-8 py-4 rounded-pill font-sans text-xs tracking-[0.25em] transition-all duration-300 ease-premium uppercase font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${activeTab === tab.id
                 ? 'bg-secondary text-white shadow-soft-lg'
                 : 'bg-white border border-secondary/5 text-secondary hover:border-primary hover:text-primary'
                 }`}
@@ -95,7 +95,7 @@ export default function MethodsTabs() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.98, y: -30 }}
               transition={{ duration: 0.5, ease: EASE_PREMIUM }}
-              className="bg-white border border-secondary/5 rounded-card p-10 md:p-20 shadow-soft-lg relative overflow-hidden group"
+              className="bg-white border border-secondary/5 rounded-md p-8 md:p-10 shadow-soft-lg relative overflow-hidden group"
             >
               <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 blur-[100px] rounded-full translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700" aria-hidden="true" />
 
@@ -109,7 +109,7 @@ export default function MethodsTabs() {
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                 {content[activeTab].bullets.map((bullet, idx) => (
                   <li key={idx} className="flex items-start group/bullet">
-                    <span className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center mr-5 mt-1 font-bold transition-all duration-300 group-hover/bullet:bg-primary group-hover/bullet:text-white shrink-0 text-sm" aria-hidden="true">✓</span>
+                    <span className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center mr-5 mt-1 font-semibold transition-all duration-300 group-hover/bullet:bg-primary group-hover/bullet:text-white shrink-0 text-sm" aria-hidden="true">✓</span>
                     <span className="font-sans font-light text-lg md:text-xl text-secondary/80 group-hover/bullet:text-secondary transition-colors">{bullet}</span>
                   </li>
                 ))}
@@ -119,7 +119,7 @@ export default function MethodsTabs() {
                 <div className="mt-10 pt-10 border-t border-secondary/5">
                   <a
                     href="#shop"
-                    className="inline-flex font-label text-primary hover:text-secondary tracking-[0.3em] text-xs uppercase font-bold group/link transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-sm"
+                    className="inline-flex font-sans text-primary hover:text-secondary tracking-[0.3em] text-xs uppercase font-semibold group/link transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-sm"
                   >
                     {content[activeTab].cta} <span className="ml-4 transition-transform duration-300 group-hover/link:translate-x-3" aria-hidden="true">→</span>
                   </a>

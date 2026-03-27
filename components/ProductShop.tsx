@@ -101,7 +101,7 @@ export default function ProductShop() {
               aria-selected={filter === f.id}
               aria-controls="product-grid"
               onClick={() => setFilter(f.id)}
-              className={`px-8 py-3.5 rounded-pill font-label text-xs tracking-widest transition-all duration-300 ease-premium uppercase font-bold focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${filter === f.id
+              className={`px-8 py-3.5 rounded-pill font-sans text-xs tracking-widest transition-all duration-300 ease-premium uppercase font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${filter === f.id
                 ? 'bg-secondary text-white shadow-soft-lg'
                 : 'bg-white border border-secondary/10 text-secondary hover:text-primary hover:border-primary'
                 }`}
@@ -136,7 +136,7 @@ export default function ProductShop() {
                   delay: idx * 0.08,
                   ease: EASE_PREMIUM,
                 }}
-                className={`bg-white rounded-card overflow-hidden shadow-soft-sm hover:shadow-soft-lg border border-secondary/5 flex flex-col group relative ${idx % 2 !== 0 ? 'lg:mt-12' : ''}`}
+                className={`bg-white rounded-md overflow-hidden shadow-soft-sm hover:shadow-soft-lg border border-secondary/5 flex flex-col group relative ${idx % 2 !== 0 ? 'lg:mt-12' : ''}`}
               >
                 {/* Visual Area */}
                 <div className={`w-full aspect-[4/5] ${product.gradient} flex items-center justify-center p-10 relative overflow-hidden`}>
@@ -146,12 +146,12 @@ export default function ProductShop() {
                   </div>
 
                   <div className="absolute top-5 left-5 z-10 flex gap-2">
-                    <span className="font-label text-primary text-[10px] tracking-[0.2em] bg-secondary/80 backdrop-blur-md px-3.5 py-1.5 rounded-pill border border-primary/30 uppercase font-bold">
+                    <span className="font-sans text-primary text-[10px] tracking-[0.2em] bg-secondary/80 backdrop-blur-md px-3.5 py-1.5 rounded-pill border border-primary/30 uppercase font-semibold">
                       {product.badge}
                     </span>
                   </div>
                   {product.topBadge && (
-                    <span className="absolute top-5 right-5 z-10 font-label text-white text-[10px] tracking-widest bg-primary px-3.5 py-1.5 rounded-pill shadow-gold-glow uppercase font-bold">
+                    <span className="absolute top-5 right-5 z-10 font-sans text-white text-[10px] tracking-widest bg-primary px-3.5 py-1.5 rounded-pill shadow-gold-glow uppercase font-semibold">
                       {product.topBadge}
                     </span>
                   )}
@@ -171,7 +171,7 @@ export default function ProductShop() {
                 <div className="p-8 flex flex-col flex-grow bg-white">
                   <div className="flex items-center gap-2 mb-3">
                     <ShieldCheck size={14} className="text-primary" aria-hidden="true" />
-                    <span className="font-label text-primary/80 text-[10px] tracking-widest uppercase font-bold">
+                    <span className="font-sans text-primary/80 text-[10px] tracking-widest uppercase font-semibold">
                       {product.type}
                     </span>
                   </div>
@@ -189,14 +189,14 @@ export default function ProductShop() {
                         <Star key={i} className="w-3.5 h-3.5 fill-current" aria-hidden="true" />
                       ))}
                     </div>
-                    <span className="font-sans font-bold text-xs text-secondary/40 tracking-wider">
+                    <span className="font-sans font-semibold text-xs text-secondary/40 tracking-wider">
                       {product.rating} ({product.reviews} {t('reviews')})
                     </span>
                   </div>
 
                   <div className="flex items-end gap-2.5 mb-8">
                     <span className="font-display text-4xl text-secondary leading-none">{product.price}</span>
-                    <span className="font-sans font-bold text-[10px] text-secondary/40 uppercase tracking-[0.2em] mb-1">{t('per_month')}</span>
+                    <span className="font-sans font-semibold text-[10px] text-secondary/40 uppercase tracking-[0.2em] mb-1">{t('per_month')}</span>
                   </div>
 
                   <CheckoutButton

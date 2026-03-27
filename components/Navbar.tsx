@@ -65,7 +65,7 @@ export default function Navbar() {
             <div className="w-11 h-11 bg-primary rounded-full flex items-center justify-center text-white shadow-gold-glow group-hover:scale-110 transition-transform duration-300 ease-premium">
               <Sparkles size={22} />
             </div>
-            <span className={`font-label text-2xl md:text-3xl tracking-tight font-bold transition-colors duration-500 ${isScrolled ? 'text-secondary' : 'text-background-light'}`}>
+            <span className={`font-display text-2xl md:text-3xl tracking-tight font-semibold transition-colors duration-500 ${isScrolled ? 'text-secondary' : 'text-background-light'}`}>
               FAB <span className={`${isScrolled ? 'text-primary-dark' : 'text-primary'} italic`}>CLINIC</span>
             </span>
           </a>
@@ -76,7 +76,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className={`transition-all duration-300 ease-premium text-[13px] font-bold uppercase tracking-[0.15em] hover:text-primary focus-visible:text-primary ${isScrolled ? 'text-secondary/80' : 'text-background-light'}`}
+              className={`transition-all duration-300 ease-premium text-xs font-semibold uppercase tracking-[0.15em] hover:text-primary focus-visible:text-primary ${isScrolled ? 'text-secondary/80' : 'text-background-light'}`}
               >
                 {link.name}
               </a>
@@ -125,7 +125,7 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-2xl font-label text-secondary hover:text-primary tracking-widest font-bold transition-colors duration-200"
+              className="text-2xl font-sans text-secondary hover:text-primary tracking-widest font-bold transition-colors duration-200"
             >
               {link.name}
             </a>

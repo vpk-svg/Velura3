@@ -26,7 +26,7 @@ const imperialSchema = z.object({
 });
 
 const inputClasses = 'w-full bg-transparent border-b-2 border-secondary/10 focus:border-primary text-secondary font-display text-3xl md:text-4xl py-3 outline-none transition-colors duration-300 placeholder:text-secondary/20';
-const errorClasses = 'text-red-500 text-xs mt-1.5 font-label tracking-wide';
+const errorClasses = 'text-red-500 text-xs mt-1.5 font-sans tracking-wide';
 
 export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }) {
   const t = useTranslations('bmi');
@@ -69,21 +69,21 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
   };
 
   const innerContent = (
-    <div className={isEmbed ? 'w-full' : 'max-w-4xl mx-auto bg-white border border-primary/10 rounded-card p-8 md:p-20 shadow-soft-lg'}>
+    <div className={isEmbed ? 'w-full' : 'max-w-4xl mx-auto bg-white border border-primary/10 rounded-md p-8 md:p-10 shadow-soft-lg'}>
       {/* Unit Toggle */}
       <div className="flex justify-center mb-12">
         <div className="bg-secondary/5 p-1.5 rounded-pill flex shadow-inner border border-secondary/5">
           <button
             type="button"
             onClick={() => setUnit('metric')}
-            className={`px-8 py-3.5 rounded-pill font-label text-xs tracking-widest transition-all duration-300 ease-premium uppercase font-bold ${unit === 'metric' ? 'bg-primary text-white shadow-gold-glow' : 'text-secondary/60 hover:text-primary'}`}
+            className={`px-8 py-3.5 rounded-pill font-sans text-xs tracking-widest transition-all duration-300 ease-premium uppercase font-semibold ${unit === 'metric' ? 'bg-primary text-white shadow-gold-glow' : 'text-secondary/60 hover:text-primary'}`}
           >
             {t('unit_metric')}
           </button>
           <button
             type="button"
             onClick={() => setUnit('imperial')}
-            className={`px-8 py-3.5 rounded-pill font-label text-xs tracking-widest transition-all duration-300 ease-premium uppercase font-bold ${unit === 'imperial' ? 'bg-primary text-white shadow-gold-glow' : 'text-secondary/60 hover:text-primary'}`}
+            className={`px-8 py-3.5 rounded-pill font-sans text-xs tracking-widest transition-all duration-300 ease-premium uppercase font-semibold ${unit === 'imperial' ? 'bg-primary text-white shadow-gold-glow' : 'text-secondary/60 hover:text-primary'}`}
           >
             {t('unit_imperial')}
           </button>
@@ -95,12 +95,12 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
         {unit === 'metric' ? (
           <div className="grid grid-cols-2 gap-6 md:gap-10">
             <div>
-              <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-3 font-bold">{t('height_cm')}</label>
+              <label className="block font-sans text-[11px] text-primary tracking-widest uppercase mb-3 font-semibold">{t('height_cm')}</label>
               <input type="number" {...registerMetric('heightCm', { valueAsNumber: true })} className={inputClasses} />
               {metricErrors.heightCm && <p className={errorClasses} role="alert">100–250 cm</p>}
             </div>
             <div>
-              <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-3 font-bold">{t('weight_kg')}</label>
+              <label className="block font-sans text-[11px] text-primary tracking-widest uppercase mb-3 font-semibold">{t('weight_kg')}</label>
               <input type="number" {...registerMetric('weightKg', { valueAsNumber: true })} className={inputClasses} />
               {metricErrors.weightKg && <p className={errorClasses} role="alert">30–300 kg</p>}
             </div>
@@ -109,18 +109,18 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
           <div className="grid grid-cols-2 gap-6 md:gap-10">
             <div className="flex gap-4">
               <div className="w-1/2">
-                <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-3 font-bold">{t('height_ft')}</label>
+                <label className="block font-sans text-[11px] text-primary tracking-widest uppercase mb-3 font-semibold">{t('height_ft')}</label>
                 <input type="number" {...registerImperial('heightFt', { valueAsNumber: true })} className={inputClasses} />
                 {imperialErrors.heightFt && <p className={errorClasses} role="alert">3–8 ft</p>}
               </div>
               <div className="w-1/2">
-                <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-3 font-bold">{t('height_in')}</label>
+                <label className="block font-sans text-[11px] text-primary tracking-widest uppercase mb-3 font-semibold">{t('height_in')}</label>
                 <input type="number" {...registerImperial('heightIn', { valueAsNumber: true })} className={inputClasses} />
                 {imperialErrors.heightIn && <p className={errorClasses} role="alert">0–11 in</p>}
               </div>
             </div>
             <div>
-              <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-3 font-bold">{t('weight_lbs')}</label>
+              <label className="block font-sans text-[11px] text-primary tracking-widest uppercase mb-3 font-semibold">{t('weight_lbs')}</label>
               <input type="number" {...registerImperial('weightLbs', { valueAsNumber: true })} className={inputClasses} />
               {imperialErrors.weightLbs && <p className={errorClasses} role="alert">60–660 lbs</p>}
             </div>
@@ -129,7 +129,7 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
           <div>
-            <label className="block font-label text-[11px] text-primary tracking-widest uppercase mb-3 font-bold">{t('age')}</label>
+            <label className="block font-sans text-[11px] text-primary tracking-widest uppercase mb-3 font-semibold">{t('age')}</label>
             <input
               type="number"
               {...(unit === 'metric' ? registerMetric('age', { valueAsNumber: true }) : registerImperial('age', { valueAsNumber: true }))}
@@ -138,15 +138,15 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
             {(unit === 'metric' ? metricErrors.age : imperialErrors.age) && <p className={errorClasses} role="alert">18–120</p>}
           </div>
           <fieldset>
-            <legend className="block font-label text-[11px] text-primary tracking-widest uppercase mb-3 font-bold">{t('gender')}</legend>
+            <legend className="block font-sans text-[11px] text-primary tracking-widest uppercase mb-3 font-semibold">{t('gender')}</legend>
             <div className="flex gap-8 mt-3 h-full items-center">
               <label className="flex items-center gap-3 cursor-pointer group">
                 <input type="radio" value="male" {...(unit === 'metric' ? registerMetric('gender') : registerImperial('gender'))} className="w-5 h-5 text-primary focus:ring-primary bg-transparent border-secondary/20 transition-colors" />
-                <span className="font-label text-xs uppercase tracking-widest text-secondary/70 group-hover:text-primary transition-colors font-bold">{t('male')}</span>
+                <span className="font-sans text-xs uppercase tracking-widest text-secondary/70 group-hover:text-primary transition-colors font-semibold">{t('male')}</span>
               </label>
               <label className="flex items-center gap-3 cursor-pointer group">
                 <input type="radio" value="female" {...(unit === 'metric' ? registerMetric('gender') : registerImperial('gender'))} className="w-5 h-5 text-primary focus:ring-primary bg-transparent border-secondary/20 transition-colors" />
-                <span className="font-label text-xs uppercase tracking-widest text-secondary/70 group-hover:text-primary transition-colors font-bold">{t('female')}</span>
+                <span className="font-sans text-xs uppercase tracking-widest text-secondary/70 group-hover:text-primary transition-colors font-semibold">{t('female')}</span>
               </label>
             </div>
             {(unit === 'metric' ? metricErrors.gender : imperialErrors.gender) && <p className={errorClasses} role="alert">Required</p>}
@@ -157,7 +157,7 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           type="submit"
-          className="w-full py-5 md:py-7 mt-4 md:mt-8 bg-primary text-white font-label text-sm tracking-[0.3em] uppercase rounded-pill shadow-gold-glow hover:shadow-soft-xl transition-shadow duration-300 font-bold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none"
+          className="w-full py-5 md:py-7 mt-4 md:mt-8 bg-primary text-white font-sans text-sm tracking-[0.3em] uppercase rounded-pill shadow-gold-glow hover:shadow-soft-xl transition-shadow duration-300 font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none"
         >
           {t('calculate')}
         </motion.button>
@@ -180,7 +180,7 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
               <span className={`font-display text-6xl md:text-8xl leading-none ${getBmiCategory(bmiResult).color}`}>
                 {bmiResult}
               </span>
-              <div className="font-label text-xs tracking-[0.5em] uppercase mt-4 text-secondary/60 font-bold">
+              <div className="font-sans text-xs tracking-[0.3em] uppercase mt-4 text-secondary/60 font-semibold">
                 {getBmiCategory(bmiResult).label}
               </div>
             </div>
@@ -205,9 +205,9 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
             </div>
 
             {/* Advice Box */}
-            <div className="bg-secondary p-6 md:p-10 rounded-panel text-center text-white relative overflow-hidden shadow-soft-xl">
+              <div className="bg-secondary p-6 md:p-8 rounded-md text-center text-white relative overflow-hidden shadow-soft-xl">
               <div className="absolute top-0 right-0 w-48 h-48 bg-primary/20 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 opacity-50" aria-hidden="true" />
-              <h4 className="font-label text-primary text-[10px] tracking-widest uppercase mb-4 font-bold">
+              <h4 className="font-sans text-primary text-[10px] tracking-widest uppercase mb-4 font-semibold">
                 {t('advice_title')}
               </h4>
               <p className="font-sans font-light text-lg leading-relaxed mb-8 text-background-light/90 italic">
@@ -215,13 +215,13 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
               </p>
               <a
                 href={getAdvice(bmiResult).link}
-                className="inline-flex px-8 py-3.5 bg-primary text-white rounded-pill font-label text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-secondary transition-colors duration-300 shadow-gold-glow focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+                className="inline-flex px-8 py-3.5 bg-primary text-white rounded-pill font-sans text-[10px] tracking-[0.3em] uppercase font-semibold hover:bg-white hover:text-secondary transition-colors duration-300 shadow-gold-glow focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
               >
                 {getAdvice(bmiResult).cta}
               </a>
             </div>
 
-            <p className="font-sans text-[10px] italic text-secondary/30 text-center mt-8 uppercase tracking-[0.2em] font-bold">
+            <p className="font-sans text-[10px] italic text-secondary/30 text-center mt-8 uppercase tracking-[0.2em] font-semibold">
               {t('disclaimer')}
             </p>
           </motion.div>
@@ -234,7 +234,7 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
     return (
       <div className="w-full">
         <div className="mb-8">
-          <span className="font-label text-primary text-[10px] tracking-[0.4em] uppercase mb-3 block font-bold">
+          <span className="font-sans text-primary text-[10px] tracking-[0.2em] uppercase mb-3 block font-semibold">
             {t('label')}
           </span>
           <h3 className="font-display text-3xl md:text-4xl text-secondary italic">

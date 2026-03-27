@@ -67,7 +67,7 @@ export default function PricingTimeline() {
                                 aria-selected={activePlan === plan.id}
                                 aria-controls={`panel-${plan.id}`}
                                 onClick={() => setActivePlan(plan.id)}
-                                className={`relative px-10 py-3.5 rounded-pill font-label text-xs tracking-widest uppercase transition-all duration-300 ease-premium font-bold z-10 focus-visible:ring-2 focus-visible:ring-primary ${activePlan === plan.id ? 'text-white' : 'text-secondary/50 hover:text-primary'}`}
+                                className={`relative px-10 py-3.5 rounded-pill font-sans text-xs tracking-widest uppercase transition-all duration-300 ease-premium font-semibold z-10 focus-visible:ring-2 focus-visible:ring-primary ${activePlan === plan.id ? 'text-white' : 'text-secondary/50 hover:text-primary'}`}
                             >
                                 {activePlan === plan.id && (
                                     <motion.div
@@ -100,11 +100,11 @@ export default function PricingTimeline() {
                             {currentTimeline.map((item, idx) => (
                                 <article
                                     key={idx}
-                                    className={`flex-none w-[280px] md:w-[340px] snap-center bg-white rounded-card p-10 border transition-all duration-300 ease-premium hover:-translate-y-3 hover:shadow-soft-lg ${item.optional ? 'border-dashed border-primary/20 bg-white/60' : 'border-primary/5 shadow-soft-sm'} flex flex-col items-center justify-between min-h-[320px]`}
+                                    className={`flex-none w-[280px] md:w-[340px] snap-center bg-white rounded-md p-8 border transition-all duration-300 ease-premium hover:-translate-y-3 hover:shadow-soft-lg ${item.optional ? 'border-dashed border-primary/20 bg-white/60' : 'border-primary/5 shadow-soft-sm'} flex flex-col items-center justify-between min-h-[320px]`}
                                 >
                                     <div className="w-full flex flex-col items-center mb-8">
                                         {item.optional && (
-                                            <span className="font-label text-[10px] uppercase tracking-[0.3em] text-primary mb-3 font-bold">
+                                            <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-primary mb-3 font-semibold">
                                                 {t('optional')}
                                             </span>
                                         )}
@@ -114,7 +114,7 @@ export default function PricingTimeline() {
                                     </div>
 
                                     <div className="bg-primary/5 px-6 py-3 rounded-pill mb-10 border border-primary/10">
-                                        <p className="font-label text-primary text-[11px] uppercase tracking-[0.2em] font-bold">
+                                        <p className="font-sans text-primary text-[11px] uppercase tracking-[0.2em] font-semibold">
                                             {item.dosage}
                                         </p>
                                     </div>

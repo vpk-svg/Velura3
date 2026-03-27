@@ -57,7 +57,7 @@ export default function NewsletterSection() {
               </div>
               <button
                 type="submit"
-                className="px-10 py-4 bg-primary text-white font-label text-xs tracking-[0.2em] uppercase rounded-pill hover:bg-white hover:text-secondary transition-all duration-300 ease-premium font-bold whitespace-nowrap shadow-gold-glow focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+                className="px-10 py-4 bg-primary text-white font-sans text-xs tracking-[0.2em] uppercase rounded-pill hover:bg-white hover:text-secondary transition-all duration-300 ease-premium font-semibold whitespace-nowrap shadow-gold-glow focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
               >
                 {t('button')}
               </button>

@@ -23,7 +23,7 @@ export default function LifestyleSection() {
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
 
                     {/* Image */}
-                    <figure className="flex-1 relative w-full h-[500px] md:h-[650px] rounded-card overflow-hidden group shadow-soft-lg bg-secondary/5">
+                    <figure className="flex-1 relative w-full h-[500px] md:h-[650px] rounded-md overflow-hidden group shadow-soft-lg bg-secondary/5">
                         <motion.div
                             initial={{ x: -60, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
@@ -79,7 +79,7 @@ export default function LifestyleSection() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.5 }}
                         >
-                            <a href="#consult" className="font-label text-sm text-primary tracking-widest uppercase font-bold group inline-flex items-center gap-3 hover:gap-5 transition-all duration-300">
+                            <a href="#consult" className="font-sans text-sm text-primary tracking-widest uppercase font-semibold group inline-flex items-center gap-3 hover:gap-5 transition-all duration-300">
                                 {t('cta')} <span aria-hidden="true">→</span>
                             </a>
                         </motion.div>

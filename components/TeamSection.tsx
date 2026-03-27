@@ -47,7 +47,7 @@ export default function TeamSection() {
                             transition={{ duration: 0.7, delay: index * 0.1, ease: EASE_PREMIUM }}
                             className="group flex flex-col items-center text-center"
                         >
-                            <div className="relative w-full aspect-[4/5] rounded-card overflow-hidden mb-10 shadow-soft-md group-hover:shadow-soft-lg transition-shadow duration-500">
+                            <div className="relative w-full aspect-[4/5] rounded-md overflow-hidden mb-10 shadow-soft-md group-hover:shadow-soft-lg transition-shadow duration-500">
                                 <Image
                                     src={member.img}
                                     alt={member.name}
@@ -61,7 +61,7 @@ export default function TeamSection() {
                             <h3 className="font-display text-2xl md:text-3xl text-secondary mb-3 italic group-hover:text-primary transition-colors duration-300">
                                 {member.name}
                             </h3>
-                            <p className="font-label text-primary text-[11px] tracking-[0.3em] uppercase font-bold">
+                            <p className="font-sans text-primary text-[11px] tracking-[0.3em] uppercase font-semibold">
                                 {member.role}
                             </p>
                         </motion.article>

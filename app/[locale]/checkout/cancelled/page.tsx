@@ -28,7 +28,7 @@ export default async function CancelledPage({
 
                 <Link
                     href="/#shop"
-                    className="inline-block px-10 py-4 border border-secondary text-secondary rounded-pill font-label text-sm tracking-widest uppercase hover:bg-secondary/5 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                    className="inline-block px-10 py-4 border border-secondary text-secondary rounded-pill font-sans text-sm tracking-widest uppercase hover:bg-secondary/5 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                     {t('cancelled_cta')}
                 </Link>

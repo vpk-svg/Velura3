@@ -60,7 +60,7 @@ export default async function SuccessPage({
                 </h1>
 
                 {session && (
-                    <div className="mb-6 p-6 bg-white rounded-card border border-primary/10 shadow-soft-sm">
+                    <div className="mb-6 p-6 bg-white rounded-md border border-primary/10 shadow-soft-sm">
                         <p className="font-sans font-light text-secondary/60 mb-2">{session.customer_email}</p>
                         <p className="font-display text-2xl text-primary font-semibold">{formattedAmount}</p>
                     </div>
@@ -72,7 +72,7 @@ export default async function SuccessPage({
 
                 <Link
                     href="/"
-                    className="inline-block px-10 py-4 bg-primary text-white rounded-pill font-label text-sm tracking-widest uppercase hover:bg-primary/90 transition-colors shadow-gold-glow focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                    className="inline-block px-10 py-4 bg-primary text-white rounded-pill font-sans text-sm tracking-widest uppercase hover:bg-primary/90 transition-colors shadow-gold-glow focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                     {t('success_cta')}
                 </Link>

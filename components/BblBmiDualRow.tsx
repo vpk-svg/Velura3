@@ -38,8 +38,8 @@ export default function BblBmiDualRow() {
                                 <div className="absolute inset-0 bg-secondary/5 group-hover:bg-transparent transition-colors duration-700" />
                                 <span className="absolute top-8 left-8 text-secondary/[0.07] font-display text-7xl pointer-events-none group-hover:opacity-40 transition-opacity italic select-none" aria-hidden="true">BBL</span>
                             </figure>
-                            <div className="p-10 md:p-14 flex flex-col flex-grow">
-                                <span className="font-label text-primary-dark text-xs tracking-[0.5em] uppercase mb-6 block font-bold">
+                            <div className="p-8 md:p-10 flex flex-col flex-grow">
+                                <span className="font-sans text-primary-dark text-xs tracking-[0.2em] uppercase mb-6 block font-semibold">
                                     {t_bbl('label')}
                                 </span>
                                 <h3 className="font-display text-display-md text-secondary mb-8 italic leading-tight">

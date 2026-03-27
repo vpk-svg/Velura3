@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { Cormorant_Garamond, Jost, Cinzel } from 'next/font/google';
+import { Cormorant_Garamond, Jost } from 'next/font/google';
 import '../../src/index.css';
 import Navbar from '@/components/Navbar';
 import FloatingButtons from '@/components/FloatingButtons';
@@ -21,12 +21,6 @@ const jost = Jost({
   subsets: ['latin'],
   weight: ['300', '400', '500'],
   variable: '--font-jost',
-});
-
-const cinzel = Cinzel({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-cinzel',
 });
 
 export const metadata: Metadata = {
@@ -49,7 +43,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const messages = await getMessages({ locale: resolvedParams.locale });
 
   return (
-    <html lang={resolvedParams.locale} className={`${cormorant.variable} ${jost.variable} ${cinzel.variable}`}>
+    <html lang={resolvedParams.locale} className={`${cormorant.variable} ${jost.variable}`}>
       <body className="font-sans antialiased min-h-screen flex flex-col cursor-dot-active">
         <NextIntlClientProvider messages={messages} locale={resolvedParams.locale}>
           {/* Skip-to-main for keyboard a11y */}

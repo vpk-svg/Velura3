@@ -29,14 +29,14 @@ export default function SectionHeader({
   const subtitleColor = light ? 'text-background-light/70' : 'text-secondary/70';
 
   return (
-    <header className={`mb-16 md:mb-24 max-w-4xl ${alignClass}`}>
+    <header className={`mb-12 md:mb-16 max-w-4xl ${alignClass}`}>
       {label && (
         <motion.span
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-          className={`font-label ${labelColor} text-xs tracking-[0.4em] uppercase mb-6 block font-bold`}
+          className={`font-sans ${labelColor} text-xs tracking-[0.2em] uppercase mb-6 block font-semibold`}
         >
           {label}
         </motion.span>

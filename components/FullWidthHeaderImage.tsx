@@ -45,7 +45,7 @@ export default function FullWidthHeaderImage() {
                         viewport={{ once: true }}
                         transition={{ duration: 1, ease: EASE_PREMIUM }}
                     >
-                        <span className="font-label text-primary text-xs md:text-sm tracking-[0.5em] uppercase mb-10 block font-bold border-l-2 border-primary pl-6">
+                        <span className="font-sans text-primary text-xs md:text-sm tracking-[0.3em] uppercase mb-10 block font-semibold border-l-2 border-primary pl-6">
                             {t('label')}
                         </span>
                         <h1 className="font-display text-display-xl text-background-light leading-[0.85] mb-12">
@@ -77,7 +77,7 @@ export default function FullWidthHeaderImage() {
                 aria-hidden="true"
             >
                 <div className="w-px h-16 bg-gradient-to-b from-primary to-transparent" />
-                <span className="font-label text-[10px] text-primary tracking-[0.5em] uppercase font-bold">{t('explore')}</span>
+                <span className="font-sans text-[10px] text-primary tracking-[0.3em] uppercase font-semibold">{t('explore')}</span>
             </motion.div>
         </section>
     );

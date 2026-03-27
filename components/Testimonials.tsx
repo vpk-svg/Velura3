@@ -49,7 +49,7 @@ export default function Testimonials() {
             <motion.blockquote
               key={index}
               variants={itemVariants}
-              className="bg-white rounded-card p-10 shadow-soft-md relative group hover:-translate-y-3 transition-transform duration-300 ease-premium flex flex-col"
+              className="bg-white rounded-md p-8 shadow-soft-md relative group hover:-translate-y-3 transition-transform duration-300 ease-premium flex flex-col"
             >
               <div className="flex text-primary mb-8" aria-label="5 out of 5 stars">
                 {[...Array(5)].map((_, i) => (
@@ -61,10 +61,10 @@ export default function Testimonials() {
               </p>
               <footer className="mt-auto border-t border-secondary/5 pt-8">
                 <cite className="not-italic">
-                  <span className="block font-label text-secondary text-sm uppercase tracking-[0.2em] font-bold">
+                  <span className="block font-sans text-secondary text-sm uppercase tracking-[0.2em] font-semibold">
                     {testimonial.author.split('·')[0].trim()}
                   </span>
-                  <span className="block font-label text-primary text-[10px] tracking-[0.3em] uppercase mt-1.5 font-bold">
+                  <span className="block font-sans text-primary text-[10px] tracking-[0.3em] uppercase mt-1.5 font-semibold">
                     {testimonial.author.split('·')[1]?.trim() || "Verified Patient"}
                   </span>
                 </cite>

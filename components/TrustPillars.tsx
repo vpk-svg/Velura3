@@ -48,7 +48,7 @@ export default function TrustPillars() {
               <div className="text-primary mb-6 transition-transform duration-300 ease-premium group-hover:scale-110 group-hover:rotate-6" aria-hidden="true">
                 {pillar.icon}
               </div>
-              <h3 className="font-label text-secondary text-sm tracking-[0.3em] uppercase mb-3 font-bold group-hover:text-primary transition-colors duration-300">
+              <h3 className="font-sans text-secondary text-sm tracking-[0.3em] uppercase mb-3 font-semibold group-hover:text-primary transition-colors duration-300">
                 {pillar.title}
               </h3>
               <p className="font-sans font-light text-secondary/60 text-base leading-relaxed max-w-xs transition-colors duration-300 group-hover:text-secondary">

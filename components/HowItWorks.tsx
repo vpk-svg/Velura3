@@ -70,11 +70,11 @@ export default function HowItWorks() {
                 {/* Step Badge */}
                 <div className="mx-auto flex justify-center mb-8 relative z-20">
                   <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-gold-glow ring-8 ring-background-light">
-                    <span className="font-label text-white text-sm font-bold">
+                    <span className="font-sans text-white text-sm font-semibold">
                       {step.num}
                     </span>
                   </div>
-                  <span className="absolute -top-7 font-label text-primary text-[10px] tracking-widest uppercase font-bold" aria-hidden="true">
+                  <span className="absolute -top-7 font-sans text-primary text-[10px] tracking-widest uppercase font-semibold" aria-hidden="true">
                     {t('step_prefix')} {step.num}
                   </span>
                 </div>
@@ -85,7 +85,7 @@ export default function HowItWorks() {
                     transition: { type: 'spring', stiffness: 400, damping: 25 }
                   }}
                   whileTap={{ scale: 0.98 }}
-                  className="bg-white rounded-card shadow-soft-sm hover:shadow-soft-lg transition-shadow duration-300 ease-premium border border-primary/5 hover:border-primary/15 flex-grow flex flex-col overflow-hidden group/card"
+                  className="bg-white rounded-md shadow-soft-sm hover:shadow-soft-lg transition-shadow duration-300 ease-premium border border-primary/5 hover:border-primary/15 flex-grow flex flex-col overflow-hidden group/card"
                 >
                   {/* Icon Container */}
                   <div className="relative w-full aspect-video bg-secondary/5 flex items-center justify-center overflow-hidden border-b border-primary/5">

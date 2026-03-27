@@ -29,7 +29,7 @@ export default function ContactSection() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="font-label text-primary text-xs tracking-[0.5em] uppercase mb-5 block font-bold"
+                            className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-5 block font-semibold"
                         >
                             {t('label')}
                         </motion.span>
@@ -52,13 +52,13 @@ export default function ContactSection() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: 0.15 + idx * 0.08, ease: EASE_PREMIUM }}
-                                    className="group flex items-start gap-5 p-8 rounded-panel border border-white/5 hover:border-primary/20 transition-all duration-300 ease-premium hover:bg-white/5 shadow-soft-sm hover:shadow-soft-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                                    className="group flex items-start gap-5 p-8 rounded-md border border-white/5 hover:border-primary/20 transition-all duration-300 ease-premium hover:bg-white/5 shadow-soft-sm hover:shadow-soft-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                                 >
                                     <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-primary transition-colors duration-300 text-white" aria-hidden="true">
                                         {item.icon}
                                     </div>
                                     <div>
-                                        <h4 className="font-label text-xs tracking-[0.2em] text-primary uppercase mb-2 font-bold">{item.title}</h4>
+                                        <h4 className="font-sans text-xs tracking-[0.2em] text-primary uppercase mb-2 font-semibold">{item.title}</h4>
                                         <p className="font-sans text-lg text-background-light/80 group-hover:text-background-light transition-colors">{item.desc}</p>
                                     </div>
                                 </motion.a>
@@ -71,7 +71,7 @@ export default function ContactSection() {
                     </div>
 
                     {/* Right Side: Visual Accent */}
-                    <div className="flex-1 relative w-full h-[500px] lg:h-[800px] rounded-panel overflow-hidden order-1 lg:order-2 group">
+                    <div className="flex-1 relative w-full h-[500px] lg:h-[800px] rounded-md overflow-hidden order-1 lg:order-2 group">
                         <motion.div
                             initial={{ scale: 1.15, opacity: 0 }}
                             whileInView={{ scale: 1, opacity: 1 }}

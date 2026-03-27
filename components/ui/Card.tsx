@@ -10,7 +10,7 @@ interface CardProps {
 
 /**
  * Unified card shell.
- * Consistent rounded-card + shadow + border treatment across the site.
+ * Consistent rounded-md + shadow + border treatment across the site.
  */
 export default function Card({
   children,
@@ -21,7 +21,7 @@ export default function Card({
   return (
     <Tag
       className={clsx(
-        'bg-white rounded-card overflow-hidden border border-secondary/5 shadow-soft-sm',
+        'bg-white rounded-md overflow-hidden border border-secondary/5 shadow-soft-sm',
         hover && 'transition-shadow duration-300 ease-premium hover:shadow-soft-lg',
         className,
       )}
