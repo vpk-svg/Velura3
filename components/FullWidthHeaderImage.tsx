@@ -52,13 +52,13 @@ export default function FullWidthHeaderImage() {
 
                 {/* Left Column: Eligibility / "Geschikt voor mij?" */}
                 <motion.div
-                    className="flex flex-col justify-center order-2 lg:order-1"
+                    className="flex flex-col order-2 lg:order-1"
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: EASE_PREMIUM }}
                 >
-                    <div className="bg-white/95 backdrop-blur-md rounded-md p-6 md:p-8 shadow-soft-xl border border-white/20">
+                    <div className="bg-white/95 backdrop-blur-md rounded-md p-6 md:p-8 shadow-soft-xl border border-white/20 flex flex-col h-full">
                         <span className="font-sans text-primary text-[10px] tracking-[0.2em] uppercase mb-3 block font-semibold">
                             {tElig('label')}
                         </span>
@@ -68,7 +68,7 @@ export default function FullWidthHeaderImage() {
                         <p className="font-sans font-light text-secondary/70 text-sm leading-relaxed mb-6">
                             {tElig('desc')}
                         </p>
-                        <ul className="space-y-3 mb-8">
+                        <ul className="space-y-3 mb-8 flex-grow">
                             {eligibilityPoints.map((point, idx) => (
                                 <li key={idx} className="flex items-start gap-3">
                                     <CheckCircle size={18} className="text-primary shrink-0 mt-0.5" />
@@ -76,7 +76,7 @@ export default function FullWidthHeaderImage() {
                                 </li>
                             ))}
                         </ul>
-                        <Button href="#shop" variant="primary" size="md" className="w-full justify-center">
+                        <Button href="#shop" variant="primary" size="md" className="w-full justify-center mt-auto">
                             {tElig('cta')} <ArrowRight size={16} className="ml-2" />
                         </Button>
                     </div>
@@ -105,13 +105,13 @@ export default function FullWidthHeaderImage() {
 
                 {/* Right Column: BMI Calculator */}
                 <motion.div
-                    className="flex flex-col justify-center order-3"
+                    className="flex flex-col order-3"
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2, ease: EASE_PREMIUM }}
                 >
-                    <div className="bg-white/95 backdrop-blur-md rounded-md p-6 md:p-8 shadow-soft-xl border border-white/20">
+                    <div className="bg-white/95 backdrop-blur-md rounded-md p-6 md:p-8 shadow-soft-xl border border-white/20 h-full">
                         <BmiCalculator isEmbed />
                     </div>
                 </motion.div>
