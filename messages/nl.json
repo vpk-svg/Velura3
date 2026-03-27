@@ -75,6 +75,14 @@
     "obesity1": "Obesitas I",
     "obesity2": "Obesitas II",
     "advice_title": "SPECIALISTISCHE ANALYSE",
+    "advice_under25": "Uw BMI valt binnen een gezond bereik. Ontdek onze lifestyle- en wellnessbehandelingen om uw resultaten te behouden.",
+    "cta_under25": "Bekijk Lifestyle Programma's",
+    "advice_25_29": "Een lichte verhoging van uw BMI. Onze GLP-1 programma's kunnen u helpen veilig uw optimale gewicht te bereiken.",
+    "cta_25_29": "Bekijk Afvalopties",
+    "advice_30_34": "Wij raden een consultatie met onze specialisten aan om een persoonlijk behandelplan te bespreken.",
+    "cta_30_34": "Boek een Consultatie",
+    "advice_over35": "Een specialistisch consult wordt sterk aanbevolen. Onze artsen kunnen een uitgebreid zorgplan opstellen.",
+    "cta_over35": "Plan Specialistisch Consult",
     "disclaimer": "BMI IS EEN SCREENINGSINSTRUMENT, GEEN DIAGNOSE."
   },
   "how": {
@@ -129,7 +137,31 @@
     "content1_b2": "Premium HA fillers",
     "content1_b3": "Natuurlijke volumes",
     "content1_b4": "Minimale hersteltijd",
-    "content1_cta": "Bekijk Injectables"
+    "content1_cta": "Bekijk Injectables",
+    "content2_title": "Klinische Huidwetenschap",
+    "content2_text": "Premium verjongende behandelingen met medische technologieën en exclusieve protocollen.",
+    "content2_b1": "Radiofrequentie",
+    "content2_b2": "Microneedling",
+    "content2_b3": "Laser Resurfacing",
+    "content2_b4": "Peelings",
+    "content3_title": "Geavanceerde Contouring",
+    "content3_text": "Niet-chirurgische lichaamstransformatie gericht op volumeherstel en definitie.",
+    "content3_b1": "Liquid BBL",
+    "content3_b2": "HIFU Body",
+    "content3_b3": "Cryolipolyse",
+    "content3_b4": "Huidverstrakking",
+    "content4_title": "Voedingstherapie",
+    "content4_text": "Interne wellnessprotocollen om externe esthetische resultaten en levensduur te ondersteunen.",
+    "content4_b1": "Metabolisch Onderzoek",
+    "content4_b2": "IV Drips",
+    "content4_b3": "Gepersonaliseerde Diëten",
+    "content4_b4": "Gezondheidscoaching",
+    "content5_title": "Longevity Protocollen",
+    "content5_text": "De wetenschap van goed ouder worden. Uitgebreide strategieën voor gezondheid en vitaliteit.",
+    "content5_b1": "Bio-Analyse",
+    "content5_b2": "Hormoonondersteuning",
+    "content5_b3": "Slaapoptimalisatie",
+    "content5_b4": "Vitaliteitscheck"
   },
   "pricing": {
     "title": "Investering in uw Zelfvertrouwen",
@@ -169,7 +201,13 @@
   },
   "checkout": {
     "loading": "Verwerken...",
-    "error": "Er is een fout opgetreden bij het afrekenen."
+    "error": "Er is een fout opgetreden bij het afrekenen.",
+    "success_title": "Bedankt!",
+    "success_sub": "Uw bestelling is bevestigd. U ontvangt binnenkort een e-mail met alle details.",
+    "success_cta": "Terug naar Home",
+    "cancelled_title": "Bestelling Geannuleerd",
+    "cancelled_sub": "Uw bestelling is niet voltooid. U kunt het opnieuw proberen of contact met ons opnemen.",
+    "cancelled_cta": "Terug naar Shop"
   },
   "trust": {
     "doctors_title": "Erkende Artsen",

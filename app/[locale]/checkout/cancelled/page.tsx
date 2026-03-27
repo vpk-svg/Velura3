@@ -12,23 +12,23 @@ export default async function CancelledPage({
     const t = await getTranslations({ locale, namespace: 'checkout' });
 
     return (
-        <div className="min-h-screen pt-32 pb-24 bg-brand-ivory flex flex-col items-center justify-center px-4">
+        <div className="min-h-screen pt-32 pb-24 bg-background-light flex flex-col items-center justify-center px-4">
             <div className="max-w-md w-full text-center">
                 <div className="flex justify-center mb-8">
-                    <XCircle size={80} className="text-brand-charcoal/20" strokeWidth={1} />
+                    <XCircle size={80} className="text-secondary/20" strokeWidth={1} />
                 </div>
 
-                <h1 className="font-display text-4xl md:text-5xl text-brand-teal-deep mb-4 font-light italic">
+                <h1 className="font-display text-display-md text-secondary mb-4 font-light italic">
                     {t('cancelled_title')}
                 </h1>
 
-                <p className="font-sans font-light text-brand-charcoal/70 text-lg mb-10">
+                <p className="font-sans font-light text-secondary/70 text-lg mb-10">
                     {t('cancelled_sub')}
                 </p>
 
                 <Link
                     href="/#shop"
-                    className="inline-block px-10 py-4 border border-brand-teal-deep text-brand-teal-deep rounded-full font-label text-sm tracking-widest uppercase hover:bg-brand-teal-deep/10 transition-colors"
+                    className="inline-block px-10 py-4 border border-secondary text-secondary rounded-pill font-label text-sm tracking-widest uppercase hover:bg-secondary/5 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                     {t('cancelled_cta')}
                 </Link>

@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
+import Container from './ui/Container';
+import SectionHeader from './ui/SectionHeader';
+import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function MethodsTabs() {
   const t = useTranslations('methods');
@@ -31,57 +34,47 @@ export default function MethodsTabs() {
       cta: t('content1_cta'),
     },
     2: {
-      title: "Clinical Skin Science",
-      text: "Premium rejuvenation treatments using medical-grade technologies and exclusive protocols.",
-      bullets: ["Radiofrequency", "Microneedling", "Laser Resurfacing", "Peels"],
+      title: t('content2_title'),
+      text: t('content2_text'),
+      bullets: [t('content2_b1'), t('content2_b2'), t('content2_b3'), t('content2_b4')],
     },
     3: {
-      title: "Advanced Contouring",
-      text: "Non-surgical body transformation focusing on volume restoration and definition.",
-      bullets: ["Liquid BBL", "HIFU Body", "Cryolipolysis", "Skin Tightening"],
+      title: t('content3_title'),
+      text: t('content3_text'),
+      bullets: [t('content3_b1'), t('content3_b2'), t('content3_b3'), t('content3_b4')],
     },
     4: {
-      title: "Nutritional Therapy",
-      text: "Internal wellness protocols to support external aesthetic results and longevity.",
-      bullets: ["Metabolic Screen", "IV Drips", "Personalized diets", "Health coaching"],
+      title: t('content4_title'),
+      text: t('content4_text'),
+      bullets: [t('content4_b1'), t('content4_b2'), t('content4_b3'), t('content4_b4')],
     },
     5: {
-      title: "Longevity Protocols",
-      text: "The science of aging well. Comprehensive strategies to maintain health and vitality.",
-      bullets: ["Bio-Analysis", "Hormone support", "Sleep optimization", "Vitality check"],
+      title: t('content5_title'),
+      text: t('content5_text'),
+      bullets: [t('content5_b1'), t('content5_b2'), t('content5_b3'), t('content5_b4')],
     },
   };
 
   return (
-    <section id="methods" className="py-32 bg-background-light text-secondary overflow-hidden">
-      <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
-        <div className="text-center mb-24 md:mb-32">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="font-label text-primary text-xs tracking-[0.5em] uppercase mb-8 block font-bold"
-          >
-            {t('label')}
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="font-display text-6xl md:text-8xl lg:text-[10rem] text-secondary mb-12 tracking-tighter"
-          >
-            {t('title')} <span className="italic font-light text-primary">{t('subtitle')}</span>
-          </motion.h2>
-        </div>
+    <section id="methods" className="py-section-y bg-background-light text-secondary overflow-hidden">
+      <Container>
+        <SectionHeader
+          label={t('label')}
+          title={<>{t('title')} <span className="italic font-light text-primary">{t('subtitle')}</span></>}
+        />
 
         {/* Tabs Navigation */}
-        <div className="flex flex-wrap justify-center gap-6 mb-24" role="tablist">
+        <div className="flex flex-wrap justify-center gap-4 mb-16 md:mb-20" role="tablist" aria-label="Treatment methods">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               role="tab"
               aria-selected={activeTab === tab.id}
+              aria-controls={`methods-panel-${tab.id}`}
+              id={`methods-tab-${tab.id}`}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-10 py-5 rounded-full font-label text-xs md:text-sm tracking-[0.25em] transition-all duration-700 uppercase font-bold focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${activeTab === tab.id
-                ? 'bg-secondary text-white shadow-2xl shadow-secondary/40'
+              className={`px-8 py-4 rounded-pill font-label text-xs tracking-[0.25em] transition-all duration-300 ease-premium uppercase font-bold focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${activeTab === tab.id
+                ? 'bg-secondary text-white shadow-soft-lg'
                 : 'bg-white border border-secondary/5 text-secondary hover:border-primary hover:text-primary'
                 }`}
             >
@@ -91,48 +84,51 @@ export default function MethodsTabs() {
         </div>
 
         {/* Tab Content */}
-        <div className="max-w-6xl mx-auto min-h-[600px]">
+        <div className="max-w-6xl mx-auto min-h-[500px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, scale: 0.98, y: 40 }}
+              id={`methods-panel-${activeTab}`}
+              role="tabpanel"
+              aria-labelledby={`methods-tab-${activeTab}`}
+              initial={{ opacity: 0, scale: 0.98, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.98, y: -40 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white border border-secondary/5 rounded-[60px] p-12 md:p-24 shadow-2xl shadow-primary/5 relative overflow-hidden group"
+              exit={{ opacity: 0, scale: 0.98, y: -30 }}
+              transition={{ duration: 0.5, ease: EASE_PREMIUM }}
+              className="bg-white border border-secondary/5 rounded-card p-10 md:p-20 shadow-soft-lg relative overflow-hidden group"
             >
-              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[100px] rounded-full translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 blur-[100px] rounded-full translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700" aria-hidden="true" />
 
-              <h3 className="font-display text-5xl md:text-8xl text-secondary mb-12 italic leading-tight">
-                {content[activeTab as keyof typeof content].title}
+              <h3 className="font-display text-display-lg text-secondary mb-8 italic leading-tight">
+                {content[activeTab].title}
               </h3>
-              <p className="font-sans font-light text-xl md:text-3xl leading-relaxed text-secondary/70 mb-16 max-w-4xl italic">
-                "{content[activeTab as keyof typeof content].text}"
+              <p className="font-sans font-light text-xl md:text-2xl leading-relaxed text-secondary/70 mb-12 max-w-4xl italic">
+                &ldquo;{content[activeTab].text}&rdquo;
               </p>
 
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                 {content[activeTab].bullets.map((bullet, idx) => (
                   <li key={idx} className="flex items-start group/bullet">
-                    <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center mr-6 mt-1.5 font-bold transition-all group-hover/bullet:bg-primary group-hover/bullet:text-white shrink-0" aria-hidden="true">✓</span>
-                    <span className="font-sans font-light text-lg md:text-2xl text-secondary/80 group-hover/bullet:text-secondary transition-colors">{bullet}</span>
+                    <span className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center mr-5 mt-1 font-bold transition-all duration-300 group-hover/bullet:bg-primary group-hover/bullet:text-white shrink-0 text-sm" aria-hidden="true">✓</span>
+                    <span className="font-sans font-light text-lg md:text-xl text-secondary/80 group-hover/bullet:text-secondary transition-colors">{bullet}</span>
                   </li>
                 ))}
               </ul>
 
               {content[activeTab].cta && (
-                <div className="mt-12 pt-12 border-t border-secondary/5">
+                <div className="mt-10 pt-10 border-t border-secondary/5">
                   <a
                     href="#shop"
-                    className="inline-flex font-label text-primary hover:text-secondary tracking-[0.4em] text-xs md:text-sm uppercase font-bold group/link"
+                    className="inline-flex font-label text-primary hover:text-secondary tracking-[0.3em] text-xs uppercase font-bold group/link transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-sm"
                   >
-                    {content[activeTab].cta} <span className="ml-6 transition-transform duration-500 group-hover/link:translate-x-4">→</span>
+                    {content[activeTab].cta} <span className="ml-4 transition-transform duration-300 group-hover/link:translate-x-3" aria-hidden="true">→</span>
                   </a>
                 </div>
               )}
             </motion.div>
           </AnimatePresence>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

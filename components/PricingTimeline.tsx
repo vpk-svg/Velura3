@@ -3,6 +3,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
+import Container from './ui/Container';
+import SectionHeader from './ui/SectionHeader';
+import Button from './ui/Button';
+import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function PricingTimeline() {
     const t = useTranslations('pricing');
@@ -45,41 +49,30 @@ export default function PricingTimeline() {
     const currentTimeline = timelineData[activePlan];
 
     return (
-        <section id="pricing" className="py-20 md:py-32 bg-background-light overflow-hidden" aria-labelledby="pricing-timeline-title">
-            <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
-
-                {/* Header Section */}
-                <div className="text-center mb-20 md:mb-32">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        id="pricing-timeline-title"
-                        className="font-display text-5xl md:text-8xl text-secondary tracking-tighter mb-8"
-                    >
-                        {t('title')}
-                    </motion.h2>
-                    <p className="font-sans text-secondary/70 text-xl md:text-2xl max-w-3xl mx-auto font-light leading-relaxed">
-                        {t('desc')}
-                    </p>
-                </div>
+        <section id="pricing" className="py-section-y bg-background-light overflow-hidden" aria-labelledby="pricing-title">
+            <Container>
+                <SectionHeader
+                    label={t('planB')}
+                    title={t('title')}
+                    subtitle={t('desc')}
+                />
 
                 {/* Tab System */}
-                <div className="flex justify-center mb-20 md:mb-32">
-                    <div className="inline-flex bg-secondary/5 p-2 rounded-full border border-secondary/10 shadow-inner" role="tablist">
+                <div className="flex justify-center mb-16 md:mb-20">
+                    <div className="inline-flex bg-secondary/5 p-1.5 rounded-pill border border-secondary/10 shadow-inner" role="tablist" aria-label="Pricing plans">
                         {plans.map((plan) => (
                             <button
                                 key={plan.id}
                                 role="tab"
                                 aria-selected={activePlan === plan.id}
+                                aria-controls={`panel-${plan.id}`}
                                 onClick={() => setActivePlan(plan.id)}
-                                className={`relative px-12 py-4 rounded-full font-label text-xs tracking-widest uppercase transition-all duration-500 font-bold z-10 ${activePlan === plan.id ? 'text-white' : 'text-secondary/50 hover:text-primary'
-                                    }`}
+                                className={`relative px-10 py-3.5 rounded-pill font-label text-xs tracking-widest uppercase transition-all duration-300 ease-premium font-bold z-10 focus-visible:ring-2 focus-visible:ring-primary ${activePlan === plan.id ? 'text-white' : 'text-secondary/50 hover:text-primary'}`}
                             >
                                 {activePlan === plan.id && (
                                     <motion.div
                                         layoutId="pricingTabHighlight"
-                                        className="absolute inset-0 bg-primary rounded-full -z-10 shadow-xl"
+                                        className="absolute inset-0 bg-primary rounded-pill -z-10 shadow-gold-glow"
                                         transition={{ type: "spring", stiffness: 400, damping: 30 }}
                                     />
                                 )}
@@ -89,75 +82,59 @@ export default function PricingTimeline() {
                     </div>
                 </div>
 
-                {/* Horizontal Timeline Grid */}
-                <div className="max-w-[1700px] mx-auto min-h-[400px]">
+                {/* Horizontal Timeline */}
+                <div className="max-w-container mx-auto min-h-[380px]">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activePlan}
-                            initial={{ opacity: 0, x: 40 }}
+                            id={`panel-${activePlan}`}
+                            role="tabpanel"
+                            initial={{ opacity: 0, x: 30 }}
                             animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -40 }}
-                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                            className="flex flex-nowrap overflow-x-auto pb-12 snap-x snap-mandatory hide-scrollbars gap-8 md:gap-12"
+                            exit={{ opacity: 0, x: -30 }}
+                            transition={{ duration: 0.5, ease: EASE_PREMIUM }}
+                            className="flex flex-nowrap overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar gap-6 md:gap-10"
+                            tabIndex={0}
+                            aria-label="Timeline cards — scroll horizontally"
                         >
                             {currentTimeline.map((item, idx) => (
-                                <div
+                                <article
                                     key={idx}
-                                    className={`flex-none w-[320px] md:w-[400px] snap-center bg-white rounded-[48px] p-12 border transition-all duration-700 hover:-translate-y-4 hover:shadow-2xl ${item.optional ? 'border-dashed border-primary/20 bg-white/50' : 'border-primary/5 shadow-sm shadow-primary/5'
-                                        } flex flex-col items-center justify-between min-h-[350px]`}
+                                    className={`flex-none w-[280px] md:w-[340px] snap-center bg-white rounded-card p-10 border transition-all duration-300 ease-premium hover:-translate-y-3 hover:shadow-soft-lg ${item.optional ? 'border-dashed border-primary/20 bg-white/60' : 'border-primary/5 shadow-soft-sm'} flex flex-col items-center justify-between min-h-[320px]`}
                                 >
-                                    {/* Top Label */}
-                                    <div className="w-full flex flex-col items-center mb-10 relative">
+                                    <div className="w-full flex flex-col items-center mb-8">
                                         {item.optional && (
-                                            <span className="font-label text-[10px] uppercase tracking-[0.3em] text-primary mb-4 font-bold">
+                                            <span className="font-label text-[10px] uppercase tracking-[0.3em] text-primary mb-3 font-bold">
                                                 {t('optional')}
                                             </span>
                                         )}
-                                        <h3 className="font-display text-4xl text-secondary italic">
+                                        <h3 className="font-display text-display-sm text-secondary italic">
                                             {item.month}
                                         </h3>
                                     </div>
 
-                                    {/* Dosage Indicator */}
-                                    <div className="bg-primary/5 px-8 py-4 rounded-full mb-12 border border-primary/10">
+                                    <div className="bg-primary/5 px-6 py-3 rounded-pill mb-10 border border-primary/10">
                                         <p className="font-label text-primary text-[11px] uppercase tracking-[0.2em] font-bold">
                                             {item.dosage}
                                         </p>
                                     </div>
 
-                                    {/* Price */}
-                                    <div className="mt-auto">
-                                        <p className="font-display text-6xl text-primary font-bold">
-                                            {item.price}
-                                        </p>
-                                    </div>
-                                </div>
+                                    <p className="mt-auto font-display text-display-md text-primary font-bold">
+                                        {item.price}
+                                    </p>
+                                </article>
                             ))}
                         </motion.div>
                     </AnimatePresence>
                 </div>
 
                 {/* CTA */}
-                <div className="flex justify-center mt-20">
-                    <a
-                        href="#bmi"
-                        className="px-14 py-7 bg-secondary text-white rounded-full font-label text-xs tracking-[0.4em] uppercase font-bold hover:bg-primary transition-all shadow-2xl hover:scale-105 active:scale-95"
-                    >
+                <div className="flex justify-center mt-16">
+                    <Button href="#bmi" variant="secondary" size="lg">
                         {t('cta')}
-                    </a>
+                    </Button>
                 </div>
-
-            </div>
-
-            <style jsx>{`
-        .hide-scrollbars::-webkit-scrollbar {
-          display: none;
-        }
-        .hide-scrollbars {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
+            </Container>
         </section>
     );
 }

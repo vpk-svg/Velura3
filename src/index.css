@@ -1,3 +1,57 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ═══════════════════════════════════════════════════
+   BASE LAYER — sensible defaults & premium polish
+   ═══════════════════════════════════════════════════ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply leading-relaxed text-secondary bg-background-light;
+  }
+
+  /* Selection highlight */
+  ::selection {
+    @apply bg-primary/20 text-secondary;
+  }
+
+  /* Global focus-visible ring */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary/50 ring-offset-2 ring-offset-background-light;
+  }
+
+  /* Only hide cursor on fine-pointer (mouse) devices */
+  @media (pointer: fine) {
+    .cursor-dot-active,
+    .cursor-dot-active * {
+      cursor: none !important;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   UTILITY LAYER
+   ═══════════════════════════════════════════════════ */
+@layer utilities {
+  /* Hide scrollbars — used by horizontal scroll areas */
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Skip-to-main link */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[99999]
+           focus:px-6 focus:py-3 focus:bg-primary focus:text-white
+           focus:font-label focus:text-xs focus:uppercase focus:tracking-widest;
+    &:focus {
+      border-radius: 9999px;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+    }
+  }
+}

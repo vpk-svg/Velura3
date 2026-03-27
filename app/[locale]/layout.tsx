@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Cormorant_Garamond, Jost, Cinzel } from 'next/font/google';
-import '../../src/index.css'; // Assuming we keep index.css for global styles
+import '../../src/index.css';
 import Navbar from '@/components/Navbar';
 import FloatingButtons from '@/components/FloatingButtons';
 import Footer from '@/components/Footer';
@@ -51,14 +51,18 @@ export default async function LocaleLayout({
   const messages = await getMessages({ locale: resolvedParams.locale });
 
   return (
-    <html lang={resolvedParams.locale} className={`${cormorant.variable} ${jost.variable} ${cinzel.variable} scroll-smooth`}>
-      <body className="font-sans antialiased text-secondary bg-background-light min-h-screen flex flex-col cursor-none">
+    <html lang={resolvedParams.locale} className={`${cormorant.variable} ${jost.variable} ${cinzel.variable}`}>
+      <body className="font-sans antialiased min-h-screen flex flex-col cursor-dot-active">
         <NextIntlClientProvider messages={messages} locale={resolvedParams.locale}>
+          {/* Skip-to-main for keyboard a11y */}
+          <a href="#main-content" className="skip-link">
+            Skip to main content
+          </a>
           <CustomCursor />
           <ScrollProgress />
           <Navbar />
           <FloatingButtons />
-          <main className="flex-grow">
+          <main id="main-content" className="flex-grow">
             {children}
           </main>
           <Footer />

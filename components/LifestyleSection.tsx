@@ -4,95 +4,89 @@ import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { UserCheck, Compass, MessageSquare } from 'lucide-react';
 import Image from 'next/image';
+import Container from './ui/Container';
+import SectionHeader from './ui/SectionHeader';
+import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function LifestyleSection() {
     const t = useTranslations('lifestyle');
 
-    return (
-        <section id="lifestyle" className="relative py-20 bg-background-light overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                <div className="flex flex-col lg:flex-row items-center gap-20">
+    const features = [
+        { icon: <UserCheck size={26} strokeWidth={1.5} />, title: t('item1_title'), desc: t('item1_desc') },
+        { icon: <Compass size={26} strokeWidth={1.5} />, title: t('item2_title'), desc: t('item2_desc') },
+        { icon: <MessageSquare size={26} strokeWidth={1.5} />, title: t('item3_title'), desc: t('item3_desc') },
+    ];
 
-                    {/* Left: Interactive Image Component */}
-                    <div className="flex-1 relative w-full h-[500px] md:h-[700px] rounded-[48px] overflow-hidden group shadow-2xl bg-secondary/5">
+    return (
+        <section id="lifestyle" className="py-section-y bg-background-light overflow-hidden" aria-labelledby="lifestyle-heading">
+            <Container>
+                <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
+
+                    {/* Image */}
+                    <figure className="flex-1 relative w-full h-[500px] md:h-[650px] rounded-card overflow-hidden group shadow-soft-lg bg-secondary/5">
                         <motion.div
-                            initial={{ x: -100, opacity: 0 }}
+                            initial={{ x: -60, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.8, ease: EASE_PREMIUM }}
                             className="w-full h-full relative"
                         >
                             <Image
                                 src="/images/lifestyle-coaching.png"
                                 alt="Personalized Lifestyle Coaching Session"
                                 fill
-                                className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                                loading="lazy"
+                                className="object-cover transition-transform duration-700 ease-premium group-hover:scale-105"
+                                sizes="(max-width: 1024px) 100vw, 50vw"
                             />
-                            <div className="absolute inset-0 bg-secondary/5 group-hover:opacity-0 transition-opacity duration-700" />
+                            <div className="absolute inset-0 bg-secondary/5 group-hover:opacity-0 transition-opacity duration-500" />
                         </motion.div>
-                    </div>
+                    </figure>
 
-                    {/* Right: Modern Content */}
-                    <div className="flex-1 w-full text-left">
-                        <motion.span
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="font-label text-primary text-xs tracking-[0.4em] uppercase mb-6 block font-bold"
-                        >
-                            {t('label')}
-                        </motion.span>
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="font-display text-4xl md:text-8xl text-secondary tracking-tighter mb-12"
-                        >
-                            {t('title')} <br />
-                            <span className="italic font-light text-primary">{t('subtitle')}</span>
-                        </motion.h2>
+                    {/* Content */}
+                    <div className="flex-1 w-full">
+                        <SectionHeader
+                            label={t('label')}
+                            title={<>{t('title')} <br /><span className="italic font-light text-primary">{t('subtitle')}</span></>}
+                            align="left"
+                        />
 
-                        <div className="space-y-12">
-                            {[
-                                { icon: <UserCheck size={28} />, title: t('item1_title'), desc: t('item1_desc') },
-                                { icon: <Compass size={28} />, title: t('item2_title'), desc: t('item2_desc') },
-                                { icon: <MessageSquare size={28} />, title: t('item3_title'), desc: t('item3_desc') }
-                            ].map((item, idx) => (
+                        <dl className="space-y-10">
+                            {features.map((item, idx) => (
                                 <motion.div
                                     key={item.title}
                                     initial={{ opacity: 0, x: -20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ delay: 0.2 + idx * 0.1 }}
-                                    className="flex gap-6 group"
+                                    transition={{ delay: 0.15 + idx * 0.1, ease: EASE_PREMIUM }}
+                                    className="flex gap-5 group"
                                 >
-                                    <div className="p-4 bg-primary/5 rounded-2xl text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-white group-hover:scale-110 h-min">
+                                    <div className="p-3.5 bg-primary/5 rounded-2xl text-primary transition-all duration-300 ease-premium group-hover:bg-primary group-hover:text-white group-hover:scale-105 h-min shrink-0" aria-hidden="true">
                                         {item.icon}
                                     </div>
                                     <div>
-                                        <h3 className="font-display text-3xl text-secondary mb-2 group-hover:text-primary transition-colors italic">{item.title}</h3>
-                                        <p className="font-sans font-light text-secondary/70 text-lg md:text-xl leading-relaxed">{item.desc}</p>
+                                        <dt className="font-display text-display-sm text-secondary mb-1.5 group-hover:text-primary transition-colors duration-200 italic">{item.title}</dt>
+                                        <dd className="font-sans font-light text-secondary/70 text-base md:text-lg leading-relaxed">{item.desc}</dd>
                                     </div>
                                 </motion.div>
                             ))}
-                        </div>
+                        </dl>
 
                         <motion.div
-                            className="mt-16 pt-10 border-t border-primary/20"
+                            className="mt-12 pt-8 border-t border-primary/15"
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.5 }}
                         >
-                            <a href="#consult" className="font-label text-sm text-primary tracking-widest uppercase font-bold group">
-                                {t('cta')} <span className="ml-4 transition-transform group-hover:translate-x-3 inline-block">→</span>
+                            <a href="#consult" className="font-label text-sm text-primary tracking-widest uppercase font-bold group inline-flex items-center gap-3 hover:gap-5 transition-all duration-300">
+                                {t('cta')} <span aria-hidden="true">→</span>
                             </a>
                         </motion.div>
                     </div>
 
                 </div>
-            </div>
+            </Container>
         </section>
     );
 }

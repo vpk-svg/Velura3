@@ -75,6 +75,14 @@
     "obesity1": "Obesity I",
     "obesity2": "Obesity II",
     "advice_title": "SPECIALIST ANALYSIS",
+    "advice_under25": "Your BMI is within a healthy range. Explore our lifestyle and wellness treatments to maintain your results.",
+    "cta_under25": "View Lifestyle Programs",
+    "advice_25_29": "A slight elevation in BMI. Our GLP-1 programs can help you reach your optimal weight safely.",
+    "cta_25_29": "View Weight Loss Options",
+    "advice_30_34": "We recommend a consultation with our specialists to discuss a personalized treatment plan.",
+    "cta_30_34": "Book a Consultation",
+    "advice_over35": "A specialist consultation is strongly recommended. Our doctors can create a comprehensive care plan.",
+    "cta_over35": "Schedule Specialist Consult",
     "disclaimer": "BMI IS A SCREENING TOOL AND NOT A MEDICAL DIAGNOSIS."
   },
   "how": {
@@ -129,7 +137,31 @@
     "content1_b2": "Premium HA fillers",
     "content1_b3": "Natural Volumes",
     "content1_b4": "Minimal downtime",
-    "content1_cta": "View Injectables"
+    "content1_cta": "View Injectables",
+    "content2_title": "Clinical Skin Science",
+    "content2_text": "Premium rejuvenation treatments using medical-grade technologies and exclusive protocols.",
+    "content2_b1": "Radiofrequency",
+    "content2_b2": "Microneedling",
+    "content2_b3": "Laser Resurfacing",
+    "content2_b4": "Peels",
+    "content3_title": "Advanced Contouring",
+    "content3_text": "Non-surgical body transformation focusing on volume restoration and definition.",
+    "content3_b1": "Liquid BBL",
+    "content3_b2": "HIFU Body",
+    "content3_b3": "Cryolipolysis",
+    "content3_b4": "Skin Tightening",
+    "content4_title": "Nutritional Therapy",
+    "content4_text": "Internal wellness protocols to support external aesthetic results and longevity.",
+    "content4_b1": "Metabolic Screen",
+    "content4_b2": "IV Drips",
+    "content4_b3": "Personalized Diets",
+    "content4_b4": "Health Coaching",
+    "content5_title": "Longevity Protocols",
+    "content5_text": "The science of aging well. Comprehensive strategies to maintain health and vitality.",
+    "content5_b1": "Bio-Analysis",
+    "content5_b2": "Hormone Support",
+    "content5_b3": "Sleep Optimization",
+    "content5_b4": "Vitality Check"
   },
   "pricing": {
     "title": "An Investment in Confidence",
@@ -169,7 +201,13 @@
   },
   "checkout": {
     "loading": "Processing...",
-    "error": "An error occurred during checkout."
+    "error": "An error occurred during checkout.",
+    "success_title": "Thank You!",
+    "success_sub": "Your order has been confirmed. You will receive an email with all the details shortly.",
+    "success_cta": "Back to Home",
+    "cancelled_title": "Order Cancelled",
+    "cancelled_sub": "Your order was not completed. You can try again or contact us for assistance.",
+    "cancelled_cta": "Return to Shop"
   },
   "trust": {
     "doctors_title": "Certified Doctors",

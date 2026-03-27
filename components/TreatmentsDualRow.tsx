@@ -3,98 +3,96 @@
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import MagneticWrapper from './MagneticWrapper';
+import Card from './ui/Card';
+import Button from './ui/Button';
+import Container from './ui/Container';
+import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function TreatmentsDualRow() {
     const t = useTranslations('treatments');
 
     return (
-        <section id="treatments-dual" className="py-20 md:py-32 bg-background-light overflow-hidden">
-            <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <section id="botox" className="py-section-y bg-background-light overflow-hidden" aria-labelledby="treatments-heading">
+            <Container>
+                <h2 id="treatments-heading" className="sr-only">Treatments</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
 
                     {/* Botox Column */}
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
+                        initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative group bg-white rounded-[48px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 border border-secondary/5 flex flex-col"
+                        transition={{ duration: 1, ease: EASE_PREMIUM }}
                     >
-                        <div className="relative aspect-[16/10] overflow-hidden bg-secondary/5">
-                            <Image
-                                src="/images/treatments/botox.jpg"
-                                alt="Clinical Botox Procedure Example"
-                                fill
-                                className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                                priority
-                            />
-                            <div className="absolute inset-0 bg-secondary/5 group-hover:bg-transparent transition-colors duration-1000" />
-                            <div className="absolute top-10 left-10 text-secondary/10 font-display text-8xl pointer-events-none group-hover:opacity-40 transition-opacity italic">01</div>
-                        </div>
-                        <div className="p-12 md:p-16 flex flex-col flex-grow">
-                            <span className="font-label text-brand-gold-dark text-xs tracking-[0.5em] uppercase mb-8 block font-bold">
-                                {t('botox_title')}
-                            </span>
-                            <h3 className="font-display text-5xl md:text-7xl text-secondary mb-10 italic">
-                                {t('botox_subtitle')}
-                            </h3>
-                            <p className="font-sans font-light text-secondary/70 text-xl md:text-2xl leading-relaxed mb-12 flex-grow">
-                                {t('botox_desc')}
-                            </p>
-                            <MagneticWrapper>
-                                <a
-                                    href="#consult"
-                                    className="inline-flex px-12 py-5 bg-primary text-white rounded-full font-label text-xs tracking-[0.3em] uppercase font-bold hover:shadow-2xl transition-all duration-300 shadow-xl"
-                                >
+                        <Card className="group flex flex-col h-full">
+                            <figure className="relative aspect-[16/10] overflow-hidden bg-secondary/5">
+                                <Image
+                                    src="/images/treatments/botox.jpg"
+                                    alt="Clinical Botox Procedure Example"
+                                    fill
+                                    loading="lazy"
+                                    className="object-cover transition-transform duration-700 ease-premium group-hover:scale-105"
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                />
+                                <div className="absolute inset-0 bg-secondary/5 group-hover:bg-transparent transition-colors duration-700" />
+                                <span className="absolute top-8 left-8 text-secondary/[0.07] font-display text-8xl pointer-events-none group-hover:opacity-40 transition-opacity italic select-none" aria-hidden="true">01</span>
+                            </figure>
+                            <div className="p-10 md:p-14 flex flex-col flex-grow">
+                                <span className="font-label text-primary-dark text-xs tracking-[0.5em] uppercase mb-6 block font-bold">
+                                    {t('botox_title')}
+                                </span>
+                                <h3 className="font-display text-display-md text-secondary mb-8 italic">
+                                    {t('botox_subtitle')}
+                                </h3>
+                                <p className="font-sans font-light text-secondary/70 text-lg md:text-xl leading-relaxed mb-10 flex-grow">
+                                    {t('botox_desc')}
+                                </p>
+                                <Button href="#consult" variant="primary" size="md">
                                     {t('botox_cta')}
-                                </a>
-                            </MagneticWrapper>
-                        </div>
+                                </Button>
+                            </div>
+                        </Card>
                     </motion.div>
 
                     {/* Fillers Column */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
+                        initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative group bg-white rounded-[48px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 border border-secondary/5 flex flex-col"
+                        transition={{ duration: 1, delay: 0.15, ease: EASE_PREMIUM }}
                     >
-                        <div className="relative aspect-[16/10] overflow-hidden bg-secondary/5">
-                            <Image
-                                src="/images/treatments/fillers.jpg"
-                                alt="Dermal Filler Lip Enhancement Result"
-                                fill
-                                className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                                priority
-                            />
-                            <div className="absolute inset-0 bg-secondary/5 group-hover:bg-transparent transition-colors duration-1000" />
-                            <div className="absolute top-10 right-10 text-secondary/10 font-display text-8xl pointer-events-none group-hover:opacity-40 transition-opacity italic">02</div>
-                        </div>
-                        <div className="p-12 md:p-16 flex flex-col flex-grow">
-                            <span className="font-label text-brand-gold-dark text-xs tracking-[0.5em] uppercase mb-8 block font-bold">
-                                {t('fillers_title')}
-                            </span>
-                            <h3 className="font-display text-5xl md:text-7xl text-secondary mb-10 italic">
-                                {t('fillers_subtitle')}
-                            </h3>
-                            <p className="font-sans font-light text-secondary/70 text-xl md:text-2xl leading-relaxed mb-12 flex-grow">
-                                {t('fillers_desc')}
-                            </p>
-                            <MagneticWrapper>
-                                <a
-                                    href="#consult"
-                                    className="inline-flex px-12 py-5 bg-secondary text-white rounded-full font-label text-xs tracking-[0.3em] uppercase font-bold hover:shadow-2xl transition-all duration-300 shadow-xl"
-                                >
+                        <Card className="group flex flex-col h-full">
+                            <figure className="relative aspect-[16/10] overflow-hidden bg-secondary/5">
+                                <Image
+                                    src="/images/treatments/fillers.jpg"
+                                    alt="Dermal Filler Lip Enhancement Result"
+                                    fill
+                                    loading="lazy"
+                                    className="object-cover transition-transform duration-700 ease-premium group-hover:scale-105"
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                />
+                                <div className="absolute inset-0 bg-secondary/5 group-hover:bg-transparent transition-colors duration-700" />
+                                <span className="absolute top-8 right-8 text-secondary/[0.07] font-display text-8xl pointer-events-none group-hover:opacity-40 transition-opacity italic select-none" aria-hidden="true">02</span>
+                            </figure>
+                            <div className="p-10 md:p-14 flex flex-col flex-grow">
+                                <span className="font-label text-primary-dark text-xs tracking-[0.5em] uppercase mb-6 block font-bold">
+                                    {t('fillers_title')}
+                                </span>
+                                <h3 className="font-display text-display-md text-secondary mb-8 italic">
+                                    {t('fillers_subtitle')}
+                                </h3>
+                                <p className="font-sans font-light text-secondary/70 text-lg md:text-xl leading-relaxed mb-10 flex-grow">
+                                    {t('fillers_desc')}
+                                </p>
+                                <Button href="#consult" variant="secondary" size="md">
                                     {t('fillers_cta')}
-                                </a>
-                            </MagneticWrapper>
-                        </div>
+                                </Button>
+                            </div>
+                        </Card>
                     </motion.div>
 
                 </div>
-            </div>
+            </Container>
         </section>
     );
 }

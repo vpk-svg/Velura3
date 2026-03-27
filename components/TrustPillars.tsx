@@ -3,6 +3,8 @@
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { Stethoscope, ShieldCheck, HeartPulse, Sparkles } from 'lucide-react';
+import Container from './ui/Container';
+import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function TrustPillars() {
   const t = useTranslations('trust');
@@ -31,31 +33,31 @@ export default function TrustPillars() {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-background-light border-y border-secondary/5">
-      <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-24">
+    <section className="py-section-y bg-background-light border-y border-secondary/5" aria-label="Trust indicators">
+      <Container>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {pillars.map((pillar, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, delay: index * 0.08, ease: EASE_PREMIUM }}
               className="group flex flex-col items-center text-center"
             >
-              <div className="text-brand-gold-dark mb-8 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
+              <div className="text-primary mb-6 transition-transform duration-300 ease-premium group-hover:scale-110 group-hover:rotate-6" aria-hidden="true">
                 {pillar.icon}
               </div>
-              <h3 className="font-label text-secondary text-sm md:text-md tracking-[0.3em] uppercase mb-4 font-bold group-hover:text-brand-gold-dark transition-colors">
+              <h3 className="font-label text-secondary text-sm tracking-[0.3em] uppercase mb-3 font-bold group-hover:text-primary transition-colors duration-300">
                 {pillar.title}
               </h3>
-              <p className="font-sans font-light text-secondary/60 text-md leading-relaxed max-w-xs transition-colors group-hover:text-secondary">
+              <p className="font-sans font-light text-secondary/60 text-base leading-relaxed max-w-xs transition-colors duration-300 group-hover:text-secondary">
                 {pillar.desc}
               </p>
             </motion.div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
