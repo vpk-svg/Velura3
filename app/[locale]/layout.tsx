@@ -27,6 +27,11 @@ export const metadata: Metadata = {
   title: 'FAB CLINIC | Medische Esthetiek & Welzijn',
   description: 'Premium kliniek voor fillers, botox en lifestyle transformatie.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://fabclinic.be'),
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 export function generateStaticParams() {
