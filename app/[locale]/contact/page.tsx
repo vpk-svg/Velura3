@@ -1,20 +1,29 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { Instagram, Facebook, Phone, Mail, MapPin, Clock } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import NewsletterSection from '@/components/NewsletterSection';
 import {
   getClinicContactInfo,
-  getPractitionerPlaceholders,
   type Locale,
 } from '@/lib/clinic-data';
+
+const TEAM_MEMBERS = [
+  { nameKey: 'member1_name', roleKey: 'member1_role', bigKey: 'member1_big', img: '/images/Newteam/Athina Barza.jpg' },
+  { nameKey: 'member2_name', roleKey: 'member2_role', bigKey: 'member2_big', img: '/images/Newteam/Ava.jpg' },
+  { nameKey: 'member3_name', roleKey: 'member3_role', bigKey: 'member3_big', img: '/images/Newteam/Elissa.jpg' },
+  { nameKey: 'member4_name', roleKey: 'member4_role', bigKey: 'member4_big', img: '/images/Newteam/Ryan.jpg' },
+  { nameKey: 'member5_name', roleKey: 'member5_role', bigKey: 'member5_big', img: '/images/Newteam/Mevlut.jpg' },
+  { nameKey: 'member6_name', roleKey: 'member6_role', bigKey: 'member6_big', img: '/images/Newteam/Fleur.jpg' },
+];
 
 export default function ContactPage() {
   const locale = useLocale() as Locale;
   const contact = getClinicContactInfo(locale);
-  const practitioners = getPractitionerPlaceholders(locale);
+  const t = useTranslations('team');
 
   return (
     <>
@@ -97,24 +106,35 @@ export default function ContactPage() {
               </button>
             </form>
 
-            {/* Practitioners */}
-            <div className="rounded-2xl border border-primary/15 bg-white p-8 shadow-soft-sm">
+            {/* Practitioners — real team members */}
+            <div className="rounded-2xl border border-primary/15 bg-white p-8 shadow-soft-sm overflow-y-auto max-h-[680px]">
               <h3 className="font-display text-3xl italic text-secondary mb-5">
-                {locale === 'nl' ? 'Behandelaren' : 'Practitioners'}
+                {locale === 'nl' ? 'Ons team' : 'Our team'}
               </h3>
               <div className="space-y-4">
-                {practitioners.map((person, index) => (
-                  <article key={person.title} className="rounded-2xl border border-primary/10 p-4 flex items-start gap-4">
-                    <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center font-display text-xl text-primary">
-                      {`P${index + 1}`}
-                    </div>
-                    <div>
-                      <h4 className="font-display text-xl italic text-secondary">{person.title}</h4>
-                      <p className="font-sans text-sm text-secondary/75">{person.subtitle}</p>
-                      <p className="font-sans text-xs text-primary mt-1">{person.todoLabel}</p>
-                    </div>
-                  </article>
-                ))}
+                {TEAM_MEMBERS.map((member) => {
+                  const name = t(member.nameKey as Parameters<typeof t>[0]);
+                  const role = t(member.roleKey as Parameters<typeof t>[0]);
+                  const big = t(member.bigKey as Parameters<typeof t>[0]);
+                  return (
+                    <article key={member.nameKey} className="rounded-2xl border border-primary/10 p-4 flex items-center gap-4">
+                      <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0">
+                        <Image
+                          src={member.img}
+                          alt={name}
+                          fill
+                          className="object-cover"
+                          sizes="64px"
+                        />
+                      </div>
+                      <div>
+                        <h4 className="font-display text-lg italic text-secondary leading-snug">{name}</h4>
+                        <p className="font-sans text-sm text-secondary/70">{role}</p>
+                        {big && <p className="font-sans text-xs text-primary/70 mt-0.5">{big}</p>}
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </div>
           </div>
