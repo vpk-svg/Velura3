@@ -20,6 +20,7 @@ const PRODUCTS = [
 
 export default function WeightlossPage() {
   const t = useTranslations('weightloss_page');
+  const tMed = useTranslations('medicatie_page');
 
   const usps = [
     t('usp1'),
@@ -137,6 +138,21 @@ export default function WeightlossPage() {
                 <p className="font-sans text-sm text-secondary/60 leading-relaxed mb-4 flex-grow">
                   {t(`product_${product.key}_desc`)}
                 </p>
+                <div className="mb-4 rounded-2xl border border-primary/10 bg-secondary/[0.02] p-4">
+                  <div className="flex items-center justify-between gap-3 mb-3">
+                    <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-secondary/60 font-semibold">
+                      {tMed(`detail_${product.key}_title`)}
+                    </p>
+                    <span className="rounded-pill bg-primary/10 px-3 py-1 font-sans text-[10px] uppercase tracking-[0.18em] text-primary font-semibold">
+                      {tMed(`detail_${product.key}_frequency`)}
+                    </span>
+                  </div>
+                  <div className="space-y-2.5">
+                    <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_how')}:</span> {tMed(`detail_${product.key}_how`)}</p>
+                    <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_side')}:</span> {tMed(`detail_${product.key}_side`)}</p>
+                    <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_storage')}:</span> {tMed(`detail_${product.key}_storage`)}</p>
+                  </div>
+                </div>
                 <div className="flex items-center justify-between mt-auto pt-4 border-t border-secondary/5">
                   <span className="font-display text-2xl text-primary font-semibold">{product.price}<span className="text-sm font-sans font-light text-secondary/40">/mnd</span></span>
                   <SurveyTrigger className="inline-flex items-center gap-2 font-sans text-xs text-primary font-semibold uppercase tracking-wider hover:gap-3 transition-all">

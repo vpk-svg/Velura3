@@ -11,6 +11,7 @@ import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function ProductShop() {
   const t = useTranslations('shop');
+  const tMed = useTranslations('medicatie_page');
   const products = [
     {
       id: 'ozempic',
@@ -25,6 +26,11 @@ export default function ProductShop() {
       badge: 'Rx',
       imgSrc: '/images/products/ozempic.webp',
       gradient: 'bg-[radial-gradient(circle_at_center,#3B2A23,#1e1b14)]',
+      detailTitle: tMed('detail_ozempic_title'),
+      detailFrequency: tMed('detail_ozempic_frequency'),
+      detailHow: tMed('detail_ozempic_how'),
+      detailSide: tMed('detail_ozempic_side'),
+      detailStorage: tMed('detail_ozempic_storage'),
     },
     {
       id: 'mounjaro',
@@ -40,6 +46,11 @@ export default function ProductShop() {
       topBadge: t('mounjaro_badge'),
       imgSrc: '/images/products/mounjaro.webp',
       gradient: 'bg-[radial-gradient(circle_at_center,#3B2A23,#1e1b14)]',
+      detailTitle: tMed('detail_mounjaro_title'),
+      detailFrequency: tMed('detail_mounjaro_frequency'),
+      detailHow: tMed('detail_mounjaro_how'),
+      detailSide: tMed('detail_mounjaro_side'),
+      detailStorage: tMed('detail_mounjaro_storage'),
     },
     {
       id: 'wegovy',
@@ -54,6 +65,11 @@ export default function ProductShop() {
       badge: 'Rx',
       imgSrc: '/images/products/wegovy.webp',
       gradient: 'bg-[radial-gradient(circle_at_center,#3B2A23,#1e1b14)]',
+      detailTitle: tMed('detail_wegovy_title'),
+      detailFrequency: tMed('detail_wegovy_frequency'),
+      detailHow: tMed('detail_wegovy_how'),
+      detailSide: tMed('detail_wegovy_side'),
+      detailStorage: tMed('detail_wegovy_storage'),
     },
     {
       id: 'saxenda',
@@ -68,6 +84,11 @@ export default function ProductShop() {
       badge: 'Rx',
       imgSrc: '/images/products/saxenda.webp',
       gradient: 'bg-[radial-gradient(circle_at_center,#3B2A23,#1e1b14)]',
+      detailTitle: tMed('detail_saxenda_title'),
+      detailFrequency: tMed('detail_saxenda_frequency'),
+      detailHow: tMed('detail_saxenda_how'),
+      detailSide: tMed('detail_saxenda_side'),
+      detailStorage: tMed('detail_saxenda_storage'),
     },
   ];
 
@@ -152,6 +173,22 @@ export default function ProductShop() {
                   <p className="font-sans font-light text-secondary/60 text-base leading-relaxed mb-8 flex-grow">
                     {product.desc}
                   </p>
+
+                  <div className="mb-7 rounded-2xl border border-primary/10 bg-secondary/[0.02] p-4">
+                    <div className="flex items-center justify-between gap-3 mb-3">
+                      <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-secondary/60 font-semibold">
+                        {product.detailTitle}
+                      </p>
+                      <span className="rounded-pill bg-primary/10 px-3 py-1 font-sans text-[10px] uppercase tracking-[0.18em] text-primary font-semibold">
+                        {product.detailFrequency}
+                      </span>
+                    </div>
+                    <div className="space-y-2.5">
+                      <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_how')}:</span> {product.detailHow}</p>
+                      <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_side')}:</span> {product.detailSide}</p>
+                      <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_storage')}:</span> {product.detailStorage}</p>
+                    </div>
+                  </div>
 
                   <div className="flex items-center mb-8 pb-5 border-b border-secondary/5">
                     <div className="flex text-primary mr-2.5" aria-label={`Rating: ${product.rating} out of 5`}>
