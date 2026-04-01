@@ -11,9 +11,9 @@ export default function TeamPreview() {
   const t = useTranslations('team_preview');
 
   const teamMembers = [
-    { name: t('member1_name'), role: t('member1_role'), image: '/images/team/member1.jpg' },
-    { name: t('member2_name'), role: t('member2_role'), image: '/images/team/member2.jpg' },
-    { name: t('member3_name'), role: t('member3_role'), image: '/images/team/member3.jpg' },
+    { name: t('member1_name'), role: t('member1_role'), image: '/images/team/team/team1.jpeg' },
+    { name: t('member2_name'), role: t('member2_role'), image: '/images/team/team/Team2.jpeg' },
+    { name: t('member3_name'), role: t('member3_role'), image: '/images/team/team/Team3.jpeg' },
   ];
 
   return (
@@ -44,7 +44,7 @@ export default function TeamPreview() {
               transition={{ duration: 0.6, delay: i * 0.1, ease: EASE_PREMIUM }}
               className="text-center group"
             >
-              <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-secondary/5 ring-2 ring-primary/10 group-hover:ring-primary/30 transition-all duration-300">
+              <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-secondary/5 ring-2 ring-primary/10 group-hover:ring-primary/40 group-hover:shadow-[0_0_25px_rgba(198,166,93,0.5)] transition-all duration-300">
                 <Image
                   src={member.image}
                   alt={member.name}

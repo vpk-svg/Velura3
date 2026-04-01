@@ -14,12 +14,17 @@ export default function TeamSection() {
         {
             name: t('dr1_name'),
             role: t('dr1_role'),
-            img: "/images/team/team1.jpg",
+            img: "/images/team/team/team1.jpeg",
         },
         {
             name: t('dr2_name'),
             role: t('dr2_role'),
-            img: "/images/team/team2.jpg",
+            img: "/images/team/team/Team2.jpeg",
+        },
+        {
+            name: t('dr3_name'),
+            role: t('dr3_role'),
+            img: "/images/team/team/Team3.jpeg",
         }
     ];
 
@@ -32,7 +37,7 @@ export default function TeamSection() {
                     subtitle={t('desc')}
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 max-w-4xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 max-w-5xl mx-auto">
                     {team.map((member, index) => (
                         <motion.article
                             key={index}
@@ -42,7 +47,7 @@ export default function TeamSection() {
                             transition={{ duration: 0.7, delay: index * 0.1, ease: EASE_PREMIUM }}
                             className="group flex flex-col items-center text-center"
                         >
-                            <div className="relative w-full aspect-[4/5] rounded-md overflow-hidden mb-10 shadow-soft-md group-hover:shadow-soft-lg transition-shadow duration-500">
+                            <div className="relative w-full aspect-[4/5] rounded-md overflow-hidden mb-10 shadow-soft-md group-hover:shadow-[0_8px_40px_rgba(198,166,93,0.45)] transition-shadow duration-500">
                                 <Image
                                     src={member.img}
                                     alt={member.name}
