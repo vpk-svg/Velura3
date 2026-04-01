@@ -12,20 +12,41 @@ export default function TeamSection() {
 
     const team = [
         {
-            name: t('dr1_name'),
-            role: t('dr1_role'),
-            img: "/images/team/team/team1.jpeg",
+            name: t('member1_name'),
+            role: t('member1_role'),
+            big: t('member1_big'),
+            img: "/images/Newteam/Athina Barza.jpg",
         },
         {
-            name: t('dr2_name'),
-            role: t('dr2_role'),
-            img: "/images/team/team/Team2.jpeg",
+            name: t('member2_name'),
+            role: t('member2_role'),
+            big: t('member2_big'),
+            img: "/images/Newteam/Ava.jpg",
         },
         {
-            name: t('dr3_name'),
-            role: t('dr3_role'),
-            img: "/images/team/team/Team3.jpeg",
-        }
+            name: t('member3_name'),
+            role: t('member3_role'),
+            big: t('member3_big'),
+            img: "/images/Newteam/Elissa.jpg",
+        },
+        {
+            name: t('member4_name'),
+            role: t('member4_role'),
+            big: t('member4_big'),
+            img: "/images/Newteam/Ryan.jpg",
+        },
+        {
+            name: t('member5_name'),
+            role: t('member5_role'),
+            big: t('member5_big'),
+            img: "/images/Newteam/Mevlut.jpg",
+        },
+        {
+            name: t('member6_name'),
+            role: t('member6_role'),
+            big: t('member6_big'),
+            img: "/images/Newteam/Fleur.jpg",
+        },
     ];
 
     return (
@@ -37,7 +58,7 @@ export default function TeamSection() {
                     subtitle={t('desc')}
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 max-w-5xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 max-w-6xl mx-auto">
                     {team.map((member, index) => (
                         <motion.article
                             key={index}
@@ -64,6 +85,11 @@ export default function TeamSection() {
                             <p className="font-sans text-primary text-[11px] tracking-[0.3em] uppercase font-semibold">
                                 {member.role}
                             </p>
+                            {member.big && (
+                                <p className="font-sans text-secondary/50 text-[10px] tracking-[0.15em] mt-2">
+                                    {member.big}
+                                </p>
+                            )}
                         </motion.article>
                     ))}
                 </div>

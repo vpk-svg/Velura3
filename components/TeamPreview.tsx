@@ -11,9 +11,9 @@ export default function TeamPreview() {
   const t = useTranslations('team_preview');
 
   const teamMembers = [
-    { name: t('member1_name'), role: t('member1_role'), image: '/images/team/team/team1.jpeg' },
-    { name: t('member2_name'), role: t('member2_role'), image: '/images/team/team/Team2.jpeg' },
-    { name: t('member3_name'), role: t('member3_role'), image: '/images/team/team/Team3.jpeg' },
+    { name: t('member1_name'), role: t('member1_role'), image: '/images/Newteam/Athina Barza.jpg' },
+    { name: t('member2_name'), role: t('member2_role'), image: '/images/Newteam/Ava.jpg' },
+    { name: t('member3_name'), role: t('member3_role'), image: '/images/Newteam/Elissa.jpg' },
   ];
 
   return (
