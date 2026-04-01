@@ -2,43 +2,63 @@
 
 import { useLocale } from 'next-intl';
 import FullWidthHeaderImage from '@/components/FullWidthHeaderImage';
-import WeightlossHeader from '@/components/WeightlossHeader';
-import TreatmentsDualRow from '@/components/TreatmentsDualRow';
-import LifestyleSection from '@/components/LifestyleSection';
+import WeightlossFeatured from '@/components/WeightlossFeatured';
+import BmiCalculator from '@/components/BmiCalculator';
+import TreatmentsOverview from '@/components/TreatmentsOverview';
+import WhyFabClinic from '@/components/WhyFabClinic';
 import Testimonials from '@/components/Testimonials';
 import HowItWorks from '@/components/HowItWorks';
 import PharmacyDisclaimer from '@/components/PharmacyDisclaimer';
 import FaqHub from '@/components/faq/FaqHub';
 import type { Locale } from '@/lib/clinic-data';
+import TeamPreview from '@/components/TeamPreview';
+import FaqPreview from '@/components/FaqPreview';
+import BottomCta from '@/components/BottomCta';
+import Container from '@/components/ui/Container';
 
 export default function HomePage() {
   const locale = useLocale() as Locale;
 
   return (
     <>
-      {/* 1. Hero Header + BMI Calculator */}
+      {/* 1. Hero */}
       <FullWidthHeaderImage />
 
-      {/* 2. Full-width Weightloss Section */}
-      <WeightlossHeader />
+      {/* 2. Weightloss Featured Products */}
+      <WeightlossFeatured />
 
-      {/* 3. Botox + Fillers (50/50 Desktop) */}
-      <TreatmentsDualRow />
+      {/* 3. BMI Calculator Standalone */}
+      <section className="py-section-y bg-white overflow-hidden">
+        <Container>
+          <div className="max-w-xl mx-auto">
+            <BmiCalculator />
+          </div>
+        </Container>
+      </section>
 
-      {/* 4. Full-width Lifestyle Coaching */}
-      <LifestyleSection />
+      {/* 4. Treatments Overview (Botox, Fillers, Shape, Weightloss) */}
+      <TreatmentsOverview />
 
-      {/* 5. How It Works */}
-      <HowItWorks />
+      {/* 5. Why FAB Clinic */}
+      <WhyFabClinic />
 
-      {/* 6. Google Reviews / Testimonials */}
+      {/* 6. Testimonials */}
       <Testimonials />
 
-      {/* 7. FAQ near footer */}
+      {/* 7. Team Preview */}
+      <TeamPreview />
+
+      {/* 8. FAQ Preview */}
+      <FaqPreview />
+
+      {/* 9. FAQ Hub (full 200-item) */}
       <FaqHub locale={locale} />
 
-      {/* 8. Partner Pharmacy Disclaimer */}
+      {/* 10. Partner Pharmacy Disclaimer */}
       <PharmacyDisclaimer />
+
+      {/* 11. Bottom CTA */}
+      <BottomCta />
     </>
   );
 }

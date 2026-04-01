@@ -31,18 +31,22 @@ export default function Footer() {
 
           {[
             { title: t('treatments'), links: [
+              { href: '/botox', label: t('link_botox') },
               { href: '/fillers', label: t('link_fillers') },
+              { href: '/shape', label: t('link_shape') },
+              { href: '/weightloss', label: t('link_weightloss') },
               { href: '/medicatie', label: t('link_botox') },
               { href: '/trajecten', label: t('link_wellness') },
               { href: '/cursus', label: locale === 'nl' ? 'Cursus' : 'Course' },
             ]},
             { title: t('practice'), links: [
               { href: '/team', label: t('link_specialists') },
-              { href: '/trajecten', label: t('link_methodology') },
+              { href: '/weightloss', label: t('link_methodology') },
               { href: '/contact', label: t('link_locations') },
+              { href: '/faq', label: t('link_faq') },
             ]},
             { title: t('assessments'), links: [
-              { href: '/medicatie', label: t('link_bmi') },
+              { href: '/weightloss', label: t('link_bmi') },
               { href: '/contact', label: t('link_consult') },
               { href: '/contact', label: t('link_booking') },
             ]},
@@ -50,6 +54,7 @@ export default function Footer() {
               { href: '#', label: t('link_privacy') },
               { href: '#', label: t('link_terms') },
               { href: '#', label: t('link_cookies') },
+              { href: '#', label: t('link_wkkgz') },
             ]},
           ].map((col) => (
             <nav key={col.title} aria-label={col.title}>

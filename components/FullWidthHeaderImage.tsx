@@ -4,14 +4,12 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useRef } from 'react';
-import BmiCalculator from './BmiCalculator';
 import { SurveyTrigger } from './survey/SurveyFlow';
 import { EASE_PREMIUM } from '@/lib/motion';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function FullWidthHeaderImage() {
     const t = useTranslations('cinematic');
-    const tElig = useTranslations('eligibility');
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -20,13 +18,6 @@ export default function FullWidthHeaderImage() {
 
     const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
     const scale = useTransform(scrollYProgress, [0, 0.5], [1.15, 1]);
-
-    const eligibilityPoints = [
-        tElig('point1'),
-        tElig('point2'),
-        tElig('point3'),
-        tElig('point4'),
-    ];
 
     return (
         <section
@@ -47,44 +38,10 @@ export default function FullWidthHeaderImage() {
                 <div className="absolute inset-0 bg-secondary/55 mix-blend-multiply" />
             </motion.div>
 
-            {/* 3-Column Content */}
-            <div className="relative z-10 w-full max-w-container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10 px-4 md:px-8 py-24 md:py-32">
-
-                {/* Left Column: Eligibility / "Geschikt voor mij?" */}
+            {/* Centered Hero Content */}
+            <div className="relative z-10 w-full max-w-container mx-auto px-4 md:px-8 py-24 md:py-32">
                 <motion.div
-                    className="flex flex-col order-2 lg:order-1"
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-                >
-                    <div className="bg-white/95 backdrop-blur-md rounded-md p-6 md:p-8 shadow-soft-xl border border-white/20 flex flex-col h-full">
-                        <span className="font-sans text-primary text-[10px] tracking-[0.2em] uppercase mb-3 block font-semibold">
-                            {tElig('label')}
-                        </span>
-                        <h3 className="font-display text-2xl md:text-3xl text-secondary mb-6 italic">
-                            {tElig('title')} <span className="text-primary not-italic">{tElig('title_accent')}</span>
-                        </h3>
-                        <p className="font-sans font-light text-secondary/70 text-sm leading-relaxed mb-6">
-                            {tElig('desc')}
-                        </p>
-                        <ul className="space-y-3 mb-8 flex-grow">
-                            {eligibilityPoints.map((point, idx) => (
-                                <li key={idx} className="flex items-start gap-3">
-                                    <CheckCircle size={18} className="text-primary shrink-0 mt-0.5" />
-                                    <span className="font-sans font-light text-secondary/80 text-sm leading-relaxed">{point}</span>
-                                </li>
-                            ))}
-                        </ul>
-                        <SurveyTrigger className="w-full inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 mt-auto active:scale-[0.97]">
-                            {tElig('cta')} <ArrowRight size={16} className="ml-2" />
-                        </SurveyTrigger>
-                    </div>
-                </motion.div>
-
-                {/* Center Column: Hero Content */}
-                <motion.div
-                    className="flex flex-col justify-center text-center order-1 lg:order-2"
+                    className="flex flex-col justify-center text-center max-w-4xl mx-auto"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -98,21 +55,19 @@ export default function FullWidthHeaderImage() {
                         <span className="italic font-light text-primary tracking-normal">{t('title2')}</span>
                     </h1>
                     <div className="w-20 h-px bg-primary/50 mx-auto mb-8" />
-                    <p className="font-sans font-light text-background-light/80 text-lg md:text-xl leading-relaxed tracking-wide italic max-w-md mx-auto">
-                        &ldquo;{t('desc')}&rdquo;
+                    <p className="font-sans font-light text-background-light/80 text-lg md:text-xl leading-relaxed tracking-wide max-w-2xl mx-auto mb-12">
+                        {t('hero_subtitle')}
                     </p>
-                </motion.div>
-
-                {/* Right Column: BMI Calculator */}
-                <motion.div
-                    className="flex flex-col order-3"
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.2, ease: EASE_PREMIUM }}
-                >
-                    <div className="bg-white/95 backdrop-blur-md rounded-md p-6 md:p-8 shadow-soft-xl border border-white/20 h-full">
-                        <BmiCalculator isEmbed />
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a
+                            href="/weightloss"
+                            className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
+                        >
+                            {t('cta_treatments')} <ArrowRight size={14} />
+                        </a>
+                        <SurveyTrigger className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-white/10 backdrop-blur-sm text-background-light border border-background-light/20 hover:bg-white/20 transition-all duration-300 active:scale-[0.97]">
+                            {t('cta_consult')}
+                        </SurveyTrigger>
                     </div>
                 </motion.div>
             </div>

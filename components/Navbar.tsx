@@ -39,11 +39,12 @@ export default function Navbar() {
 
   const navLinks = [
     { name: t('home'), href: '/' },
-    { name: t('trajecten'), href: '/trajecten' },
-    { name: t('medicatie'), href: '/medicatie' },
+    { name: t('botox'), href: '/botox' },
     { name: t('fillers'), href: '/fillers' },
     { name: locale === 'nl' ? 'Cursus' : 'Course', href: '/cursus' },
     { name: t('team'), href: '/team' },
+    { name: t('shape'), href: '/shape' },
+    { name: t('weightloss'), href: '/weightloss' },
     { name: t('contact'), href: '/contact' },
   ];
 
