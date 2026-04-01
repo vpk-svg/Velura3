@@ -51,15 +51,6 @@ export default function TrajectenPage() {
 
   return (
     <>
-      {/* Redirect Banner */}
-      <div className="fixed top-[80px] left-0 right-0 z-base bg-primary/95 backdrop-blur-sm text-white py-3 text-center">
-        <Container>
-          <a href="/weightloss" className="inline-flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-widest hover:underline">
-            {tNav('redirect_weightloss')} <ArrowRight size={16} />
-          </a>
-        </Container>
-      </div>
-
       {/* Hero */}
       <section className="relative w-full pt-40 pb-section-y overflow-hidden bg-secondary">
         <div className="absolute inset-0 z-0">
