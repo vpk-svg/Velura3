@@ -233,12 +233,19 @@ type Sex = 'male' | 'female' | '';
 type Step =
   | 'welcome' | 'sex' | 'age' | 'height' | 'weight'
   | 'bmi_result' | 'target_weight' | 'previous_attempts'
-  | 'comorbidities' | 'contraindications' | 'contact'
+  | 'comorbidities' | 'contraindications'
+  | 'medication_use' | 'allergies' | 'medical_history'
+  | 'smoking_alcohol' | 'exercise' | 'goal' | 'speed'
+  | 'medication_pref' | 'coaching_pref'
+  | 'contact'
   | 'disqualified' | 'qualified';
 
 interface FormState {
   sex: Sex; age: string; height: string; weight: string; targetWeight: string;
   previousAttempts: string[]; comorbidities: string[]; contraindications: string[];
+  currentMedication: string[]; allergies: string[]; medicalHistory: string[];
+  smoking: string; alcohol: string; exerciseFreq: string;
+  goal: string; speed: string; medicationPref: string; coachingPref: string;
   firstName: string; lastName: string; email: string; phone: string; consent: boolean;
 }
 
@@ -247,11 +254,20 @@ type DqReason = 'age' | 'bmi_low' | 'bmi_27_no_comorbidity' | 'contraindication'
 const PREV_KEYS = ['diets', 'exercise', 'otc_supplements', 'other_rx', 'none'] as const;
 const COMORBID_KEYS = ['diabetes_type2', 'high_bp', 'high_cholesterol', 'sleep_apnea', 'pcos'] as const;
 const CONTRA_KEYS = ['pregnant', 'mtc_men2', 'eating_disorder'] as const;
+const MEDICATION_KEYS = ['blood_pressure', 'diabetes_meds', 'thyroid', 'antidepressants', 'blood_thinners', 'none'] as const;
+const ALLERGY_KEYS = ['penicillin', 'nsaids', 'latex', 'soy', 'none'] as const;
+const MEDICAL_HISTORY_KEYS = ['heart_disease', 'kidney_disease', 'liver_disease', 'pancreatitis', 'gallstones', 'none'] as const;
+const GOAL_KEYS = ['lose_weight', 'more_energy', 'health_improvement', 'confidence', 'doctor_advice'] as const;
+const SPEED_KEYS = ['gradual', 'moderate', 'fast'] as const;
+const MED_PREF_KEYS = ['no_preference', 'weekly_injection', 'daily_injection', 'oral'] as const;
+const COACHING_KEYS = ['full_coaching', 'light_support', 'self_guided'] as const;
 
 const STEP_ORDER: Step[] = [
   'welcome', 'sex', 'age', 'height', 'weight', 'bmi_result',
   'target_weight', 'previous_attempts', 'comorbidities',
-  'contraindications', 'contact',
+  'contraindications', 'medication_use', 'allergies', 'medical_history',
+  'smoking_alcohol', 'exercise', 'goal', 'speed',
+  'medication_pref', 'coaching_pref', 'contact',
 ];
 
 /* Only fade — no x-slide so inputs stay mounted in position */
@@ -295,6 +311,9 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
   const [f, setF] = useState<FormState>({
     sex: '', age: '', height: '', weight: '', targetWeight: '',
     previousAttempts: [], comorbidities: [], contraindications: [],
+    currentMedication: [], allergies: [], medicalHistory: [],
+    smoking: '', alcohol: '', exerciseFreq: '',
+    goal: '', speed: '', medicationPref: '', coachingPref: '',
     firstName: '', lastName: '', email: '', phone: '', consent: false,
   });
 
@@ -312,7 +331,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
     setF((p) => ({ ...p, [k]: v })), []);
 
   const tog = useCallback(
-    (k: 'previousAttempts' | 'comorbidities' | 'contraindications', v: string) =>
+    (k: 'previousAttempts' | 'comorbidities' | 'contraindications' | 'currentMedication' | 'allergies' | 'medicalHistory', v: string) =>
       setF((p) => ({
         ...p,
         [k]: p[k].includes(v) ? p[k].filter((x) => x !== v) : [...p[k], v],
@@ -352,9 +371,18 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       }
       case 'contraindications': {
         if (f.contraindications.length > 0) { dq('contraindication'); return; }
-        go('contact');
+        go('medication_use');
         break;
       }
+      case 'medication_use': go('allergies'); break;
+      case 'allergies': go('medical_history'); break;
+      case 'medical_history': go('smoking_alcohol'); break;
+      case 'smoking_alcohol': go('exercise'); break;
+      case 'exercise': go('goal'); break;
+      case 'goal': go('speed'); break;
+      case 'speed': go('medication_pref'); break;
+      case 'medication_pref': go('coaching_pref'); break;
+      case 'coaching_pref': go('contact'); break;
     }
   }, [step, f, bmi, go, dq]);
 
@@ -394,6 +422,15 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       case 'previous_attempts': return f.previousAttempts.length > 0;
       case 'comorbidities': return true;
       case 'contraindications': return true;
+      case 'medication_use': return f.currentMedication.length > 0;
+      case 'allergies': return f.allergies.length > 0;
+      case 'medical_history': return f.medicalHistory.length > 0;
+      case 'smoking_alcohol': return f.smoking !== '' && f.alcohol !== '';
+      case 'exercise': return f.exerciseFreq !== '';
+      case 'goal': return f.goal !== '';
+      case 'speed': return f.speed !== '';
+      case 'medication_pref': return f.medicationPref !== '';
+      case 'coaching_pref': return f.coachingPref !== '';
       case 'contact':
         return (
           f.firstName.trim().length > 0 &&
@@ -605,6 +642,151 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                 <SurveyCheck key={k} on={f.contraindications.includes(k)} onClick={() => tog('contraindications', k)}>
                   {t(`contra_${k}`)}
                 </SurveyCheck>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 'medication_use':
+        return (
+          <div className="space-y-5">
+            <StepHeader icon={Heart} label={t('med_use_label')} title={t('med_use_title')} />
+            <p className="font-sans font-light text-secondary/40 text-[13px]">{t('med_use_desc')}</p>
+            <div className="space-y-2">
+              {MEDICATION_KEYS.map((k) => (
+                <SurveyCheck key={k} on={f.currentMedication.includes(k)} onClick={() => tog('currentMedication', k)}>
+                  {t(`med_use_${k}`)}
+                </SurveyCheck>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 'allergies':
+        return (
+          <div className="space-y-5">
+            <StepHeader icon={ShieldAlert} label={t('allergy_label')} title={t('allergy_title')} />
+            <p className="font-sans font-light text-secondary/40 text-[13px]">{t('allergy_desc')}</p>
+            <div className="space-y-2">
+              {ALLERGY_KEYS.map((k) => (
+                <SurveyCheck key={k} on={f.allergies.includes(k)} onClick={() => tog('allergies', k)}>
+                  {t(`allergy_${k}`)}
+                </SurveyCheck>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 'medical_history':
+        return (
+          <div className="space-y-5">
+            <StepHeader icon={Heart} label={t('med_hist_label')} title={t('med_hist_title')} />
+            <p className="font-sans font-light text-secondary/40 text-[13px]">{t('med_hist_desc')}</p>
+            <div className="space-y-2">
+              {MEDICAL_HISTORY_KEYS.map((k) => (
+                <SurveyCheck key={k} on={f.medicalHistory.includes(k)} onClick={() => tog('medicalHistory', k)}>
+                  {t(`med_hist_${k}`)}
+                </SurveyCheck>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 'smoking_alcohol':
+        return (
+          <div className="space-y-6">
+            <StepHeader icon={Activity} label={t('lifestyle_label')} title={t('lifestyle_title')} />
+            <div className="space-y-4">
+              <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/40 font-semibold">{t('smoking_question')}</p>
+              <div className="grid grid-cols-3 gap-2">
+                {(['never', 'former', 'current'] as const).map((k) => (
+                  <SurveyOption key={k} selected={f.smoking === k} onClick={() => upd('smoking', k)}>
+                    {t(`smoking_${k}`)}
+                  </SurveyOption>
+                ))}
+              </div>
+            </div>
+            <div className="space-y-4">
+              <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/40 font-semibold">{t('alcohol_question')}</p>
+              <div className="grid grid-cols-3 gap-2">
+                {(['none', 'moderate', 'regular'] as const).map((k) => (
+                  <SurveyOption key={k} selected={f.alcohol === k} onClick={() => upd('alcohol', k)}>
+                    {t(`alcohol_${k}`)}
+                  </SurveyOption>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'exercise':
+        return (
+          <div className="space-y-5">
+            <StepHeader icon={Activity} label={t('exercise_label')} title={t('exercise_title')} />
+            <div className="space-y-2">
+              {(['sedentary', 'light', 'moderate', 'active'] as const).map((k) => (
+                <SurveyOption key={k} selected={f.exerciseFreq === k} onClick={() => upd('exerciseFreq', k)}>
+                  {t(`exercise_${k}`)}
+                </SurveyOption>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 'goal':
+        return (
+          <div className="space-y-5">
+            <StepHeader icon={Target} label={t('goal_label')} title={t('goal_title')} />
+            <div className="space-y-2">
+              {GOAL_KEYS.map((k) => (
+                <SurveyOption key={k} selected={f.goal === k} onClick={() => upd('goal', k)}>
+                  {t(`goal_${k}`)}
+                </SurveyOption>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 'speed':
+        return (
+          <div className="space-y-5">
+            <StepHeader icon={Target} label={t('speed_label')} title={t('speed_title')} />
+            <p className="font-sans font-light text-secondary/40 text-[13px]">{t('speed_desc')}</p>
+            <div className="space-y-2">
+              {SPEED_KEYS.map((k) => (
+                <SurveyOption key={k} selected={f.speed === k} onClick={() => upd('speed', k)}>
+                  {t(`speed_${k}`)}
+                </SurveyOption>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 'medication_pref':
+        return (
+          <div className="space-y-5">
+            <StepHeader icon={Heart} label={t('med_pref_label')} title={t('med_pref_title')} />
+            <p className="font-sans font-light text-secondary/40 text-[13px]">{t('med_pref_desc')}</p>
+            <div className="space-y-2">
+              {MED_PREF_KEYS.map((k) => (
+                <SurveyOption key={k} selected={f.medicationPref === k} onClick={() => upd('medicationPref', k)}>
+                  {t(`med_pref_${k}`)}
+                </SurveyOption>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 'coaching_pref':
+        return (
+          <div className="space-y-5">
+            <StepHeader icon={HeartPulse} label={t('coaching_label')} title={t('coaching_title')} />
+            <p className="font-sans font-light text-secondary/40 text-[13px]">{t('coaching_desc')}</p>
+            <div className="space-y-2">
+              {COACHING_KEYS.map((k) => (
+                <SurveyOption key={k} selected={f.coachingPref === k} onClick={() => upd('coachingPref', k)}>
+                  {t(`coaching_${k}`)}
+                </SurveyOption>
               ))}
             </div>
           </div>

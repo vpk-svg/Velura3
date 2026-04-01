@@ -11,8 +11,10 @@ import CheckoutButton from '@/components/CheckoutButton';
 import { SurveyTrigger } from '@/components/survey/SurveyFlow';
 import { Star } from 'lucide-react';
 import { EASE_PREMIUM } from '@/lib/motion';
+import { ArrowRight } from 'lucide-react';
 
 export default function MedicatiePage() {
+  const tNav = useTranslations('nav');
   const t = useTranslations('medicatie_page');
   const ts = useTranslations('shop');
 
@@ -109,6 +111,15 @@ export default function MedicatiePage() {
 
   return (
     <>
+      {/* Redirect Banner */}
+      <div className="fixed top-[80px] left-0 right-0 z-base bg-primary/95 backdrop-blur-sm text-white py-3 text-center">
+        <Container>
+          <a href="/weightloss" className="inline-flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-widest hover:underline">
+            {tNav('redirect_weightloss')} <ArrowRight size={16} />
+          </a>
+        </Container>
+      </div>
+
       {/* Hero */}
       <section className="relative w-full pt-40 pb-section-y overflow-hidden bg-secondary">
         <div className="absolute inset-0 z-0">

@@ -1,18 +1,66 @@
 'use client';
 
+import { useState, useCallback } from 'react';
 import { motion, type Variants } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { ShieldCheck, Sparkles, SmilePlus, CircleDot, Diamond, Eye, Gem, FileSearch, ClipboardCheck, Package } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
+import ZoneSelector from '@/components/treatments/ZoneSelector';
+import TreatmentCart from '@/components/treatments/TreatmentCart';
+import DetailsForm, { type DetailsFormData } from '@/components/treatments/DetailsForm';
 import { SurveyTrigger } from '@/components/survey/SurveyFlow';
+import { FILLERS_ZONES } from '@/lib/data/fillers-zones';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function FillersPage() {
   const t = useTranslations('fillers_page');
+  const [selectedZones, setSelectedZones] = useState<string[]>([]);
+  const [step, setStep] = useState<'select' | 'details' | 'done'>('select');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const zones = [
+  const toggleZone = useCallback((zoneId: string) => {
+    setSelectedZones((prev) =>
+      prev.includes(zoneId) ? prev.filter((z) => z !== zoneId) : [...prev, zoneId]
+    );
+  }, []);
+
+  const removeZone = useCallback((zoneId: string) => {
+    setSelectedZones((prev) => prev.filter((z) => z !== zoneId));
+  }, []);
+
+  const handleDetailsSubmit = useCallback(async (data: DetailsFormData) => {
+    setIsLoading(true);
+    try {
+      const selectedItems = FILLERS_ZONES.filter((z) => selectedZones.includes(z.id));
+
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          mode: 'payment',
+          treatmentType: 'fillers',
+          zones: selectedItems.map((z) => ({ id: z.id, name: t(z.nameKey), priceCents: z.priceCents })),
+          customerDetails: data,
+          locale: 'nl',
+        }),
+      });
+
+      const result = await response.json();
+      if (result.url) {
+        window.location.href = result.url;
+      } else {
+        setStep('done');
+      }
+    } catch {
+      setStep('done');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [selectedZones, t]);
+
+  const infoZones = [
     { title: t('zone1_title'), desc: t('zone1_desc'), icon: <SmilePlus className="w-6 h-6" strokeWidth={1.5} /> },
     { title: t('zone2_title'), desc: t('zone2_desc'), icon: <Diamond className="w-6 h-6" strokeWidth={1.5} /> },
     { title: t('zone3_title'), desc: t('zone3_desc'), icon: <CircleDot className="w-6 h-6" strokeWidth={1.5} /> },
@@ -163,7 +211,7 @@ export default function FillersPage() {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
           >
-            {zones.map((zone) => (
+            {infoZones.map((zone) => (
               <motion.div
                 key={zone.title}
                 variants={itemVariants}
@@ -184,6 +232,79 @@ export default function FillersPage() {
           </motion.div>
         </Container>
       </section>
+
+      {/* ── Interactive Zone Selector + Cart ── */}
+      <section id="book" className="py-section-y bg-background-light overflow-hidden">
+        <Container>
+          <SectionHeader
+            label={t('selector_label')}
+            title={<>{t('selector_title')} <span className="italic font-light text-primary">{t('selector_title_accent')}</span></>}
+            subtitle={t('selector_subtitle')}
+          />
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div className="lg:col-span-2">
+              <ZoneSelector
+                zones={FILLERS_ZONES}
+                selectedZones={selectedZones}
+                onToggle={toggleZone}
+                namespace="fillers_page"
+              />
+            </div>
+
+            <div className="space-y-6">
+              <TreatmentCart
+                zones={FILLERS_ZONES}
+                selectedZones={selectedZones}
+                onRemove={removeZone}
+                namespace="fillers_page"
+              />
+
+              {selectedZones.length > 0 && step === 'select' && (
+                <motion.button
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  onClick={() => setStep('details')}
+                  className="w-full inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
+                >
+                  {t('proceed_to_details')}
+                </motion.button>
+              )}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Details Form */}
+      {step === 'details' && (
+        <section className="py-section-y bg-white overflow-hidden">
+          <Container>
+            <div className="max-w-xl mx-auto">
+              <SectionHeader
+                label={t('details_label')}
+                title={<>{t('details_title')} <span className="italic font-light text-primary">{t('details_title_accent')}</span></>}
+              />
+              <DetailsForm
+                onSubmit={handleDetailsSubmit}
+                isLoading={isLoading}
+                namespace="fillers_page"
+              />
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {/* Confirmation */}
+      {step === 'done' && (
+        <section className="py-section-y bg-mint overflow-hidden">
+          <Container>
+            <div className="text-center max-w-xl mx-auto">
+              <h2 className="font-display text-display-md text-secondary mb-4">{t('done_title')}</h2>
+              <p className="font-sans text-secondary/60 leading-relaxed">{t('done_desc')}</p>
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* Safety & Quality */}
       <section className="py-section-y bg-background-light overflow-hidden">

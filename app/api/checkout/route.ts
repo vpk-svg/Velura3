@@ -9,12 +9,77 @@ function isValidLocale(value: string): value is Locale {
   return (VALID_LOCALES as readonly string[]).includes(value);
 }
 
+interface ZoneLineItem {
+  id: string;
+  name: string;
+  priceCents: number;
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { productId, locale } = body as { productId?: string; locale?: string };
+    const { mode, locale } = body as { mode?: string; locale?: string };
 
-    if (!productId || !locale) {
+    if (!locale || !isValidLocale(locale)) {
+      return NextResponse.json({ error: 'Invalid or missing locale' }, { status: 400 });
+    }
+
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+
+    // ── Payment mode: one-time treatment booking (Botox / Fillers) ──
+    if (mode === 'payment') {
+      const { treatmentType, zones, customerDetails } = body as {
+        treatmentType?: string;
+        zones?: ZoneLineItem[];
+        customerDetails?: Record<string, string>;
+      };
+
+      if (!treatmentType || !zones || zones.length === 0) {
+        return NextResponse.json({ error: 'Missing treatment data' }, { status: 400 });
+      }
+
+      // Validate zone prices are positive integers
+      for (const zone of zones) {
+        if (!Number.isInteger(zone.priceCents) || zone.priceCents <= 0) {
+          return NextResponse.json({ error: 'Invalid zone price' }, { status: 400 });
+        }
+      }
+
+      const lineItems = zones.map((zone) => ({
+        price_data: {
+          currency: 'eur' as const,
+          product_data: { name: `${treatmentType} — ${zone.name}` },
+          unit_amount: zone.priceCents,
+        },
+        quantity: 1,
+      }));
+
+      const session = await stripe.checkout.sessions.create({
+        mode: 'payment',
+        line_items: lineItems,
+        success_url: `${appUrl}/${locale}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${appUrl}/${locale}/checkout/cancelled`,
+        locale,
+        metadata: {
+          treatmentType,
+          zoneIds: zones.map((z) => z.id).join(','),
+          customerEmail: customerDetails?.email || '',
+          customerName: `${customerDetails?.firstName || ''} ${customerDetails?.lastName || ''}`.trim(),
+          veluraSource: 'treatment-booking',
+        },
+      });
+
+      if (!session.url) {
+        return NextResponse.json({ error: 'Failed to create Stripe session URL' }, { status: 500 });
+      }
+
+      return NextResponse.json({ sessionId: session.id, url: session.url });
+    }
+
+    // ── Subscription mode: monthly medication (default) ──
+    const { productId } = body as { productId?: string };
+
+    if (!productId) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
@@ -22,12 +87,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Invalid product ID' }, { status: 400 });
     }
 
-    if (!isValidLocale(locale)) {
-      return NextResponse.json({ error: 'Invalid locale' }, { status: 400 });
-    }
-
     const product = getProduct(productId)!;
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
     const session = await stripe.checkout.sessions.create({
       mode: 'subscription',

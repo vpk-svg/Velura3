@@ -7,6 +7,10 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
 import ScrollProgress from '@/components/ScrollProgress';
+import AiChatbot from '@/components/AiChatbot';
+import SocialProofPopup from '@/components/SocialProofPopup';
+import StickyMobileActions from '@/components/StickyMobileActions';
+import CookieBanner from '@/components/CookieBanner';
 import { SurveyProvider } from '@/components/survey/SurveyFlow';
 import { routing } from '@/lib/i18n';
 
@@ -57,6 +61,10 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
               {children}
             </main>
             <Footer />
+            <AiChatbot />
+            <SocialProofPopup />
+            <StickyMobileActions />
+            <CookieBanner />
           </SurveyProvider>
         </NextIntlClientProvider>
       </body>
