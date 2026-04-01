@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence, type Variants } from 'motion/react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Brain, Clock, Activity, ShieldCheck, ChevronDown } from 'lucide-react';
 import Container from '@/components/ui/Container';
@@ -11,10 +11,15 @@ import CheckoutButton from '@/components/CheckoutButton';
 import { SurveyTrigger } from '@/components/survey/SurveyFlow';
 import { Star } from 'lucide-react';
 import { EASE_PREMIUM } from '@/lib/motion';
+import WeightLossQuestionnaire from '@/components/weightloss/WeightLossQuestionnaire';
+import { getQuestionnaireSteps, getWeightLossOptions, type Locale } from '@/lib/clinic-data';
 
 export default function MedicatiePage() {
   const t = useTranslations('medicatie_page');
   const ts = useTranslations('shop');
+  const locale = useLocale() as Locale;
+  const weightOptions = getWeightLossOptions(locale);
+  const questionnaireSteps = getQuestionnaireSteps(locale);
 
   const howItems = [
     { title: t('how_item1_title'), desc: t('how_item1_desc'), icon: <Brain className="w-6 h-6" strokeWidth={1.5} /> },
@@ -157,6 +162,42 @@ export default function MedicatiePage() {
                 {t('hero_cta')}
               </a>
             </motion.div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-section-y bg-background-light overflow-hidden">
+        <Container>
+          <SectionHeader
+            label={locale === 'nl' ? 'MEDISCH GEWICHTSVERLIES' : 'MEDICAL WEIGHT LOSS'}
+            title={locale === 'nl' ? 'Ozempic & Mounjaro opties' : 'Ozempic & Mounjaro options'}
+            subtitle={
+              locale === 'nl'
+                ? 'Behandeling met artsgestuurde intake, vaste zaterdagmomenten en heldere prijscommunicatie.'
+                : 'Treatment with physician-led intake, fixed Saturday slots, and transparent pricing.'
+            }
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            {weightOptions.map((option) => (
+              <article key={option.id} className="rounded-md border border-primary/15 bg-white p-6 shadow-soft-sm">
+                <p className="font-sans text-xs uppercase tracking-[0.2em] text-primary mb-2">GLP-1</p>
+                <h3 className="font-display text-3xl italic text-secondary mb-2">{option.name}</h3>
+                <p className="font-sans text-sm text-secondary/70 mb-2">{option.subtitle}</p>
+                <p className="font-display text-2xl text-primary mb-3">{option.pricingText}</p>
+                <p className="font-sans text-secondary/75 mb-5">{option.description}</p>
+                <a
+                  href="#questionnaire"
+                  className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-6 py-3 text-xs tracking-[0.2em] bg-primary text-white"
+                >
+                  {locale === 'nl' ? 'Start intake' : 'Start intake'}
+                </a>
+              </article>
+            ))}
+          </div>
+
+          <div id="questionnaire" className="max-w-4xl">
+            <WeightLossQuestionnaire locale={locale} steps={questionnaireSteps} />
           </div>
         </Container>
       </section>

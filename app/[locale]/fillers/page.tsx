@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, type Variants } from 'motion/react';
+import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { ShieldCheck, Sparkles, SmilePlus, CircleDot, Diamond, Eye, Gem, FileSearch, ClipboardCheck, Package } from 'lucide-react';
@@ -8,9 +9,13 @@ import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { SurveyTrigger } from '@/components/survey/SurveyFlow';
 import { EASE_PREMIUM } from '@/lib/motion';
+import TreatmentCatalog from '@/components/treatments/TreatmentCatalog';
+import { getFillerTreatments, type Locale } from '@/lib/clinic-data';
 
 export default function FillersPage() {
   const t = useTranslations('fillers_page');
+  const locale = useLocale() as Locale;
+  const fillerTreatments = getFillerTreatments(locale);
 
   const zones = [
     { title: t('zone1_title'), desc: t('zone1_desc'), icon: <SmilePlus className="w-6 h-6" strokeWidth={1.5} /> },
@@ -306,6 +311,18 @@ export default function FillersPage() {
           </motion.div>
         </Container>
       </section>
+
+      <TreatmentCatalog
+        locale={locale}
+        treatments={fillerTreatments}
+        label={locale === 'nl' ? 'FILLERS CATALOGUS' : 'FILLERS CATALOG'}
+        title={locale === 'nl' ? 'Volledige filler behandelkaart' : 'Complete filler treatment catalog'}
+        subtitle={
+          locale === 'nl'
+            ? 'Inclusief bilfiller-item, klik voor behandelinfo en directe zaterdag-boeking.'
+            : 'Includes butt filler item, click for treatment details and direct Saturday booking.'
+        }
+      />
 
       {/* CTA */}
       <section className="py-section-y bg-secondary overflow-hidden">

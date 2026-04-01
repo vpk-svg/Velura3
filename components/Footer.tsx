@@ -1,10 +1,12 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import Container from './ui/Container';
 
 export default function Footer() {
   const t = useTranslations('footer');
+  const locale = useLocale();
 
   const linkClass = 'hover:text-primary focus-visible:text-primary transition-colors duration-200 block';
 
@@ -32,6 +34,7 @@ export default function Footer() {
               { href: '/fillers', label: t('link_fillers') },
               { href: '/medicatie', label: t('link_botox') },
               { href: '/trajecten', label: t('link_wellness') },
+              { href: '/cursus', label: locale === 'nl' ? 'Cursus' : 'Course' },
             ]},
             { title: t('practice'), links: [
               { href: '/team', label: t('link_specialists') },

@@ -1,17 +1,21 @@
 'use client';
 
 import { motion, type Variants } from 'motion/react';
+import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { ClipboardCheck, Stethoscope, Pill, HeartPulse, Apple, Dumbbell, Brain, ShieldCheck, UserCheck, MessageCircle, BadgeCheck } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
-import Button from '@/components/ui/Button';
 import { SurveyTrigger } from '@/components/survey/SurveyFlow';
 import { EASE_PREMIUM } from '@/lib/motion';
+import TreatmentCatalog from '@/components/treatments/TreatmentCatalog';
+import { getBotoxTreatments, type Locale } from '@/lib/clinic-data';
 
 export default function TrajectenPage() {
   const t = useTranslations('trajecten_page');
+  const locale = useLocale() as Locale;
+  const botoxTreatments = getBotoxTreatments(locale);
 
   const phases = [
     { num: '1', title: t('phase1_title'), desc: t('phase1_desc'), icon: <ClipboardCheck className="w-8 h-8" strokeWidth={1.5} /> },
@@ -238,6 +242,18 @@ export default function TrajectenPage() {
           </motion.div>
         </Container>
       </section>
+
+      <TreatmentCatalog
+        locale={locale}
+        treatments={botoxTreatments}
+        label={locale === 'nl' ? 'BOTOX CATALOGUS' : 'BOTOX CATALOG'}
+        title={locale === 'nl' ? 'Complete Botox behandelkaart' : 'Complete Botox treatment catalog'}
+        subtitle={
+          locale === 'nl'
+            ? '18 behandelingen met premium intake, klik voor detail en directe zaterdag-slot selectie.'
+            : '18 treatments with premium intake, click for details and instant Saturday slot selection.'
+        }
+      />
 
       {/* CTA */}
       <section className="py-section-y bg-secondary overflow-hidden">

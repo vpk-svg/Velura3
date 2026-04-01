@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'motion/react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Menu, X } from 'lucide-react';
 import LanguageToggle from './LanguageToggle';
 import Container from './ui/Container';
@@ -11,6 +11,7 @@ import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function Navbar() {
   const t = useTranslations('nav');
+  const locale = useLocale();
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -41,6 +42,7 @@ export default function Navbar() {
     { name: t('trajecten'), href: '/trajecten' },
     { name: t('medicatie'), href: '/medicatie' },
     { name: t('fillers'), href: '/fillers' },
+    { name: locale === 'nl' ? 'Cursus' : 'Course', href: '/cursus' },
     { name: t('team'), href: '/team' },
     { name: t('contact'), href: '/contact' },
   ];
