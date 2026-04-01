@@ -41,6 +41,7 @@ export default function Navbar() {
     { name: t('home'), href: '/' },
     { name: t('team'), href: '/team' },
     { name: t('weightloss'), href: '/weightloss' },
+    { name: locale === 'nl' ? 'Medicatie' : 'Medicine', href: '/medicatie' },
     { name: t('botox'), href: '/botox' },
     { name: t('fillers'), href: '/fillers' },
     { name: 'BBL', href: '/shape' },
