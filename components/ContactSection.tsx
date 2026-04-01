@@ -14,7 +14,7 @@ export default function ContactSection() {
     const contactItems = [
         { icon: <Mail className="text-primary" />, title: t('email'), desc: 'info@fabclinic.nl', href: 'mailto:info@fabclinic.nl' },
         { icon: <MessageCircle className="text-primary" />, title: t('whatsapp'), desc: 'WhatsApp', href: 'https://wa.me/31600000000' },
-        { icon: <MapPin className="text-primary" />, title: t('visit'), desc: t('address'), href: 'https://maps.google.com/?q=Waldorpstraat+215+Den+Haag' },
+        { icon: <MapPin className="text-primary" />, title: t('visit'), desc: t('address'), href: 'https://maps.google.com/?q=Nieuwe+Stationsstraat+20+Ede' },
         { icon: <Clock className="text-primary" />, title: t('hours'), desc: t('hours_desc'), href: '#' }
     ];
 

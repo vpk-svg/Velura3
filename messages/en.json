@@ -257,7 +257,7 @@
     "visit": "Visit Us",
     "hours": "Opening Hours",
     "hours_desc": "Mon – Fri  9:00 – 17:00",
-    "address": "Waldorpstraat 215, 2521 CJ The Hague",
+    "address": "Nieuwe Stationsstraat 20, 6711 AG Ede",
     "cta": "Schedule a Free Consultation"
   },
   "newsletter": {
@@ -269,12 +269,12 @@
   },
   "footer": {
     "disclaimer": "FAB CLINIC · Licensed clinic. All treatments under medical supervision.",
-    "copyright": "© 2025 FAB CLINIC · All rights reserved",
+    "copyright": "© 2026 FAB CLINIC · All rights reserved",
     "treatments": "Treatments",
     "practice": "Practice",
     "assessments": "Tools",
     "legal": "Legal",
-    "about_text": "Your clinic for medical aesthetics in The Hague. Personal care, professional results.",
+    "about_text": "Your clinic for medical aesthetics in Ede. Personal care, professional results.",
     "link_botox": "Botox",
     "link_fillers": "Fillers",
     "link_wellness": "Lifestyle & Wellness",
@@ -726,8 +726,8 @@
     "botox_desc": "Subtle and natural. Micro-dosing for a fresh and relaxed result.",
     "fillers_title": "Fillers",
     "fillers_desc": "Premium hyaluronic acid fillers for soft volume restoration with a natural result.",
-    "shape_title": "Shape",
-    "shape_desc": "Body contouring, eyelid correction and more. Define your silhouette.",
+    "bbl_title": "BBL",
+    "bbl_desc": "Body contouring, eyelid correction and more. Define your silhouette.",
     "weightloss_title": "Weightloss",
     "weightloss_desc": "Medically guided weight loss with GLP-1 medication. Proven and safe.",
     "view_cta": "View treatment"

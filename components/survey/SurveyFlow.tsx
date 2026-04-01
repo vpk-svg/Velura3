@@ -75,7 +75,7 @@ function SurveyOption({ selected, onClick, children }: {
       onClick={onClick}
       whileTap={{ scale: 0.975 }}
       transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-      className={`group w-full text-left px-5 py-4.5 rounded-lg border-[1.5px] transition-all duration-300 ease-premium font-sans text-sm relative overflow-hidden ${
+      className={`group w-full text-left px-6 py-5 rounded-lg border-[1.5px] transition-all duration-300 ease-premium font-sans text-base relative overflow-hidden ${
         selected
           ? 'border-primary/60 bg-gradient-to-br from-primary/[0.06] to-primary/[0.02] text-secondary shadow-option-selected'
           : 'border-secondary/[0.07] bg-surface-elevated text-secondary/60 hover:border-secondary/15 hover:bg-white shadow-input-rest'
@@ -84,7 +84,7 @@ function SurveyOption({ selected, onClick, children }: {
       <span className="flex items-center justify-between relative z-10">
         <span className="font-medium">{children}</span>
         {/* Custom radio indicator */}
-        <span className={`w-5 h-5 rounded-full border-[1.5px] flex items-center justify-center shrink-0 transition-all duration-300 ${
+        <span className={`w-6 h-6 rounded-full border-[1.5px] flex items-center justify-center shrink-0 transition-all duration-300 ${
           selected
             ? 'border-primary bg-primary'
             : 'border-secondary/15 group-hover:border-secondary/25'
@@ -114,7 +114,7 @@ function SurveyCheck({ on, onClick, children }: {
       onClick={onClick}
       whileTap={{ scale: 0.975 }}
       transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-      className={`group w-full text-left px-4 py-4 rounded-lg border-[1.5px] transition-all duration-300 ease-premium font-sans text-sm ${
+      className={`group w-full text-left px-5 py-5 rounded-lg border-[1.5px] transition-all duration-300 ease-premium font-sans text-base ${
         on
           ? 'border-primary/60 bg-gradient-to-br from-primary/[0.06] to-primary/[0.02] text-secondary shadow-option-selected'
           : 'border-secondary/[0.07] bg-surface-elevated text-secondary/60 hover:border-secondary/15 shadow-input-rest'
@@ -122,7 +122,7 @@ function SurveyCheck({ on, onClick, children }: {
     >
       <span className="flex items-center gap-3">
         {/* Custom checkbox */}
-        <span className={`w-[18px] h-[18px] rounded-[5px] shrink-0 border-[1.5px] flex items-center justify-center transition-all duration-300 ${
+        <span className={`w-6 h-6 rounded-[5px] shrink-0 border-[1.5px] flex items-center justify-center transition-all duration-300 ${
           on ? 'border-primary bg-primary' : 'border-secondary/15 group-hover:border-secondary/25'
         }`}>
           {on && (
@@ -160,7 +160,7 @@ function SurveyInput({ icon: Ic, label, value, onChange, inputMode, placeholder,
 
   return (
     <div className="space-y-2">
-      <label className="flex items-center gap-2 text-[10px] font-sans font-semibold uppercase tracking-[0.2em] text-secondary/40">
+      <label className="flex items-center gap-2 text-xs font-sans font-semibold uppercase tracking-[0.2em] text-secondary/60">
         <Ic size={12} className={`transition-colors duration-300 ${focused ? 'text-primary' : 'text-secondary/30'}`} />
         {label}
       </label>
@@ -175,9 +175,9 @@ function SurveyInput({ icon: Ic, label, value, onChange, inputMode, placeholder,
           onBlur={() => setFocused(false)}
           placeholder={placeholder}
           autoComplete="off"
-          className="input-glow w-full px-4 py-4 rounded-lg border-[1.5px] border-secondary/[0.07] bg-surface-elevated font-sans
-            text-secondary text-base shadow-input-rest outline-none cursor-text
-            placeholder:text-secondary/20"
+          className="input-glow w-full px-5 py-5 rounded-lg border-[1.5px] border-secondary/[0.12] bg-surface-elevated font-sans
+            text-secondary text-lg shadow-input-rest outline-none cursor-text
+            placeholder:text-secondary/30"
         />
         {unit && (
           <span className={`absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-sans uppercase tracking-[0.15em] pointer-events-none transition-colors duration-300 ${
@@ -198,14 +198,14 @@ function StepHeader({ icon: Ic, label, title, center }: {
   return (
     <div className={center ? 'text-center' : ''}>
       <div className={`flex items-center gap-2 mb-3 ${center ? 'justify-center' : ''}`}>
-        <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
-          <Ic size={12} className="text-primary" />
+        <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+          <Ic size={16} className="text-primary" />
         </span>
-        <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-secondary/35 font-semibold">
+        <span className="font-sans text-xs tracking-[0.2em] uppercase text-secondary/50 font-semibold">
           {label}
         </span>
       </div>
-      <h2 className="font-display text-[clamp(1.5rem,3vw,1.875rem)] text-secondary italic leading-tight">{title}</h2>
+      <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.25rem)] text-secondary italic leading-tight">{title}</h2>
     </div>
   );
 }

@@ -26,6 +26,18 @@ const config: Config = {
         "rose-soft":        "#FDF2F2",
         "rose-dark":        "#C4494B",
         "amber-soft":       "#FEF9EC",
+        "champagne":        "#F5E6D0",
+        "champagne-dark":   "#D4A574",
+        "burgundy":         "#722F37",
+        "burgundy-light":   "#8B3A42",
+        "sage":             "#B2C5A8",
+        "sage-dark":        "#7A9A6D",
+        "taupe":            "#B8A99A",
+        "taupe-dark":       "#8C7B6B",
+        "pearl":            "#F8F4ED",
+        "charcoal":         "#2C2C2C",
+        "bronze":           "#CD7F32",
+        "bronze-light":     "#DAA06D",
       },
 
       /* ── Typography — 2 typefaces only ─────────────── */

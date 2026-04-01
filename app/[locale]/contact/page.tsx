@@ -1,6 +1,7 @@
 'use client';
 
 import { useLocale } from 'next-intl';
+import { Instagram, Facebook, Phone, Mail, MapPin, Clock } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import NewsletterSection from '@/components/NewsletterSection';
@@ -19,6 +20,7 @@ export default function ContactPage() {
     <>
       <div className="pt-32" />
 
+      {/* ═══════ TOP: Intake Form + Practitioners side-by-side ═══════ */}
       <section className="py-section-y bg-background-light">
         <Container>
           <SectionHeader
@@ -31,62 +33,9 @@ export default function ContactPage() {
             }
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-            <div className="rounded-md border border-primary/15 bg-white p-8 shadow-soft-sm">
-              <h2 className="font-display text-3xl italic text-secondary mb-6">{contact.clinicName}</h2>
-              <dl className="space-y-4 font-sans text-secondary/75">
-                <div>
-                  <dt className="text-xs uppercase tracking-[0.2em] text-primary mb-1">{locale === 'nl' ? 'Adres' : 'Address'}</dt>
-                  <dd>{contact.address}</dd>
-                </div>
-                <div>
-                  <dt className="text-xs uppercase tracking-[0.2em] text-primary mb-1">Email</dt>
-                  <dd>
-                    <a href={`mailto:${contact.email}`} className="hover:text-primary transition-colors">
-                      {contact.email}
-                    </a>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-xs uppercase tracking-[0.2em] text-primary mb-1">{locale === 'nl' ? 'Telefoon' : 'Phone'}</dt>
-                  <dd>{contact.phone}</dd>
-                </div>
-                <div>
-                  <dt className="text-xs uppercase tracking-[0.2em] text-primary mb-1">{locale === 'nl' ? 'Openingstijd' : 'Opening hours'}</dt>
-                  <dd>{contact.openingHours}</dd>
-                </div>
-              </dl>
-
-              <div className="mt-6 rounded-2xl border border-primary/30 bg-primary/10 p-5">
-                <p className="font-sans text-xs uppercase tracking-[0.2em] text-primary mb-2">
-                  {locale === 'nl' ? 'Premium callout' : 'Premium callout'}
-                </p>
-                <p className="font-display italic text-2xl text-secondary mb-2">
-                  {locale === 'nl'
-                    ? 'Snelle intake, artsgericht behandelplan, 14 dagen controle inbegrepen.'
-                    : 'Fast intake, physician-led treatment plan, 14-day follow-up included.'}
-                </p>
-                <p className="font-sans text-secondary/70 text-sm">
-                  {locale === 'nl'
-                    ? 'Voor injectables en medisch gewichtsverlies werken wij uitsluitend met afspraak op zaterdag tussen 10:00 en 18:00.'
-                    : 'For injectables and medical weight loss, appointments are available Saturdays between 10:00 and 18:00 only.'}
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-md border border-primary/15 overflow-hidden bg-white shadow-soft-sm min-h-[420px]">
-              <iframe
-                title="FabClinic EDE map"
-                src={contact.mapsEmbedUrl}
-                className="w-full h-full min-h-[420px]"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <form className="rounded-md border border-primary/15 bg-white p-8 shadow-soft-sm space-y-4">
+            {/* Intake Form */}
+            <form className="rounded-2xl border border-primary/15 bg-white p-8 shadow-soft-sm space-y-4">
               <h3 className="font-display text-3xl italic text-secondary mb-2">
                 {locale === 'nl' ? 'Intakeformulier' : 'Intake form'}
               </h3>
@@ -148,7 +97,8 @@ export default function ContactPage() {
               </button>
             </form>
 
-            <div className="rounded-md border border-primary/15 bg-white p-8 shadow-soft-sm">
+            {/* Practitioners */}
+            <div className="rounded-2xl border border-primary/15 bg-white p-8 shadow-soft-sm">
               <h3 className="font-display text-3xl italic text-secondary mb-5">
                 {locale === 'nl' ? 'Behandelaren' : 'Practitioners'}
               </h3>
@@ -166,6 +116,94 @@ export default function ContactPage() {
                   </article>
                 ))}
               </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ═══════ BOTTOM: FabClinic EDE – Clinic Info + Map ═══════ */}
+      <section className="py-section-y bg-white">
+        <Container>
+          <SectionHeader
+            label="FABCLINIC EDE"
+            title={locale === 'nl' ? 'Bezoek onze kliniek' : 'Visit our clinic'}
+            subtitle={
+              locale === 'nl'
+                ? 'Centraal gelegen in Ede, op loopafstand van het station.'
+                : 'Centrally located in Ede, walking distance from the train station.'
+            }
+          />
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="rounded-2xl border border-primary/15 bg-background-light p-8 shadow-soft-sm">
+              <h2 className="font-display text-3xl italic text-secondary mb-6">{contact.clinicName}</h2>
+              <dl className="space-y-5 font-sans text-secondary/75">
+                <div className="flex items-start gap-3">
+                  <MapPin size={18} className="text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.2em] text-primary mb-1">{locale === 'nl' ? 'Adres' : 'Address'}</dt>
+                    <dd>{contact.address}</dd>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Mail size={18} className="text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.2em] text-primary mb-1">Email</dt>
+                    <dd>
+                      <a href={`mailto:${contact.email}`} className="hover:text-primary transition-colors">
+                        {contact.email}
+                      </a>
+                    </dd>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Phone size={18} className="text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.2em] text-primary mb-1">{locale === 'nl' ? 'Telefoon' : 'Phone'}</dt>
+                    <dd>{contact.phone}</dd>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Clock size={18} className="text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.2em] text-primary mb-1">{locale === 'nl' ? 'Openingstijd' : 'Opening hours'}</dt>
+                    <dd>{contact.openingHours}</dd>
+                  </div>
+                </div>
+              </dl>
+
+              {/* Social media icons */}
+              <div className="flex gap-3 mt-6">
+                <a href="https://www.instagram.com/fabclinic.nl" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-secondary/50 hover:text-primary hover:border-primary transition-all duration-300">
+                  <Instagram size={18} />
+                </a>
+                <a href="https://www.facebook.com/fabclinic" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-secondary/50 hover:text-primary hover:border-primary transition-all duration-300">
+                  <Facebook size={18} />
+                </a>
+              </div>
+
+              <div className="mt-6 rounded-2xl border border-primary/30 bg-primary/10 p-5">
+                <p className="font-display italic text-2xl text-secondary mb-2">
+                  {locale === 'nl'
+                    ? 'Snelle intake, artsgericht behandelplan, 14 dagen controle inbegrepen.'
+                    : 'Fast intake, physician-led treatment plan, 14-day follow-up included.'}
+                </p>
+                <p className="font-sans text-secondary/70 text-sm">
+                  {locale === 'nl'
+                    ? 'Voor injectables en medisch gewichtsverlies werken wij uitsluitend met afspraak op zaterdag tussen 10:00 en 18:00.'
+                    : 'For injectables and medical weight loss, appointments are available Saturdays between 10:00 and 18:00 only.'}
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-primary/15 overflow-hidden bg-white shadow-soft-sm min-h-[480px]">
+              <iframe
+                title="FabClinic EDE map"
+                src={contact.mapsEmbedUrl}
+                className="w-full h-full min-h-[480px]"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
         </Container>

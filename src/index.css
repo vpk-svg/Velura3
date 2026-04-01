@@ -83,6 +83,16 @@
     background: linear-gradient(90deg, #c6a65d 0%, #d8b56f 100%);
   }
 
+  /* Pen / edit icon hover effect */
+  .pen-icon-hover {
+    transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .pen-icon-hover:hover {
+    color: #c6a65d;
+    transform: rotate(-8deg) scale(1.15);
+  }
+
   /* Skip-to-main link */
   .skip-link {
     @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[500]

@@ -38,7 +38,7 @@
     "cta": "Plan een Afspraak"
   },
   "cinematic": {
-    "label": "Uw kliniek in Den Haag",
+    "label": "Uw kliniek in Ede",
     "title1": "Schoonheid",
     "title2": "met Zorg",
     "desc": "Wij geloven dat de beste resultaten ontstaan wanneer medische expertise en persoonlijke aandacht samenkomen.",
@@ -257,7 +257,7 @@
     "visit": "Bezoekadres",
     "hours": "Openingstijden",
     "hours_desc": "Ma – Vr  9:00 – 17:00",
-    "address": "Waldorpstraat 215, 2521 CJ Den Haag",
+    "address": "Nieuwe Stationsstraat 20, 6711 AG Ede",
     "cta": "Plan een Gratis Consult"
   },
   "newsletter": {
@@ -269,12 +269,12 @@
   },
   "footer": {
     "disclaimer": "FAB CLINIC · Geregistreerde kliniek. Alle behandelingen onder medisch toezicht.",
-    "copyright": "© 2025 FAB CLINIC · Alle rechten voorbehouden",
+    "copyright": "© 2026 FAB CLINIC · Alle rechten voorbehouden",
     "treatments": "Behandelingen",
     "practice": "Praktijk",
     "assessments": "Tools",
     "legal": "Juridisch",
-    "about_text": "Uw kliniek voor medische esthetiek in Den Haag. Persoonlijke zorg, professioneel resultaat.",
+    "about_text": "Uw kliniek voor medische esthetiek in Ede. Persoonlijke zorg, professioneel resultaat.",
     "link_botox": "Botox",
     "link_fillers": "Fillers",
     "link_wellness": "Lifestyle & Wellness",
@@ -726,8 +726,8 @@
     "botox_desc": "Subtiel en natuurlijk. Microdoseringen voor een fris en ontspannen resultaat.",
     "fillers_title": "Fillers",
     "fillers_desc": "Premium hyaluronzuur fillers voor zachte volumeherstel met een natuurlijk resultaat.",
-    "shape_title": "Shape",
-    "shape_desc": "Body contouring, ooglidcorrectie en meer. Definieer uw silhouet.",
+    "bbl_title": "BBL",
+    "bbl_desc": "Body contouring, ooglidcorrectie en meer. Definieer uw silhouet.",
     "weightloss_title": "Weightloss",
     "weightloss_desc": "Medisch begeleid afvallen met GLP-1 medicatie. Bewezen en veilig.",
     "view_cta": "Bekijk behandeling"

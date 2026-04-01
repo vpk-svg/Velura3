@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
+import { Instagram, Facebook, Phone } from 'lucide-react';
 import Container from './ui/Container';
 
 export default function Footer() {
@@ -27,13 +28,24 @@ export default function Footer() {
             <p className="font-sans font-light text-background-light/50 text-sm leading-relaxed max-w-xs">
               {t('about_text')}
             </p>
+            <div className="flex gap-4 mt-6">
+              <a href="https://www.instagram.com/fabclinic.nl/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-background-light/60 hover:text-primary hover:border-primary/40 hover:bg-primary/10 transition-all duration-300" aria-label="Instagram">
+                <Instagram size={18} />
+              </a>
+              <a href="https://www.facebook.com/fabclinic" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-background-light/60 hover:text-primary hover:border-primary/40 hover:bg-primary/10 transition-all duration-300" aria-label="Facebook">
+                <Facebook size={18} />
+              </a>
+              <a href="https://wa.me/31600000000" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-background-light/60 hover:text-[#25D366] hover:border-[#25D366]/40 hover:bg-[#25D366]/10 transition-all duration-300" aria-label="WhatsApp">
+                <Phone size={18} />
+              </a>
+            </div>
           </div>
 
           {[
             { title: t('treatments'), links: [
               { href: '/botox', label: t('link_botox') },
               { href: '/fillers', label: t('link_fillers') },
-              { href: '/shape', label: t('link_shape') },
+              { href: '/shape', label: 'BBL' },
               { href: '/weightloss', label: t('link_weightloss') },
               { href: '/medicatie', label: t('link_botox') },
               { href: '/trajecten', label: t('link_wellness') },

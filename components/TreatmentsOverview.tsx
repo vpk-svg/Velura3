@@ -15,7 +15,7 @@ export default function TreatmentsOverview() {
   const treatments = [
     { key: 'botox', href: '/botox', icon: ICONS[0] },
     { key: 'fillers', href: '/fillers', icon: ICONS[1] },
-    { key: 'shape', href: '/shape', icon: ICONS[2] },
+    { key: 'bbl', href: '/shape', icon: ICONS[2] },
     { key: 'weightloss', href: '/weightloss', icon: ICONS[3] },
   ];
 
