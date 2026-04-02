@@ -1,39 +1,19 @@
 export default function LogoSvg({ className }: { className?: string }) {
   return (
+    // viewBox: 0 20 840 130 — crops top/bottom whitespace so text + gold line fill the element
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 840 180"
+      viewBox="0 20 840 130"
       role="img"
       aria-label="FAB CLINIC"
       className={className}
     >
       <defs>
-        {/* Paper grain texture */}
-        <filter id="paperGrain" x="0" y="0" width="100%" height="100%">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.65"
-            numOctaves="5"
-            seed="2"
-            stitchTiles="stitch"
-            result="grain"
-          />
-          <feColorMatrix type="saturate" values="0" in="grain" result="grainBW" />
-          <feComponentTransfer in="grainBW" result="softGrain">
-            <feFuncA type="linear" slope="0.07" />
-          </feComponentTransfer>
-          <feFlood floodColor="#f5f0e8" result="cream" />
-          <feMerge>
-            <feMergeNode in="cream" />
-            <feMergeNode in="softGrain" />
-          </feMerge>
-        </filter>
-
-        {/* Subtle text emboss */}
-        <filter id="textEmboss" x="-2%" y="-10%" width="104%" height="130%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="0.7" result="blur" />
-          <feOffset dx="0.5" dy="0.6" in="blur" result="offsetBlur" />
-          <feFlood floodColor="#1a0f08" floodOpacity="0.18" result="shadow" />
+        {/* Subtle text shadow for depth */}
+        <filter id="fabTextEmboss" x="-2%" y="-15%" width="104%" height="140%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="0.8" result="blur" />
+          <feOffset dx="0.5" dy="0.7" in="blur" result="offsetBlur" />
+          <feFlood floodColor="#1a0f08" floodOpacity="0.2" result="shadow" />
           <feComposite in="shadow" in2="offsetBlur" operator="in" result="textShadow" />
           <feMerge>
             <feMergeNode in="textShadow" />
@@ -41,8 +21,8 @@ export default function LogoSvg({ className }: { className?: string }) {
           </feMerge>
         </filter>
 
-        {/* Gold-leaf noise texture */}
-        <filter id="goldLeaf" x="-5%" y="-200%" width="110%" height="500%">
+        {/* Gold-leaf noise texture for the line */}
+        <filter id="fabGoldLeaf" x="-5%" y="-300%" width="110%" height="700%">
           <feTurbulence
             type="fractalNoise"
             baseFrequency="1.1 0.7"
@@ -54,7 +34,7 @@ export default function LogoSvg({ className }: { className?: string }) {
             type="matrix"
             in="noise"
             result="goldNoise"
-            values="0.3 0 0 0 0.78  0.3 0 0 0 0.65  0.1 0 0 0 0.36  0 0 0 0.3 0"
+            values="0.3 0 0 0 0.78  0.3 0 0 0 0.65  0.1 0 0 0 0.36  0 0 0 0.28 0"
           />
           <feComposite in="goldNoise" in2="SourceGraphic" operator="in" result="noiseMasked" />
           <feMerge>
@@ -64,7 +44,7 @@ export default function LogoSvg({ className }: { className?: string }) {
         </filter>
 
         {/* Gold shimmer gradient */}
-        <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="0">
+        <linearGradient id="fabGoldGrad" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%"   stopColor="#b8943e" />
           <stop offset="15%"  stopColor="#d4af57" />
           <stop offset="32%"  stopColor="#e8c96a" />
@@ -75,10 +55,9 @@ export default function LogoSvg({ className }: { className?: string }) {
         </linearGradient>
       </defs>
 
-      {/* Textured cream paper background */}
-      <rect width="840" height="180" filter="url(#paperGrain)" />
+      {/* Transparent background — inherits page/navbar bg */}
 
-      {/* Main wordmark with emboss */}
+      {/* Main wordmark */}
       <text
         x="420"
         y="106"
@@ -88,33 +67,33 @@ export default function LogoSvg({ className }: { className?: string }) {
         fontWeight="500"
         letterSpacing="12"
         fill="#2d1a10"
-        filter="url(#textEmboss)"
+        filter="url(#fabTextEmboss)"
       >
         FAB CLINIC
       </text>
 
-      {/* Gold-leaf divider line */}
+      {/* Gold-leaf divider line — sits 12px below baseline */}
       <line
         x1="52"
-        y1="144"
+        y1="124"
         x2="788"
-        y2="144"
-        stroke="url(#goldGrad)"
+        y2="124"
+        stroke="url(#fabGoldGrad)"
         strokeWidth="2.5"
         strokeLinecap="round"
-        filter="url(#goldLeaf)"
+        filter="url(#fabGoldLeaf)"
       />
 
-      {/* Highlight shimmer on gold line */}
+      {/* Highlight shimmer overlay on line */}
       <line
         x1="210"
-        y1="143.4"
+        y1="123.4"
         x2="630"
-        y2="143.4"
+        y2="123.4"
         stroke="#e8d48a"
         strokeWidth="0.6"
         strokeLinecap="round"
-        opacity="0.4"
+        opacity="0.45"
       />
     </svg>
   );
