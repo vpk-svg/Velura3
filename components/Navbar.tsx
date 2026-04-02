@@ -83,7 +83,7 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-8 justify-end -mr-6">
+          <div className="hidden md:flex items-center gap-8 justify-end -mr-6 pl-10">
             <LanguageToggle isScrolled={isScrolled} />
             <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-3 text-[10px] tracking-[0.2em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
               {t('cta')}
