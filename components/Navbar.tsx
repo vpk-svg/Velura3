@@ -65,7 +65,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
 
           {/* Logo */}
-          <a href="/" className="flex items-center group" aria-label="FAB CLINIC — Home">
+          <a href="/" className="flex items-center group -ml-6" aria-label="FAB CLINIC — Home">
             <LogoSvg className="h-10 w-auto md:h-12 drop-shadow-[0_0_12px_rgba(198,166,93,0.25)] group-hover:drop-shadow-[0_0_18px_rgba(198,166,93,0.35)] transition-all duration-500" />
           </a>
 
@@ -83,7 +83,7 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8 -mr-6">
             <LanguageToggle isScrolled={isScrolled} />
             <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-3 text-[10px] tracking-[0.2em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
               {t('cta')}
