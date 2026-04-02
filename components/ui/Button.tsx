@@ -25,7 +25,7 @@ const VARIANT_STYLES = {
 } as const;
 
 const SIZE_STYLES = {
-  sm: 'px-8 py-3 text-[10px] tracking-[0.2em]',
+  sm: 'px-8 py-3 text-[10px] tracking-[0.25em]',
   md: 'px-10 py-4 text-[11px] tracking-[0.25em]',
   lg: 'px-12 py-5 text-xs tracking-[0.3em]',
 } as const;
@@ -48,7 +48,7 @@ export default function Button({
 }: ButtonProps) {
   const classes = clsx(
     'inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold',
-    'transition-all duration-300 ease-premium',
+    'transition-all duration-300 ease-premium relative overflow-hidden group',
     'focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
     'active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none',
     VARIANT_STYLES[variant],
@@ -56,30 +56,33 @@ export default function Button({
     className,
   );
 
-  const hoverAnimation = { scale: 1.03, y: -2 };
-  const tapAnimation = { scale: 0.97 };
+  const shimmer = variant === 'primary' && (
+    <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-[30deg] -translate-x-full group-hover:animate-shimmer" />
+  );
 
   const inner = href ? (
     <motion.a
       href={href}
-      whileHover={hoverAnimation}
-      whileTap={tapAnimation}
+      whileHover={{ scale: 1.03, y: -2 }}
+      whileTap={{ scale: 0.97 }}
       className={classes}
       aria-label={ariaLabel}
     >
-      {children}
+      {shimmer}
+      <span className="relative z-10">{children}</span>
     </motion.a>
   ) : (
     <motion.button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      whileHover={hoverAnimation}
-      whileTap={tapAnimation}
+      whileHover={{ scale: 1.03, y: -2 }}
+      whileTap={{ scale: 0.97 }}
       className={classes}
       aria-label={ariaLabel}
     >
-      {children}
+      {shimmer}
+      <span className="relative z-10">{children}</span>
     </motion.button>
   );
 

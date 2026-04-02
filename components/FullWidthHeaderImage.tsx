@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useRef } from 'react';
 import { EASE_PREMIUM } from '@/lib/motion';
 import { ArrowRight } from 'lucide-react';
+import ConsultTrigger from '@/components/consult/ConsultTrigger';
 
 export default function FullWidthHeaderImage() {
     const t = useTranslations('cinematic');
@@ -58,12 +59,12 @@ export default function FullWidthHeaderImage() {
                         {t('hero_subtitle')}
                     </p>
                     <div className="flex items-center justify-center">
-                        <a
-                            href="/consult/plan?focus=other"
+                        <ConsultTrigger
+                            from="home"
                             className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
                         >
                             {t('cta_treatments')} <ArrowRight size={14} />
-                        </a>
+                        </ConsultTrigger>
                     </div>
                 </motion.div>
             </div>

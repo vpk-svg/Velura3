@@ -18,26 +18,26 @@ export interface ShapeVariant {
 export const SHAPE_TREATMENTS: ShapeTreatment[] = [
   {
     id: 'butt-contour',
-    nameKey: 'butt_contour',
+    nameKey: 'treatment_bbl',
     variants: [
-      { id: 'butt-standard', nameKey: 'butt_standard', priceCents: 220000 },
-      { id: 'butt-premium', nameKey: 'butt_premium', priceCents: 420000 },
+      { id: 'butt-standard', nameKey: 'treatment_bbl_variant_standard', priceCents: 220000 },
+      { id: 'butt-premium', nameKey: 'treatment_bbl_variant_premium', priceCents: 420000 },
     ],
   },
   {
     id: 'ooglidcorrectie',
-    nameKey: 'ooglidcorrectie',
+    nameKey: 'treatment_eyelid',
     variants: [
-      { id: 'ooglid-boven', nameKey: 'ooglid_boven', priceCents: 150000 },
-      { id: 'ooglid-onder', nameKey: 'ooglid_onder', priceCents: 175000 },
-      { id: 'ooglid-beide', nameKey: 'ooglid_beide', priceCents: 280000 },
+      { id: 'ooglid-boven', nameKey: 'treatment_eyelid_variant_upper', priceCents: 150000 },
+      { id: 'ooglid-onder', nameKey: 'treatment_eyelid_variant_lower', priceCents: 175000 },
+      { id: 'ooglid-beide', nameKey: 'treatment_eyelid_variant_both', priceCents: 280000 },
     ],
   },
   {
     id: 'vet-onderkin',
-    nameKey: 'vet_onderkin',
+    nameKey: 'treatment_double_chin',
     variants: [
-      { id: 'onderkin-standard', nameKey: 'onderkin_standard', priceCents: 95000 },
+      { id: 'onderkin-injection', nameKey: 'treatment_double_chin_variant_injection', priceCents: 95000 },
     ],
   },
 ];

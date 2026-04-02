@@ -111,4 +111,13 @@
       box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
     }
   }
+
+  /* Shimmer animation for premium buttons */
+  @keyframes shimmer {
+    from { transform: translateX(-100%) skewX(-30deg); }
+    to { transform: translateX(250%) skewX(-30deg); }
+  }
+  .animate-shimmer {
+    animation: shimmer 2.5s infinite;
+  }
 }

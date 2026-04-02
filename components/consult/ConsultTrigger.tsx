@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
 
-export type ConsultSubject = 'home' | 'weightloss' | 'botox' | 'fillers' | 'bbl' | 'other';
+export type ConsultSubject = 'home' | 'weightloss' | 'botox' | 'fillers' | 'bbl' | 'medicatie' | 'intake' | 'other';
 
 interface ConsultTriggerProps {
   children: ReactNode;
@@ -14,7 +14,8 @@ interface ConsultTriggerProps {
 
 function subjectFromPath(pathname: string): ConsultSubject {
   if (/^\/(nl|en)?\/?$/.test(pathname)) return 'home';
-  if (pathname.includes('/weightloss') || pathname.includes('/medicatie')) return 'weightloss';
+  if (pathname.includes('/weightloss')) return 'weightloss';
+  if (pathname.includes('/medicatie')) return 'medicatie';
   if (pathname.includes('/fillers')) return 'fillers';
   if (pathname.includes('/shape')) return 'bbl';
   if (pathname.includes('/botox') || pathname.includes('/trajecten')) return 'botox';

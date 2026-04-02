@@ -57,9 +57,9 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-      className={`fixed top-0 left-0 right-0 z-nav transition-all duration-500 w-full border-b ${isScrolled
-        ? 'bg-background-light/95 backdrop-blur-md border-primary/10 shadow-soft-sm py-2'
-        : 'bg-background-light/80 backdrop-blur-sm border-transparent py-4'
+      className={`fixed top-0 left-0 right-0 z-nav transition-all duration-700 w-full border-b ${isScrolled
+        ? 'glass-heavy border-primary/10 shadow-soft-sm py-2'
+        : 'bg-transparent border-transparent py-4'
         }`}
       role="banner"
     >

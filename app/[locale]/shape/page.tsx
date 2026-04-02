@@ -84,8 +84,8 @@ export default function ShapePage() {
         >
           <Container>
             <SectionHeader
-              label={t(`${treatment.nameKey}_label`)}
-              title={<>{t(`${treatment.nameKey}_title`)} <span className="italic font-light text-primary">{t(`${treatment.nameKey}_accent`)}</span></>}
+              label={t('section_label')}
+              title={t(`${treatment.nameKey}_name`)}
               subtitle={t(`${treatment.nameKey}_desc`)}
             />
 
@@ -108,12 +108,12 @@ export default function ShapePage() {
                   <p className="font-sans text-2xl text-primary font-semibold mb-3">
                     €{(variant.priceCents / 100).toLocaleString()}
                   </p>
-                  <a
-                    href="/contact"
+                  <ConsultTrigger
+                    from="bbl"
                     className="font-sans text-[10px] uppercase tracking-[0.15em] text-primary font-bold hover:underline"
                   >
-                    {t('book_consult')}
-                  </a>
+                    {t('variant_book')}
+                  </ConsultTrigger>
                 </motion.div>
               ))}
             </motion.div>
