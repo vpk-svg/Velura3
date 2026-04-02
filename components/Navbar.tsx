@@ -3,8 +3,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'motion/react';
 import { useLocale, useTranslations } from 'next-intl';
-import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
+import LogoSvg from './LogoSvg';
 import LanguageToggle from './LanguageToggle';
 import Container from './ui/Container';
 import ConsultTrigger from './consult/ConsultTrigger';
@@ -66,14 +66,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <a href="/" className="flex items-center group" aria-label="FAB CLINIC — Home">
-            <Image
-              src="/images/fab-clinic-logo.svg"
-              alt="FAB CLINIC"
-              width={250}
-              height={54}
-              priority
-              className="h-10 w-auto md:h-12 drop-shadow-[0_0_12px_rgba(198,166,93,0.25)] group-hover:drop-shadow-[0_0_18px_rgba(198,166,93,0.35)] transition-all duration-500"
-            />
+            <LogoSvg className="h-10 w-auto md:h-12 drop-shadow-[0_0_12px_rgba(198,166,93,0.25)] group-hover:drop-shadow-[0_0_18px_rgba(198,166,93,0.35)] transition-all duration-500" />
           </a>
 
           {/* Desktop Nav */}
