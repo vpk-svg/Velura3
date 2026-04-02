@@ -30,7 +30,7 @@ export default function ContactPage() {
       <div className="pt-32" />
 
       {/* ═══════ TOP: Intake Form + Practitioners side-by-side ═══════ */}
-      <section className="py-section-y bg-background-light">
+      <section className="py-section-y bg-page-contact">
         <Container>
           <SectionHeader
             label={locale === 'nl' ? 'CONTACT FABCLINIC EDE' : 'CONTACT FABCLINIC EDE'}

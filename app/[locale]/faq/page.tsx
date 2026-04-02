@@ -46,7 +46,7 @@ export default function FaqPage() {
       </section>
 
       {/* FAQ Accordion */}
-      <section className="py-section-y bg-background-light overflow-hidden">
+      <section className="py-section-y bg-page-faq overflow-hidden">
         <Container>
           <FaqAccordion namespace="faq_page" />
         </Container>

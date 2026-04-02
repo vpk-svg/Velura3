@@ -104,7 +104,7 @@ export default function CursusPage() {
       </section>
 
       {/* ═══════ HIGHLIGHTS ═══════ */}
-      <section className="py-section-y bg-background-light">
+      <section className="py-section-y bg-page-cursus">
         <Container>
           <SectionHeader
             label={locale === 'nl' ? 'Overzicht' : 'Overview'}

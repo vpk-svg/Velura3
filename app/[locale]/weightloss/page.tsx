@@ -114,7 +114,7 @@ export default function WeightlossPage() {
       </section>
 
       {/* Products */}
-      <section id="producten" className="py-section-y bg-background-light overflow-hidden">
+      <section id="producten" className="py-section-y bg-page-weight overflow-hidden">
         <Container>
           <SectionHeader
             label={t('products_label')}

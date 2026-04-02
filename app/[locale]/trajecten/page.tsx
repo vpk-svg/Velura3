@@ -104,7 +104,7 @@ export default function TrajectenPage() {
       </section>
 
       {/* Four Phases */}
-      <section className="py-section-y bg-background-light overflow-hidden">
+      <section className="py-section-y bg-page-trajecten overflow-hidden">
         <Container>
           <SectionHeader
             label={t('phase_label')}

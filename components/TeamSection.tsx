@@ -50,7 +50,7 @@ export default function TeamSection() {
     ];
 
     return (
-        <section id="team" className="py-section-y bg-background-light overflow-hidden" aria-labelledby="team-title">
+        <section id="team" className="py-section-y bg-page-team overflow-hidden" aria-labelledby="team-title">
             <Container>
                 <SectionHeader
                     label={t('label')}

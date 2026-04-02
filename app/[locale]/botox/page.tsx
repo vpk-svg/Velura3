@@ -116,7 +116,7 @@ export default function BotoxPage() {
       </section>
 
       {/* Zone Selector + Cart */}
-      <section className="py-section-y bg-background-light overflow-hidden">
+      <section className="py-section-y bg-page-botox overflow-hidden">
         <Container>
           <SectionHeader
             label={t('zones_label')}

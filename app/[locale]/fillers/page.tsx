@@ -159,7 +159,7 @@ export default function FillersPage() {
       </section>
 
       {/* What Are Fillers */}
-      <section className="py-section-y bg-background-light overflow-hidden">
+      <section className="py-section-y bg-page-fillers overflow-hidden">
         <Container>
           <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
             <figure className="flex-1 relative w-full h-[500px] md:h-[600px] rounded-md overflow-hidden group shadow-soft-lg bg-secondary/5">

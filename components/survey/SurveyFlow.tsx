@@ -422,14 +422,6 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
   }, []);
 
   useEffect(() => {
-    const onEsc = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', onEsc);
-    return () => window.removeEventListener('keydown', onEsc);
-  }, [onClose]);
-
-  useEffect(() => {
     if (step !== 'loading') return;
     setIsLoadingResult(true);
     const timer = window.setTimeout(() => {
@@ -1071,7 +1063,6 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
     <div className="fixed inset-0 z-[9999] flex items-end justify-center bg-black/60 p-0 md:items-center md:p-6">
       <div
         className="absolute inset-0"
-        onClick={onClose}
         aria-hidden="true"
       />
 

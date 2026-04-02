@@ -38,6 +38,17 @@ const config: Config = {
         "charcoal":         "#2C2C2C",
         "bronze":           "#CD7F32",
         "bronze-light":     "#DAA06D",
+        /* Page-specific subtle tints (very close to ivory #FDFCF0) */
+        "page-botox":       "#F9FBF6",   /* cool sage whisper */
+        "page-fillers":     "#FDF9F2",   /* warm champagne whisper */
+        "page-shape":       "#FAF8F4",   /* neutral pearl */
+        "page-weight":      "#F6FBF8",   /* soft mint whisper */
+        "page-team":        "#FBF8F4",   /* warm taupe whisper */
+        "page-contact":     "#FDF7F5",   /* gentle rose whisper */
+        "page-trajecten":   "#FCF8F0",   /* warm bronze whisper */
+        "page-cursus":      "#F8F6F8",   /* subtle mauve whisper */
+        "page-medicatie":   "#F8FAF6",   /* fresh green whisper */
+        "page-faq":         "#FAF9F4",   /* warm sand whisper */
       },
 
       /* ── Typography - 2 typefaces only ─────────────── */

@@ -10,7 +10,7 @@ export default function ShopPage() {
     <main className="min-h-screen pt-20">
       <FullWidthHeaderImage />
       
-      <div className="bg-background-light">
+      <div className="bg-page-medicatie">
         <ProductShop />
       </div>
 

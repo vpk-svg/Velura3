@@ -58,8 +58,8 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: EASE_PREMIUM }}
       className={`fixed top-0 left-0 right-0 z-nav transition-all duration-700 w-full border-b ${isScrolled
-        ? 'glass-heavy border-primary/10 shadow-soft-sm py-2'
-        : 'bg-transparent border-transparent py-4'
+        ? 'bg-white border-primary/10 shadow-soft-sm py-2'
+        : 'bg-white border-transparent py-4'
         }`}
       role="banner"
     >

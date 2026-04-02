@@ -80,7 +80,7 @@ export default function ShapePage() {
       {SHAPE_TREATMENTS.map((treatment, index) => (
         <section
           key={treatment.id}
-          className={`py-section-y overflow-hidden ${index % 2 === 0 ? 'bg-background-light' : 'bg-white'}`}
+          className={`py-section-y overflow-hidden ${index % 2 === 0 ? 'bg-page-shape' : 'bg-white'}`}
         >
           <Container>
             <SectionHeader
