@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { Phone, Calendar } from 'lucide-react';
 import Container from './ui/Container';
-import { SurveyTrigger } from './survey/SurveyFlow';
+import ConsultTrigger from './consult/ConsultTrigger';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function BottomCta() {
@@ -36,9 +36,9 @@ export default function BottomCta() {
             >
               <Phone size={14} /> {t('cta_contact')}
             </a>
-            <SurveyTrigger className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+            <ConsultTrigger className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
               <Calendar size={14} /> {t('cta_consult')}
-            </SurveyTrigger>
+            </ConsultTrigger>
           </div>
         </motion.div>
       </Container>

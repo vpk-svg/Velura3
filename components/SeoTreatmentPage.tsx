@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Check, ArrowRight, Clock, Shield, Stethoscope, ChevronLeft, ChevronRight } from 'lucide-react';
 import Container from '@/components/ui/Container';
-import { SurveyTrigger } from '@/components/survey/SurveyFlow';
+import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import { EASE_PREMIUM } from '@/lib/motion';
 import type { SeoTreatment } from '@/lib/data/seo-treatments';
 
@@ -83,9 +83,9 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
               transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
               className="flex flex-wrap justify-center gap-4 mb-10"
             >
-              <SurveyTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-4 text-xs tracking-[0.2em] bg-secondary text-white shadow-soft-lg hover:bg-secondary/90 transition-all duration-300 active:scale-[0.97]">
+              <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-4 text-xs tracking-[0.2em] bg-secondary text-white shadow-soft-lg hover:bg-secondary/90 transition-all duration-300 active:scale-[0.97]">
                 {locale === 'nl' ? 'Maak afspraak' : 'Book appointment'}
-              </SurveyTrigger>
+              </ConsultTrigger>
               <a
                 href="#pricing"
                 className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-4 text-xs tracking-[0.2em] border-2 border-secondary/20 text-secondary hover:border-primary hover:text-primary transition-all duration-300"
@@ -223,9 +223,9 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
                     ))}
                   </div>
                   <div className="mt-8">
-                    <SurveyTrigger className="inline-flex items-center gap-2 justify-center rounded-pill font-sans uppercase font-bold px-8 py-4 text-xs tracking-[0.2em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+                    <ConsultTrigger className="inline-flex items-center gap-2 justify-center rounded-pill font-sans uppercase font-bold px-8 py-4 text-xs tracking-[0.2em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
                       {t('hero_cta')} <ArrowRight size={14} />
-                    </SurveyTrigger>
+                    </ConsultTrigger>
                   </div>
                 </div>
 
@@ -351,9 +351,9 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
               transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
               className="flex flex-wrap justify-center gap-4"
             >
-              <SurveyTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+              <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
                 {t('cta_button')}
-              </SurveyTrigger>
+              </ConsultTrigger>
               <Link
                 href={CATEGORY_LINKS[treatment.category] || '/'}
                 className="inline-flex items-center gap-2 justify-center rounded-pill font-sans uppercase font-bold px-10 py-5 text-xs tracking-[0.3em] border-2 border-background-light/20 text-background-light hover:border-primary hover:text-primary transition-all duration-300"

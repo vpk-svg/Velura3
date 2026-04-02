@@ -2,18 +2,20 @@
 
 import { useState, useCallback } from 'react';
 import { motion } from 'motion/react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ZoneSelector from '@/components/treatments/ZoneSelector';
 import TreatmentCart from '@/components/treatments/TreatmentCart';
 import DetailsForm, { type DetailsFormData } from '@/components/treatments/DetailsForm';
+import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import { BOTOX_ZONES } from '@/lib/data/botox-zones';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function BotoxPage() {
   const t = useTranslations('botox_page');
+  const locale = useLocale();
   const [selectedZones, setSelectedZones] = useState<string[]>([]);
   const [step, setStep] = useState<'select' | 'details' | 'done'>('select');
   const [isLoading, setIsLoading] = useState(false);
@@ -99,6 +101,16 @@ export default function BotoxPage() {
             >
               {t('hero_desc')}
             </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
+              className="mt-10"
+            >
+              <ConsultTrigger from="botox" className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-4 text-xs tracking-[0.22em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+                {locale === 'nl' ? 'Plan Gratis Consult' : 'Book Free Consultation'}
+              </ConsultTrigger>
+            </motion.div>
           </div>
         </Container>
       </section>

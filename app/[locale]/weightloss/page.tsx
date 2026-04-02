@@ -1,14 +1,17 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { motion, type Variants } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { ShieldCheck, ArrowRight } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ProgramTimeline from '@/components/ProgramTimeline';
-import { SurveyTrigger } from '@/components/survey/SurveyFlow';
+import ConsultTrigger from '@/components/consult/ConsultTrigger';
+import { useSurvey } from '@/components/survey/SurveyFlow';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 const PRODUCTS = [
@@ -21,6 +24,16 @@ const PRODUCTS = [
 export default function WeightlossPage() {
   const t = useTranslations('weightloss_page');
   const tMed = useTranslations('medicatie_page');
+  const searchParams = useSearchParams();
+  const { open } = useSurvey();
+  const openedFromQuery = useRef(false);
+
+  useEffect(() => {
+    if (searchParams.get('openSurvey') === '1' && !openedFromQuery.current) {
+      openedFromQuery.current = true;
+      open();
+    }
+  }, [open, searchParams]);
 
   const usps = [
     t('usp1'),
@@ -86,9 +99,9 @@ export default function WeightlossPage() {
               transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
               className="flex flex-wrap gap-4"
             >
-              <SurveyTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+              <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
                 {t('hero_cta_survey')}
-              </SurveyTrigger>
+              </ConsultTrigger>
               <Link
                 href="#producten"
                 className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] border-2 border-background-light/20 text-background-light hover:border-primary hover:text-primary transition-all duration-300"
@@ -155,9 +168,9 @@ export default function WeightlossPage() {
                 </div>
                 <div className="flex items-center justify-between mt-auto pt-4 border-t border-secondary/5">
                   <span className="font-display text-2xl text-primary font-semibold">{product.price}<span className="text-sm font-sans font-light text-secondary/40">/mnd</span></span>
-                  <SurveyTrigger className="inline-flex items-center gap-2 font-sans text-xs text-primary font-semibold uppercase tracking-wider hover:gap-3 transition-all">
+                  <ConsultTrigger className="inline-flex items-center gap-2 font-sans text-xs text-primary font-semibold uppercase tracking-wider hover:gap-3 transition-all">
                     {t('product_cta')} <ArrowRight size={14} />
-                  </SurveyTrigger>
+                  </ConsultTrigger>
                 </div>
               </motion.div>
             ))}
@@ -254,9 +267,9 @@ export default function WeightlossPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
             >
-              <SurveyTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+              <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
                 {t('cta_button')}
-              </SurveyTrigger>
+              </ConsultTrigger>
             </motion.div>
           </div>
         </Container>

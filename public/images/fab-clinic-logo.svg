@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="180" viewBox="0 0 840 180" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">FAB CLINIC logo</title>
+  <desc id="logoDesc">Elegant wordmark with gold divider line.</desc>
+  <rect width="840" height="180" fill="#f7f3ed"/>
+  <text x="420" y="102" text-anchor="middle" font-family="'Times New Roman', Georgia, serif" font-size="98" letter-spacing="8" fill="#2d1a10">
+    FAB CLINIC
+  </text>
+  <line x1="36" y1="144" x2="804" y2="144" stroke="#c6a65d" stroke-width="3"/>
+</svg>

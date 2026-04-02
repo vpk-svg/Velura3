@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
-import { SurveyTrigger } from '@/components/survey/SurveyFlow';
+import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import { SHAPE_TREATMENTS } from '@/lib/data/shape-treatments';
 import { EASE_PREMIUM } from '@/lib/motion';
 
@@ -68,9 +68,9 @@ export default function ShapePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
             >
-              <SurveyTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+              <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
                 {t('hero_cta')}
-              </SurveyTrigger>
+              </ConsultTrigger>
             </motion.div>
           </div>
         </Container>
@@ -143,9 +143,9 @@ export default function ShapePage() {
             >
               {t('cta_desc')}
             </motion.p>
-            <SurveyTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+            <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
               {t('cta_button')}
-            </SurveyTrigger>
+            </ConsultTrigger>
           </div>
         </Container>
       </section>

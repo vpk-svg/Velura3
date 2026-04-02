@@ -3,10 +3,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'motion/react';
 import { useLocale, useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import LanguageToggle from './LanguageToggle';
 import Container from './ui/Container';
-import { SurveyTrigger } from './survey/SurveyFlow';
+import ConsultTrigger from './consult/ConsultTrigger';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function Navbar() {
@@ -65,9 +66,14 @@ export default function Navbar() {
 
           {/* Logo */}
           <a href="/" className="flex items-center group" aria-label="FAB CLINIC — Home">
-            <span className="font-display text-2xl md:text-3xl tracking-tight font-semibold text-primary drop-shadow-[0_0_12px_rgba(198,166,93,0.5)] group-hover:drop-shadow-[0_0_20px_rgba(198,166,93,0.7)] transition-all duration-500">
-              FAB <span className="italic">CLINIC</span>
-            </span>
+            <Image
+              src="/images/fab-clinic-logo.svg"
+              alt="FAB CLINIC"
+              width={250}
+              height={54}
+              priority
+              className="h-10 w-auto md:h-12 drop-shadow-[0_0_12px_rgba(198,166,93,0.25)] group-hover:drop-shadow-[0_0_18px_rgba(198,166,93,0.35)] transition-all duration-500"
+            />
           </a>
 
           {/* Desktop Nav */}
@@ -86,9 +92,9 @@ export default function Navbar() {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-8">
             <LanguageToggle isScrolled={isScrolled} />
-            <SurveyTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-3 text-[10px] tracking-[0.2em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+            <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-3 text-[10px] tracking-[0.2em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
               {t('cta')}
-            </SurveyTrigger>
+            </ConsultTrigger>
           </div>
 
           {/* Mobile toggle */}
@@ -131,11 +137,11 @@ export default function Navbar() {
             </a>
           ))}
           <div onClick={() => setMobileMenuOpen(false)}>
-            <SurveyTrigger
+            <ConsultTrigger
               className="w-full max-w-xs inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
             >
               {t('cta')}
-            </SurveyTrigger>
+            </ConsultTrigger>
           </div>
         </div>
       </motion.nav>

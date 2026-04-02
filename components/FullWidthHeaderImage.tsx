@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useRef } from 'react';
-import { SurveyTrigger } from './survey/SurveyFlow';
 import { EASE_PREMIUM } from '@/lib/motion';
 import { ArrowRight } from 'lucide-react';
 
@@ -58,16 +57,13 @@ export default function FullWidthHeaderImage() {
                     <p className="font-sans font-light text-background-light/80 text-lg md:text-xl leading-relaxed tracking-wide max-w-2xl mx-auto mb-12">
                         {t('hero_subtitle')}
                     </p>
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <div className="flex items-center justify-center">
                         <a
-                            href="/weightloss"
+                            href="/consult/plan?focus=other"
                             className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
                         >
                             {t('cta_treatments')} <ArrowRight size={14} />
                         </a>
-                        <SurveyTrigger className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-white/10 backdrop-blur-sm text-background-light border border-background-light/20 hover:bg-white/20 transition-all duration-300 active:scale-[0.97]">
-                            {t('cta_consult')}
-                        </SurveyTrigger>
                     </div>
                 </motion.div>
             </div>

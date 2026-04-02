@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { ClipboardCheck, Stethoscope, Pill, HeartPulse, Apple, Dumbbell, Brain, ShieldCheck, UserCheck, MessageCircle, BadgeCheck } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
-import { SurveyTrigger } from '@/components/survey/SurveyFlow';
+import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import { EASE_PREMIUM } from '@/lib/motion';
 import { ArrowRight } from 'lucide-react';
 import TreatmentCatalog from '@/components/treatments/TreatmentCatalog';
@@ -95,9 +95,9 @@ export default function TrajectenPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
             >
-              <SurveyTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+              <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
                 {t('hero_cta')}
-              </SurveyTrigger>
+              </ConsultTrigger>
             </motion.div>
           </div>
         </Container>
@@ -294,9 +294,9 @@ export default function TrajectenPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
             >
-              <SurveyTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+              <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
                 {t('cta_button')}
-              </SurveyTrigger>
+              </ConsultTrigger>
             </motion.div>
           </div>
         </Container>
