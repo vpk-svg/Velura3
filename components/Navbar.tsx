@@ -62,7 +62,7 @@ export default function Navbar() {
       role="banner"
     >
       <Container>
-        <div className="flex justify-between items-center h-16">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16">
 
           {/* Logo */}
           <a href="/" className="flex items-center group -ml-6" aria-label="FAB CLINIC — Home">
@@ -83,7 +83,7 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-8 -mr-6">
+          <div className="hidden md:flex items-center gap-8 justify-end -mr-6">
             <LanguageToggle isScrolled={isScrolled} />
             <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-3 text-[10px] tracking-[0.2em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
               {t('cta')}
@@ -91,7 +91,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile toggle */}
-          <div className="lg:hidden flex items-center gap-6">
+          <div className="lg:hidden flex items-center gap-6 justify-end col-start-3">
             <LanguageToggle isScrolled={isScrolled} />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
