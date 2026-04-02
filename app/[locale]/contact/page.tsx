@@ -106,7 +106,7 @@ export default function ContactPage() {
               </button>
             </form>
 
-            {/* Practitioners — real team members */}
+            {/* Practitioners - real team members */}
             <div className="rounded-2xl border border-primary/15 bg-white p-8 shadow-soft-sm overflow-y-auto max-h-[680px]">
               <h3 className="font-display text-3xl italic text-secondary mb-5">
                 {locale === 'nl' ? 'Ons team' : 'Our team'}

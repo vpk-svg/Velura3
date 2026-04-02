@@ -8,11 +8,13 @@ import LogoSvg from './LogoSvg';
 import LanguageToggle from './LanguageToggle';
 import Container from './ui/Container';
 import ConsultTrigger from './consult/ConsultTrigger';
+import { usePathname } from '@/lib/navigation';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function Navbar() {
   const t = useTranslations('nav');
   const locale = useLocale();
+  const pathname = usePathname();
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -65,21 +67,32 @@ export default function Navbar() {
         <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16">
 
           {/* Logo */}
-          <a href="/" className="flex items-center group -ml-6" aria-label="FAB CLINIC — Home">
+          <a href="/" className="flex items-center group -ml-6" aria-label="FAB CLINIC - Home">
             <LogoSvg className="h-10 w-auto md:h-12 drop-shadow-[0_0_12px_rgba(198,166,93,0.25)] group-hover:drop-shadow-[0_0_18px_rgba(198,166,93,0.35)] transition-all duration-500" />
           </a>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-10" aria-label="Main navigation">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-              className={`transition-all duration-300 ease-premium text-xs font-semibold uppercase tracking-[0.15em] hover:text-primary focus-visible:text-primary text-secondary/80`}
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`relative transition-all duration-300 ease-premium text-xs font-semibold uppercase tracking-[0.15em] hover:text-primary focus-visible:text-primary ${isActive ? 'text-primary' : 'text-secondary/80'}`}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {link.name}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-active"
+                      className="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-primary rounded-full"
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                </a>
+              );
+            })}
           </nav>
 
           {/* Desktop Actions */}

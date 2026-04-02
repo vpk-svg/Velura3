@@ -262,6 +262,7 @@ export default function FillersPage() {
                 zones={FILLERS_ZONES}
                 selectedZones={selectedZones}
                 onRemove={removeZone}
+                onRestore={toggleZone}
                 namespace="fillers_page"
               />
 

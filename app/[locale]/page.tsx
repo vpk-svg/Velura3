@@ -9,7 +9,6 @@ import WhyFabClinic from '@/components/WhyFabClinic';
 import Testimonials from '@/components/Testimonials';
 import HowItWorks from '@/components/HowItWorks';
 import PharmacyDisclaimer from '@/components/PharmacyDisclaimer';
-import FaqHub from '@/components/faq/FaqHub';
 import type { Locale } from '@/lib/clinic-data';
 import TeamPreview from '@/components/TeamPreview';
 import FaqPreview from '@/components/FaqPreview';
@@ -51,10 +50,7 @@ export default function HomePage() {
       {/* 8. FAQ Preview */}
       <FaqPreview />
 
-      {/* 9. FAQ Hub (full 200-item) */}
-      <FaqHub locale={locale} />
-
-      {/* 10. Partner Pharmacy Disclaimer */}
+      {/* 9. Partner Pharmacy Disclaimer */}
       <PharmacyDisclaimer />
 
       {/* 11. Bottom CTA */}

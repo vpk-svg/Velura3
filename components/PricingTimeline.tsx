@@ -95,7 +95,7 @@ export default function PricingTimeline() {
                             transition={{ duration: 0.5, ease: EASE_PREMIUM }}
                             className="flex flex-nowrap overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar gap-6 md:gap-10"
                             tabIndex={0}
-                            aria-label="Timeline cards — scroll horizontally"
+                            aria-label="Timeline cards - scroll horizontally"
                         >
                             {currentTimeline.map((item, idx) => (
                                 <article

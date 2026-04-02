@@ -1,6 +1,6 @@
 /**
  * CRM service abstraction.
- * Provider-agnostic — swap implementation when connecting to actual CRM.
+ * Provider-agnostic - swap implementation when connecting to actual CRM.
  */
 
 export interface Lead {
@@ -13,7 +13,7 @@ export interface Lead {
 }
 
 /**
- * Save a new lead. Currently logs to console — replace with CRM API call.
+ * Save a new lead. Currently logs to console - replace with CRM API call.
  */
 export async function saveLead(lead: Lead): Promise<{ success: boolean }> {
   // TODO: integrate with actual CRM (e.g. HubSpot, Pipedrive)

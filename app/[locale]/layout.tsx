@@ -11,6 +11,7 @@ import AiChatbot from '@/components/AiChatbot';
 import SocialProofPopup from '@/components/SocialProofPopup';
 import StickyMobileActions from '@/components/StickyMobileActions';
 import CookieBanner from '@/components/CookieBanner';
+import Analytics from '@/components/Analytics';
 import { SurveyProvider } from '@/components/survey/SurveyFlow';
 import { routing } from '@/lib/i18n';
 
@@ -27,10 +28,53 @@ const jost = Jost({
   variable: '--font-jost',
 });
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://fabclinic.be';
+
 export const metadata: Metadata = {
   title: 'FAB CLINIC | Medische Esthetiek & Welzijn',
-  description: 'Premium kliniek voor fillers, botox en lifestyle transformatie.',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://fabclinic.be'),
+  description: 'Premium kliniek voor fillers, botox, GLP-1 afslanktrajecten en lifestyle transformatie. Medisch verantwoord, resultaatgericht.',
+  metadataBase: new URL(BASE_URL),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'nl': '/nl',
+      'en': '/en',
+    },
+  },
+  openGraph: {
+    title: 'FAB CLINIC | Medische Esthetiek & Welzijn',
+    description: 'Premium kliniek voor fillers, botox, GLP-1 afslanktrajecten en lifestyle transformatie.',
+    url: BASE_URL,
+    siteName: 'FAB CLINIC',
+    locale: 'nl_NL',
+    alternateLocale: 'en_US',
+    type: 'website',
+    images: [
+      {
+        url: '/images/og-cover.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'FAB CLINIC - Medische Esthetiek & Welzijn',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FAB CLINIC | Medische Esthetiek & Welzijn',
+    description: 'Premium kliniek voor fillers, botox, GLP-1 afslanktrajecten en lifestyle transformatie.',
+    images: ['/images/og-cover.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export function generateStaticParams() {
@@ -46,8 +90,35 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const resolvedParams = await params;
   const messages = await getMessages({ locale: resolvedParams.locale });
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalBusiness',
+    name: 'FAB CLINIC',
+    description: 'Premium kliniek voor fillers, botox, GLP-1 afslanktrajecten en lifestyle transformatie.',
+    url: BASE_URL,
+    logo: `${BASE_URL}/images/logo.png`,
+    image: `${BASE_URL}/images/og-cover.jpg`,
+    telephone: '+31600000000',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'BE',
+    },
+    medicalSpecialty: 'PlasticSurgery',
+    priceRange: '€€€',
+    openingHoursSpecification: [
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Friday', opens: '09:00', closes: '17:00' },
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '09:00', closes: '17:00' },
+    ],
+  };
+
   return (
     <html lang={resolvedParams.locale} className={`${cormorant.variable} ${jost.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="font-sans antialiased min-h-screen flex flex-col cursor-dot-active">
         <NextIntlClientProvider messages={messages} locale={resolvedParams.locale}>
           <SurveyProvider>
@@ -65,6 +136,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             <SocialProofPopup />
             <StickyMobileActions />
             <CookieBanner />
+            <Analytics />
           </SurveyProvider>
         </NextIntlClientProvider>
       </body>

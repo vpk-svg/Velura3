@@ -41,6 +41,7 @@ export default function ZoneSelector({ zones, selectedZones, onToggle, namespace
               type="button"
               onClick={() => onToggle(zone.id)}
               whileTap={{ scale: 0.97 }}
+              animate={isSelected ? { scale: [1, 1.03, 1] } : {}}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               className={`relative text-left px-4 py-4 rounded-lg border-[1.5px] transition-all duration-300 ease-premium group ${
                 isSelected

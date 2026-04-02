@@ -63,10 +63,10 @@ export default function Footer() {
               { href: '/contact', label: t('link_booking') },
             ]},
             { title: t('legal'), links: [
-              { href: '#', label: t('link_privacy') },
-              { href: '#', label: t('link_terms') },
-              { href: '#', label: t('link_cookies') },
-              { href: '#', label: t('link_wkkgz') },
+              { href: '/privacy', label: t('link_privacy') },
+              { href: '/terms', label: t('link_terms') },
+              { href: '/cookies', label: t('link_cookies') },
+              { href: '/wkkgz', label: t('link_wkkgz') },
             ]},
           ].map((col) => (
             <nav key={col.title} aria-label={col.title}>

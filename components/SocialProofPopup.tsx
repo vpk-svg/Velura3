@@ -3,8 +3,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Star, CalendarCheck, ShoppingBag } from 'lucide-react';
-import { SOCIAL_PROOF_DATA, type SocialProofItem } from '@/lib/data/social-proof';
+import { SOCIAL_PROOF_DATA, SOCIAL_PROOF_DATA_EN, type SocialProofItem } from '@/lib/data/social-proof';
 import { EASE_PREMIUM } from '@/lib/motion';
+import { useLocale } from 'next-intl';
 
 const ICON_MAP = {
   booking: CalendarCheck,
@@ -15,16 +16,18 @@ const ICON_MAP = {
 export default function SocialProofPopup() {
   const [current, setCurrent] = useState<SocialProofItem | null>(null);
   const [dismissed, setDismissed] = useState(false);
+  const locale = useLocale();
+  const data = locale === 'en' ? SOCIAL_PROOF_DATA_EN : SOCIAL_PROOF_DATA;
 
   const showNext = useCallback(() => {
     if (dismissed) return;
-    const item = SOCIAL_PROOF_DATA[Math.floor(Math.random() * SOCIAL_PROOF_DATA.length)];
+    const item = data[Math.floor(Math.random() * data.length)];
     setCurrent(item);
 
     // Auto-hide after 6 seconds
     const hideTimer = setTimeout(() => setCurrent(null), 6000);
     return () => clearTimeout(hideTimer);
-  }, [dismissed]);
+  }, [dismissed, data]);
 
   useEffect(() => {
     // First popup after 3 minutes
@@ -60,7 +63,7 @@ export default function SocialProofPopup() {
           <button
             onClick={handleDismiss}
             className="absolute top-2 right-2 p-1 rounded-full text-secondary/30 hover:text-secondary/60 hover:bg-secondary/[0.04] transition-colors"
-            aria-label="Verberg melding"
+            aria-label={locale === 'en' ? 'Hide notification' : 'Verberg melding'}
           >
             <X size={14} />
           </button>
@@ -71,7 +74,7 @@ export default function SocialProofPopup() {
             </div>
             <div>
               <p className="font-sans text-sm text-secondary font-medium leading-snug">
-                {current.name} <span className="text-secondary/40">uit {current.city}</span>
+                {current.name} <span className="text-secondary/40">{locale === 'en' ? 'from' : 'uit'} {current.city}</span>
               </p>
               <p className="font-sans text-xs text-secondary/50 mt-0.5">{current.treatment}</p>
               {current.rating && (

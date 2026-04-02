@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/navigation';
-import { Check } from 'lucide-react';
+import { Check, Mail, Phone, Calendar } from 'lucide-react';
 
 interface CheckoutSession {
   status: string;
@@ -66,9 +66,30 @@ export default async function SuccessPage({
                     </div>
                 )}
 
-                <p className="font-sans font-light text-secondary/70 text-lg mb-10">
+                <p className="font-sans font-light text-secondary/70 text-lg mb-8">
                     {t('success_sub')}
                 </p>
+
+                {/* What happens next timeline */}
+                <div className="mb-10 text-left space-y-0">
+                    {[
+                        { icon: Mail, text: locale === 'nl' ? 'Bevestigingsmail wordt verzonden' : 'Confirmation email is being sent' },
+                        { icon: Phone, text: locale === 'nl' ? 'Onze arts neemt contact met u op' : 'Our doctor will contact you' },
+                        { icon: Calendar, text: locale === 'nl' ? 'Uw behandeling wordt ingepland' : 'Your treatment will be scheduled' },
+                    ].map((step, i) => (
+                        <div key={i} className="flex items-start gap-4 py-3">
+                            <div className="flex flex-col items-center">
+                                <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <step.icon size={16} className="text-primary" />
+                                </div>
+                                {i < 2 && <div className="w-px h-6 bg-primary/15 mt-1" />}
+                            </div>
+                            <div className="pt-2">
+                                <p className="font-sans text-sm text-secondary">{step.text}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
 
                 <Link
                     href="/"

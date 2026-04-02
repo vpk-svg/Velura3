@@ -44,7 +44,7 @@ export default function CookieBanner() {
           <button
             onClick={decline}
             className="absolute top-3 right-3 p-1 rounded-full text-secondary/30 hover:text-secondary/60 transition-colors"
-            aria-label="Sluit"
+            aria-label={t('decline')}
           >
             <X size={16} />
           </button>

@@ -139,6 +139,7 @@ export default function BotoxPage() {
                 zones={BOTOX_ZONES}
                 selectedZones={selectedZones}
                 onRemove={removeZone}
+                onRestore={toggleZone}
                 namespace="botox_page"
               />
 

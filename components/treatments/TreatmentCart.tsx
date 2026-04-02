@@ -1,22 +1,44 @@
 'use client';
 
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { Trash2 } from 'lucide-react';
+import { Trash2, Undo2 } from 'lucide-react';
 import type { Zone } from './ZoneSelector';
 
 interface TreatmentCartProps {
   zones: Zone[];
   selectedZones: string[];
   onRemove: (zoneId: string) => void;
+  onRestore?: (zoneId: string) => void;
   namespace: string;
 }
 
-export default function TreatmentCart({ zones, selectedZones, onRemove, namespace }: TreatmentCartProps) {
+export default function TreatmentCart({ zones, selectedZones, onRemove, onRestore, namespace }: TreatmentCartProps) {
   const t = useTranslations(namespace);
+  const [undoItem, setUndoItem] = useState<{ id: string; name: string } | null>(null);
 
   const selectedItems = zones.filter((z) => selectedZones.includes(z.id));
   const totalCents = selectedItems.reduce((sum, z) => sum + z.priceCents, 0);
+
+  // Auto-dismiss undo toast after 4s
+  useEffect(() => {
+    if (!undoItem) return;
+    const timer = setTimeout(() => setUndoItem(null), 4000);
+    return () => clearTimeout(timer);
+  }, [undoItem]);
+
+  const handleRemove = useCallback((zone: Zone) => {
+    onRemove(zone.id);
+    setUndoItem({ id: zone.id, name: t(zone.nameKey) });
+  }, [onRemove, t]);
+
+  const handleUndo = useCallback(() => {
+    if (undoItem && onRestore) {
+      onRestore(undoItem.id);
+    }
+    setUndoItem(null);
+  }, [undoItem, onRestore]);
 
   if (selectedItems.length === 0) {
     return (
@@ -50,7 +72,7 @@ export default function TreatmentCart({ zones, selectedZones, onRemove, namespac
                   €{(item.priceCents / 100).toFixed(0)}
                 </span>
                 <button
-                  onClick={() => onRemove(item.id)}
+                  onClick={() => handleRemove(item)}
                   className="p-1 rounded-full text-secondary/20 hover:text-rose-dark hover:bg-rose-soft transition-colors"
                   aria-label={`Verwijder ${t(item.nameKey)}`}
                 >
@@ -70,6 +92,26 @@ export default function TreatmentCart({ zones, selectedZones, onRemove, namespac
           </span>
         </div>
       </div>
+
+      {/* Undo Toast */}
+      <AnimatePresence>
+        {undoItem && onRestore && (
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            className="px-5 py-3 bg-secondary text-background-light flex items-center justify-between text-sm"
+          >
+            <span className="font-sans text-xs">{undoItem.name} removed</span>
+            <button
+              onClick={handleUndo}
+              className="flex items-center gap-1.5 font-sans text-xs font-semibold text-primary hover:text-primary-light transition-colors"
+            >
+              <Undo2 size={12} /> Undo
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

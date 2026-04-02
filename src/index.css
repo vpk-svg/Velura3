@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ═══════════════════════════════════════════════════
-   BASE LAYER — sensible defaults & premium polish
+   BASE LAYER - sensible defaults & premium polish
    ═══════════════════════════════════════════════════ */
 @layer base {
   html {
@@ -50,7 +50,7 @@
    UTILITY LAYER
    ═══════════════════════════════════════════════════ */
 @layer utilities {
-  /* Hide scrollbars — used by horizontal scroll areas */
+  /* Hide scrollbars - used by horizontal scroll areas */
   .hide-scrollbar::-webkit-scrollbar { display: none; }
   .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -76,6 +76,14 @@
     box-shadow: 0 0 0 3px rgba(198,166,93,0.12), 0 2px 8px -2px rgba(198,166,93,0.10);
     border-color: #c6a65d;
     transform: scale(1.005);
+  }
+
+  /* WCAG AA minimum contrast helper: use instead of text-secondary/40-50 on light bgs */
+  .text-muted {
+    color: rgba(59, 42, 35, 0.65); /* ~4.8:1 on #FDFCF0 — passes AA */
+  }
+  .text-muted-strong {
+    color: rgba(59, 42, 35, 0.75); /* ~5.6:1 on #FDFCF0 — passes AA+AAA */
   }
 
   /* Segmented progress track */

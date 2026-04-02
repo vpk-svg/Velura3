@@ -12,7 +12,7 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: 'Missing session_id query parameter' }, { status: 400 });
     }
 
-    // Basic format validation — Stripe session IDs start with 'cs_'
+    // Basic format validation - Stripe session IDs start with 'cs_'
     if (!sessionId.startsWith('cs_')) {
       return NextResponse.json({ error: 'Invalid session_id format' }, { status: 400 });
     }

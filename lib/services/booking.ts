@@ -1,6 +1,6 @@
 /**
  * Booking / agenda service abstraction.
- * Provider-agnostic — designed for Cal.com integration.
+ * Provider-agnostic - designed for Cal.com integration.
  */
 
 export interface TimeSlot {

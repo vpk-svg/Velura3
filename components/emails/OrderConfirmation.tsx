@@ -84,7 +84,7 @@ export const OrderConfirmationEmail = ({
                         </Section>
 
                         <Text className="text-[#a8a8a8] text-[12px] leading-[20px] mt-8 text-center italic">
-                            VELURA aangedreven door Wellis Pharmacy B.V. — Geregistreerde EU-apotheek.
+                            VELURA aangedreven door Wellis Pharmacy B.V. Geregistreerde EU-apotheek.
                             Dit is een automatisch gegenereerd bericht. Neem bij vragen contact op met de klantenservice.
                         </Text>
                     </Container>

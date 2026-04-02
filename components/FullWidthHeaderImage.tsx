@@ -28,7 +28,7 @@ export default function FullWidthHeaderImage() {
             <motion.div style={{ scale, y }} className="absolute inset-0 z-0">
                 <Image
                     src="/images/hero-atmos.webp"
-                    alt="FAB Clinic — The Skin Centre"
+                    alt="FAB Clinic - The Skin Centre"
                     fill
                     priority
                     className="object-cover opacity-75"

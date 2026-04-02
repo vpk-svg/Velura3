@@ -9,7 +9,10 @@ const detailsSchema = z.object({
   lastName: z.string().min(1),
   email: z.string().email(),
   phone: z.string().min(6),
-  birthDate: z.string().min(8),
+  birthDate: z.string().min(1).refine(
+    (v) => { const d = new Date(v); return !isNaN(d.getTime()) && d < new Date(); },
+    { message: 'Invalid date of birth' }
+  ),
   notes: z.string().optional(),
 });
 

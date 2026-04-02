@@ -86,8 +86,8 @@ export default function BehandelingenPage() {
             className="font-sans font-light text-background-light/70 text-lg max-w-2xl"
           >
             {locale === 'nl'
-              ? 'Van injectables tot medisch gewichtsverlies — alle behandelingen worden uitgevoerd door BIG-geregistreerde artsen in onze kliniek in Ede.'
-              : 'From injectables to medical weight loss — all treatments are performed by BIG-registered doctors at our clinic in Ede.'}
+              ? 'Van injectables tot medisch gewichtsverlies: alle behandelingen worden uitgevoerd door BIG-geregistreerde artsen in onze kliniek in Ede.'
+              : 'From injectables to medical weight loss: all treatments are performed by BIG-registered doctors at our clinic in Ede.'}
           </motion.p>
         </Container>
       </section>

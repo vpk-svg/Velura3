@@ -9,6 +9,22 @@ function isValidLocale(value: string): value is Locale {
   return (VALID_LOCALES as readonly string[]).includes(value);
 }
 
+/* ── Simple in-memory rate limiter (per IP, 10 requests / 60s) ─── */
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_WINDOW = 60_000;
+const RATE_LIMIT_MAX = 10;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
+    return false;
+  }
+  entry.count++;
+  return entry.count > RATE_LIMIT_MAX;
+}
+
 interface ZoneLineItem {
   id: string;
   name: string;
@@ -17,6 +33,11 @@ interface ZoneLineItem {
 
 export async function POST(req: Request) {
   try {
+    const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    if (isRateLimited(ip)) {
+      return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
+    }
+
     const body = await req.json();
     const { mode, locale } = body as { mode?: string; locale?: string };
 
@@ -48,7 +69,7 @@ export async function POST(req: Request) {
       const lineItems = zones.map((zone) => ({
         price_data: {
           currency: 'eur' as const,
-          product_data: { name: `${treatmentType} — ${zone.name}` },
+          product_data: { name: `${treatmentType} - ${zone.name}` },
           unit_amount: zone.priceCents,
         },
         quantity: 1,

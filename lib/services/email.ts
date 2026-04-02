@@ -16,7 +16,7 @@ export interface EmailPayload {
  */
 export async function sendEmail(payload: EmailPayload): Promise<{ success: boolean }> {
   if (!process.env.RESEND_API_KEY) {
-    console.log('[EMAIL] (dev) Would send to:', payload.to, '—', payload.subject);
+    console.log('[EMAIL] (dev) Would send to:', payload.to, '-', payload.subject);
     return { success: true };
   }
 

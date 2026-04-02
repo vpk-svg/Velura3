@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageSquare, X, Send, Bot } from 'lucide-react';
+import { useLocale } from 'next-intl';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 interface ChatMessage {
@@ -11,35 +12,52 @@ interface ChatMessage {
   timestamp: number;
 }
 
-const FALLBACK_RESPONSES: Record<string, string> = {
+const RESPONSES_NL: Record<string, string> = {
   botox: 'Botox behandelingen starten vanaf €90 per zone. U kunt online zones selecteren en direct een afspraak inplannen op vrijdag of zaterdag.',
   fillers: 'Wij bieden premium hyaluronzuur fillers aan voor lippen, kin, kaaklijn en meer. Bekijk onze fillers pagina voor prijzen per zone.',
-  prijs: 'Onze prijzen variëren per behandeling. Botox vanaf €90/zone, fillers op aanvraag, weightloss trajecten vanaf €179/maand.',
+  prijs: 'Onze prijzen variëren per behandeling. Botox vanaf €90/zone, fillers op aanvraag, afvaltrajecten vanaf €179/maand.',
   afspraak: 'U kunt een afspraak inplannen via onze website of bel ons op het nummer op de contactpagina.',
-  weightloss: 'Ons weightloss programma werkt met GLP-1 medicatie zoals Ozempic, Mounjaro en Wegovy. Start met onze gratis online intake.',
+  weightloss: 'Ons afvalprogramma werkt met GLP-1 medicatie zoals Ozempic, Mounjaro en Wegovy. Start met onze gratis online intake.',
   shape: 'Shape behandelingen omvatten Butt Contour, ooglidcorrectie en vet onder de kin verwijderen.',
   openingstijden: 'Behandelingen vinden plaats op vrijdag en zaterdag. Consulten zijn ook doordeweeks mogelijk.',
   hallo: 'Hallo! Welkom bij FAB Clinic. Hoe kan ik u helpen? Stel gerust uw vraag over onze behandelingen.',
-  hi: 'Hello! Welcome to FAB Clinic. How can I help you? Feel free to ask about our treatments.',
   default: 'Bedankt voor uw bericht! Voor specifieke vragen kunt u ons bereiken via de contactpagina of WhatsApp. Wij reageren zo snel mogelijk.',
 };
 
-function getLocalResponse(message: string): string {
+const RESPONSES_EN: Record<string, string> = {
+  botox: 'Botox treatments start from €90 per zone. You can select zones online and book an appointment on Friday or Saturday.',
+  fillers: 'We offer premium hyaluronic acid fillers for lips, chin, jawline and more. See our fillers page for pricing per zone.',
+  price: 'Our prices vary by treatment. Botox from €90/zone, fillers on request, weight loss programs from €179/month.',
+  appointment: 'You can book an appointment via our website or call us at the number on the contact page.',
+  weightloss: 'Our weight loss program uses GLP-1 medication such as Ozempic, Mounjaro and Wegovy. Start with our free online intake.',
+  weight: 'Our weight loss program uses GLP-1 medication such as Ozempic, Mounjaro and Wegovy. Start with our free online intake.',
+  shape: 'Shape treatments include Butt Contour, eyelid correction and double chin removal.',
+  hours: 'Treatments take place on Fridays and Saturdays. Consultations are also available on weekdays.',
+  hello: 'Hello! Welcome to FAB Clinic. How can I help you? Feel free to ask about our treatments, pricing or availability.',
+  hi: 'Hello! Welcome to FAB Clinic. How can I help you? Feel free to ask about our treatments.',
+  default: 'Thank you for your message! For specific questions, please reach us via the contact page or WhatsApp. We will respond as soon as possible.',
+};
+
+function getLocalResponse(message: string, locale: string): string {
   const lower = message.toLowerCase();
-  for (const [keyword, response] of Object.entries(FALLBACK_RESPONSES)) {
+  const responses = locale === 'en' ? RESPONSES_EN : RESPONSES_NL;
+  for (const [keyword, response] of Object.entries(responses)) {
     if (keyword !== 'default' && lower.includes(keyword)) {
       return response;
     }
   }
-  return FALLBACK_RESPONSES.default;
+  return responses.default;
 }
 
 export default function AiChatbot() {
+  const locale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: 'assistant',
-      content: 'Welkom bij FAB Clinic! Hoe kan ik u helpen? Vraag gerust over onze behandelingen, prijzen of beschikbaarheid.',
+      content: locale === 'en'
+        ? 'Welcome to FAB Clinic! How can I help you? Ask about our treatments, pricing or availability.'
+        : 'Welkom bij FAB Clinic! Hoe kan ik u helpen? Vraag gerust over onze behandelingen, prijzen of beschikbaarheid.',
       timestamp: Date.now(),
     },
   ]);
@@ -67,7 +85,7 @@ export default function AiChatbot() {
     // Simulate typing delay
     await new Promise((r) => setTimeout(r, 600 + Math.random() * 800));
 
-    const response = getLocalResponse(trimmed);
+    const response = getLocalResponse(trimmed, locale);
     setMessages((prev) => [...prev, { role: 'assistant', content: response, timestamp: Date.now() }]);
     setIsTyping(false);
   }, [input]);
@@ -116,14 +134,14 @@ export default function AiChatbot() {
                   <Bot size={16} className="text-primary" />
                 </div>
                 <div>
-                  <p className="font-sans text-sm font-semibold">FAB Clinic</p>
+                  <p className="font-sans text-sm font-semibold">{locale === 'en' ? 'Quick Help' : 'Snel Antwoord'}</p>
                   <p className="font-sans text-[10px] text-background-light/50 uppercase tracking-widest">Online</p>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
                 className="p-1.5 rounded-full hover:bg-white/10 transition-colors"
-                aria-label="Sluit chat"
+                aria-label={locale === 'en' ? 'Close chat' : 'Sluit chat'}
               >
                 <X size={18} />
               </button>
@@ -171,14 +189,14 @@ export default function AiChatbot() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Stel uw vraag..."
+                  placeholder={locale === 'en' ? 'Ask a question...' : 'Stel uw vraag...'}
                   className="flex-grow px-4 py-2.5 rounded-pill border border-secondary/[0.08] bg-white font-sans text-sm text-secondary outline-none placeholder:text-secondary/30 focus:border-primary/30 transition-colors"
                 />
                 <button
                   onClick={handleSend}
                   disabled={!input.trim()}
                   className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shrink-0 disabled:opacity-40 transition-opacity hover:bg-primary-dark"
-                  aria-label="Verstuur bericht"
+                  aria-label={locale === 'en' ? 'Send message' : 'Verstuur bericht'}
                 >
                   <Send size={16} />
                 </button>

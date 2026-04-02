@@ -19,7 +19,7 @@ function getStripeInstance(): Stripe {
   });
 }
 
-/** Lazily initialised Stripe instance — throws at call-time if key is missing. */
+/** Lazily initialised Stripe instance - throws at call-time if key is missing. */
 let _stripe: Stripe | null = null;
 export function getStripe(): Stripe {
   if (!_stripe) _stripe = getStripeInstance();
@@ -30,7 +30,7 @@ export function getStripe(): Stripe {
 export const stripe = (() => {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) {
-    console.warn('[VELURA] STRIPE_SECRET_KEY missing — Stripe calls will fail at runtime.');
+    console.warn('[VELURA] STRIPE_SECRET_KEY missing - Stripe calls will fail at runtime.');
     return null as unknown as Stripe;
   }
   return new Stripe(key, {

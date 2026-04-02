@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { motion } from 'motion/react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Loader2, PlusCircle } from 'lucide-react';
@@ -20,10 +20,19 @@ export default function CheckoutButton({
     const locale = useLocale();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const lastClickRef = useRef(0);
 
-    const handleCheckout = async () => {
+    const handleCheckout = useCallback(async () => {
+        // Debounce: prevent multiple clicks within 2s
+        const now = Date.now();
+        if (now - lastClickRef.current < 2000) return;
+        lastClickRef.current = now;
+
         setIsLoading(true);
         setError(null);
+
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 10000);
 
         try {
             const response = await fetch('/api/checkout', {
@@ -35,8 +44,10 @@ export default function CheckoutButton({
                     productId,
                     locale,
                 }),
+                signal: controller.signal,
             });
 
+            clearTimeout(timeout);
             const data = await response.json();
 
             if (!response.ok) {
@@ -47,12 +58,17 @@ export default function CheckoutButton({
                 window.location.href = data.url;
             }
         } catch (err: unknown) {
-            console.error('Checkout error:', err);
-            setError(t('error'));
+            clearTimeout(timeout);
+            if (err instanceof DOMException && err.name === 'AbortError') {
+                setError(t('timeout'));
+            } else {
+                console.error('Checkout error:', err);
+                setError(t('error'));
+            }
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [productId, locale, t]);
 
     const baseStyles = "w-full py-5 rounded-full font-sans text-[11px] tracking-[0.2em] uppercase transition-all duration-500 flex items-center justify-center relative overflow-hidden font-semibold";
     const variantStyles = {

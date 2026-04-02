@@ -12,9 +12,9 @@ export interface ChatMessage {
 const FALLBACK_RESPONSES: Record<string, string> = {
   botox: 'Botox behandelingen starten vanaf €90 per zone. U kunt online zones selecteren en direct een afspraak inplannen op vrijdag of zaterdag.',
   fillers: 'Wij bieden premium hyaluronzuur fillers aan voor lippen, kin, kaaklijn en meer. Bekijk onze fillers pagina voor prijzen per zone.',
-  prijs: 'Onze prijzen variëren per behandeling. Botox vanaf €90/zone, fillers op aanvraag, weightloss trajecten vanaf €179/maand.',
+  prijs: 'Onze prijzen variëren per behandeling. Botox vanaf €90/zone, fillers op aanvraag, afvaltrajecten vanaf €179/maand.',
   afspraak: 'U kunt een afspraak inplannen via onze website of bel ons op het nummer op de contactpagina. Botox en fillers zijn beschikbaar op vrijdag en zaterdag.',
-  weightloss: 'Ons weightloss programma werkt met GLP-1 medicatie zoals Ozempic, Mounjaro en Wegovy. Start met onze gratis online intake.',
+  weightloss: 'Ons afvalprogramma werkt met GLP-1 medicatie zoals Ozempic, Mounjaro en Wegovy. Start met onze gratis online intake.',
   shape: 'Shape behandelingen omvatten Butt Contour, ooglidcorrectie en vet onder de kin verwijderen. Neem contact op voor een consult.',
   openingstijden: 'Behandelingen vinden plaats op vrijdag en zaterdag. Consulten zijn ook doordeweeks mogelijk.',
   default: 'Bedankt voor uw bericht! Voor specifieke vragen kunt u ons bereiken via de contactpagina of WhatsApp. Wij reageren zo snel mogelijk.',

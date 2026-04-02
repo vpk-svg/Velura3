@@ -40,7 +40,7 @@ const config: Config = {
         "bronze-light":     "#DAA06D",
       },
 
-      /* ── Typography — 2 typefaces only ─────────────── */
+      /* ── Typography - 2 typefaces only ─────────────── */
       fontFamily: {
         sans:    ["var(--font-jost)", "sans-serif"],
         display: ["var(--font-cormorant)", "serif"],
@@ -57,7 +57,7 @@ const config: Config = {
         "section-y": "clamp(5rem, 10vw, 8rem)",
       },
 
-      /* ── Border-radius — 3 values only ─────────────── */
+      /* ── Border-radius - 3 values only ─────────────── */
       borderRadius: {
         sm:   "0.375rem",
         md:   "0.75rem",
@@ -84,7 +84,7 @@ const config: Config = {
         container: "80rem",
       },
 
-      /* ── z-index — 5-step scale ────────────────────── */
+      /* ── z-index - 5-step scale ──────────────────── */
       zIndex: {
         base:       "100",
         floating:   "200",

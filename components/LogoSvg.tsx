@@ -1,6 +1,6 @@
 export default function LogoSvg({ className }: { className?: string }) {
   return (
-    // viewBox: 0 20 840 130 — crops top/bottom whitespace so text + gold line fill the element
+    // viewBox: 0 20 840 130 - crops top/bottom whitespace so text + gold line fill the element
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 20 840 130"
@@ -55,7 +55,7 @@ export default function LogoSvg({ className }: { className?: string }) {
         </linearGradient>
       </defs>
 
-      {/* Transparent background — inherits page/navbar bg */}
+      {/* Transparent background - inherits page/navbar bg */}
 
       {/* Main wordmark */}
       <text
@@ -72,7 +72,7 @@ export default function LogoSvg({ className }: { className?: string }) {
         FAB CLINIC
       </text>
 
-      {/* Gold-leaf divider line — sits 12px below baseline */}
+      {/* Gold-leaf divider line - sits 12px below baseline */}
       <line
         x1="52"
         y1="124"
