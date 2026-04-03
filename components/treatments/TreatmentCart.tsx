@@ -42,14 +42,14 @@ export default function TreatmentCart({ zones, selectedZones, onRemove, onRestor
 
   if (selectedItems.length === 0) {
     return (
-      <div className="bg-surface-elevated rounded-lg border border-secondary/5 p-6 text-center">
+      <div className="glass rounded-xl border border-primary/10 p-6 text-center shadow-soft-sm">
         <p className="font-sans text-sm text-secondary/40">{t('cart_empty')}</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-surface-elevated rounded-lg border border-secondary/5 overflow-hidden">
+    <div className="glass rounded-xl border border-primary/10 overflow-hidden shadow-soft-md">
       <div className="px-5 py-3 border-b border-secondary/5">
         <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/40 font-semibold">
           {t('cart_title')} ({selectedItems.length})
@@ -74,7 +74,7 @@ export default function TreatmentCart({ zones, selectedZones, onRemove, onRestor
                 <button
                   onClick={() => handleRemove(item)}
                   className="p-1 rounded-full text-secondary/20 hover:text-rose-dark hover:bg-rose-soft transition-colors"
-                  aria-label={`Verwijder ${t(item.nameKey)}`}
+                  aria-label={t('cart_remove_label', { zone: t(item.nameKey) })}
                 >
                   <Trash2 size={14} />
                 </button>
@@ -102,12 +102,12 @@ export default function TreatmentCart({ zones, selectedZones, onRemove, onRestor
             exit={{ opacity: 0, y: 8 }}
             className="px-5 py-3 bg-secondary text-background-light flex items-center justify-between text-sm"
           >
-            <span className="font-sans text-xs">{undoItem.name} removed</span>
+            <span className="font-sans text-xs">{undoItem.name} {t('cart_removed')}</span>
             <button
               onClick={handleUndo}
               className="flex items-center gap-1.5 font-sans text-xs font-semibold text-primary hover:text-primary-light transition-colors"
             >
-              <Undo2 size={12} /> Undo
+              <Undo2 size={12} /> {t('cart_undo')}
             </button>
           </motion.div>
         )}

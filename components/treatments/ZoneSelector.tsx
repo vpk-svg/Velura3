@@ -32,25 +32,39 @@ export default function ZoneSelector({ zones, selectedZones, onToggle, namespace
       </p>
 
       {/* Grid Selector */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-        {zones.map((zone) => {
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {zones.map((zone, idx) => {
           const isSelected = selectedZones.includes(zone.id);
           return (
             <motion.button
               key={zone.id}
               type="button"
+              role="checkbox"
+              aria-checked={isSelected}
+              aria-label={`${t(zone.nameKey)} — €${(zone.priceCents / 100).toFixed(0)}`}
               onClick={() => onToggle(zone.id)}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               whileTap={{ scale: 0.97 }}
               animate={isSelected ? { scale: [1, 1.03, 1] } : {}}
-              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-              className={`relative text-left px-4 py-4 rounded-lg border-[1.5px] transition-all duration-300 ease-premium group ${
+              transition={{ type: 'spring', stiffness: 400, damping: 25, delay: idx * 0.03 }}
+              className={`relative text-left px-5 py-5 rounded-xl border-[1.5px] transition-all duration-300 ease-premium group will-change-transform ${
                 isSelected
-                  ? 'border-primary/60 bg-gradient-to-br from-primary/[0.06] to-primary/[0.02] shadow-option-selected'
-                  : 'border-secondary/[0.07] bg-white hover:border-secondary/15 shadow-input-rest'
+                  ? 'border-primary/60 bg-gradient-to-br from-primary/[0.06] to-primary/[0.02] shadow-option-selected ring-1 ring-primary/10'
+                  : 'border-secondary/[0.07] bg-white hover:border-secondary/15 shadow-input-rest hover:shadow-soft-sm'
               }`}
             >
-              <div className="flex items-center justify-between mb-1">
-                <span className={`font-sans text-sm font-medium ${isSelected ? 'text-secondary' : 'text-secondary/70'}`}>
+              {/* Gold left accent for selected state */}
+              {isSelected && (
+                <motion.span
+                  layoutId={`accent-${zone.id}`}
+                  className="absolute left-0 top-3 bottom-3 w-[3px] rounded-full bg-primary"
+                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                />
+              )}
+              <div className="flex items-center justify-between mb-1.5">
+                <span className={`font-sans text-sm font-medium tracking-wide ${isSelected ? 'text-secondary' : 'text-secondary/70'}`}>
                   {t(zone.nameKey)}
                 </span>
                 <span className={`w-5 h-5 rounded-full border-[1.5px] flex items-center justify-center shrink-0 transition-all duration-300 ${

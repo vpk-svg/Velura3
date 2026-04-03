@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 const detailsSchema = z.object({
@@ -31,66 +32,103 @@ export default function DetailsForm({ onSubmit, isLoading, namespace }: DetailsF
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<DetailsFormData>({
-    mode: 'onBlur',
+    resolver: zodResolver(detailsSchema),
+    mode: 'onChange',
   });
 
   const inputClass = (hasError: boolean) =>
-    `w-full px-4 py-3.5 rounded-lg border-[1.5px] font-sans text-sm text-secondary outline-none transition-all duration-300 placeholder:text-secondary/20 ${
+    `w-full px-4 py-3.5 rounded-lg border-[1.5px] font-sans text-sm text-secondary outline-none transition-all duration-300 placeholder:text-secondary/30 ${
       hasError
         ? 'border-rose-dark/40 bg-rose-soft/30 focus:border-rose-dark/60'
         : 'border-secondary/[0.07] bg-surface-elevated focus:border-primary/30 shadow-input-rest focus:shadow-input-focus'
     }`;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/40 font-semibold mb-2">
         {t('form_title')}
       </p>
 
       <div className="grid grid-cols-2 gap-3">
         <div>
+          <label htmlFor="firstName" className="block font-sans text-[10px] uppercase tracking-[0.15em] text-secondary/50 font-semibold mb-1.5">
+            {t('form_first_name')}
+          </label>
           <input
-            {...register('firstName', { required: true })}
+            id="firstName"
+            {...register('firstName')}
             placeholder={t('form_first_name')}
+            autoComplete="given-name"
             className={inputClass(!!errors.firstName)}
           />
         </div>
         <div>
+          <label htmlFor="lastName" className="block font-sans text-[10px] uppercase tracking-[0.15em] text-secondary/50 font-semibold mb-1.5">
+            {t('form_last_name')}
+          </label>
           <input
-            {...register('lastName', { required: true })}
+            id="lastName"
+            {...register('lastName')}
             placeholder={t('form_last_name')}
+            autoComplete="family-name"
             className={inputClass(!!errors.lastName)}
           />
         </div>
       </div>
 
-      <input
-        {...register('email', { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
-        type="email"
-        placeholder={t('form_email')}
-        className={inputClass(!!errors.email)}
-      />
+      <div>
+        <label htmlFor="email" className="block font-sans text-[10px] uppercase tracking-[0.15em] text-secondary/50 font-semibold mb-1.5">
+          {t('form_email')}
+        </label>
+        <input
+          id="email"
+          {...register('email')}
+          type="email"
+          placeholder={t('form_email')}
+          autoComplete="email"
+          className={inputClass(!!errors.email)}
+        />
+      </div>
 
-      <input
-        {...register('phone', { required: true, minLength: 6 })}
-        type="tel"
-        placeholder={t('form_phone')}
-        className={inputClass(!!errors.phone)}
-      />
+      <div>
+        <label htmlFor="phone" className="block font-sans text-[10px] uppercase tracking-[0.15em] text-secondary/50 font-semibold mb-1.5">
+          {t('form_phone')}
+        </label>
+        <input
+          id="phone"
+          {...register('phone')}
+          type="tel"
+          placeholder={t('form_phone')}
+          autoComplete="tel"
+          className={inputClass(!!errors.phone)}
+        />
+      </div>
 
-      <input
-        {...register('birthDate', { required: true })}
-        type="date"
-        placeholder={t('form_birth_date')}
-        className={inputClass(!!errors.birthDate)}
-      />
+      <div>
+        <label htmlFor="birthDate" className="block font-sans text-[10px] uppercase tracking-[0.15em] text-secondary/50 font-semibold mb-1.5">
+          {t('form_birth_date')}
+        </label>
+        <input
+          id="birthDate"
+          {...register('birthDate')}
+          type="date"
+          autoComplete="bday"
+          className={inputClass(!!errors.birthDate)}
+        />
+      </div>
 
-      <textarea
-        {...register('notes')}
-        placeholder={t('form_notes')}
-        rows={3}
-        className={`${inputClass(false)} resize-none`}
-      />
+      <div>
+        <label htmlFor="notes" className="block font-sans text-[10px] uppercase tracking-[0.15em] text-secondary/50 font-semibold mb-1.5">
+          {t('form_notes')}
+        </label>
+        <textarea
+          id="notes"
+          {...register('notes')}
+          placeholder={t('form_notes')}
+          rows={3}
+          className={`${inputClass(false)} resize-none`}
+        />
+      </div>
 
       <button
         type="submit"
