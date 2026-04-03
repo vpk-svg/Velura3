@@ -12,10 +12,10 @@ export default function ContactSection() {
     const t = useTranslations('contact');
 
     const contactItems = [
-        { icon: <Mail className="text-primary" />, title: t('email'), desc: 'info@fabclinic.nl', href: 'mailto:info@fabclinic.nl' },
-        { icon: <MessageCircle className="text-primary" />, title: t('whatsapp'), desc: 'WhatsApp', href: 'https://wa.me/31600000000' },
+        { icon: <Mail className="text-primary" />, title: t('email'), desc: 'shots@fabclinic.eu', href: 'mailto:shots@fabclinic.eu' },
+        { icon: <MessageCircle className="text-primary" />, title: t('whatsapp'), desc: 'WhatsApp', href: 'https://wa.me/31600000000' }, /* TODO: replace with real WhatsApp number */
         { icon: <MapPin className="text-primary" />, title: t('visit'), desc: t('address'), href: 'https://maps.google.com/?q=Nieuwe+Stationsstraat+20+Ede' },
-        { icon: <Clock className="text-primary" />, title: t('hours'), desc: t('hours_desc'), href: '#' }
+        { icon: <Clock className="text-primary" />, title: t('hours'), desc: t('hours_desc'), href: undefined }
     ];
 
     return (
@@ -44,25 +44,28 @@ export default function ContactSection() {
                         </motion.h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                            {contactItems.map((item, idx) => (
-                                <motion.a
-                                    key={item.title}
-                                    href={item.href}
-                                    initial={{ opacity: 0, y: 16 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.15 + idx * 0.08, ease: EASE_PREMIUM }}
-                                    className="group flex items-start gap-5 p-8 rounded-md border border-white/5 hover:border-primary/20 transition-all duration-300 ease-premium hover:bg-white/5 shadow-soft-sm hover:shadow-soft-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
-                                >
-                                    <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-primary transition-colors duration-300 text-white" aria-hidden="true">
-                                        {item.icon}
-                                    </div>
-                                    <div>
-                                        <h4 className="font-sans text-xs tracking-[0.2em] text-primary uppercase mb-2 font-semibold">{item.title}</h4>
-                                        <p className="font-sans text-lg text-background-light/80 group-hover:text-background-light transition-colors">{item.desc}</p>
-                                    </div>
-                                </motion.a>
-                            ))}
+                            {contactItems.map((item, idx) => {
+                                const Tag = item.href ? motion.a : motion.div;
+                                return (
+                                    <Tag
+                                        key={item.title}
+                                        {...(item.href ? { href: item.href } : {})}
+                                        initial={{ opacity: 0, y: 16 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.15 + idx * 0.08, ease: EASE_PREMIUM }}
+                                        className="group flex items-start gap-5 p-8 rounded-md border border-white/5 hover:border-primary/20 transition-all duration-300 ease-premium hover:bg-white/5 shadow-soft-sm hover:shadow-soft-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                                    >
+                                        <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-primary transition-colors duration-300 text-white" aria-hidden="true">
+                                            {item.icon}
+                                        </div>
+                                        <div>
+                                            <h4 className="font-sans text-xs tracking-[0.2em] text-primary uppercase mb-2 font-semibold">{item.title}</h4>
+                                            <p className="font-sans text-lg text-background-light/80 group-hover:text-background-light transition-colors">{item.desc}</p>
+                                        </div>
+                                    </Tag>
+                                );
+                            })}
                         </div>
 
                         <Button href="#consult" variant="primary" size="lg" magnetic>

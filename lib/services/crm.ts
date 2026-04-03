@@ -8,7 +8,7 @@ export interface Lead {
   lastName: string;
   email: string;
   phone: string;
-  source: 'survey' | 'botox' | 'fillers' | 'shape' | 'contact' | 'newsletter';
+  source: 'survey' | 'botox' | 'fillers' | 'shape' | 'contact' | 'newsletter' | 'course';
   metadata?: Record<string, string | number | boolean>;
 }
 

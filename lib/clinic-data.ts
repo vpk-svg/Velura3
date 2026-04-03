@@ -497,7 +497,7 @@ export function getClinicContactInfo(locale: Locale): ClinicContactInfo {
         clinicName: 'FabClinic EDE',
         address: 'Nieuwe Stationsstraat 20, 6711 AG Ede',
         email: 'shots@fabclinic.eu',
-        phone: 'Telefoonnummer volgt binnenkort',
+        phone: '', /* TODO: add real phone number when available */
         openingHours: 'Zaterdag (alleen op afspraak)',
         mapsEmbedUrl:
           'https://www.google.com/maps?q=Nieuwe+Stationsstraat+20,+Ede&output=embed',
@@ -506,7 +506,7 @@ export function getClinicContactInfo(locale: Locale): ClinicContactInfo {
         clinicName: 'FabClinic EDE',
         address: 'Nieuwe Stationsstraat 20, 6711 AG Ede, The Netherlands',
         email: 'shots@fabclinic.eu',
-        phone: 'Phone number coming soon',
+        phone: '', /* TODO: add real phone number when available */
         openingHours: 'Saturday (by appointment only)',
         mapsEmbedUrl:
           'https://www.google.com/maps?q=Nieuwe+Stationsstraat+20,+Ede&output=embed',
