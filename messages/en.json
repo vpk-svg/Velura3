@@ -231,7 +231,9 @@
     "success_cta": "Back to Home",
     "cancelled_title": "Order Cancelled",
     "cancelled_sub": "Your order was not completed. Try again or get in touch.",
-    "cancelled_cta": "Return to Shop"
+    "cancelled_cta": "Return to Shop",
+    "meta_title_success": "Order Confirmed | FAB Clinic",
+    "meta_title_cancelled": "Payment Cancelled | FAB Clinic"
   },
   "trust": {
     "sr_heading": "Why trust FAB Clinic",
@@ -266,7 +268,13 @@
     "hours": "Opening Hours",
     "hours_desc": "Mon – Fri  9:00 – 17:00",
     "address": "Nieuwe Stationsstraat 20, 6711 AG Ede",
-    "cta": "Schedule a Free Consultation"
+    "cta": "Schedule a Free Consultation",
+    "meta_title": "Contact & Intake | FAB Clinic",
+    "meta_desc": "Get in touch with FAB Clinic in Ede. Schedule an intake, ask your questions or book a consultation with our licensed physicians."
+  },
+  "consult_plan": {
+    "meta_title": "Plan Your Consultation | FAB Clinic",
+    "meta_desc": "Choose your treatment(s) and book your consultation at FAB Clinic. Botox, fillers, BBL or intake consultation - all under medical supervision."
   },
   "newsletter": {
     "title": "Stay Informed",
@@ -559,7 +567,9 @@
     "cta_label": "READY TO START?",
     "cta_title": "Find out if you qualify",
     "cta_desc": "Complete the free check and our doctor will assess within 24 hours whether a programme is right for you.",
-    "cta_button": "Start the Free Check"
+    "cta_button": "Start the Free Check",
+    "meta_title": "Treatment Programmes | FAB Clinic",
+    "meta_desc": "From intake to aftercare: each programme is personally tailored to your body, your goals, and your lifestyle."
   },
   "medicatie_page": {
     "hero_label": "GLP-1 MEDICATION",
@@ -616,7 +626,9 @@
     "cta_label": "READY TO START?",
     "cta_title": "Find out which medication suits you",
     "cta_desc": "Complete the free screening and our doctor will assess within 24 hours which option best fits your situation.",
-    "cta_button": "Start the Free Screening"
+    "cta_button": "Start the Free Screening",
+    "meta_title": "GLP-1 Weight Loss Medication | FAB Clinic",
+    "meta_desc": "Clinically proven weight loss medication prescribed by licensed physicians. Ozempic, Mounjaro, Wegovy and Saxenda available."
   },
   "fillers_page": {
     "hero_label": "DERMAL FILLERS",
@@ -719,7 +731,9 @@
     "catalog_label": "FILLERS CATALOG",
     "catalog_title": "Complete filler treatment catalog",
     "catalog_subtitle": "Includes butt filler item, click for treatment details and direct Saturday booking.",
-    "cart_remove_label": "Remove {zone}"
+    "cart_remove_label": "Remove {zone}",
+    "meta_title": "Filler Treatment | FAB Clinic",
+    "meta_desc": "Soft volume restoration with premium hyaluronic acid fillers. Our doctors use micro-dosing for the most natural result."
   },
   "sticky_mobile": {
     "consult": "Book Consult"
@@ -927,7 +941,9 @@
     "cta_button": "Start Free Intake",
     "hero_social_proof": "4.9/5 · 500+ patients · BIG-registered physicians",
     "why_image_alt": "Medically guided weight loss medication at FAB Clinic",
-    "why_cta": "Schedule a Consult"
+    "why_cta": "Schedule a Consult",
+    "meta_title": "Medical Weight Loss Programme | FAB Clinic",
+    "meta_desc": "GLP-1 medication prescribed by physicians, with personal coaching and monthly evaluation. Proven effective, safe and supervised."
   },
   "shape_page": {
     "hero_label": "BBL BUTTOCK FILLERS — SAFE ALTERNATIVE",
@@ -1054,7 +1070,9 @@
     "treatment_double_chin_name": "Double Chin",
     "treatment_double_chin_desc": "Minimally invasive fat removal under the chin via liposuction or injection lipolysis. For a tighter jawline profile.",
     "treatment_double_chin_variant_injection": "Injection Lipolysis",
-    "treatment_double_chin_variant_lipo": "Mini Liposuction"
+    "treatment_double_chin_variant_lipo": "Mini Liposuction",
+    "meta_title": "BBL Buttock Fillers — Safe Alternative | FAB Clinic",
+    "meta_desc": "The safer, non-surgical Brazilian Butt Lift. Refined curves without the risks of surgery at FAB Clinic in Ede."
   },
   "program_timeline": {
     "label": "HOW IT WORKS",
@@ -1121,7 +1139,9 @@
     "cta_label": "MORE QUESTIONS?",
     "cta_title": "Question not found?",
     "cta_desc": "Feel free to contact us. We're happy to help with all your questions.",
-    "cta_button": "Contact Us"
+    "cta_button": "Contact Us",
+    "meta_title": "Frequently Asked Questions | FAB Clinic",
+    "meta_desc": "Find answers to the most common questions about our treatments, medication and clinic."
   },
   "seo_treatments": {
     "hero_label": "TREATMENT",
@@ -1373,7 +1393,6 @@
   "cursus": {
     "meta_title": "Injectables Course for Doctors | FAB Clinic",
     "meta_desc": "Hands-on injectables course for licensed physicians. Anatomy, safety zones, complication management, and premium injection technique in small groups.",
-
     "badge": "Injectables Course",
     "hero_title": "Injectables course for ",
     "hero_title_accent": "licensed doctors",
@@ -1382,7 +1401,6 @@
     "cta_curriculum": "View programme",
     "hero_img_alt": "Injectables course at FAB Clinic",
     "social_proof": "150+ doctors trained",
-
     "overview_label": "Overview",
     "overview_title": "Why this course?",
     "overview_subtitle": "Strong focus on doctors who want to work safely and aesthetically with evidence-based protocols.",
@@ -1390,7 +1408,6 @@
     "highlight_2": "Facial anatomy + safety zones + emergency protocol",
     "highlight_3": "Live demonstrations + supervised hands-on practice",
     "highlight_4": "Immediately applicable treatment framework for clinic growth",
-
     "outcomes_label": "Learning outcomes",
     "outcomes_title": "What will you learn?",
     "outcomes_subtitle": "After completing the course you will have the knowledge and skills to work safely and aesthetically with injectables.",
@@ -1402,7 +1419,6 @@
     "lo_6": "Perform informed consent and photo documentation professionally",
     "lo_7": "Create a treatment plan aligned with your practice growth",
     "lo_8": "Apply hyaluronidase emergency protocol for vascular occlusion",
-
     "audience_label": "Target audience",
     "audience_title": "Who is this for?",
     "audience_1": "Licensed physicians (GP or specialist) with BIG registration",
@@ -1411,7 +1427,6 @@
     "prereq_label": "Prerequisites",
     "prereq_1": "Valid BIG registration as a physician",
     "prereq_2": "Basic knowledge of facial anatomy (will be deepened during the course)",
-
     "curriculum_label": "Day programme",
     "curriculum_title": "Curriculum",
     "curriculum_subtitle": "An intensive course day from theory to hands-on practice, concluded with certification.",
@@ -1432,14 +1447,12 @@
     "tag_break": "Break",
     "tag_hands_on": "Hands-on",
     "tag_certificate": "Certificate",
-
     "instructor_label": "Your instructor",
     "instructor_title": "Cosmetic physician at FAB Clinic",
     "instructor_bio": "Athiná Barza is a cosmetic physician with over 10 years of experience in aesthetic medicine. At FAB Clinic, she combines medical precision with a refined aesthetic vision. Her courses are renowned for personal guidance and direct applicability in practice.",
     "stat_experience": "Years experience",
     "stat_trained": "Doctors trained",
     "stat_treatments": "Treatments",
-
     "testimonials_label": "Reviews",
     "testimonials_title": "What participants say",
     "testimonial_1_quote": "The anatomy lessons were exceptionally detailed. After just one day, I felt confident enough to treat my first patients.",
@@ -1451,7 +1464,6 @@
     "testimonial_3_quote": "The complication management module gave me the confidence to start safely. The emergency protocols are immediately applicable.",
     "testimonial_3_name": "Dr. S. Bakker",
     "testimonial_3_role": "Dermatology Resident, Rotterdam",
-
     "dates_label": "Dates",
     "dates_title": "Available dates",
     "dates_subtitle": "Small groups of maximum 8 participants for optimal guidance.",
@@ -1461,7 +1473,6 @@
     "status_almost_full": "Almost full",
     "filled_label": "booked",
     "select_date": "Select this date",
-
     "faq_label": "Frequently asked questions",
     "faq_title": "Course FAQ",
     "faq_1_q": "What should I bring to the course?",
@@ -1476,7 +1487,6 @@
     "faq_5_a": "Yes, you receive 14 days of online support: you can ask questions, discuss cases, and receive feedback on your first treatments.",
     "faq_6_q": "Which payment methods are accepted?",
     "faq_6_a": "You can pay via iDEAL, credit card (Visa, Mastercard, Amex), or bank transfer. Payment in two installments is possible.",
-
     "register_title": "Register",
     "register_subtitle": "Fill in the form below to reserve your spot.",
     "field_name": "Full name",
@@ -1502,7 +1512,6 @@
     "err_date": "Please choose a course date.",
     "err_terms": "You must agree to the terms and conditions.",
     "err_server": "Something went wrong. Please try again.",
-
     "pricing_label": "Investment",
     "pricing_amount": "€2,500",
     "pricing_vat": "incl. VAT",
@@ -1519,7 +1528,6 @@
     "pricing_incl_9": "Personal practice plan",
     "pricing_incl_10": "Payment in 2 installments possible",
     "pricing_cta": "Enrol now",
-
     "env_img_alt": "Course environment FAB Clinic"
   },
   "intake": {
@@ -1572,6 +1580,8 @@
     "clinic_phone_label": "Phone",
     "clinic_hours_label": "Opening hours",
     "clinic_trust_heading": "Fast intake, physician-led treatment plan, 14-day follow-up included.",
-    "clinic_trust_body": "For injectables and medical weight loss, appointments are available Saturdays between 10:00 and 18:00 only."
+    "clinic_trust_body": "For injectables and medical weight loss, appointments are available Saturdays between 10:00 and 18:00 only.",
+    "meta_title": "Contact & Intake | FAB Clinic",
+    "meta_desc": "Get in touch with FAB Clinic in Ede. Schedule an intake, ask your questions or book a consultation with our licensed physicians."
   }
 }

@@ -231,7 +231,9 @@
     "success_cta": "Terug naar Home",
     "cancelled_title": "Bestelling Geannuleerd",
     "cancelled_sub": "Uw bestelling is niet afgerond. Probeer het opnieuw of neem contact met ons op.",
-    "cancelled_cta": "Terug naar Shop"
+    "cancelled_cta": "Terug naar Shop",
+    "meta_title_success": "Bestelling Bevestigd | FAB Clinic",
+    "meta_title_cancelled": "Betaling Geannuleerd | FAB Clinic"
   },
   "trust": {
     "sr_heading": "Waarom FAB Clinic vertrouwen",
@@ -266,7 +268,13 @@
     "hours": "Openingstijden",
     "hours_desc": "Ma – Vr  9:00 – 17:00",
     "address": "Nieuwe Stationsstraat 20, 6711 AG Ede",
-    "cta": "Plan een Gratis Consult"
+    "cta": "Plan een Gratis Consult",
+    "meta_title": "Contact & Intake | FAB Clinic",
+    "meta_desc": "Neem contact op met FAB Clinic in Ede. Plan een intake, stel uw vragen of boek een consult met onze BIG-geregistreerde artsen."
+  },
+  "consult_plan": {
+    "meta_title": "Plan Uw Consult | FAB Clinic",
+    "meta_desc": "Kies uw behandeling(en) en plan direct uw consult bij FAB Clinic. Botox, fillers, BBL of intakegesprek - alles onder medische begeleiding."
   },
   "newsletter": {
     "title": "Op de Hoogte Blijven",
@@ -559,7 +567,9 @@
     "cta_label": "KLAAR OM TE STARTEN?",
     "cta_title": "Ontdek of u in aanmerking komt",
     "cta_desc": "Vul de gratis check in en onze arts beoordeelt binnen 24 uur of een traject bij u past.",
-    "cta_button": "Start de Gratis Check"
+    "cta_button": "Start de Gratis Check",
+    "meta_title": "Behandeltrajecten | FAB Clinic",
+    "meta_desc": "Van intake tot nazorg: elk traject is persoonlijk afgestemd op uw lichaam, uw doelen en uw leefstijl."
   },
   "medicatie_page": {
     "hero_label": "GLP-1 MEDICATIE",
@@ -616,7 +626,9 @@
     "cta_label": "KLAAR OM TE STARTEN?",
     "cta_title": "Ontdek welke medicatie bij u past",
     "cta_desc": "Vul de gratis screening in en onze arts beoordeelt binnen 24 uur welk middel het beste aansluit bij uw situatie.",
-    "cta_button": "Start de Gratis Screening"
+    "cta_button": "Start de Gratis Screening",
+    "meta_title": "GLP-1 Afvalmedicatie op Recept | FAB Clinic",
+    "meta_desc": "Klinisch bewezen afvalmedicatie voorgeschreven door BIG-geregistreerde artsen. Ozempic, Mounjaro, Wegovy en Saxenda beschikbaar."
   },
   "fillers_page": {
     "hero_label": "DERMAL FILLERS",
@@ -719,7 +731,9 @@
     "catalog_label": "FILLERS CATALOGUS",
     "catalog_title": "Volledige filler behandelkaart",
     "catalog_subtitle": "Inclusief bilfiller-item, klik voor behandelinfo en directe zaterdag-boeking.",
-    "cart_remove_label": "Verwijder {zone}"
+    "cart_remove_label": "Verwijder {zone}",
+    "meta_title": "Fillers Behandeling | FAB Clinic",
+    "meta_desc": "Zachte volumeherstel met premium hyaluronzuurfillers. Onze artsen werken met microdoseringen voor het meest natuurlijke resultaat."
   },
   "sticky_mobile": {
     "consult": "Plan Consult"
@@ -927,7 +941,9 @@
     "cta_button": "Start Gratis Intake",
     "hero_social_proof": "4.9/5 · 500+ patiënten · BIG-geregistreerde artsen",
     "why_image_alt": "Medisch begeleide afvalmedicatie bij FAB Clinic",
-    "why_cta": "Plan een Consult"
+    "why_cta": "Plan een Consult",
+    "meta_title": "Medisch Afvallen met Begeleiding | FAB Clinic",
+    "meta_desc": "GLP-1 medicatie voorgeschreven door artsen, met persoonlijke coaching en maandelijkse evaluatie. Bewezen effectief, veilig en onder toezicht."
   },
   "shape_page": {
     "hero_label": "BBL BILFILLERS — VEILIG ALTERNATIEF",
@@ -1054,7 +1070,9 @@
     "treatment_double_chin_name": "Vet Onderkin",
     "treatment_double_chin_desc": "Minimaal invasieve vetverwijdering onder de kin via liposuctie of injectielipolyse. Voor een strakker kaakprofiel.",
     "treatment_double_chin_variant_injection": "Injectie Lipolyse",
-    "treatment_double_chin_variant_lipo": "Mini Liposuctie"
+    "treatment_double_chin_variant_lipo": "Mini Liposuctie",
+    "meta_title": "BBL Bilfillers — Veilig Alternatief | FAB Clinic",
+    "meta_desc": "De veiligere, niet-operatieve Brazilian Butt Lift. Verfijnde curven zonder de risico's van chirurgie bij FAB Clinic in Ede."
   },
   "program_timeline": {
     "label": "HOE HET WERKT",
@@ -1121,7 +1139,9 @@
     "cta_label": "NOG VRAGEN?",
     "cta_title": "Vraag niet gevonden?",
     "cta_desc": "Neem gerust contact met ons op. Wij helpen u graag verder met al uw vragen.",
-    "cta_button": "Neem Contact Op"
+    "cta_button": "Neem Contact Op",
+    "meta_title": "Veelgestelde Vragen | FAB Clinic",
+    "meta_desc": "Vind antwoord op de meest gestelde vragen over onze behandelingen, medicatie en kliniek."
   },
   "seo_treatments": {
     "hero_label": "BEHANDELING",
@@ -1373,7 +1393,6 @@
   "cursus": {
     "meta_title": "Cursus Injectables voor Artsen | FAB Clinic",
     "meta_desc": "Hands-on injectables cursus voor BIG-geregistreerde artsen. Anatomie, veiligheidszones, complicatiemanagement en premium injectietechniek in kleine groepen.",
-
     "badge": "Cursus Injectables",
     "hero_title": "Injectables cursus voor ",
     "hero_title_accent": "BIG-geregistreerde artsen",
@@ -1382,7 +1401,6 @@
     "cta_curriculum": "Bekijk programma",
     "hero_img_alt": "Cursus injectables bij FAB Clinic",
     "social_proof": "150+ artsen opgeleid",
-
     "overview_label": "Overzicht",
     "overview_title": "Waarom deze cursus?",
     "overview_subtitle": "Sterke focus op artsen die veilig en esthetisch verfijnd willen werken met evidence-based protocollen.",
@@ -1390,7 +1408,6 @@
     "highlight_2": "Gezichtsanatomie + veiligheidszones + noodprotocol",
     "highlight_3": "Live demonstraties + supervised hands-on oefening",
     "highlight_4": "Direct inzetbaar behandelplan voor praktijkgroei",
-
     "outcomes_label": "Leerresultaten",
     "outcomes_title": "Wat kunt u na de cursus?",
     "outcomes_subtitle": "Na afloop bezit u de kennis en vaardigheden om veilig en esthetisch te werken met injectables.",
@@ -1402,7 +1419,6 @@
     "lo_6": "Informed consent en fotodocumentatie professioneel uitvoeren",
     "lo_7": "Een behandelplan opstellen dat aansluit bij uw praktijkgroei",
     "lo_8": "Noodprotocol hyaluronidase toepassen bij vasculaire occlusie",
-
     "audience_label": "Doelgroep",
     "audience_title": "Voor wie?",
     "audience_1": "BIG-geregistreerde artsen (basisarts of specialist)",
@@ -1411,7 +1427,6 @@
     "prereq_label": "Vereisten",
     "prereq_1": "Geldige BIG-registratie als arts",
     "prereq_2": "Basiskennis van gezichtsanatomie (wordt verdiept in de cursus)",
-
     "curriculum_label": "Dagprogramma",
     "curriculum_title": "Curriculum",
     "curriculum_subtitle": "Een intensieve cursusdag van theorie tot hands-on praktijk, afgerond met certificering.",
@@ -1432,14 +1447,12 @@
     "tag_break": "Pauze",
     "tag_hands_on": "Hands-on",
     "tag_certificate": "Certificaat",
-
     "instructor_label": "Uw docent",
     "instructor_title": "Cosmetisch arts bij FAB Clinic",
     "instructor_bio": "Athiná Barza is cosmetisch arts met meer dan 10 jaar ervaring in esthetische geneeskunde. Bij FAB Clinic combineert zij medische precisie met een verfijnde esthetische visie. Haar cursussen staan bekend om de persoonlijke begeleiding en directe toepasbaarheid in de praktijk.",
     "stat_experience": "Jaar ervaring",
     "stat_trained": "Artsen opgeleid",
     "stat_treatments": "Behandelingen",
-
     "testimonials_label": "Ervaringen",
     "testimonials_title": "Wat deelnemers zeggen",
     "testimonial_1_quote": "De anatomielessen waren uitzonderlijk gedetailleerd. Ik voelde me na één dag al zelfverzekerd genoeg om mijn eerste patiënten te behandelen.",
@@ -1451,7 +1464,6 @@
     "testimonial_3_quote": "Het complicatiemanagement-blok heeft mij het vertrouwen gegeven om veilig te starten. De noodprotocollen zijn direct inzetbaar.",
     "testimonial_3_name": "Dr. S. Bakker",
     "testimonial_3_role": "AIOS Dermatologie, Rotterdam",
-
     "dates_label": "Data",
     "dates_title": "Beschikbare data",
     "dates_subtitle": "Kleine groepen van maximaal 8 deelnemers voor optimale begeleiding.",
@@ -1461,7 +1473,6 @@
     "status_almost_full": "Bijna vol",
     "filled_label": "geboekt",
     "select_date": "Kies deze datum",
-
     "faq_label": "Veelgestelde vragen",
     "faq_title": "Cursus FAQ",
     "faq_1_q": "Wat moet ik meenemen naar de cursus?",
@@ -1476,7 +1487,6 @@
     "faq_5_a": "Ja, u krijgt 14 dagen online nazorg: u kunt vragen stellen, casussen bespreken en feedback ontvangen op uw eerste behandelingen.",
     "faq_6_q": "Welke betaalmethoden worden geaccepteerd?",
     "faq_6_a": "U kunt betalen via iDEAL, creditcard (Visa, Mastercard, Amex) of bankoverschrijving. Betaling in twee termijnen is mogelijk.",
-
     "register_title": "Aanmelden",
     "register_subtitle": "Vul onderstaand formulier in om uw plek te reserveren.",
     "field_name": "Volledige naam",
@@ -1502,7 +1512,6 @@
     "err_date": "Kies een cursusdatum.",
     "err_terms": "U dient akkoord te gaan met de voorwaarden.",
     "err_server": "Er is iets misgegaan. Probeer het opnieuw.",
-
     "pricing_label": "Investering",
     "pricing_amount": "€2.500",
     "pricing_vat": "incl. btw",
@@ -1519,7 +1528,6 @@
     "pricing_incl_9": "Persoonlijk praktijkplan",
     "pricing_incl_10": "Betaling in 2 termijnen mogelijk",
     "pricing_cta": "Schrijf u in",
-
     "env_img_alt": "Cursusomgeving FAB Clinic"
   },
   "intake": {
@@ -1572,6 +1580,8 @@
     "clinic_phone_label": "Telefoon",
     "clinic_hours_label": "Openingstijd",
     "clinic_trust_heading": "Snelle intake, artsgericht behandelplan, 14 dagen controle inbegrepen.",
-    "clinic_trust_body": "Voor injectables en medisch gewichtsverlies werken wij uitsluitend met afspraak op zaterdag tussen 10:00 en 18:00."
+    "clinic_trust_body": "Voor injectables en medisch gewichtsverlies werken wij uitsluitend met afspraak op zaterdag tussen 10:00 en 18:00.",
+    "meta_title": "Contact & Intake | FAB Clinic",
+    "meta_desc": "Neem contact op met FAB Clinic in Ede. Plan een intake, stel uw vragen of boek een consult met onze BIG-geregistreerde artsen."
   }
 }
