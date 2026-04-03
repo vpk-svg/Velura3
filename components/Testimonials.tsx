@@ -2,7 +2,7 @@
 
 import { motion, type Variants } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { Star, Heart } from 'lucide-react';
+import { Star } from 'lucide-react';
 import Container from './ui/Container';
 import SectionHeader from './ui/SectionHeader';
 import { EASE_PREMIUM } from '@/lib/motion';
@@ -30,7 +30,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-section-y bg-secondary text-background-light overflow-hidden" aria-label="Client testimonials">
+    <section className="py-section-y bg-secondary text-background-light overflow-hidden" aria-label={t('label')}>
       <Container>
         <SectionHeader
           light
@@ -45,13 +45,13 @@ export default function Testimonials() {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
         >
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial) => (
             <motion.blockquote
-              key={index}
+              key={testimonial.author}
               variants={itemVariants}
               className="bg-white rounded-md p-8 shadow-soft-md relative group hover:-translate-y-3 transition-transform duration-300 ease-premium flex flex-col"
             >
-              <div className="flex text-primary mb-8" aria-label="5 out of 5 stars">
+              <div className="flex text-primary mb-8" role="img" aria-label={`${t('rating')}: 5/5`}>
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 fill-current" />
                 ))}

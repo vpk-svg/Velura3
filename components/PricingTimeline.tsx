@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Container from './ui/Container';
 import SectionHeader from './ui/SectionHeader';
-import Button from './ui/Button';
+import ConsultTrigger from './consult/ConsultTrigger';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function PricingTimeline() {
@@ -59,7 +59,7 @@ export default function PricingTimeline() {
 
                 {/* Tab System */}
                 <div className="flex justify-center mb-16 md:mb-20">
-                    <div className="inline-flex bg-secondary/5 p-1.5 rounded-pill border border-secondary/10 shadow-inner" role="tablist" aria-label="Pricing plans">
+                    <div className="inline-flex bg-secondary/5 p-1.5 rounded-pill border border-secondary/10 shadow-inner" role="tablist" aria-label={t('tab_aria_label')}>
                         {plans.map((plan) => (
                             <button
                                 key={plan.id}
@@ -95,7 +95,7 @@ export default function PricingTimeline() {
                             transition={{ duration: 0.5, ease: EASE_PREMIUM }}
                             className="flex flex-nowrap overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar gap-6 md:gap-10"
                             tabIndex={0}
-                            aria-label="Timeline cards - scroll horizontally"
+                            aria-label={t('timeline_aria_label')}
                         >
                             {currentTimeline.map((item, idx) => (
                                 <article
@@ -129,10 +129,14 @@ export default function PricingTimeline() {
                 </div>
 
                 {/* CTA */}
-                <div className="flex justify-center mt-16">
-                    <Button href="#bmi" variant="secondary" size="lg">
+                <div className="flex flex-col items-center gap-4 mt-16">
+                    <p className="font-sans text-sm text-secondary/50">
+                        {t('total_label')}: <span className="font-semibold text-secondary">{currentTimeline.reduce((sum, item) => sum + parseInt(item.price.replace(/[^\d]/g, ''), 10), 0).toLocaleString('nl-NL', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 })}</span>
+                        {currentTimeline.some(item => item.optional) && <span className="text-secondary/40"> ({t('excl_optional')})</span>}
+                    </p>
+                    <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
                         {t('cta')}
-                    </Button>
+                    </ConsultTrigger>
                 </div>
             </Container>
         </section>

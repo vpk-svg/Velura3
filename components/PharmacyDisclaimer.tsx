@@ -3,14 +3,14 @@
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Container from './ui/Container';
-import { MapPin, Building2 } from 'lucide-react';
+import { Building2 } from 'lucide-react';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function PharmacyDisclaimer() {
   const t = useTranslations('pharmacy');
 
   return (
-    <section className="py-section-y bg-secondary-deep text-background-light" aria-label="Partner pharmacy disclaimer">
+    <section className="py-section-y bg-secondary-deep text-background-light" aria-label={t('label')}>
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

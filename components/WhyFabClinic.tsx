@@ -46,7 +46,7 @@ export default function WhyFabClinic() {
                 <h3 className="font-sans text-secondary text-sm tracking-[0.2em] uppercase mb-3 font-semibold group-hover:text-primary transition-colors duration-300">
                   {t(`${usp.key}_title`)}
                 </h3>
-                <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed max-w-[200px]">
+                <p className="font-sans font-light text-muted text-sm leading-relaxed max-w-[200px]">
                   {t(`${usp.key}_desc`)}
                 </p>
               </motion.div>

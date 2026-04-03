@@ -13,6 +13,7 @@ const config: Config = {
         primary:            "#c6a65d",
         "primary-light":    "#d8b56f",
         "primary-dark":     "#a68b4c",
+        "primary-text":     "#8a7235",   /* WCAG AA compliant on white (4.55:1) */
         secondary:          "#3B2A23",
         "secondary-deep":   "#1e1b14",
         ivory:              "#FDFCF0",
@@ -101,7 +102,7 @@ const config: Config = {
         floating:   "200",
         overlay:    "300",
         nav:        "400",
-        top:        "99999",
+        top:        "9999",
       },
 
       /* ── Transition timing ─────────────────────────── */

@@ -7,13 +7,11 @@ import BmiCalculator from '@/components/BmiCalculator';
 import TreatmentsOverview from '@/components/TreatmentsOverview';
 import WhyFabClinic from '@/components/WhyFabClinic';
 import Testimonials from '@/components/Testimonials';
-import HowItWorks from '@/components/HowItWorks';
 import PharmacyDisclaimer from '@/components/PharmacyDisclaimer';
 import type { Locale } from '@/lib/clinic-data';
 import TeamPreview from '@/components/TeamPreview';
 import FaqPreview from '@/components/FaqPreview';
 import BottomCta from '@/components/BottomCta';
-import Container from '@/components/ui/Container';
 
 export default function HomePage() {
   const locale = useLocale() as Locale;
@@ -26,14 +24,8 @@ export default function HomePage() {
       {/* 2. Weightloss Featured Products */}
       <WeightlossFeatured />
 
-      {/* 3. BMI Calculator Standalone */}
-      <section className="py-section-y bg-white overflow-hidden">
-        <Container>
-          <div className="max-w-xl mx-auto">
-            <BmiCalculator />
-          </div>
-        </Container>
-      </section>
+      {/* 3. BMI Calculator */}
+      <BmiCalculator />
 
       {/* 4. Treatments Overview (Botox, Fillers, Shape, Weightloss) */}
       <TreatmentsOverview />
@@ -53,7 +45,7 @@ export default function HomePage() {
       {/* 9. Partner Pharmacy Disclaimer */}
       <PharmacyDisclaimer />
 
-      {/* 11. Bottom CTA */}
+      {/* 10. Bottom CTA */}
       <BottomCta />
     </>
   );

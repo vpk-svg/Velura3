@@ -7,6 +7,7 @@ import { ChevronDown, ArrowRight } from 'lucide-react';
 import Container from './ui/Container';
 import SectionHeader from './ui/SectionHeader';
 import { EASE_PREMIUM } from '@/lib/motion';
+import { Link } from '@/lib/navigation';
 
 export default function FaqPreview() {
   const t = useTranslations('faq_preview');
@@ -20,8 +21,22 @@ export default function FaqPreview() {
     { q: t('q5'), a: t('a5') },
   ];
 
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: { '@type': 'Answer', text: faq.a },
+    })),
+  };
+
   return (
     <section className="py-section-y bg-background-light overflow-hidden" aria-label={t('label')}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <Container>
         <SectionHeader
           label={t('label')}
@@ -31,7 +46,7 @@ export default function FaqPreview() {
         <div className="max-w-3xl mx-auto space-y-3 mb-10">
           {faqs.map((faq, i) => (
             <motion.div
-              key={i}
+              key={faq.q}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -42,6 +57,7 @@ export default function FaqPreview() {
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 className="w-full flex items-center justify-between px-6 py-5 text-left"
                 aria-expanded={openIndex === i}
+                aria-controls={`faq-panel-${i}`}
               >
                 <span className="font-sans text-secondary text-sm font-medium pr-4">{faq.q}</span>
                 <ChevronDown
@@ -57,6 +73,8 @@ export default function FaqPreview() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: EASE_PREMIUM }}
                     className="overflow-hidden"
+                    id={`faq-panel-${i}`}
+                    role="region"
                   >
                     <p className="px-6 pb-5 font-sans font-light text-secondary/60 text-sm leading-relaxed">
                       {faq.a}
@@ -69,9 +87,9 @@ export default function FaqPreview() {
         </div>
 
         <div className="text-center">
-          <a href="/faq" className="inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.2em] text-primary font-bold hover:underline">
+          <Link href="/faq" className="inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.2em] text-primary font-bold hover:underline">
             {t('cta')} <ArrowRight size={14} />
-          </a>
+          </Link>
         </div>
       </Container>
     </section>

@@ -56,7 +56,7 @@ export default function TeamPreview() {
                 />
               </div>
               <h3 className="font-sans text-secondary text-sm font-semibold">{member.name}</h3>
-              <p className="font-sans text-secondary/50 text-xs mt-0.5">{member.role}</p>
+              <p className="font-sans text-muted text-xs mt-0.5">{member.role}</p>
             </motion.div>
           ))}
         </div>

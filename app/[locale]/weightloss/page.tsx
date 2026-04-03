@@ -1,39 +1,30 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { motion, type Variants } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { ShieldCheck, ArrowRight } from 'lucide-react';
+import { ShieldCheck, ArrowRight, Star } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ProgramTimeline from '@/components/ProgramTimeline';
 import ConsultTrigger from '@/components/consult/ConsultTrigger';
-import { useSurvey } from '@/components/survey/SurveyFlow';
+import SurveyAutoOpen from '@/components/SurveyAutoOpen';
+import { PRODUCTS as PRODUCT_DATA } from '@/lib/products';
 import { EASE_PREMIUM } from '@/lib/motion';
 
-const PRODUCTS = [
-  { key: 'mounjaro', image: '/images/products/mounjaro.png', price: '€299', productId: 'mounjaro' },
-  { key: 'ozempic', image: '/images/products/ozempic.png', price: '€199', productId: 'ozempic' },
-  { key: 'wegovy', image: '/images/products/wegovy.png', price: '€249', productId: 'wegovy' },
-  { key: 'saxenda', image: '/images/products/saxenda.png', price: '€179', productId: 'saxenda' },
-];
+const PRODUCT_KEYS = ['mounjaro', 'ozempic', 'wegovy', 'saxenda'] as const;
+
+const PRODUCTS = PRODUCT_KEYS.map((key) => ({
+  key,
+  image: `/images/products/${key}.webp`,
+  price: `€${Math.round(PRODUCT_DATA[key].priceCents / 100)}`,
+  productId: key,
+}));
 
 export default function WeightlossPage() {
   const t = useTranslations('weightloss_page');
   const tMed = useTranslations('medicatie_page');
-  const searchParams = useSearchParams();
-  const { open } = useSurvey();
-  const openedFromQuery = useRef(false);
-
-  useEffect(() => {
-    if (searchParams.get('openSurvey') === '1' && !openedFromQuery.current) {
-      openedFromQuery.current = true;
-      open();
-    }
-  }, [open, searchParams]);
 
   const usps = [
     t('usp1'),
@@ -54,14 +45,17 @@ export default function WeightlossPage() {
 
   return (
     <>
+      <SurveyAutoOpen />
+
       {/* Hero */}
-      <section className="relative w-full pt-40 pb-section-y overflow-hidden bg-secondary">
+      <section className="relative w-full pt-40 pb-section-y overflow-hidden bg-secondary" aria-labelledby="weightloss-hero-title">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/treatments/weightloss.jpg"
             alt=""
             fill
-            className="object-cover opacity-15"
+            priority
+            className="object-cover opacity-20"
             sizes="100vw"
             aria-hidden="true"
           />
@@ -78,6 +72,7 @@ export default function WeightlossPage() {
               {t('hero_label')}
             </motion.span>
             <motion.h1
+              id="weightloss-hero-title"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
@@ -97,17 +92,30 @@ export default function WeightlossPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-4 sm:gap-5"
             >
-              <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+              <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-sm tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
                 {t('hero_cta_survey')}
               </ConsultTrigger>
               <Link
                 href="#producten"
-                className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] border-2 border-background-light/20 text-background-light hover:border-primary hover:text-primary transition-all duration-300"
+                className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-sm tracking-[0.3em] border-2 border-background-light/30 text-background-light hover:border-primary hover:text-primary transition-all duration-300"
               >
                 {t('hero_cta_products')}
               </Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: EASE_PREMIUM }}
+              className="mt-8 flex items-center gap-3 text-background-light/50"
+            >
+              <div className="flex text-primary" aria-hidden="true">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                ))}
+              </div>
+              <span className="font-sans text-xs tracking-wide">{t('hero_social_proof')}</span>
             </motion.div>
           </div>
         </Container>
@@ -134,14 +142,14 @@ export default function WeightlossPage() {
                 key={product.key}
                 variants={itemVariants}
                 whileHover={{ y: -8, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
-                className="bg-white rounded-md p-6 shadow-soft-sm hover:shadow-soft-lg border border-primary/5 hover:border-primary/15 transition-all duration-300 group flex flex-col"
+                className="bg-white rounded-md p-6 shadow-soft-sm hover:shadow-soft-lg border border-primary/5 hover:border-primary/25 transition-all duration-300 group flex flex-col"
               >
-                <div className="relative w-full aspect-square mb-6 bg-secondary/[0.02] rounded-lg overflow-hidden">
+                <div className="relative w-full aspect-square mb-6 bg-secondary/[0.04] rounded-lg overflow-hidden">
                   <Image
                     src={product.image}
                     alt={t(`product_${product.key}_name`)}
                     fill
-                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                    className="object-contain p-3 group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
                   />
                 </div>
@@ -167,7 +175,7 @@ export default function WeightlossPage() {
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-auto pt-4 border-t border-secondary/5">
-                  <span className="font-display text-2xl text-primary font-semibold">{product.price}<span className="text-sm font-sans font-light text-secondary/40">/mnd</span></span>
+                  <span className="font-display text-2xl text-primary font-semibold">{product.price}<span className="text-sm font-sans font-light text-secondary/50">/mnd</span></span>
                   <ConsultTrigger className="inline-flex items-center gap-2 font-sans text-xs text-primary font-semibold uppercase tracking-wider hover:gap-3 transition-all">
                     {t('product_cta')} <ArrowRight size={14} />
                   </ConsultTrigger>
@@ -195,7 +203,7 @@ export default function WeightlossPage() {
               >
                 <Image
                   src="/images/treatments/weightloss.jpg"
-                  alt="Medisch begeleide afvalmedicatie"
+                  alt={t('why_image_alt')}
                   fill
                   loading="lazy"
                   className="object-cover transition-transform duration-700 ease-premium group-hover:scale-105"
@@ -217,7 +225,7 @@ export default function WeightlossPage() {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.1 + idx * 0.08, ease: EASE_PREMIUM }}
+                    transition={{ delay: 0.1 + idx * 0.12, ease: EASE_PREMIUM }}
                     className="flex items-start gap-4"
                   >
                     <ShieldCheck className="w-5 h-5 text-primary mt-0.5 shrink-0" strokeWidth={1.5} />
@@ -225,6 +233,17 @@ export default function WeightlossPage() {
                   </motion.li>
                 ))}
               </ul>
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6, ease: EASE_PREMIUM }}
+                className="mt-8"
+              >
+                <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-4 text-xs tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+                  {t('why_cta')}
+                </ConsultTrigger>
+              </motion.div>
             </div>
           </div>
         </Container>

@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import { Instagram, Facebook, Phone } from 'lucide-react';
 import Container from './ui/Container';
+import { Link } from '@/lib/navigation';
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -12,7 +13,7 @@ export default function Footer() {
   const linkClass = 'hover:text-primary focus-visible:text-primary transition-colors duration-200 block';
 
   return (
-    <footer className="bg-secondary text-background-light pt-section-y pb-16" role="contentinfo">
+    <footer className="bg-secondary text-background-light pt-section-y pb-16">
       <Container>
         {/* Wordmark */}
         <div className="text-center mb-20" aria-hidden="true">
@@ -47,7 +48,7 @@ export default function Footer() {
               { href: '/fillers', label: t('link_fillers') },
               { href: '/shape', label: 'BBL' },
               { href: '/weightloss', label: t('link_weightloss') },
-              { href: '/medicatie', label: t('link_botox') },
+              { href: '/medicatie', label: t('link_medicatie') },
               { href: '/trajecten', label: t('link_wellness') },
               { href: '/cursus', label: locale === 'nl' ? 'Cursus' : 'Course' },
             ]},
@@ -75,7 +76,7 @@ export default function Footer() {
               </h4>
               <ul className="space-y-5 font-sans font-light text-sm text-background-light/70 uppercase tracking-[0.15em]">
                 {col.links.map((link) => (
-                  <li key={link.label}><a href={link.href} className={linkClass}>{link.label}</a></li>
+                  <li key={`${col.title}-${link.href}-${link.label}`}><Link href={link.href} className={linkClass}>{link.label}</Link></li>
                 ))}
               </ul>
             </nav>

@@ -1,8 +1,7 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { useLocale } from 'next-intl';
-import { usePathname } from 'next/navigation';
+import { Link, usePathname } from '@/lib/navigation';
 
 export type ConsultSubject = 'home' | 'weightloss' | 'botox' | 'fillers' | 'bbl' | 'medicatie' | 'intake' | 'other';
 
@@ -23,15 +22,14 @@ function subjectFromPath(pathname: string): ConsultSubject {
 }
 
 export default function ConsultTrigger({ children, className, from }: ConsultTriggerProps) {
-  const locale = useLocale();
   const pathname = usePathname();
 
   const source = from ?? subjectFromPath(pathname);
-  const href = `/${locale}/consult?from=${source}`;
+  const href = `/consult?from=${encodeURIComponent(source)}`;
 
   return (
-    <a href={href} className={className}>
+    <Link href={href} className={className}>
       {children}
-    </a>
+    </Link>
   );
 }

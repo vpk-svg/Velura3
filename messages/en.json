@@ -88,7 +88,8 @@
     "cta_30_34": "Schedule a Consultation",
     "advice_over35": "A consultation with our doctor is strongly recommended. Together we'll create a safe plan.",
     "cta_over35": "Schedule a Consultation",
-    "disclaimer": "BMI IS AN INDICATION, NOT A MEDICAL DIAGNOSIS."
+    "disclaimer": "BMI IS AN INDICATION, NOT A MEDICAL DIAGNOSIS.",
+    "result_aria_label": "BMI Result"
   },
   "how": {
     "label": "HOW IT WORKS",
@@ -177,7 +178,11 @@
     "month": "Month",
     "dosage": "Dosage",
     "optional": "Optional",
-    "cta": "Am I eligible?"
+    "cta": "Am I eligible?",
+    "tab_aria_label": "Pricing plans",
+    "timeline_aria_label": "Timeline cards - scroll horizontally",
+    "total_label": "Total programme",
+    "excl_optional": "excl. optional"
   },
   "team": {
     "label": "OUR TEAM",
@@ -246,7 +251,8 @@
     "t2_quote": "Great team, beautiful clinic. A must if you value quality.",
     "t2_author": "Marco T. · Skin Improvement",
     "t3_quote": "The best experience I've ever had. Felt at ease right away.",
-    "t3_author": "Lena B. · Lip Fillers"
+    "t3_author": "Lena B. · Lip Fillers",
+    "rating": "Rating"
   },
   "contact": {
     "label": "CONTACT",
@@ -276,6 +282,7 @@
     "legal": "Legal",
     "about_text": "Your clinic for medical aesthetics in Ede. Personal care, professional results.",
     "link_botox": "Botox",
+    "link_medicatie": "Medicine",
     "link_fillers": "Fillers",
     "link_wellness": "Lifestyle & Wellness",
     "link_specialists": "Our Team",
@@ -855,7 +862,10 @@
     "cta_label": "START TODAY",
     "cta_title": "Ready to begin?",
     "cta_desc": "Complete the medical intake and receive advice from our physician within 24 hours. No obligation, fully confidential.",
-    "cta_button": "Start Free Intake"
+    "cta_button": "Start Free Intake",
+    "hero_social_proof": "4.9/5 · 500+ patients · BIG-registered physicians",
+    "why_image_alt": "Medically guided weight loss medication at FAB Clinic",
+    "why_cta": "Schedule a Consult"
   },
   "shape_page": {
     "hero_label": "BUTTOCK FILLERS — SAFE BBL ALTERNATIVE",

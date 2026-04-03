@@ -6,6 +6,9 @@ import { Syringe, Sparkles, Dumbbell, TrendingDown, ArrowRight } from 'lucide-re
 import Container from './ui/Container';
 import SectionHeader from './ui/SectionHeader';
 import { EASE_PREMIUM } from '@/lib/motion';
+import { Link } from '@/lib/navigation';
+
+const MotionLink = motion.create(Link);
 
 const ICONS = [Syringe, Sparkles, Dumbbell, TrendingDown];
 
@@ -48,7 +51,7 @@ export default function TreatmentsOverview() {
           {treatments.map((item) => {
             const Icon = item.icon;
             return (
-              <motion.a
+              <MotionLink
                 key={item.key}
                 href={item.href}
                 variants={itemVariants}
@@ -67,7 +70,7 @@ export default function TreatmentsOverview() {
                 <span className="inline-flex items-center gap-1.5 font-sans text-[10px] uppercase tracking-[0.15em] text-primary font-bold">
                   {t('view_cta')} <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
                 </span>
-              </motion.a>
+              </MotionLink>
             );
           })}
         </motion.div>

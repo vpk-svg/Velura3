@@ -8,7 +8,7 @@ import LogoSvg from './LogoSvg';
 import LanguageToggle from './LanguageToggle';
 import Container from './ui/Container';
 import ConsultTrigger from './consult/ConsultTrigger';
-import { usePathname } from '@/lib/navigation';
+import { Link, usePathname } from '@/lib/navigation';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function Navbar() {
@@ -61,22 +61,21 @@ export default function Navbar() {
         ? 'bg-white border-primary/10 shadow-soft-sm py-2'
         : 'bg-white border-transparent py-4'
         }`}
-      role="banner"
     >
       <Container>
         <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16">
 
           {/* Logo */}
-          <a href="/" className="flex items-center group -ml-6" aria-label="FAB CLINIC - Home">
+          <Link href="/" className="flex items-center group -ml-6" aria-label="FAB CLINIC - Home">
             <LogoSvg className="h-10 w-auto md:h-12 drop-shadow-[0_0_12px_rgba(198,166,93,0.25)] group-hover:drop-shadow-[0_0_18px_rgba(198,166,93,0.35)] transition-all duration-500" />
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-10" aria-label="Main navigation">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   className={`relative transition-all duration-300 ease-premium text-xs font-semibold uppercase tracking-[0.15em] hover:text-primary focus-visible:text-primary ${isActive ? 'text-primary' : 'text-secondary/80'}`}
@@ -90,7 +89,7 @@ export default function Navbar() {
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
-                </a>
+                </Link>
               );
             })}
           </nav>
@@ -133,14 +132,14 @@ export default function Navbar() {
       >
         <div className="flex flex-col items-center justify-center h-full gap-10 px-10 pb-32 overflow-y-auto">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
               className="text-2xl font-sans text-secondary hover:text-primary tracking-widest font-bold transition-colors duration-200"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
           <div onClick={() => setMobileMenuOpen(false)}>
             <ConsultTrigger

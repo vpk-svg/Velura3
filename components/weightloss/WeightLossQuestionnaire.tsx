@@ -6,11 +6,13 @@ import type { Locale, QuestionnaireStep } from '@/lib/clinic-data';
 interface WeightLossQuestionnaireProps {
   locale: Locale;
   steps: QuestionnaireStep[];
+  onComplete?: (answers: Record<string, string>) => void;
 }
 
-export default function WeightLossQuestionnaire({ locale, steps }: WeightLossQuestionnaireProps) {
+export default function WeightLossQuestionnaire({ locale, steps, onComplete }: WeightLossQuestionnaireProps) {
   const [stepIndex, setStepIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [completed, setCompleted] = useState(false);
 
   const currentStep = steps[stepIndex];
   const progress = useMemo(() => Math.round(((stepIndex + 1) / steps.length) * 100), [stepIndex, steps.length]);
@@ -19,7 +21,38 @@ export default function WeightLossQuestionnaire({ locale, steps }: WeightLossQue
     setAnswers((prev) => ({ ...prev, [stepId]: value }));
   };
 
-  const canGoNext = Boolean(answers[currentStep.id]);
+  const canGoNext = Boolean(answers[currentStep?.id]);
+
+  const handleComplete = () => {
+    setCompleted(true);
+    onComplete?.(answers);
+  };
+
+  if (completed) {
+    return (
+      <div className="rounded-md border border-primary/15 bg-white p-6 md:p-8 text-center">
+        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+          <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 className="font-display text-3xl italic text-secondary mb-3">
+          {locale === 'nl' ? 'Bedankt!' : 'Thank you!'}
+        </h3>
+        <p className="font-sans text-secondary/70 mb-6">
+          {locale === 'nl'
+            ? 'Jouw antwoorden zijn ontvangen. We nemen spoedig contact met je op.'
+            : 'Your answers have been received. We will contact you shortly.'}
+        </p>
+        <a
+          href={`/${locale}/consult?from=weightloss`}
+          className="inline-flex items-center justify-center rounded-pill px-8 py-3 text-xs uppercase tracking-[0.2em] font-semibold bg-primary text-white"
+        >
+          {locale === 'nl' ? 'Plan een consult' : 'Schedule a consult'}
+        </a>
+      </div>
+    );
+  }
 
   return (
     <div className="rounded-md border border-primary/15 bg-white p-6 md:p-8">
@@ -30,7 +63,7 @@ export default function WeightLossQuestionnaire({ locale, steps }: WeightLossQue
         <p className="font-sans text-xs uppercase tracking-[0.2em] text-primary">{progress}%</p>
       </div>
 
-      <div className="h-2 rounded-full bg-secondary/10 mb-6 overflow-hidden">
+      <div className="h-2 rounded-full bg-secondary/10 mb-6 overflow-hidden" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
         <div className="h-full bg-primary transition-all duration-300" style={{ width: `${progress}%` }} />
       </div>
 
@@ -80,6 +113,7 @@ export default function WeightLossQuestionnaire({ locale, steps }: WeightLossQue
           <button
             type="button"
             disabled={!canGoNext}
+            onClick={handleComplete}
             className="inline-flex items-center justify-center rounded-pill px-6 py-3 text-xs uppercase tracking-[0.2em] font-semibold bg-secondary text-white disabled:opacity-40"
           >
             {locale === 'nl' ? 'Afronden' : 'Complete'}

@@ -88,7 +88,8 @@
     "cta_30_34": "Plan een Gesprek",
     "advice_over35": "Een consult met onze arts is sterk aan te raden. Samen stellen we een veilig plan op.",
     "cta_over35": "Plan een Consult",
-    "disclaimer": "BMI IS EEN INDICATIE, GEEN MEDISCHE DIAGNOSE."
+    "disclaimer": "BMI IS EEN INDICATIE, GEEN MEDISCHE DIAGNOSE.",
+    "result_aria_label": "BMI Resultaat"
   },
   "how": {
     "label": "ZO WERKT HET",
@@ -177,7 +178,11 @@
     "month": "Maand",
     "dosage": "Dosering",
     "optional": "Optioneel",
-    "cta": "Kom ik in aanmerking?"
+    "cta": "Kom ik in aanmerking?",
+    "tab_aria_label": "Prijsplannen",
+    "timeline_aria_label": "Tijdlijnkaarten - scroll horizontaal",
+    "total_label": "Totaal traject",
+    "excl_optional": "excl. optioneel"
   },
   "team": {
     "label": "ONS TEAM",
@@ -246,7 +251,8 @@
     "t2_quote": "Fijn team, mooie kliniek. Echt een aanrader als je kwaliteit zoekt.",
     "t2_author": "Marco T. · Huidverbetering",
     "t3_quote": "De beste ervaring die ik ooit heb gehad. Voelde me direct op mijn gemak.",
-    "t3_author": "Lena B. · Lipfillers"
+    "t3_author": "Lena B. · Lipfillers",
+    "rating": "Beoordeling"
   },
   "contact": {
     "label": "CONTACT",
@@ -276,6 +282,7 @@
     "legal": "Juridisch",
     "about_text": "Uw kliniek voor medische esthetiek in Ede. Persoonlijke zorg, professioneel resultaat.",
     "link_botox": "Botox",
+    "link_medicatie": "Medicatie",
     "link_fillers": "Fillers",
     "link_wellness": "Lifestyle & Wellness",
     "link_specialists": "Ons Team",
@@ -855,7 +862,10 @@
     "cta_label": "START VANDAAG",
     "cta_title": "Klaar om te beginnen?",
     "cta_desc": "Vul de medische intake in en ontvang binnen 24 uur advies van onze arts. Vrijblijvend en vertrouwelijk.",
-    "cta_button": "Start Gratis Intake"
+    "cta_button": "Start Gratis Intake",
+    "hero_social_proof": "4.9/5 · 500+ patiënten · BIG-geregistreerde artsen",
+    "why_image_alt": "Medisch begeleide afvalmedicatie bij FAB Clinic",
+    "why_cta": "Plan een Consult"
   },
   "shape_page": {
     "hero_label": "BILFILLERS — VEILIG BBL ALTERNATIEF",

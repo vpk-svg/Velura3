@@ -174,7 +174,7 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
             className="mt-12 pt-12 border-t border-secondary/5"
             role="region"
             aria-live="polite"
-            aria-label="BMI Result"
+            aria-label={t('result_aria_label')}
           >
             <div className="text-center mb-10">
               <span className={`font-display text-6xl md:text-8xl leading-none ${getBmiCategory(bmiResult).color}`}>
@@ -187,7 +187,10 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
 
             {/* Scale Bar */}
             <div className="relative h-4 bg-secondary/5 rounded-pill mb-12 px-1 flex items-center border border-secondary/5 shadow-inner" aria-hidden="true">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-green-400 via-amber-400 via-orange-500 to-red-500 opacity-20 rounded-pill" />
+              <div
+                className="absolute inset-0 opacity-20 rounded-pill"
+                style={{ background: 'linear-gradient(to right, #60a5fa, #4ade80, #fbbf24, #f97316, #ef4444)' }}
+              />
               <div className="absolute inset-0 flex justify-between px-[10%] pointer-events-none">
                 <div className="w-px h-full bg-secondary/10" />
                 <div className="w-px h-full bg-secondary/10" />

@@ -7,6 +7,7 @@ import Container from './ui/Container';
 import Card from './ui/Card';
 import { ArrowRight } from 'lucide-react';
 import { EASE_PREMIUM } from '@/lib/motion';
+import { Link } from '@/lib/navigation';
 
 export default function WeightlossFeatured() {
   const t = useTranslations('weightloss_featured');
@@ -71,14 +72,14 @@ export default function WeightlossFeatured() {
                   <h3 className="font-display text-2xl text-secondary italic font-bold mb-2 group-hover:text-primary transition-colors">
                     {t(`${product.key}_title`)}
                   </h3>
-                  <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed mb-4">
+                  <p className="font-sans font-light text-muted text-sm leading-relaxed mb-4">
                     {t(`${product.key}_desc`)}
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="font-sans text-primary font-semibold text-lg">{product.price}<span className="text-xs text-secondary/40 font-light">/mnd</span></span>
-                    <a href="/weightloss" className="inline-flex items-center gap-1.5 font-sans text-[10px] uppercase tracking-[0.15em] text-primary font-bold hover:underline">
+                    <Link href="/weightloss" className="inline-flex items-center gap-1.5 font-sans text-[10px] uppercase tracking-[0.15em] text-primary font-bold hover:underline">
                       {t('cta')} <ArrowRight size={12} />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </Card>

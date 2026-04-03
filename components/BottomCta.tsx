@@ -6,6 +6,7 @@ import { Phone, Calendar } from 'lucide-react';
 import Container from './ui/Container';
 import ConsultTrigger from './consult/ConsultTrigger';
 import { EASE_PREMIUM } from '@/lib/motion';
+import { Link } from '@/lib/navigation';
 
 export default function BottomCta() {
   const t = useTranslations('bottom_cta');
@@ -30,12 +31,12 @@ export default function BottomCta() {
             {t('desc')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
+            <Link
               href="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-white text-secondary shadow-soft-md hover:shadow-soft-lg transition-all duration-300 active:scale-[0.97]"
             >
               <Phone size={14} /> {t('cta_contact')}
-            </a>
+            </Link>
             <ConsultTrigger className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
               <Calendar size={14} /> {t('cta_consult')}
             </ConsultTrigger>
