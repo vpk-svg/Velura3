@@ -5,7 +5,22 @@ import { motion, type Variants } from 'motion/react';
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { ShieldCheck, Sparkles, SmilePlus, CircleDot, Diamond, Eye, Gem, FileSearch, ClipboardCheck, Package } from 'lucide-react';
+import {
+  ShieldCheck,
+  Sparkles,
+  SmilePlus,
+  CircleDot,
+  Diamond,
+  Eye,
+  Gem,
+  FileSearch,
+  ClipboardCheck,
+  Package,
+  Droplets,
+  Heart,
+  Feather,
+  ArrowDown,
+} from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ZoneSelector from '@/components/treatments/ZoneSelector';
@@ -48,7 +63,7 @@ export default function FillersPage() {
           treatmentType: 'fillers',
           zones: selectedItems.map((z) => ({ id: z.id, name: t(z.nameKey), priceCents: z.priceCents })),
           customerDetails: data,
-          locale: 'nl',
+          locale,
         }),
       });
 
@@ -63,15 +78,15 @@ export default function FillersPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [selectedZones, t]);
+  }, [selectedZones, t, locale]);
 
-  const infoZones = [
+  /* -- Zone info cards (face only) -- */
+  const faceZones = [
     { title: t('zone1_title'), desc: t('zone1_desc'), icon: <SmilePlus className="w-6 h-6" strokeWidth={1.5} /> },
     { title: t('zone2_title'), desc: t('zone2_desc'), icon: <Diamond className="w-6 h-6" strokeWidth={1.5} /> },
     { title: t('zone3_title'), desc: t('zone3_desc'), icon: <CircleDot className="w-6 h-6" strokeWidth={1.5} /> },
     { title: t('zone4_title'), desc: t('zone4_desc'), icon: <Gem className="w-6 h-6" strokeWidth={1.5} /> },
     { title: t('zone5_title'), desc: t('zone5_desc'), icon: <Eye className="w-6 h-6" strokeWidth={1.5} /> },
-    { title: t('zone6_title'), desc: t('zone6_desc'), icon: <Sparkles className="w-6 h-6" strokeWidth={1.5} /> },
   ];
 
   const safetyItems = [
@@ -94,6 +109,12 @@ export default function FillersPage() {
     t('aftercare_item4'),
   ];
 
+  const philosophyItems = [
+    { icon: <Droplets className="w-5 h-5" strokeWidth={1.5} />, text: t('philosophy_item1') },
+    { icon: <Heart className="w-5 h-5" strokeWidth={1.5} />, text: t('philosophy_item2') },
+    { icon: <Feather className="w-5 h-5" strokeWidth={1.5} />, text: t('philosophy_item3') },
+  ];
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
@@ -105,22 +126,27 @@ export default function FillersPage() {
   };
 
   return (
-    <>
-      {/* Hero */}
-      <section className="relative w-full pt-40 pb-section-y overflow-hidden bg-secondary">
+    <main>
+      {/* =============================================
+          HERO - Refined with layered depth & scroll hint
+          ============================================= */}
+      <section className="relative w-full min-h-[85vh] flex items-center overflow-hidden bg-secondary">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/treatments/fillers.jpg"
             alt=""
             fill
-            className="object-cover opacity-15"
+            priority
+            className="object-cover opacity-12"
             sizes="100vw"
             aria-hidden="true"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/95 to-secondary/80" />
+          <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/95 to-secondary/75" />
+          {/* Subtle warm-shimmer overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/[0.03] to-transparent" aria-hidden="true" />
         </div>
         <Container>
-          <div className="relative z-10 max-w-4xl">
+          <div className="relative z-10 max-w-3xl py-40">
             <motion.span
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -133,7 +159,7 @@ export default function FillersPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
-              className="font-display text-display-xl text-background-light mb-8"
+              className="font-display text-display-xl text-background-light mb-6"
             >
               {t('hero_title')} <span className="italic font-light text-primary">{t('hero_title_accent')}</span>
             </motion.h1>
@@ -141,7 +167,7 @@ export default function FillersPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-              className="font-sans font-light text-background-light/70 text-lg md:text-xl leading-relaxed max-w-2xl mb-10"
+              className="font-sans font-light text-background-light/70 text-lg md:text-xl leading-relaxed max-w-2xl mb-12"
             >
               {t('hero_desc')}
             </motion.p>
@@ -149,38 +175,60 @@ export default function FillersPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
+              className="flex flex-wrap items-center gap-4"
             >
               <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
                 {t('hero_cta')}
               </ConsultTrigger>
+              <a
+                href="#book"
+                className="inline-flex items-center gap-2 rounded-pill font-sans uppercase font-bold px-8 py-5 text-xs tracking-[0.25em] border border-background-light/20 text-background-light/80 hover:border-primary hover:text-primary transition-all duration-300"
+              >
+                {t('hero_cta_book')}
+                <ArrowDown className="w-3.5 h-3.5" strokeWidth={2} />
+              </a>
             </motion.div>
           </div>
         </Container>
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+          aria-hidden="true"
+        >
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="w-[1px] h-10 bg-gradient-to-b from-primary/40 to-transparent"
+          />
+        </motion.div>
       </section>
 
-      {/* What Are Fillers */}
+      {/* =============================================
+          WHAT ARE FILLERS - Editorial split layout
+          ============================================= */}
       <section className="py-section-y bg-page-fillers overflow-hidden">
         <Container>
-          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
-            <figure className="flex-1 relative w-full h-[500px] md:h-[600px] rounded-md overflow-hidden group shadow-soft-lg bg-secondary/5">
-              <motion.div
-                initial={{ x: -60, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-                className="w-full h-full relative"
-              >
-                <Image
-                  src="/images/treatments/fillers.jpg"
-                  alt="Dermal filler treatment"
-                  fill
-                  loading="lazy"
-                  className="object-cover transition-transform duration-700 ease-premium group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-                <div className="absolute inset-0 bg-secondary/5 group-hover:opacity-0 transition-opacity duration-500" />
-              </motion.div>
-            </figure>
+          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+            <motion.div
+              initial={{ x: -60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+              className="flex-1 relative w-full aspect-[3/4] max-h-[600px] rounded-md overflow-hidden group shadow-soft-lg bg-secondary/5"
+            >
+              <Image
+                src="/images/treatments/fillers.jpg"
+                alt={t('what_img_alt')}
+                fill
+                loading="lazy"
+                className="object-cover transition-transform duration-700 ease-premium group-hover:scale-[1.03]"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-secondary/10 to-transparent group-hover:opacity-0 transition-opacity duration-500" />
+            </motion.div>
 
             <div className="flex-1 w-full">
               <SectionHeader
@@ -193,7 +241,7 @@ export default function FillersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-                className="font-sans font-light text-secondary/70 text-lg md:text-xl leading-relaxed"
+                className="font-sans font-light text-secondary/70 text-lg leading-relaxed"
               >
                 {t('what_desc')}
               </motion.p>
@@ -202,44 +250,121 @@ export default function FillersPage() {
         </Container>
       </section>
 
-      {/* Treatment Zones */}
+      {/* =============================================
+          NATURAL RESULTS PHILOSOPHY - Addresses over-fill fear
+          ============================================= */}
       <section className="py-section-y bg-white overflow-hidden">
+        <Container>
+          <div className="max-w-4xl mx-auto text-center">
+            <SectionHeader
+              label={t('philosophy_label')}
+              title={<>{t('philosophy_title')} <span className="italic font-light text-primary">{t('philosophy_title_accent')}</span></>}
+              subtitle={t('philosophy_desc')}
+            />
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-2"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+            >
+              {philosophyItems.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={itemVariants}
+                  className="flex flex-col items-center text-center gap-4 px-6"
+                >
+                  <div className="w-12 h-12 rounded-full bg-primary/[0.06] flex items-center justify-center text-primary">
+                    {item.icon}
+                  </div>
+                  <p className="font-sans text-secondary/70 text-base leading-relaxed">
+                    {item.text}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </Container>
+      </section>
+
+      {/* =============================================
+          TREATMENT ZONES - Face zones grid + separate BBL highlight
+          ============================================= */}
+      <section className="py-section-y bg-page-fillers overflow-hidden">
         <Container>
           <SectionHeader
             label={t('zones_label')}
             title={<>{t('zones_title')} <span className="italic font-light text-primary">{t('zones_title_accent')}</span></>}
           />
+
+          {/* Facial Zones - 5 cards in a refined grid */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, margin: '-80px' }}
           >
-            {infoZones.map((zone) => (
-              <motion.div
-                key={zone.title}
+            {faceZones.map((zone, idx) => (
+              <motion.article
+                key={`face-zone-${idx}`}
                 variants={itemVariants}
-                whileHover={{ y: -8, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
-                className="bg-background-light rounded-md p-8 shadow-soft-sm hover:shadow-soft-lg border border-primary/5 hover:border-primary/15 transition-all duration-300 group"
+                whileHover={{ y: -6, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+                className="bg-white rounded-md p-8 shadow-soft-sm hover:shadow-soft-lg border border-primary/5 hover:border-primary/15 transition-all duration-300 group"
               >
-                <div className="w-14 h-14 mb-6 bg-primary/5 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                <div className="w-12 h-12 mb-6 bg-primary/[0.06] rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   {zone.icon}
                 </div>
                 <h3 className="font-display text-xl text-secondary mb-3 italic font-bold group-hover:text-primary transition-colors duration-200">
                   {zone.title}
                 </h3>
-                <p className="font-sans font-light text-secondary/70 text-base leading-relaxed">
+                <p className="font-sans font-light text-secondary/70 text-[15px] leading-relaxed">
                   {zone.desc}
                 </p>
-              </motion.div>
+              </motion.article>
             ))}
+          </motion.div>
+
+          {/* Liquid BBL - Separate highlighted card for body treatment */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: EASE_PREMIUM }}
+            className="mt-12"
+          >
+            <div className="relative rounded-md overflow-hidden bg-gradient-to-r from-secondary to-secondary/95 p-8 md:p-12 shadow-soft-lg">
+              <div className="absolute inset-0 opacity-[0.04]" aria-hidden="true">
+                <Image src="/images/bbl-example.png" alt="" fill className="object-cover" sizes="100vw" />
+              </div>
+              <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12">
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <Sparkles className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                </div>
+                <div className="flex-1">
+                  <span className="font-sans text-primary text-[10px] tracking-[0.25em] uppercase font-semibold mb-2 block">
+                    {t('bbl_label')}
+                  </span>
+                  <h3 className="font-display text-2xl md:text-3xl text-background-light italic mb-3">
+                    {t('zone6_title')}
+                  </h3>
+                  <p className="font-sans font-light text-background-light/70 text-base leading-relaxed max-w-xl">
+                    {t('zone6_desc')}
+                  </p>
+                </div>
+                <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-4 text-[10px] tracking-[0.2em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97] shrink-0">
+                  {t('bbl_cta')}
+                </ConsultTrigger>
+              </div>
+            </div>
           </motion.div>
         </Container>
       </section>
 
-      {/* ── Interactive Zone Selector + Cart ── */}
-      <section id="book" className="py-section-y bg-background-light overflow-hidden">
+      {/* =============================================
+          INTERACTIVE ZONE SELECTOR + CART
+          ============================================= */}
+      <section id="book" className="py-section-y bg-white overflow-hidden scroll-mt-24">
         <Container>
           <SectionHeader
             label={t('selector_label')}
@@ -283,7 +408,7 @@ export default function FillersPage() {
 
       {/* Details Form */}
       {step === 'details' && (
-        <section className="py-section-y bg-white overflow-hidden">
+        <section className="py-section-y bg-page-fillers overflow-hidden">
           <Container>
             <div className="max-w-xl mx-auto">
               <SectionHeader
@@ -312,20 +437,28 @@ export default function FillersPage() {
         </section>
       )}
 
-      {/* Safety & Quality */}
-      <section className="py-section-y bg-background-light overflow-hidden">
+      {/* =============================================
+          SAFETY & QUALITY - Reversed layout with fillers-specific image
+          ============================================= */}
+      <section className="py-section-y bg-white overflow-hidden">
         <Container>
-          <div className="flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-20">
-            <figure className="flex-1 relative w-full h-[400px] md:h-[500px] rounded-md overflow-hidden shadow-soft-lg bg-secondary/5">
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-24">
+            <motion.div
+              initial={{ x: 60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+              className="flex-1 relative w-full aspect-[4/5] max-h-[520px] rounded-md overflow-hidden shadow-soft-lg bg-secondary/5"
+            >
               <Image
-                src="/images/treatments/botox.jpg"
-                alt="Clinical treatment environment"
+                src="/images/filler-example.png"
+                alt={t('safety_img_alt')}
                 fill
                 loading="lazy"
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-            </figure>
+            </motion.div>
 
             <div className="flex-1 w-full">
               <SectionHeader
@@ -334,10 +467,10 @@ export default function FillersPage() {
                 subtitle={t('safety_desc')}
                 align="left"
               />
-              <ul className="space-y-5">
+              <ul className="space-y-5" role="list">
                 {safetyItems.map((item, idx) => (
                   <motion.li
-                    key={idx}
+                    key={`safety-${idx}`}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -354,8 +487,10 @@ export default function FillersPage() {
         </Container>
       </section>
 
-      {/* Process Steps */}
-      <section className="py-section-y bg-white overflow-hidden">
+      {/* =============================================
+          PROCESS STEPS - Three-stage timeline
+          ============================================= */}
+      <section className="py-section-y bg-page-fillers overflow-hidden">
         <Container>
           <SectionHeader
             label={t('process_label')}
@@ -367,34 +502,35 @@ export default function FillersPage() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, margin: '-80px' }}
           >
-            <div className="hidden md:block absolute top-[16px] left-[16.666%] right-[16.666%] h-[2px] border-t-2 border-dashed border-primary/20 z-0" aria-hidden="true" />
+            {/* Dashed connector line (desktop) */}
+            <div className="hidden md:block absolute top-[16px] left-[16.666%] right-[16.666%] h-[2px] border-t-2 border-dashed border-primary/15 z-0" aria-hidden="true" />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16 relative z-10">
-              {processSteps.map((step) => (
-                <motion.div key={step.num} variants={itemVariants} className="flex flex-col relative group">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-14 relative z-10">
+              {processSteps.map((s) => (
+                <motion.div key={s.num} variants={itemVariants} className="flex flex-col relative group">
                   <div className="mx-auto flex justify-center mb-8 relative z-20">
-                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-gold-glow ring-8 ring-white">
-                      <span className="font-sans text-white text-sm font-semibold">{step.num}</span>
+                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-gold-glow ring-8 ring-page-fillers">
+                      <span className="font-sans text-white text-sm font-semibold">{s.num}</span>
                     </div>
                   </div>
                   <motion.div
-                    whileHover={{ y: -8, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
-                    className="bg-background-light rounded-md shadow-soft-sm hover:shadow-soft-lg transition-shadow duration-300 border border-primary/5 hover:border-primary/15 flex-grow flex flex-col overflow-hidden group/card"
+                    whileHover={{ y: -6, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+                    className="bg-white rounded-md shadow-soft-sm hover:shadow-soft-lg transition-shadow duration-300 border border-primary/5 hover:border-primary/15 flex-grow flex flex-col overflow-hidden group/card"
                   >
-                    <div className="relative w-full aspect-video bg-secondary/5 flex items-center justify-center overflow-hidden border-b border-primary/5">
-                      <div className="absolute inset-0 bg-primary opacity-0 group-hover/card:opacity-5 transition-opacity duration-500" aria-hidden="true" />
-                      <div className="text-primary transition-all duration-500 group-hover/card:scale-110" aria-hidden="true">
-                        {step.icon}
+                    <div className="relative w-full aspect-video bg-secondary/[0.03] flex items-center justify-center overflow-hidden border-b border-primary/5">
+                      <div className="absolute inset-0 bg-primary opacity-0 group-hover/card:opacity-[0.04] transition-opacity duration-500" aria-hidden="true" />
+                      <div className="text-primary transition-transform duration-500 group-hover/card:scale-110" aria-hidden="true">
+                        {s.icon}
                       </div>
                     </div>
                     <div className="p-8 md:p-10 flex flex-col flex-grow items-center text-center">
                       <h3 className="font-display text-xl md:text-2xl text-secondary mb-4 italic font-bold group-hover/card:text-primary transition-colors duration-300">
-                        {step.title}
+                        {s.title}
                       </h3>
-                      <p className="font-sans font-light text-secondary/70 text-base leading-relaxed flex-grow">
-                        {step.desc}
+                      <p className="font-sans font-light text-secondary/70 text-[15px] leading-relaxed flex-grow">
+                        {s.desc}
                       </p>
                     </div>
                   </motion.div>
@@ -405,8 +541,10 @@ export default function FillersPage() {
         </Container>
       </section>
 
-      {/* Aftercare */}
-      <section className="py-section-y bg-background-light overflow-hidden">
+      {/* =============================================
+          AFTERCARE - 2x2 grid with softer card treatment
+          ============================================= */}
+      <section className="py-section-y bg-white overflow-hidden">
         <Container>
           <SectionHeader
             label={t('aftercare_label')}
@@ -414,7 +552,7 @@ export default function FillersPage() {
             subtitle={t('aftercare_desc')}
           />
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -422,31 +560,32 @@ export default function FillersPage() {
           >
             {aftercareItems.map((item, idx) => (
               <motion.div
-                key={idx}
+                key={`aftercare-${idx}`}
                 variants={itemVariants}
-                className="flex items-start gap-4 bg-white rounded-md p-6 shadow-soft-sm border border-primary/5"
+                className="flex items-start gap-4 bg-page-fillers rounded-md p-6 shadow-soft-sm border border-primary/5"
               >
                 <ShieldCheck className="w-5 h-5 text-primary mt-0.5 shrink-0" strokeWidth={1.5} />
-                <span className="font-sans font-light text-secondary/70 text-base leading-relaxed">{item}</span>
+                <span className="font-sans font-light text-secondary/70 text-[15px] leading-relaxed">{item}</span>
               </motion.div>
             ))}
           </motion.div>
         </Container>
       </section>
 
+      {/* =============================================
+          TREATMENT CATALOG - Using translations
+          ============================================= */}
       <TreatmentCatalog
         locale={locale}
         treatments={fillerTreatments}
-        label={locale === 'nl' ? 'FILLERS CATALOGUS' : 'FILLERS CATALOG'}
-        title={locale === 'nl' ? 'Volledige filler behandelkaart' : 'Complete filler treatment catalog'}
-        subtitle={
-          locale === 'nl'
-            ? 'Inclusief bilfiller-item, klik voor behandelinfo en directe zaterdag-boeking.'
-            : 'Includes butt filler item, click for treatment details and direct Saturday booking.'
-        }
+        label={t('catalog_label')}
+        title={t('catalog_title')}
+        subtitle={t('catalog_subtitle')}
       />
 
-      {/* CTA */}
+      {/* =============================================
+          BOTTOM CTA - Dark, authoritative closing
+          ============================================= */}
       <section className="py-section-y bg-secondary overflow-hidden">
         <Container>
           <div className="text-center max-w-3xl mx-auto">
@@ -490,6 +629,6 @@ export default function FillersPage() {
           </div>
         </Container>
       </section>
-    </>
+    </main>
   );
 }
