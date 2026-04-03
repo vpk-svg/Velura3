@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import Container from './ui/Container';
+import { Link } from '@/lib/navigation';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function TeamPreview() {
@@ -47,8 +48,9 @@ export default function TeamPreview() {
               <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-secondary/5 ring-2 ring-primary/10 group-hover:ring-primary/40 group-hover:shadow-[0_0_25px_rgba(198,166,93,0.5)] transition-all duration-300">
                 <Image
                   src={member.image}
-                  alt={member.name}
+                  alt={`Portret van ${member.name}, ${member.role}`}
                   fill
+                  loading="lazy"
                   className="object-cover"
                   sizes="128px"
                 />
@@ -60,9 +62,9 @@ export default function TeamPreview() {
         </div>
 
         <div className="text-center">
-          <a href="/team" className="inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.2em] text-primary font-bold hover:underline">
+          <Link href="/team" className="inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.2em] text-primary font-bold hover:underline">
             {t('cta')} <ArrowRight size={14} />
-          </a>
+          </Link>
         </div>
       </Container>
     </section>

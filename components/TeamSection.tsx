@@ -3,6 +3,7 @@
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { ShieldCheck } from 'lucide-react';
 import Container from './ui/Container';
 import SectionHeader from './ui/SectionHeader';
 import { EASE_PREMIUM } from '@/lib/motion';
@@ -58,10 +59,10 @@ export default function TeamSection() {
                     subtitle={t('desc')}
                 />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 max-w-6xl mx-auto">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 max-w-6xl mx-auto list-none p-0" role="list">
                     {team.map((member, index) => (
-                        <motion.article
-                            key={index}
+                        <motion.li
+                            key={member.name}
                             initial={{ opacity: 0, scale: 0.95, y: 30 }}
                             whileInView={{ opacity: 1, scale: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -71,9 +72,9 @@ export default function TeamSection() {
                             <div className="relative w-full aspect-[4/5] rounded-md overflow-hidden mb-10 shadow-soft-md group-hover:shadow-[0_8px_40px_rgba(198,166,93,0.45)] transition-shadow duration-500">
                                 <Image
                                     src={member.img}
-                                    alt={member.name}
+                                    alt={`Portret van ${member.name}, ${member.role}`}
                                     fill
-                                    sizes="(max-width: 768px) 100vw, 33vw"
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     loading="lazy"
                                     className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                                 />
@@ -86,13 +87,14 @@ export default function TeamSection() {
                                 {member.role}
                             </p>
                             {member.big && (
-                                <p className="font-sans text-secondary/50 text-[10px] tracking-[0.15em] mt-2">
+                                <p className="inline-flex items-center gap-1.5 font-sans text-secondary/60 text-xs tracking-[0.05em] mt-3">
+                                    <ShieldCheck className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
                                     {member.big}
                                 </p>
                             )}
-                        </motion.article>
+                        </motion.li>
                     ))}
-                </div>
+                </ul>
             </Container>
         </section>
     );
