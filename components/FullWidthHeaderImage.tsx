@@ -43,8 +43,7 @@ export default function FullWidthHeaderImage() {
                 <motion.div
                     className="flex flex-col justify-center text-center max-w-4xl mx-auto"
                     initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: EASE_PREMIUM }}
                 >
                     <span className="font-sans text-primary text-xs md:text-sm tracking-[0.3em] uppercase mb-8 block font-semibold">

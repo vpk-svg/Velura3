@@ -2,7 +2,7 @@
 
 import { motion, type Variants } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { Star } from 'lucide-react';
+import { Star, Heart } from 'lucide-react';
 import Container from './ui/Container';
 import SectionHeader from './ui/SectionHeader';
 import { EASE_PREMIUM } from '@/lib/motion';

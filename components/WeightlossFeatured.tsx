@@ -44,7 +44,7 @@ export default function WeightlossFeatured() {
           <h2 className="font-display text-display-lg text-secondary mb-6">
             {t('title')} <span className="italic font-light text-primary">{t('title_accent')}</span>
           </h2>
-          <p className="font-sans font-light text-secondary/70 text-xl leading-relaxed max-w-2xl mx-auto">
+          <p className="font-sans font-light text-muted text-xl leading-relaxed max-w-2xl mx-auto">
             {t('subtitle')}
           </p>
         </motion.div>
