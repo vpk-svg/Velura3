@@ -507,7 +507,7 @@ export default function CursusPageClient() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-              className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-soft-lg mx-auto md:mx-0 max-w-[280px] w-full"
+              className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-soft-lg mx-auto md:mx-0 max-w-[280px] w-full transition-all duration-300 hover:shadow-[0_0_38px_rgba(212,175,55,0.48)]"
             >
               <Image
                 src={INSTRUCTOR.image}
@@ -564,7 +564,7 @@ export default function CursusPageClient() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.15 + i * 0.08, ease: EASE_PREMIUM }}
-                    className="text-center bg-white rounded-2xl p-4 shadow-soft-sm border border-primary/5"
+                    className="text-center bg-white rounded-2xl p-4 shadow-soft-sm border border-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_34px_rgba(212,175,55,0.42)]"
                   >
                     <p className="font-display text-3xl text-primary mb-1">{stat.value}</p>
                     <p className="font-sans text-xs text-secondary/50 uppercase tracking-wider">

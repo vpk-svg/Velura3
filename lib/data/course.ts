@@ -98,11 +98,11 @@ export const LEARNING_OUTCOMES: LearningOutcome[] = [
 /* ── Instructor ── */
 
 export const INSTRUCTOR: CourseInstructor = {
-  name: 'Dr. Fabiënne van der Kolk',
+  name: 'Athiná Barza',
   titleKey: 'instructor_title',
   bioKey: 'instructor_bio',
-  image: '/images/team/fabienne.jpg',
-  credentials: ['BIG-geregistreerd arts', 'Cosmetisch arts NVCG'],
+  image: '/images/Newteam/Athina Barza.jpg',
+  credentials: ['BIG-geregistreerd arts 19937285901', 'Cosmetisch arts NVCG'],
   stats: [
     { labelKey: 'stat_experience', value: '10+' },
     { labelKey: 'stat_trained', value: '150+' },
