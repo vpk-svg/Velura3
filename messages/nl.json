@@ -126,7 +126,8 @@
     "saxenda_desc": "Dagelijkse injectie die helpt bij het verminderen van eetlust.",
     "reviews": "beoordelingen",
     "per_month": "per maand",
-    "cta": "Start behandeling"
+    "cta": "Plan een Consult",
+    "rx_full": "Receptplichtig geneesmiddel"
   },
   "methods": {
     "label": "Onze Werkwijze",
@@ -233,6 +234,7 @@
     "cancelled_cta": "Terug naar Shop"
   },
   "trust": {
+    "sr_heading": "Waarom FAB Clinic vertrouwen",
     "doctors_title": "BIG-geregistreerde Artsen",
     "doctors_desc": "Elk recept wordt uitgeschreven door een erkende arts",
     "delivery_title": "Discrete Levering",
@@ -565,6 +567,7 @@
     "hero_title_accent": "op recept",
     "hero_desc": "Alle medicatie die wij voorschrijven is klinisch bewezen en goedgekeurd door de EMA. Onze artsen bepalen welk middel het beste bij uw situatie past.",
     "hero_cta": "Bekijk de Opties",
+    "rx_notice": "Uitsluitend op recept na medische screening",
     "how_label": "HOE HET WERKT",
     "how_title": "Wat doet",
     "how_title_accent": "GLP-1 medicatie?",

@@ -10,7 +10,7 @@ export default function PharmacyDisclaimer() {
   const t = useTranslations('pharmacy');
 
   return (
-    <section className="py-section-y bg-secondary-deep text-background-light" aria-label={t('label')}>
+    <section className="py-section-y bg-secondary-deep text-background-light" aria-labelledby="pharmacy-title">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -22,25 +22,25 @@ export default function PharmacyDisclaimer() {
           <span className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-6 block font-semibold">
             {t('label')}
           </span>
-          <h2 className="font-display text-display-md text-background-light mb-6">
+          <h2 id="pharmacy-title" className="font-display text-display-md text-background-light mb-6">
             {t('title')}
           </h2>
-          <p className="font-sans font-light text-background-light/60 text-base md:text-lg leading-relaxed mb-12 max-w-2xl mx-auto">
+          <p className="font-sans font-light text-background-light/70 text-base md:text-lg leading-relaxed mb-12 max-w-2xl mx-auto">
             {t('desc')}
           </p>
 
-          <div className="inline-flex flex-col sm:flex-row gap-8 items-center justify-center bg-white/5 border border-white/10 rounded-md px-10 py-8">
+          <address className="not-italic inline-flex flex-col sm:flex-row gap-8 items-center justify-center bg-white/5 border border-white/10 rounded-md px-10 py-8">
             <div className="flex items-center gap-4">
-              <Building2 size={20} className="text-primary shrink-0" />
+              <Building2 size={20} className="text-primary shrink-0" aria-hidden="true" />
               <div className="text-left">
                 <p className="font-sans font-semibold text-background-light text-sm">{t('pharmacy_name')}</p>
-                <p className="font-sans font-light text-background-light/60 text-sm">{t('pharmacy_address')}</p>
-                <p className="font-sans font-light text-background-light/60 text-sm">{t('pharmacy_city')}</p>
+                <p className="font-sans font-light text-background-light/70 text-sm">{t('pharmacy_address')}</p>
+                <p className="font-sans font-light text-background-light/70 text-sm">{t('pharmacy_city')}</p>
               </div>
             </div>
-          </div>
+          </address>
 
-          <p className="font-sans text-[10px] italic text-background-light/30 mt-8 uppercase tracking-[0.2em] font-semibold">
+          <p className="font-sans text-[11px] italic text-background-light/50 mt-8 uppercase tracking-[0.15em] font-medium leading-relaxed max-w-xl mx-auto" role="note">
             {t('disclaimer')}
           </p>
         </motion.div>

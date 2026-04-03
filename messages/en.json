@@ -126,7 +126,8 @@
     "saxenda_desc": "Daily injection that helps reduce appetite.",
     "reviews": "reviews",
     "per_month": "per month",
-    "cta": "Order Now"
+    "cta": "Schedule a Consultation",
+    "rx_full": "Prescription-only medicine"
   },
   "methods": {
     "label": "Our Approach",
@@ -233,6 +234,7 @@
     "cancelled_cta": "Return to Shop"
   },
   "trust": {
+    "sr_heading": "Why trust FAB Clinic",
     "doctors_title": "Registered Doctors",
     "doctors_desc": "Every prescription is issued by a licensed physician",
     "delivery_title": "Discreet Delivery",
@@ -565,6 +567,7 @@
     "hero_title_accent": "medication",
     "hero_desc": "All medications we prescribe are clinically proven and approved by the EMA. Our doctors determine which option best fits your situation.",
     "hero_cta": "View Options",
+    "rx_notice": "Prescription only after medical screening",
     "how_label": "HOW IT WORKS",
     "how_title": "What does",
     "how_title_accent": "GLP-1 medication do?",

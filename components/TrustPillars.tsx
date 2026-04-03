@@ -33,11 +33,12 @@ export default function TrustPillars() {
   ];
 
   return (
-    <section className="py-section-y bg-background-light border-y border-secondary/5" aria-label="Trust indicators">
+    <section className="py-section-y bg-background-light border-y border-secondary/5" aria-labelledby="trust-heading">
       <Container>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+        <h2 id="trust-heading" className="sr-only">{t('sr_heading')}</h2>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 list-none p-0 m-0" role="list">
           {pillars.map((pillar, index) => (
-            <motion.div
+            <motion.li
               key={index}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -51,12 +52,12 @@ export default function TrustPillars() {
               <h3 className="font-sans text-secondary text-sm tracking-[0.3em] uppercase mb-3 font-semibold group-hover:text-primary transition-colors duration-300">
                 {pillar.title}
               </h3>
-              <p className="font-sans font-light text-secondary/60 text-base leading-relaxed max-w-xs transition-colors duration-300 group-hover:text-secondary">
+              <p className="font-sans font-light text-muted-strong text-base leading-relaxed max-w-xs transition-colors duration-300 group-hover:text-secondary">
                 {pillar.desc}
               </p>
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </Container>
     </section>
   );
