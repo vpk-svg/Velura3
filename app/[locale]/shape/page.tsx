@@ -1,33 +1,53 @@
 'use client';
 
+import { useState } from 'react';
 import { motion, type Variants } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import {
+  Shield, Stethoscope, Timer, Heart, CheckCircle2,
+  Sparkles, CalendarDays, Clock, ChevronDown, ArrowRight,
+  ShieldCheck, Activity, UserCheck, BadgeCheck,
+} from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ConsultTrigger from '@/components/consult/ConsultTrigger';
+import BmiCalculator from '@/components/BmiCalculator';
 import { SHAPE_TREATMENTS } from '@/lib/data/shape-treatments';
+import { FAQ_ITEMS, type FaqItem } from '@/lib/data/faq';
 import { EASE_PREMIUM } from '@/lib/motion';
 
+/* ── Lucide icon map (replaces Material Symbols dependency) ── */
+const BENEFIT_ICONS: Record<string, React.ReactNode> = {
+  no_downtime: <Timer size={22} />,
+  less_pain: <Heart size={22} />,
+  safe: <ShieldCheck size={22} />,
+  minimal: <Sparkles size={22} />,
+  duration: <CalendarDays size={22} />,
+  time: <Clock size={22} />,
+};
+
 const BENEFITS = [
-  { key: 'no_downtime', icon: 'timer' },
-  { key: 'less_pain', icon: 'favorite' },
-  { key: 'safe', icon: 'verified' },
-  { key: 'minimal', icon: 'shutter_speed' },
-  { key: 'duration', icon: 'calendar_today' },
-  { key: 'time', icon: 'schedule' },
+  'no_downtime', 'less_pain', 'safe', 'minimal', 'duration', 'time',
 ] as const;
 
 const AFTERCARE_STEPS = ['1', '2', '3', '4'] as const;
 
 const METHOD_STEPS = [
-  { key: 'step1', offset: '' },
-  { key: 'step2', offset: 'md:mt-12' },
-  { key: 'step3', offset: 'md:mt-24' },
+  { key: 'step1', offset: '', num: '01' },
+  { key: 'step2', offset: 'md:mt-12', num: '02' },
+  { key: 'step3', offset: 'md:mt-24', num: '03' },
 ] as const;
+
+const RECOVERY_MILESTONES = ['day1', 'week1', 'week2', 'month1', 'month3'] as const;
+
+const CANDIDATE_CHECKS = ['bmi', 'age', 'health', 'expectations', 'nonsmoker'] as const;
 
 export default function ShapePage() {
   const t = useTranslations('shape_page');
+  const [openFaq, setOpenFaq] = useState<string | null>(null);
+
+  const shapeFaqs: FaqItem[] = FAQ_ITEMS.filter((item) => item.category === 'shape');
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -41,7 +61,9 @@ export default function ShapePage() {
 
   return (
     <>
-      {/* ── Hero ── */}
+      {/* ═══════════════════════════════════════════════════════
+          HERO — Full-viewport immersive hero with trust badges
+          ═══════════════════════════════════════════════════════ */}
       <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden bg-secondary">
         <div className="absolute inset-0 z-0">
           <Image
@@ -49,12 +71,14 @@ export default function ShapePage() {
             alt=""
             fill
             priority
+            quality={85}
             className="object-cover opacity-20 mix-blend-overlay"
             sizes="100vw"
             aria-hidden="true"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-secondary/80 to-transparent" />
         </div>
+
         <Container className="relative z-10 py-40">
           <div className="max-w-3xl">
             <motion.span
@@ -65,6 +89,7 @@ export default function ShapePage() {
             >
               {t('hero_label')}
             </motion.span>
+
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -74,6 +99,7 @@ export default function ShapePage() {
               {t('hero_title')}{' '}
               <span className="italic font-light text-primary">{t('hero_title_accent')}</span>
             </motion.h1>
+
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -82,10 +108,12 @@ export default function ShapePage() {
             >
               {t('hero_desc')}
             </motion.p>
+
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
+              className="flex flex-wrap gap-4 mb-12"
             >
               <ConsultTrigger
                 from="bbl"
@@ -93,12 +121,41 @@ export default function ShapePage() {
               >
                 {t('hero_cta')}
               </ConsultTrigger>
+              <a
+                href="#pricing"
+                className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-5 text-xs tracking-[0.3em] border-2 border-background-light/20 text-background-light hover:border-primary hover:text-primary transition-all duration-300"
+              >
+                {t('hero_cta_pricing')}
+              </a>
+            </motion.div>
+
+            {/* Trust badges */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: EASE_PREMIUM }}
+              className="flex flex-wrap gap-6"
+            >
+              {[
+                { icon: <BadgeCheck size={16} />, key: 'trust_big' },
+                { icon: <Shield size={16} />, key: 'trust_safe' },
+                { icon: <Stethoscope size={16} />, key: 'trust_specialist' },
+              ].map((badge) => (
+                <div key={badge.key} className="flex items-center gap-2 text-background-light/60">
+                  <span className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center text-primary">
+                    {badge.icon}
+                  </span>
+                  <span className="font-sans text-xs tracking-wide">{t(badge.key)}</span>
+                </div>
+              ))}
             </motion.div>
           </div>
         </Container>
       </section>
 
-      {/* ── Introduction ── */}
+      {/* ═══════════════════════════════════════════════════════
+          INTRODUCTION — What is a BBL / Buttock Filler?
+          ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y bg-surface overflow-hidden">
         <Container>
           <div className="grid md:grid-cols-2 gap-16 lg:gap-20 items-center">
@@ -112,13 +169,16 @@ export default function ShapePage() {
               <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
               <Image
                 src="/images/bbl-example.png"
-                alt="Hyaluronzuur filler gel"
+                alt={t('intro_img_alt')}
                 width={600}
                 height={500}
-                className="relative z-10 rounded-xl shadow-soft-lg grayscale hover:grayscale-0 transition-all duration-700"
+                loading="lazy"
+                quality={85}
+                className="relative z-10 rounded-xl shadow-soft-lg brightness-105 contrast-[1.02] transition-all duration-700"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -138,7 +198,10 @@ export default function ShapePage() {
         </Container>
       </section>
 
-      {/* ── Safety Comparison ── */}
+      {/* ═══════════════════════════════════════════════════════
+          SAFETY COMPARISON — Surgical BBL vs. Filler BBL
+          H4 → H3 fix, red-400 → terracotta, Lucide icons
+          ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y bg-page-shape overflow-hidden">
         <Container>
           <motion.div
@@ -146,7 +209,7 @@ export default function ShapePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-            className="bg-secondary p-10 md:p-16 lg:p-20 rounded-3xl relative overflow-hidden"
+            className="bg-secondary p-8 md:p-16 lg:p-20 rounded-3xl relative overflow-hidden"
           >
             <div className="relative z-10 flex flex-col md:flex-row gap-12 items-center">
               <div className="md:w-1/2">
@@ -157,24 +220,25 @@ export default function ShapePage() {
                   {t('safety_desc')}
                 </p>
                 <div className="flex items-center gap-4 text-primary">
-                  <span className="material-symbols-outlined text-4xl" aria-hidden="true">verified_user</span>
+                  <ShieldCheck size={32} aria-hidden="true" />
                   <span className="font-sans uppercase tracking-widest text-sm font-semibold">
                     {t('safety_badge')}
                   </span>
                 </div>
               </div>
+
               <div className="md:w-1/2 grid grid-cols-1 gap-6">
                 <div className="bg-background-light/5 p-8 rounded-2xl backdrop-blur-sm">
-                  <h4 className="font-display text-2xl text-background-light mb-2">
+                  <h3 className="font-display text-2xl text-background-light mb-2">
                     {t('safety_surgical_title')}
-                  </h4>
-                  <p className="text-red-400/80 text-sm font-sans uppercase mb-4 font-semibold tracking-wider">
+                  </h3>
+                  <p className="text-[#C4785A]/90 text-sm font-sans uppercase mb-4 font-semibold tracking-wider">
                     {t('safety_surgical_risk')}
                   </p>
                   <p className="text-background-light/60 text-sm">{t('safety_surgical_desc')}</p>
                 </div>
                 <div className="bg-primary p-8 rounded-2xl">
-                  <h4 className="font-display text-2xl text-white mb-2">{t('safety_fab_title')}</h4>
+                  <h3 className="font-display text-2xl text-white mb-2">{t('safety_fab_title')}</h3>
                   <p className="text-white/70 text-sm font-sans uppercase mb-4 font-semibold tracking-wider">
                     {t('safety_fab_risk')}
                   </p>
@@ -186,8 +250,49 @@ export default function ShapePage() {
         </Container>
       </section>
 
-      {/* ── The Method (3 Staggered Cards) ── */}
+      {/* ═══════════════════════════════════════════════════════
+          CREDENTIALS — Surgical Safety & BIG Registration
+          ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y bg-surface overflow-hidden">
+        <Container>
+          <SectionHeader
+            label={t('credentials_label')}
+            title={t('credentials_title')}
+            subtitle={t('credentials_desc')}
+          />
+          <motion.div
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+          >
+            {[
+              { icon: <BadgeCheck size={24} />, key: 'cred_big' },
+              { icon: <ShieldCheck size={24} />, key: 'cred_facility' },
+              { icon: <Activity size={24} />, key: 'cred_protocol' },
+              { icon: <UserCheck size={24} />, key: 'cred_screening' },
+            ].map((cred) => (
+              <motion.div
+                key={cred.key}
+                variants={itemVariants}
+                className="text-center flex flex-col items-center gap-4"
+              >
+                <div className="w-14 h-14 bg-primary/10 flex items-center justify-center rounded-full text-primary">
+                  {cred.icon}
+                </div>
+                <h3 className="font-display text-lg text-secondary">{t(`${cred.key}_title`)}</h3>
+                <p className="text-secondary/60 font-light text-sm leading-relaxed">{t(`${cred.key}_desc`)}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </Container>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          THE METHOD — 3 Staggered Cards with step numbers
+          ═══════════════════════════════════════════════════════ */}
+      <section className="py-section-y bg-page-shape overflow-hidden">
         <Container>
           <SectionHeader
             label={t('method_label')}
@@ -205,20 +310,30 @@ export default function ShapePage() {
               <motion.div
                 key={step.key}
                 variants={itemVariants}
-                className={`group h-[440px] md:h-[500px] relative overflow-hidden rounded-2xl ${step.offset}`}
+                className={`group min-h-[440px] md:min-h-[500px] relative overflow-hidden rounded-2xl ${step.offset}`}
               >
                 <Image
                   src="/images/bbl-example.png"
-                  alt=""
+                  alt={t(`method_${step.key}_title`)}
                   fill
+                  loading="lazy"
+                  quality={85}
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  aria-hidden="true"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent opacity-60" />
-                <div className="absolute bottom-8 left-8 text-background-light">
-                  <h3 className="font-display text-2xl mb-2">{t(`method_${step.key}_title`)}</h3>
-                  <p className="text-sm text-background-light/80">{t(`method_${step.key}_desc`)}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/30 to-transparent opacity-70" />
+
+                {/* Large step number watermark */}
+                <span className="absolute top-6 right-8 font-display text-8xl text-background-light/[0.08] pointer-events-none select-none" aria-hidden="true">
+                  {step.num}
+                </span>
+
+                <div className="absolute bottom-8 left-8 right-8 text-background-light">
+                  <span className="font-sans text-primary text-[10px] tracking-[0.3em] uppercase mb-2 block font-semibold">
+                    {t('method_step_label', { num: step.num })}
+                  </span>
+                  <h3 className="font-display text-3xl mb-2">{t(`method_${step.key}_title`)}</h3>
+                  <p className="text-sm text-background-light/80 leading-relaxed">{t(`method_${step.key}_desc`)}</p>
                 </div>
               </motion.div>
             ))}
@@ -226,9 +341,16 @@ export default function ShapePage() {
         </Container>
       </section>
 
-      {/* ── Benefits Grid ── */}
-      <section className="py-section-y bg-page-shape overflow-hidden">
+      {/* ═══════════════════════════════════════════════════════
+          BENEFITS GRID — With SectionHeader + Lucide icons
+          ═══════════════════════════════════════════════════════ */}
+      <section className="py-section-y bg-surface overflow-hidden">
         <Container>
+          <SectionHeader
+            label={t('benefits_label')}
+            title={t('benefits_title')}
+            subtitle={t('benefits_subtitle')}
+          />
           <motion.div
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-12"
             variants={containerVariants}
@@ -236,25 +358,72 @@ export default function ShapePage() {
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
           >
-            {BENEFITS.map((b) => (
-              <motion.div key={b.key} variants={itemVariants} className="flex flex-col items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center rounded-full">
-                  <span className="material-symbols-outlined text-primary" aria-hidden="true">
-                    {b.icon}
-                  </span>
+            {BENEFITS.map((key) => (
+              <motion.div key={key} variants={itemVariants} className="flex flex-col items-start gap-4">
+                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center rounded-full text-primary">
+                  {BENEFIT_ICONS[key]}
                 </div>
-                <h4 className="font-display text-xl text-secondary">{t(`benefit_${b.key}`)}</h4>
-                <p className="text-secondary/60 font-light">{t(`benefit_${b.key}_desc`)}</p>
+                <h3 className="font-display text-xl text-secondary">{t(`benefit_${key}`)}</h3>
+                <p className="text-secondary/60 font-light">{t(`benefit_${key}_desc`)}</p>
               </motion.div>
             ))}
           </motion.div>
         </Container>
       </section>
 
-      {/* ── Treatment Pricing ── */}
+      {/* ═══════════════════════════════════════════════════════
+          CANDIDATE SECTION — "Am I a Candidate?" + BMI Calculator
+          ═══════════════════════════════════════════════════════ */}
+      <section id="candidate" className="py-section-y bg-page-shape overflow-hidden">
+        <Container>
+          <SectionHeader
+            label={t('candidate_label')}
+            title={t('candidate_title')}
+            subtitle={t('candidate_subtitle')}
+          />
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start max-w-6xl mx-auto">
+            {/* Candidacy checklist */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+              className="space-y-4"
+            >
+              {CANDIDATE_CHECKS.map((check) => (
+                <div key={check} className="flex items-start gap-4 p-5 rounded-xl bg-surface-elevated shadow-soft-sm">
+                  <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <CheckCircle2 size={16} className="text-primary" />
+                  </span>
+                  <div>
+                    <h3 className="font-display text-lg text-secondary mb-1">{t(`candidate_${check}`)}</h3>
+                    <p className="text-secondary/60 font-light text-sm leading-relaxed">{t(`candidate_${check}_desc`)}</p>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Embedded BMI Calculator */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.15, ease: EASE_PREMIUM }}
+              className="bg-surface-elevated rounded-2xl border border-secondary/5 p-6 md:p-8 shadow-soft-lg"
+            >
+              <BmiCalculator isEmbed />
+            </motion.div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          TREATMENT PRICING
+          ═══════════════════════════════════════════════════════ */}
       {SHAPE_TREATMENTS.map((treatment, index) => (
         <section
           key={treatment.id}
+          id={index === 0 ? 'pricing' : undefined}
           className={`py-section-y overflow-hidden ${index % 2 === 0 ? 'bg-surface' : 'bg-page-shape'}`}
         >
           <Container>
@@ -295,7 +464,54 @@ export default function ShapePage() {
         </section>
       ))}
 
-      {/* ── Post-Treatment / Aftercare ── */}
+      {/* ═══════════════════════════════════════════════════════
+          RECOVERY TIMELINE — Visual day-by-day breakdown
+          ═══════════════════════════════════════════════════════ */}
+      <section className="py-section-y bg-page-shape overflow-hidden">
+        <Container>
+          <SectionHeader
+            label={t('recovery_label')}
+            title={t('recovery_title')}
+            subtitle={t('recovery_subtitle')}
+          />
+          <div className="max-w-3xl mx-auto">
+            <motion.div
+              className="relative"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+            >
+              {/* Vertical timeline line */}
+              <div className="absolute left-6 top-0 bottom-0 w-px bg-primary/20" aria-hidden="true" />
+
+              {RECOVERY_MILESTONES.map((milestone) => (
+                <motion.div
+                  key={milestone}
+                  variants={itemVariants}
+                  className="relative pl-16 pb-10 last:pb-0"
+                >
+                  <div className="absolute left-3.5 top-1 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center" aria-hidden="true">
+                    <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+                  </div>
+
+                  <div className="bg-surface-elevated p-6 rounded-xl shadow-soft-sm">
+                    <span className="font-sans text-primary text-[10px] tracking-[0.2em] uppercase font-semibold block mb-1">
+                      {t(`recovery_${milestone}_period`)}
+                    </span>
+                    <h3 className="font-display text-xl text-secondary mb-2">{t(`recovery_${milestone}_title`)}</h3>
+                    <p className="text-secondary/60 font-light text-sm leading-relaxed">{t(`recovery_${milestone}_desc`)}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          AFTERCARE — Tips + image + quote (now visible on mobile)
+          ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y bg-surface overflow-hidden">
         <Container>
           <div className="grid md:grid-cols-2 gap-16 items-start">
@@ -321,6 +537,7 @@ export default function ShapePage() {
                 ))}
               </div>
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -330,13 +547,16 @@ export default function ShapePage() {
             >
               <Image
                 src="/images/bbl-example.png"
-                alt="Nazorg illustratie"
+                alt={t('aftercare_img_alt')}
                 width={600}
                 height={500}
+                loading="lazy"
+                quality={85}
                 className="rounded-xl shadow-soft-lg"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
-              <div className="absolute -bottom-8 -right-4 md:-bottom-10 md:-right-10 bg-primary p-8 md:p-10 rounded-xl hidden md:block">
+              {/* Quote — absolute on md+, block on mobile */}
+              <div className="mt-6 md:mt-0 md:absolute md:-bottom-10 md:-right-10 bg-primary p-8 md:p-10 rounded-xl">
                 <p className="text-white font-display text-2xl italic">{t('aftercare_quote')}</p>
               </div>
             </motion.div>
@@ -344,7 +564,51 @@ export default function ShapePage() {
         </Container>
       </section>
 
-      {/* ── Final CTA ── */}
+      {/* ═══════════════════════════════════════════════════════
+          FAQ — Shape-specific questions (SEO rich snippets)
+          ═══════════════════════════════════════════════════════ */}
+      <section className="py-section-y bg-page-shape overflow-hidden">
+        <Container>
+          <SectionHeader
+            label={t('faq_label')}
+            title={t('faq_title')}
+            subtitle={t('faq_subtitle')}
+          />
+          <div className="max-w-3xl mx-auto space-y-3">
+            {shapeFaqs.map((faq) => {
+              const isOpen = openFaq === faq.id;
+              return (
+                <div key={faq.id} className="bg-surface-elevated rounded-xl overflow-hidden shadow-soft-sm">
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : faq.id)}
+                    className="w-full flex items-center justify-between p-6 text-left focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset focus-visible:outline-none"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="font-display text-lg text-secondary pr-4">
+                      {t.has(faq.questionKey) ? t(faq.questionKey) : faq.questionKey}
+                    </span>
+                    <ChevronDown
+                      size={20}
+                      className={`text-primary shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                  {isOpen && (
+                    <div className="px-6 pb-6">
+                      <p className="text-secondary/70 font-light leading-relaxed">
+                        {t.has(faq.answerKey) ? t(faq.answerKey) : faq.answerKey}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          FINAL CTA — Full-width immersive call-to-action
+          ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y overflow-hidden">
         <Container>
           <motion.div
@@ -369,12 +633,12 @@ export default function ShapePage() {
                 >
                   {t('cta_button')}
                 </ConsultTrigger>
-                <a
-                  href="tel:+31850000000"
-                  className="w-full md:w-auto inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] border border-background-light/20 text-background-light hover:bg-background-light/10 transition-all duration-300"
+                <ConsultTrigger
+                  from="bbl"
+                  className="w-full md:w-auto inline-flex items-center gap-2 justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] border border-background-light/20 text-background-light hover:bg-background-light/10 transition-all duration-300"
                 >
-                  {t('cta_button_secondary')}
-                </a>
+                  {t('cta_button_secondary')} <ArrowRight size={14} />
+                </ConsultTrigger>
               </div>
             </div>
           </motion.div>
