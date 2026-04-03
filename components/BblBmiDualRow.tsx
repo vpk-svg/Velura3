@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import BmiCalculator from './BmiCalculator';
 import Card from './ui/Card';
-import Button from './ui/Button';
 import Container from './ui/Container';
+import ConsultTrigger from './consult/ConsultTrigger';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function BblBmiDualRow() {
@@ -48,9 +48,9 @@ export default function BblBmiDualRow() {
                                 <p className="font-sans font-light text-secondary/70 text-lg md:text-xl leading-relaxed mb-10 flex-grow">
                                     {t_bbl('desc')}
                                 </p>
-                                <Button href="#consult" variant="secondary" size="md">
+                                <ConsultTrigger from="bbl" className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-4 text-xs tracking-[0.2em] bg-secondary text-white shadow-soft-lg hover:bg-secondary/90 transition-all duration-300 active:scale-[0.97]">
                                     {t_bbl('cta')}
-                                </Button>
+                                </ConsultTrigger>
                             </div>
                         </Card>
                     </motion.div>

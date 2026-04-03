@@ -29,9 +29,9 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const tabs = [
-    { label: locale === 'nl' ? 'De behandeling' : 'The treatment' },
-    { label: locale === 'nl' ? 'Nazorg' : 'Aftercare' },
-    { label: locale === 'nl' ? 'Waarom FabClinic' : 'Why FabClinic' },
+    { id: 'tab-treatment', label: locale === 'nl' ? 'De behandeling' : 'The treatment' },
+    { id: 'tab-aftercare', label: locale === 'nl' ? 'Nazorg' : 'Aftercare' },
+    { id: 'tab-why', label: locale === 'nl' ? 'Waarom FabClinic' : 'Why FabClinic' },
   ];
 
   const trustIndicators = [
@@ -162,6 +162,8 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
                   src={treatment.heroImage}
                   alt={t(treatment.titleKey)}
                   fill
+                  loading="lazy"
+                  quality={85}
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 640px"
                 />
@@ -176,10 +178,14 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
         <Container>
           <div className="max-w-4xl mx-auto">
             {/* Tab Navigation */}
-            <div className="flex flex-wrap justify-center gap-2 mb-12">
+            <div className="flex flex-wrap justify-center gap-2 mb-12" role="tablist" aria-label={locale === 'nl' ? 'Behandelinformatie' : 'Treatment information'}>
               {tabs.map((tab, i) => (
                 <button
-                  key={tab.label}
+                  key={tab.id}
+                  id={tab.id}
+                  role="tab"
+                  aria-selected={activeTab === i}
+                  aria-controls={`${tab.id}-panel`}
                   onClick={() => setActiveTab(i)}
                   className={`rounded-pill px-6 py-3 font-sans text-xs uppercase tracking-[0.15em] font-bold transition-all duration-300 ${
                     activeTab === i
@@ -196,6 +202,9 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
+                id={`${tabs[activeTab].id}-panel`}
+                role="tabpanel"
+                aria-labelledby={tabs[activeTab].id}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
@@ -236,6 +245,8 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
                       src={treatment.heroImage}
                       alt={t(treatment.titleKey)}
                       fill
+                      loading="lazy"
+                      quality={85}
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
@@ -266,8 +277,10 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
               <div className="relative aspect-[3/4]">
                 <Image
                   src={beforeAfterSlides[slideIndex].before}
-                  alt={locale === 'nl' ? 'Voor behandeling' : 'Before treatment'}
+                  alt={locale === 'nl' ? `${t(treatment.titleKey)} — voor behandeling` : `${t(treatment.titleKey)} — before treatment`}
                   fill
+                  loading="lazy"
+                  quality={85}
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 380px"
                 />
@@ -278,8 +291,10 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
               <div className="relative aspect-[3/4]">
                 <Image
                   src={beforeAfterSlides[slideIndex].after}
-                  alt={locale === 'nl' ? 'Na behandeling' : 'After treatment'}
+                  alt={locale === 'nl' ? `${t(treatment.titleKey)} — na behandeling` : `${t(treatment.titleKey)} — after treatment`}
                   fill
+                  loading="lazy"
+                  quality={85}
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 380px"
                 />
@@ -293,14 +308,14 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
             <button
               onClick={() => setSlideIndex((prev) => (prev - 1 + beforeAfterSlides.length) % beforeAfterSlides.length)}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 rounded-full bg-white shadow-soft-md flex items-center justify-center text-secondary hover:text-primary transition-colors"
-              aria-label="Previous"
+              aria-label={locale === 'nl' ? 'Vorige foto' : 'Previous photo'}
             >
               <ChevronLeft size={20} />
             </button>
             <button
               onClick={() => setSlideIndex((prev) => (prev + 1) % beforeAfterSlides.length)}
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 rounded-full bg-white shadow-soft-md flex items-center justify-center text-secondary hover:text-primary transition-colors"
-              aria-label="Next"
+              aria-label={locale === 'nl' ? 'Volgende foto' : 'Next photo'}
             >
               <ChevronRight size={20} />
             </button>

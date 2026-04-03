@@ -105,20 +105,6 @@ function getContextOptions(from: ConsultSubject): ContextOption[] | null {
           en: { title: 'BBL Premium (360°)', description: 'Comprehensive buttock contouring with 360° approach.', cta: 'Choose BBL Premium' },
           href: (locale) => `/${locale}/consult/plan?focus=bbl`,
         },
-        {
-          id: 'eyelid',
-          icon: Sparkles,
-          nl: { title: 'Ooglidcorrectie', description: 'Blepharoplastiek voor een frissere uitstraling.', cta: 'Kies Ooglidcorrectie' },
-          en: { title: 'Eyelid Correction', description: 'Blepharoplasty for a fresher appearance.', cta: 'Choose Eyelid Correction' },
-          href: (locale) => `/${locale}/consult/plan?focus=bbl`,
-        },
-        {
-          id: 'double-chin',
-          icon: Sparkles,
-          nl: { title: 'Vet Onderkin', description: 'Minimaal invasieve vetverwijdering voor een strakker profiel.', cta: 'Kies Onderkin' },
-          en: { title: 'Double Chin', description: 'Minimally invasive fat removal for a tighter jawline.', cta: 'Choose Double Chin' },
-          href: (locale) => `/${locale}/consult/plan?focus=bbl`,
-        },
       ];
     case 'botox':
       return [
