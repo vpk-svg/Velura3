@@ -207,87 +207,6 @@ export default function FillersPage() {
       </section>
 
       {/* =============================================
-          WHAT ARE FILLERS - Editorial split layout
-          ============================================= */}
-      <section className="py-section-y bg-page-fillers overflow-hidden">
-        <Container>
-          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-            <motion.div
-              initial={{ x: -60, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-              className="flex-1 relative w-full aspect-[3/4] max-h-[600px] rounded-md overflow-hidden group shadow-soft-lg bg-secondary/5"
-            >
-              <Image
-                src="/images/treatments/fillers.jpg"
-                alt={t('what_img_alt')}
-                fill
-                loading="lazy"
-                className="object-cover transition-transform duration-700 ease-premium group-hover:scale-[1.03]"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-secondary/10 to-transparent group-hover:opacity-0 transition-opacity duration-500" />
-            </motion.div>
-
-            <div className="flex-1 w-full">
-              <SectionHeader
-                label={t('what_label')}
-                title={<>{t('what_title')} <span className="italic font-light text-primary">{t('what_title_accent')}</span></>}
-                align="left"
-              />
-              <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-                className="font-sans font-light text-secondary/70 text-lg leading-relaxed"
-              >
-                {t('what_desc')}
-              </motion.p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* =============================================
-          NATURAL RESULTS PHILOSOPHY - Addresses over-fill fear
-          ============================================= */}
-      <section className="py-section-y bg-white overflow-hidden">
-        <Container>
-          <div className="max-w-4xl mx-auto text-center">
-            <SectionHeader
-              label={t('philosophy_label')}
-              title={<>{t('philosophy_title')} <span className="italic font-light text-primary">{t('philosophy_title_accent')}</span></>}
-              subtitle={t('philosophy_desc')}
-            />
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-2"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-60px' }}
-            >
-              {philosophyItems.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  className="flex flex-col items-center text-center gap-4 px-6"
-                >
-                  <div className="w-12 h-12 rounded-full bg-primary/[0.06] flex items-center justify-center text-primary">
-                    {item.icon}
-                  </div>
-                  <p className="font-sans text-secondary/70 text-base leading-relaxed">
-                    {item.text}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </Container>
-      </section>
-
-      {/* =============================================
           TREATMENT ZONES - Face zones grid + separate BBL highlight
           ============================================= */}
       <section className="py-section-y bg-page-fillers overflow-hidden">
@@ -436,6 +355,87 @@ export default function FillersPage() {
           </Container>
         </section>
       )}
+
+      {/* =============================================
+          WHAT ARE FILLERS - Editorial split layout
+          ============================================= */}
+      <section className="py-section-y bg-page-fillers overflow-hidden">
+        <Container>
+          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+            <motion.div
+              initial={{ x: -60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+              className="flex-1 relative w-full aspect-[3/4] max-h-[600px] rounded-md overflow-hidden group shadow-soft-lg bg-secondary/5"
+            >
+              <Image
+                src="/images/treatments/fillers.jpg"
+                alt={t('what_img_alt')}
+                fill
+                loading="lazy"
+                className="object-cover transition-transform duration-700 ease-premium group-hover:scale-[1.03]"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-secondary/10 to-transparent group-hover:opacity-0 transition-opacity duration-500" />
+            </motion.div>
+
+            <div className="flex-1 w-full">
+              <SectionHeader
+                label={t('what_label')}
+                title={<>{t('what_title')} <span className="italic font-light text-primary">{t('what_title_accent')}</span></>}
+                align="left"
+              />
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
+                className="font-sans font-light text-secondary/70 text-lg leading-relaxed"
+              >
+                {t('what_desc')}
+              </motion.p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* =============================================
+          NATURAL RESULTS PHILOSOPHY - Addresses over-fill fear
+          ============================================= */}
+      <section className="py-section-y bg-white overflow-hidden">
+        <Container>
+          <div className="max-w-4xl mx-auto text-center">
+            <SectionHeader
+              label={t('philosophy_label')}
+              title={<>{t('philosophy_title')} <span className="italic font-light text-primary">{t('philosophy_title_accent')}</span></>}
+              subtitle={t('philosophy_desc')}
+            />
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-2"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+            >
+              {philosophyItems.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={itemVariants}
+                  className="flex flex-col items-center text-center gap-4 px-6"
+                >
+                  <div className="w-12 h-12 rounded-full bg-primary/[0.06] flex items-center justify-center text-primary">
+                    {item.icon}
+                  </div>
+                  <p className="font-sans text-secondary/70 text-base leading-relaxed">
+                    {item.text}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </Container>
+      </section>
 
       {/* =============================================
           SAFETY & QUALITY - Reversed layout with fillers-specific image

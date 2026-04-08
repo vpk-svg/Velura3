@@ -6,10 +6,12 @@ import Image from 'next/image';
 import { useRef } from 'react';
 import { EASE_PREMIUM } from '@/lib/motion';
 import { ArrowRight } from 'lucide-react';
-import ConsultTrigger from '@/components/consult/ConsultTrigger';
+import Link from 'next/link';
+import { useLocale } from 'next-intl';
 
 export default function FullWidthHeaderImage() {
     const t = useTranslations('cinematic');
+    const locale = useLocale();
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -50,20 +52,23 @@ export default function FullWidthHeaderImage() {
                         {t('label')}
                     </span>
                     <h1 className="font-display text-display-xl text-background-light leading-[0.85] mb-8">
-                        {t('title1')} <br />
-                        <span className="italic font-light text-primary tracking-normal">{t('title2')}</span>
+                        <span className="font-extrabold">F</span>ace{' '}
+                        <span className="font-extrabold">a</span>nd <br />
+                        <span className="italic font-light text-primary">
+                          <span className="font-extrabold not-italic text-primary">B</span>eauty
+                        </span>
                     </h1>
                     <div className="w-20 h-px bg-primary/50 mx-auto mb-8" />
                     <p className="font-sans font-light text-background-light/80 text-lg md:text-xl leading-relaxed tracking-wide max-w-2xl mx-auto mb-12">
                         {t('hero_subtitle')}
                     </p>
                     <div className="flex items-center justify-center">
-                        <ConsultTrigger
-                            from="home"
+                        <Link
+                            href={`/${locale}/behandelingen`}
                             className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
                         >
                             {t('cta_treatments')} <ArrowRight size={14} />
-                        </ConsultTrigger>
+                        </Link>
                     </div>
                 </motion.div>
             </div>

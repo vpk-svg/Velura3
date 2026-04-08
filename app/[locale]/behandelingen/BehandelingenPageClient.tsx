@@ -4,7 +4,7 @@ import { motion, type Variants } from 'motion/react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Syringe, Sparkles, Dumbbell, TrendingDown, ArrowRight } from 'lucide-react';
+import { Syringe, Sparkles, Dumbbell, TrendingDown, ArrowRight, ClipboardList, ShoppingBag } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { EASE_PREMIUM } from '@/lib/motion';
@@ -15,32 +15,64 @@ const TREATMENTS = [
     href: '/botox',
     icon: Syringe,
     image: '/images/treatments/botox-hero.jpg',
-    nl: { title: 'Botox', desc: 'Rimpels verminderen met veilige, subtiele injecties door ervaren artsen.' },
-    en: { title: 'Botox', desc: 'Reduce wrinkles with safe, subtle injections by experienced doctors.' },
+    nl: {
+      title: 'Botox',
+      desc: 'Rimpels verminderen met veilige, subtiele injecties door ervaren artsen.',
+      items: ['Voorhoofd', 'Fronsrimpel', 'Kraaienpootjes', 'Masseter (kaak)', 'Hyperhidrose'],
+    },
+    en: {
+      title: 'Botox',
+      desc: 'Reduce wrinkles with safe, subtle injections by experienced doctors.',
+      items: ['Forehead', 'Frown lines', "Crow's feet", 'Masseter (jaw)', 'Hyperhidrosis'],
+    },
   },
   {
     key: 'fillers',
     href: '/fillers',
     icon: Sparkles,
     image: '/images/treatments/fillers-hero.jpg',
-    nl: { title: 'Fillers', desc: 'Volume herstellen en contouren verfijnen voor een natuurlijk resultaat.' },
-    en: { title: 'Fillers', desc: 'Restore volume and refine contours for a natural result.' },
+    nl: {
+      title: 'Fillers',
+      desc: 'Volume herstellen en contouren verfijnen voor een natuurlijk resultaat.',
+      items: ['Lipfillers', 'Kaaklijn', 'Wangen', 'Tranengroeven', 'Neus'],
+    },
+    en: {
+      title: 'Fillers',
+      desc: 'Restore volume and refine contours for a natural result.',
+      items: ['Lip fillers', 'Jawline', 'Cheeks', 'Tear troughs', 'Nose'],
+    },
   },
   {
     key: 'bbl',
     href: '/shape',
     icon: Dumbbell,
     image: '/images/treatments/shape-hero.jpg',
-    nl: { title: 'BBL', desc: 'Non-invasieve body contouring voor een strakker silhouet.' },
-    en: { title: 'BBL', desc: 'Non-invasive body contouring for a tighter silhouette.' },
+    nl: {
+      title: 'BBL',
+      desc: 'Non-invasieve body contouring voor een strakker silhouet.',
+      items: ['Brazilian Butt Lift', 'Ooglidcorrectie', 'Onderkin behandeling'],
+    },
+    en: {
+      title: 'BBL',
+      desc: 'Non-invasive body contouring for a tighter silhouette.',
+      items: ['Brazilian Butt Lift', 'Eyelid correction', 'Chin treatment'],
+    },
   },
   {
     key: 'weightloss',
     href: '/weightloss',
     icon: TrendingDown,
     image: '/images/treatments/weightloss-hero.jpg',
-    nl: { title: 'Gewichtsverlies', desc: 'Medisch begeleid afvallen met GLP-1 medicatie en coaching.' },
-    en: { title: 'Weight Loss', desc: 'Medically supervised weight loss with GLP-1 medication and coaching.' },
+    nl: {
+      title: 'Gewichtsverlies',
+      desc: 'Medisch begeleid afvallen met GLP-1 medicatie en coaching.',
+      items: ['Ozempic', 'Mounjaro', 'Wegovy', 'Saxenda', 'GLP-1 medicatie', 'Medisch afvallen'],
+    },
+    en: {
+      title: 'Weight Loss',
+      desc: 'Medically supervised weight loss with GLP-1 medication and coaching.',
+      items: ['Ozempic', 'Mounjaro', 'Wegovy', 'Saxenda', 'GLP-1 medication', 'Medical weight loss'],
+    },
   },
 ];
 
@@ -142,9 +174,17 @@ export default function BehandelingenPage() {
                       <h3 className="font-display text-2xl italic text-secondary mb-2 group-hover:text-primary transition-colors">
                         {content.title}
                       </h3>
-                      <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed mb-4">
+                      <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed mb-3">
                         {content.desc}
                       </p>
+                      <ul className="space-y-1 mb-4">
+                        {content.items.map((item) => (
+                          <li key={item} className="flex items-center gap-2 font-sans text-sm text-secondary/70">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
                       <span className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-[0.2em] font-bold text-primary group-hover:gap-3 transition-all duration-300">
                         {locale === 'nl' ? 'Bekijk behandelingen' : 'View treatments'} <ArrowRight size={14} />
                       </span>
@@ -153,6 +193,30 @@ export default function BehandelingenPage() {
                 </motion.div>
               );
             })}
+          </motion.div>
+
+          {/* Test + Webshop CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3, ease: EASE_PREMIUM }}
+            className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <Link
+              href={`/${locale}/weightloss`}
+              className="inline-flex items-center justify-center gap-3 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
+            >
+              <ClipboardList size={16} />
+              {locale === 'nl' ? 'Doe de test' : 'Take the test'}
+            </Link>
+            <Link
+              href={`/${locale}/medicatie`}
+              className="inline-flex items-center justify-center gap-3 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-secondary text-white hover:bg-secondary/90 transition-all duration-300 active:scale-[0.97]"
+            >
+              <ShoppingBag size={16} />
+              {locale === 'nl' ? 'Naar de webshop' : 'Go to webshop'}
+            </Link>
           </motion.div>
         </Container>
       </section>

@@ -154,6 +154,53 @@ export default function ShapePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
+          TREATMENT PRICING (Moved after hero)
+          ═══════════════════════════════════════════════════════ */}
+      {SHAPE_TREATMENTS.map((treatment, index) => (
+        <section
+          key={treatment.id}
+          id={index === 0 ? 'pricing' : undefined}
+          className={`py-section-y overflow-hidden ${index % 2 === 0 ? 'bg-surface' : 'bg-page-shape'}`}
+        >
+          <Container>
+            <SectionHeader
+              label={t('section_label')}
+              title={t(`${treatment.nameKey}_name`)}
+              subtitle={t(`${treatment.nameKey}_desc`)}
+            />
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+            >
+              {treatment.variants.map((variant) => (
+                <motion.div
+                  key={variant.id}
+                  variants={itemVariants}
+                  className="bg-surface-elevated rounded-lg border border-secondary/5 p-6 shadow-soft-sm hover:shadow-soft-lg transition-all duration-300 group"
+                >
+                  <h3 className="font-display text-xl text-secondary italic font-bold mb-2 group-hover:text-primary transition-colors">
+                    {t(variant.nameKey)}
+                  </h3>
+                  <p className="font-sans text-2xl text-primary font-semibold mb-3">
+                    €{(variant.priceCents / 100).toLocaleString()}
+                  </p>
+                  <ConsultTrigger
+                    from="bbl"
+                    className="font-sans text-[10px] uppercase tracking-[0.15em] text-primary font-bold hover:underline"
+                  >
+                    {t('variant_book')}
+                  </ConsultTrigger>
+                </motion.div>
+              ))}
+            </motion.div>
+          </Container>
+        </section>
+      ))}
+
+      {/* ═══════════════════════════════════════════════════════
           INTRODUCTION — What is a BBL / Buttock Filler?
           ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y bg-surface overflow-hidden">
@@ -416,53 +463,6 @@ export default function ShapePage() {
           </div>
         </Container>
       </section>
-
-      {/* ═══════════════════════════════════════════════════════
-          TREATMENT PRICING
-          ═══════════════════════════════════════════════════════ */}
-      {SHAPE_TREATMENTS.map((treatment, index) => (
-        <section
-          key={treatment.id}
-          id={index === 0 ? 'pricing' : undefined}
-          className={`py-section-y overflow-hidden ${index % 2 === 0 ? 'bg-surface' : 'bg-page-shape'}`}
-        >
-          <Container>
-            <SectionHeader
-              label={t('section_label')}
-              title={t(`${treatment.nameKey}_name`)}
-              subtitle={t(`${treatment.nameKey}_desc`)}
-            />
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-80px' }}
-            >
-              {treatment.variants.map((variant) => (
-                <motion.div
-                  key={variant.id}
-                  variants={itemVariants}
-                  className="bg-surface-elevated rounded-lg border border-secondary/5 p-6 shadow-soft-sm hover:shadow-soft-lg transition-all duration-300 group"
-                >
-                  <h3 className="font-display text-xl text-secondary italic font-bold mb-2 group-hover:text-primary transition-colors">
-                    {t(variant.nameKey)}
-                  </h3>
-                  <p className="font-sans text-2xl text-primary font-semibold mb-3">
-                    €{(variant.priceCents / 100).toLocaleString()}
-                  </p>
-                  <ConsultTrigger
-                    from="bbl"
-                    className="font-sans text-[10px] uppercase tracking-[0.15em] text-primary font-bold hover:underline"
-                  >
-                    {t('variant_book')}
-                  </ConsultTrigger>
-                </motion.div>
-              ))}
-            </motion.div>
-          </Container>
-        </section>
-      ))}
 
       {/* ═══════════════════════════════════════════════════════
           RECOVERY TIMELINE — Visual day-by-day breakdown

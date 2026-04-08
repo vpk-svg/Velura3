@@ -3,10 +3,10 @@
 import { useLocale } from 'next-intl';
 import FullWidthHeaderImage from '@/components/FullWidthHeaderImage';
 import WeightlossFeatured from '@/components/WeightlossFeatured';
-import BmiCalculator from '@/components/BmiCalculator';
 import TreatmentsOverview from '@/components/TreatmentsOverview';
 import WhyFabClinic from '@/components/WhyFabClinic';
 import Testimonials from '@/components/Testimonials';
+import BeforeAfterGallery from '@/components/BeforeAfterGallery';
 import PharmacyDisclaimer from '@/components/PharmacyDisclaimer';
 import type { Locale } from '@/lib/clinic-data';
 import TeamPreview from '@/components/TeamPreview';
@@ -24,10 +24,7 @@ export default function HomePage() {
       {/* 2. Weightloss Featured Products */}
       <WeightlossFeatured />
 
-      {/* 3. BMI Calculator */}
-      <BmiCalculator />
-
-      {/* 4. Treatments Overview (Botox, Fillers, Shape, Weightloss) */}
+      {/* 3. Treatments Overview (Botox, Fillers, Shape, Weightloss) */}
       <TreatmentsOverview />
 
       {/* 5. Why FAB Clinic */}
@@ -35,6 +32,9 @@ export default function HomePage() {
 
       {/* 6. Testimonials */}
       <Testimonials />
+
+      {/* 6b. Before & After Gallery */}
+      <BeforeAfterGallery />
 
       {/* 7. Team Preview */}
       <TeamPreview />

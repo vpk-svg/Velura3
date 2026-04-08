@@ -331,9 +331,9 @@ function Progress({ currentStep, step, t }: { currentStep: number; step: SurveyS
           <span
             key={phase.labelKey}
             className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider transition-colors ${
-              i < phaseIndex ? 'bg-slate-900 text-white' :
-              i === phaseIndex ? 'bg-slate-900 text-white' :
-              'bg-slate-200 text-slate-500'
+              i < phaseIndex ? 'bg-secondary text-white' :
+              i === phaseIndex ? 'bg-secondary text-white' :
+              'bg-[#F5F0E8] text-secondary/50'
             }`}
           >
             {t(phase.labelKey)}
@@ -341,14 +341,14 @@ function Progress({ currentStep, step, t }: { currentStep: number; step: SurveyS
         ))}
       </div>
       <div className="flex items-center justify-between mb-2">
-        <p className="text-sm font-semibold text-slate-700">{t('step_of').replace('{current}', String(currentStep)).replace('{total}', String(STEPS.length))}</p>
+        <p className="text-sm font-semibold text-secondary/80">{t('step_of').replace('{current}', String(currentStep)).replace('{total}', String(STEPS.length))}</p>
         {currentStep === 1 && (
-          <p className="text-xs text-slate-500">~4 min</p>
+          <p className="text-xs text-secondary/50">~4 min</p>
         )}
       </div>
-      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200">
+      <div className="h-2 w-full overflow-hidden rounded-full bg-[#F5F0E8]">
         <div
-          className="h-2 rounded-full bg-slate-900 transition-all duration-300"
+          className="h-2 rounded-full bg-secondary transition-all duration-300"
           style={{ width: `${(currentStep / STEPS.length) * 100}%` }}
         />
       </div>
@@ -366,9 +366,9 @@ function QuestionSection({
   children: ReactNode;
 }) {
   return (
-    <fieldset className="rounded-lg border border-slate-300 bg-white p-4">
-      <legend className="px-1 text-base font-bold text-slate-900">{question}</legend>
-      {hint && <p className="mb-3 text-sm text-slate-700">{hint}</p>}
+    <fieldset className="rounded-lg border border-primary/20 bg-white p-4">
+      <legend className="px-1 text-base font-bold text-secondary">{question}</legend>
+      {hint && <p className="mb-3 text-sm text-secondary/80">{hint}</p>}
       {children}
     </fieldset>
   );
@@ -494,14 +494,14 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           >
             <div className="grid gap-2">
               {REASON_KEYS.map((key) => (
-                  <label key={key} htmlFor={`reason-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-slate-300 p-3 text-slate-900 hover:bg-slate-50">
+                  <label key={key} htmlFor={`reason-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 text-secondary hover:bg-[#FAF8F4]">
                     <input
                       id={`reason-${key}`}
                       type="checkbox"
                       tabIndex={0}
                       checked={form.reasons.includes(key)}
                       onChange={() => updateField('reasons', toggleArrayValue(form.reasons, key))}
-                      className="mt-0.5 h-4 w-4 accent-slate-900"
+                      className="mt-0.5 h-4 w-4 accent-primary"
                       aria-label={t(key)}
                     />
                     <span className="text-sm font-medium">{t(key)}</span>
@@ -515,10 +515,10 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       case 'q2_bio':
         return (
           <QuestionSection question={t('q2_title')}>
-            <fieldset className="mb-4 rounded-md border border-slate-300 p-3">
-              <legend className="px-1 text-sm font-semibold text-slate-900">{t('gender_label')}</legend>
+            <fieldset className="mb-4 rounded-md border border-primary/20 p-3">
+              <legend className="px-1 text-sm font-semibold text-secondary">{t('gender_label')}</legend>
               <div className="grid grid-cols-2 gap-2">
-                <label htmlFor="gender-male" className="flex cursor-pointer items-center gap-2 rounded border border-slate-300 p-2 text-sm hover:bg-slate-50">
+                <label htmlFor="gender-male" className="flex cursor-pointer items-center gap-2 rounded border border-primary/20 p-2 text-sm hover:bg-[#FAF8F4]">
                   <input
                     id="gender-male"
                     name="gender"
@@ -526,11 +526,11 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                     tabIndex={0}
                     checked={form.gender === 'male'}
                     onChange={() => updateField('gender', 'male')}
-                    className="h-4 w-4 accent-slate-900"
+                    className="h-4 w-4 accent-primary"
                   />
                   {t('gender_male')}
                 </label>
-                <label htmlFor="gender-female" className="flex cursor-pointer items-center gap-2 rounded border border-slate-300 p-2 text-sm hover:bg-slate-50">
+                <label htmlFor="gender-female" className="flex cursor-pointer items-center gap-2 rounded border border-primary/20 p-2 text-sm hover:bg-[#FAF8F4]">
                   <input
                     id="gender-female"
                     name="gender"
@@ -538,7 +538,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                     tabIndex={0}
                     checked={form.gender === 'female'}
                     onChange={() => updateField('gender', 'female')}
-                    className="h-4 w-4 accent-slate-900"
+                    className="h-4 w-4 accent-primary"
                   />
                   {t('gender_female')}
                 </label>
@@ -548,7 +548,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 
             <div className="grid gap-3 sm:grid-cols-3">
               <div>
-                <label htmlFor="heightCm" className="mb-1 block text-sm font-semibold text-slate-900">{t('height_label')}</label>
+                <label htmlFor="heightCm" className="mb-1 block text-sm font-semibold text-secondary">{t('height_label')}</label>
                 <input
                   id="heightCm"
                   type="text"
@@ -556,14 +556,14 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                   tabIndex={0}
                   value={form.heightCm}
                   onChange={(event) => updateField('heightCm', sanitizeInteger(event.target.value))}
-                  className="w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-slate-900 focus:ring-2 focus:ring-slate-900/20"
+                  className="w-full rounded-md border border-primary/20 px-3 py-2 text-secondary outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                   aria-label={t('height_label')}
                 />
                 <ErrorText message={errors.heightCm} />
               </div>
 
               <div>
-                <label htmlFor="weightKg" className="mb-1 block text-sm font-semibold text-slate-900">{t('weight_label')}</label>
+                <label htmlFor="weightKg" className="mb-1 block text-sm font-semibold text-secondary">{t('weight_label')}</label>
                 <input
                   id="weightKg"
                   type="text"
@@ -571,14 +571,14 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                   tabIndex={0}
                   value={form.weightKg}
                   onChange={(event) => updateField('weightKg', sanitizeDecimal(event.target.value))}
-                  className="w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-slate-900 focus:ring-2 focus:ring-slate-900/20"
+                  className="w-full rounded-md border border-primary/20 px-3 py-2 text-secondary outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                   aria-label={t('weight_label')}
                 />
                 <ErrorText message={errors.weightKg} />
               </div>
 
               <div>
-                <label htmlFor="targetWeightKg" className="mb-1 block text-sm font-semibold text-slate-900">{t('target_label')}</label>
+                <label htmlFor="targetWeightKg" className="mb-1 block text-sm font-semibold text-secondary">{t('target_label')}</label>
                 <input
                   id="targetWeightKg"
                   type="text"
@@ -586,7 +586,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                   tabIndex={0}
                   value={form.targetWeightKg}
                   onChange={(event) => updateField('targetWeightKg', sanitizeDecimal(event.target.value))}
-                  className="w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-slate-900 focus:ring-2 focus:ring-slate-900/20"
+                  className="w-full rounded-md border border-primary/20 px-3 py-2 text-secondary outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                   aria-label={t('target_label')}
                 />
                 <ErrorText message={errors.targetWeightKg} />
@@ -600,7 +600,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <QuestionSection question={t('q3_title')}>
             <div className="grid gap-2">
               {DURATION_KEYS.map((key) => (
-                  <label key={key} htmlFor={`duration-${key}`} className="flex cursor-pointer items-center gap-3 rounded-md border border-slate-300 p-3 hover:bg-slate-50">
+                  <label key={key} htmlFor={`duration-${key}`} className="flex cursor-pointer items-center gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
                     <input
                       id={`duration-${key}`}
                       name="duration"
@@ -608,9 +608,9 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                       tabIndex={0}
                       checked={form.duration === key}
                       onChange={() => updateField('duration', key)}
-                      className="h-4 w-4 accent-slate-900"
+                      className="h-4 w-4 accent-primary"
                     />
-                    <span className="text-sm font-medium text-slate-900">{t(key)}</span>
+                    <span className="text-sm font-medium text-secondary">{t(key)}</span>
                   </label>
               ))}
             </div>
@@ -623,17 +623,17 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <QuestionSection question={t('q4_title')}>
             <div className="grid gap-2">
               {PAST_ATTEMPT_KEYS.map((key) => (
-                  <label key={key} htmlFor={`past-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-slate-300 p-3 hover:bg-slate-50">
+                  <label key={key} htmlFor={`past-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
                     <input
                       id={`past-${key}`}
                       type="checkbox"
                       tabIndex={0}
                       checked={form.pastAttempts.includes(key)}
                       onChange={() => updateField('pastAttempts', toggleArrayValue(form.pastAttempts, key))}
-                      className="mt-0.5 h-4 w-4 accent-slate-900"
+                      className="mt-0.5 h-4 w-4 accent-primary"
                       aria-label={t(key)}
                     />
-                    <span className="text-sm font-medium text-slate-900">{t(key)}</span>
+                    <span className="text-sm font-medium text-secondary">{t(key)}</span>
                   </label>
               ))}
             </div>
@@ -646,17 +646,17 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <QuestionSection question={t('q5_title')}>
             <div className="grid gap-2">
               {EXERCISE_CHALLENGE_KEYS.map((key) => (
-                  <label key={key} htmlFor={`exercise-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-slate-300 p-3 hover:bg-slate-50">
+                  <label key={key} htmlFor={`exercise-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
                     <input
                       id={`exercise-${key}`}
                       type="checkbox"
                       tabIndex={0}
                       checked={form.exerciseChallenges.includes(key)}
                       onChange={() => updateField('exerciseChallenges', toggleArrayValue(form.exerciseChallenges, key))}
-                      className="mt-0.5 h-4 w-4 accent-slate-900"
+                      className="mt-0.5 h-4 w-4 accent-primary"
                       aria-label={t(key)}
                     />
-                    <span className="text-sm font-medium text-slate-900">{t(key)}</span>
+                    <span className="text-sm font-medium text-secondary">{t(key)}</span>
                   </label>
               ))}
             </div>
@@ -669,17 +669,17 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <QuestionSection question={t('q6_title')}>
             <div className="grid gap-2">
               {EATING_CHALLENGE_KEYS.map((key) => (
-                  <label key={key} htmlFor={`eating-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-slate-300 p-3 hover:bg-slate-50">
+                  <label key={key} htmlFor={`eating-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
                     <input
                       id={`eating-${key}`}
                       type="checkbox"
                       tabIndex={0}
                       checked={form.eatingChallenges.includes(key)}
                       onChange={() => updateField('eatingChallenges', toggleArrayValue(form.eatingChallenges, key))}
-                      className="mt-0.5 h-4 w-4 accent-slate-900"
+                      className="mt-0.5 h-4 w-4 accent-primary"
                       aria-label={t(key)}
                     />
-                    <span className="text-sm font-medium text-slate-900">{t(key)}</span>
+                    <span className="text-sm font-medium text-secondary">{t(key)}</span>
                   </label>
               ))}
             </div>
@@ -692,7 +692,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <QuestionSection question={t('q7_title')}>
             <div className="grid gap-2">
               {MAINTENANCE_KEYS.map((key) => (
-                  <label key={key} htmlFor={`maintenance-${key}`} className="flex cursor-pointer items-center gap-3 rounded-md border border-slate-300 p-3 hover:bg-slate-50">
+                  <label key={key} htmlFor={`maintenance-${key}`} className="flex cursor-pointer items-center gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
                     <input
                       id={`maintenance-${key}`}
                       name="maintenance"
@@ -700,9 +700,9 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                       tabIndex={0}
                       checked={form.maintenanceChallenge === key}
                       onChange={() => updateField('maintenanceChallenge', key)}
-                      className="h-4 w-4 accent-slate-900"
+                      className="h-4 w-4 accent-primary"
                     />
-                    <span className="text-sm font-medium text-slate-900">{t(key)}</span>
+                    <span className="text-sm font-medium text-secondary">{t(key)}</span>
                   </label>
               ))}
             </div>
@@ -713,15 +713,15 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       case 'q8_critical':
         return (
           <QuestionSection question={t('q8_title')}>
-            <ul className="mb-3 list-disc space-y-1 pl-5 text-sm text-slate-800">
+            <ul className="mb-3 list-disc space-y-1 pl-5 text-sm text-secondary/90">
               {CRITICAL_CONDITION_KEYS.map((key) => (
                 <li key={key}>{t(key)}</li>
               ))}
             </ul>
-            <fieldset className="rounded-md border border-slate-300 p-3">
-              <legend className="px-1 text-sm font-semibold text-slate-900">{t('answer_label')}</legend>
+            <fieldset className="rounded-md border border-primary/20 p-3">
+              <legend className="px-1 text-sm font-semibold text-secondary">{t('answer_label')}</legend>
               <div className="flex gap-2">
-                <label htmlFor="critical-yes" className="flex cursor-pointer items-center gap-2 rounded border border-slate-300 px-3 py-2 text-sm hover:bg-slate-50">
+                <label htmlFor="critical-yes" className="flex cursor-pointer items-center gap-2 rounded border border-primary/20 px-3 py-2 text-sm hover:bg-[#FAF8F4]">
                   <input
                     id="critical-yes"
                     name="criticalConditions"
@@ -729,11 +729,11 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                     tabIndex={0}
                     checked={form.criticalConditionsAnswer === 'yes'}
                     onChange={() => updateField('criticalConditionsAnswer', 'yes')}
-                    className="h-4 w-4 accent-slate-900"
+                    className="h-4 w-4 accent-primary"
                   />
                   {t('yes')}
                 </label>
-                <label htmlFor="critical-no" className="flex cursor-pointer items-center gap-2 rounded border border-slate-300 px-3 py-2 text-sm hover:bg-slate-50">
+                <label htmlFor="critical-no" className="flex cursor-pointer items-center gap-2 rounded border border-primary/20 px-3 py-2 text-sm hover:bg-[#FAF8F4]">
                   <input
                     id="critical-no"
                     name="criticalConditions"
@@ -741,7 +741,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                     tabIndex={0}
                     checked={form.criticalConditionsAnswer === 'no'}
                     onChange={() => updateField('criticalConditionsAnswer', 'no')}
-                    className="h-4 w-4 accent-slate-900"
+                    className="h-4 w-4 accent-primary"
                   />
                   {t('no')}
                 </label>
@@ -756,10 +756,10 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <QuestionSection question={t('q9_title')}>
             <div className="space-y-2">
               {HISTORY_KEYS.map((key) => (
-                <fieldset key={key} className="rounded-md border border-slate-300 p-3">
-                  <legend className="px-1 text-sm font-semibold text-slate-900">{t(key)}</legend>
+                <fieldset key={key} className="rounded-md border border-primary/20 p-3">
+                  <legend className="px-1 text-sm font-semibold text-secondary">{t(key)}</legend>
                   <div className="flex gap-2">
-                    <label htmlFor={`history-${key}-yes`} className="flex cursor-pointer items-center gap-2 rounded border border-slate-300 px-3 py-1.5 text-sm hover:bg-slate-50">
+                    <label htmlFor={`history-${key}-yes`} className="flex cursor-pointer items-center gap-2 rounded border border-primary/20 px-3 py-1.5 text-sm hover:bg-[#FAF8F4]">
                       <input
                         id={`history-${key}-yes`}
                         name={`history-${key}`}
@@ -767,12 +767,12 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                         tabIndex={0}
                         checked={form.medicalHistory[key] === 'yes'}
                         onChange={() => updateMedicalHistory(key, 'yes')}
-                        className="h-4 w-4 accent-slate-900"
+                        className="h-4 w-4 accent-primary"
                         aria-label={`${t(key)} ${t('yes')}`}
                       />
                       {t('yes')}
                     </label>
-                    <label htmlFor={`history-${key}-no`} className="flex cursor-pointer items-center gap-2 rounded border border-slate-300 px-3 py-1.5 text-sm hover:bg-slate-50">
+                    <label htmlFor={`history-${key}-no`} className="flex cursor-pointer items-center gap-2 rounded border border-primary/20 px-3 py-1.5 text-sm hover:bg-[#FAF8F4]">
                       <input
                         id={`history-${key}-no`}
                         name={`history-${key}`}
@@ -780,7 +780,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                         tabIndex={0}
                         checked={form.medicalHistory[key] === 'no'}
                         onChange={() => updateMedicalHistory(key, 'no')}
-                        className="h-4 w-4 accent-slate-900"
+                        className="h-4 w-4 accent-primary"
                         aria-label={`${t(key)} ${t('no')}`}
                       />
                       {t('no')}
@@ -797,7 +797,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
         return (
           <QuestionSection question={t('q10_title')}>
             <div className="flex gap-2">
-              <label htmlFor="meds-yes" className="flex cursor-pointer items-center gap-2 rounded border border-slate-300 px-3 py-2 text-sm hover:bg-slate-50">
+              <label htmlFor="meds-yes" className="flex cursor-pointer items-center gap-2 rounded border border-primary/20 px-3 py-2 text-sm hover:bg-[#FAF8F4]">
                 <input
                   id="meds-yes"
                   name="currentMeds"
@@ -805,11 +805,11 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                   tabIndex={0}
                   checked={form.usesCurrentMeds === 'yes'}
                   onChange={() => updateField('usesCurrentMeds', 'yes')}
-                  className="h-4 w-4 accent-slate-900"
+                  className="h-4 w-4 accent-primary"
                 />
                 {t('yes')}
               </label>
-              <label htmlFor="meds-no" className="flex cursor-pointer items-center gap-2 rounded border border-slate-300 px-3 py-2 text-sm hover:bg-slate-50">
+              <label htmlFor="meds-no" className="flex cursor-pointer items-center gap-2 rounded border border-primary/20 px-3 py-2 text-sm hover:bg-[#FAF8F4]">
                 <input
                   id="meds-no"
                   name="currentMeds"
@@ -817,7 +817,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                   tabIndex={0}
                   checked={form.usesCurrentMeds === 'no'}
                   onChange={() => updateField('usesCurrentMeds', 'no')}
-                  className="h-4 w-4 accent-slate-900"
+                  className="h-4 w-4 accent-primary"
                 />
                 {t('no')}
               </label>
@@ -830,7 +830,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
         return (
           <QuestionSection question={t('q11_title')}>
             <div className="flex gap-2">
-              <label htmlFor="glp1-yes" className="flex cursor-pointer items-center gap-2 rounded border border-slate-300 px-3 py-2 text-sm hover:bg-slate-50">
+              <label htmlFor="glp1-yes" className="flex cursor-pointer items-center gap-2 rounded border border-primary/20 px-3 py-2 text-sm hover:bg-[#FAF8F4]">
                 <input
                   id="glp1-yes"
                   name="glp1"
@@ -838,11 +838,11 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                   tabIndex={0}
                   checked={form.usesOtherGlp1 === 'yes'}
                   onChange={() => updateField('usesOtherGlp1', 'yes')}
-                  className="h-4 w-4 accent-slate-900"
+                  className="h-4 w-4 accent-primary"
                 />
                 {t('yes')}
               </label>
-              <label htmlFor="glp1-no" className="flex cursor-pointer items-center gap-2 rounded border border-slate-300 px-3 py-2 text-sm hover:bg-slate-50">
+              <label htmlFor="glp1-no" className="flex cursor-pointer items-center gap-2 rounded border border-primary/20 px-3 py-2 text-sm hover:bg-[#FAF8F4]">
                 <input
                   id="glp1-no"
                   name="glp1"
@@ -850,7 +850,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                   tabIndex={0}
                   checked={form.usesOtherGlp1 === 'no'}
                   onChange={() => updateField('usesOtherGlp1', 'no')}
-                  className="h-4 w-4 accent-slate-900"
+                  className="h-4 w-4 accent-primary"
                 />
                 {t('no')}
               </label>
@@ -863,7 +863,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
         return (
           <QuestionSection question={t('q12_title')}>
             <div className="flex gap-2">
-              <label htmlFor="allergy-yes" className="flex cursor-pointer items-center gap-2 rounded border border-slate-300 px-3 py-2 text-sm hover:bg-slate-50">
+              <label htmlFor="allergy-yes" className="flex cursor-pointer items-center gap-2 rounded border border-primary/20 px-3 py-2 text-sm hover:bg-[#FAF8F4]">
                 <input
                   id="allergy-yes"
                   name="allergies"
@@ -871,11 +871,11 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                   tabIndex={0}
                   checked={form.medicationAllergy === 'yes'}
                   onChange={() => updateField('medicationAllergy', 'yes')}
-                  className="h-4 w-4 accent-slate-900"
+                  className="h-4 w-4 accent-primary"
                 />
                 {t('yes')}
               </label>
-              <label htmlFor="allergy-no" className="flex cursor-pointer items-center gap-2 rounded border border-slate-300 px-3 py-2 text-sm hover:bg-slate-50">
+              <label htmlFor="allergy-no" className="flex cursor-pointer items-center gap-2 rounded border border-primary/20 px-3 py-2 text-sm hover:bg-[#FAF8F4]">
                 <input
                   id="allergy-no"
                   name="allergies"
@@ -883,7 +883,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                   tabIndex={0}
                   checked={form.medicationAllergy === 'no'}
                   onChange={() => updateField('medicationAllergy', 'no')}
-                  className="h-4 w-4 accent-slate-900"
+                  className="h-4 w-4 accent-primary"
                 />
                 {t('no')}
               </label>
@@ -897,17 +897,17 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <QuestionSection question={t('q13_title')}>
             <div className="grid gap-2">
               {PREFERENCE_KEYS.map((key) => (
-                  <label key={key} htmlFor={`pref-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-slate-300 p-3 hover:bg-slate-50">
+                  <label key={key} htmlFor={`pref-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
                     <input
                       id={`pref-${key}`}
                       type="checkbox"
                       tabIndex={0}
                       checked={form.preferences.includes(key)}
                       onChange={() => updateField('preferences', toggleArrayValue(form.preferences, key))}
-                      className="mt-0.5 h-4 w-4 accent-slate-900"
+                      className="mt-0.5 h-4 w-4 accent-primary"
                       aria-label={t(key)}
                     />
-                    <span className="text-sm font-medium text-slate-900">{t(key)}</span>
+                    <span className="text-sm font-medium text-secondary">{t(key)}</span>
                   </label>
               ))}
             </div>
@@ -921,17 +921,17 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
             question={t('q14_title')}
             hint={t('q14_hint')}
           >
-            <label htmlFor="marketing-opt-in" className="flex cursor-pointer items-start gap-3 rounded-md border border-slate-300 p-3 hover:bg-slate-50">
+            <label htmlFor="marketing-opt-in" className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
               <input
                 id="marketing-opt-in"
                 type="checkbox"
                 tabIndex={0}
                 checked={form.marketingOptIn}
                 onChange={() => updateField('marketingOptIn', !form.marketingOptIn)}
-                className="mt-0.5 h-4 w-4 accent-slate-900"
+                className="mt-0.5 h-4 w-4 accent-primary"
                 aria-label={t('marketing_opt_in')}
               />
-              <span className="text-sm font-medium text-slate-900">{t('marketing_opt_in')}</span>
+              <span className="text-sm font-medium text-secondary">{t('marketing_opt_in')}</span>
             </label>
           </QuestionSection>
         );
@@ -939,57 +939,57 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       case 'q15_legal':
         return (
           <QuestionSection question={t('q15_title')}>
-            <p className="mb-3 text-sm text-slate-700">{t('q15_hint')}</p>
+            <p className="mb-3 text-sm text-secondary/80">{t('q15_hint')}</p>
             <div className="grid gap-2">
-              <label htmlFor="legal-personal-use" className="flex cursor-pointer items-start gap-3 rounded-md border border-slate-300 p-3 hover:bg-slate-50">
+              <label htmlFor="legal-personal-use" className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
                 <input
                   id="legal-personal-use"
                   type="checkbox"
                   tabIndex={0}
                   checked={form.legalPersonalUse}
                   onChange={() => updateField('legalPersonalUse', !form.legalPersonalUse)}
-                  className="mt-0.5 h-4 w-4 accent-slate-900"
+                  className="mt-0.5 h-4 w-4 accent-primary"
                 />
-                <span className="text-sm font-medium text-slate-900">{t('legal_personal_use')}</span>
+                <span className="text-sm font-medium text-secondary">{t('legal_personal_use')}</span>
               </label>
               <ErrorText message={errors.legalPersonalUse} />
 
-              <label htmlFor="legal-off-label" className="flex cursor-pointer items-start gap-3 rounded-md border border-slate-300 p-3 hover:bg-slate-50">
+              <label htmlFor="legal-off-label" className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
                 <input
                   id="legal-off-label"
                   type="checkbox"
                   tabIndex={0}
                   checked={form.legalOffLabel}
                   onChange={() => updateField('legalOffLabel', !form.legalOffLabel)}
-                  className="mt-0.5 h-4 w-4 accent-slate-900"
+                  className="mt-0.5 h-4 w-4 accent-primary"
                 />
-                <span className="text-sm font-medium text-slate-900">{t('legal_off_label')}</span>
+                <span className="text-sm font-medium text-secondary">{t('legal_off_label')}</span>
               </label>
               <ErrorText message={errors.legalOffLabel} />
 
-              <label htmlFor="legal-truthful" className="flex cursor-pointer items-start gap-3 rounded-md border border-slate-300 p-3 hover:bg-slate-50">
+              <label htmlFor="legal-truthful" className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
                 <input
                   id="legal-truthful"
                   type="checkbox"
                   tabIndex={0}
                   checked={form.legalTruthfulAnswers}
                   onChange={() => updateField('legalTruthfulAnswers', !form.legalTruthfulAnswers)}
-                  className="mt-0.5 h-4 w-4 accent-slate-900"
+                  className="mt-0.5 h-4 w-4 accent-primary"
                 />
-                <span className="text-sm font-medium text-slate-900">{t('legal_truthful')}</span>
+                <span className="text-sm font-medium text-secondary">{t('legal_truthful')}</span>
               </label>
               <ErrorText message={errors.legalTruthfulAnswers} />
 
-              <label htmlFor="legal-gp" className="flex cursor-pointer items-start gap-3 rounded-md border border-slate-300 p-3 hover:bg-slate-50">
+              <label htmlFor="legal-gp" className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
                 <input
                   id="legal-gp"
                   type="checkbox"
                   tabIndex={0}
                   checked={form.legalGpNotification}
                   onChange={() => updateField('legalGpNotification', !form.legalGpNotification)}
-                  className="mt-0.5 h-4 w-4 accent-slate-900"
+                  className="mt-0.5 h-4 w-4 accent-primary"
                 />
-                <span className="text-sm font-medium text-slate-900">{t('legal_gp')}</span>
+                <span className="text-sm font-medium text-secondary">{t('legal_gp')}</span>
               </label>
               <ErrorText message={errors.legalGpNotification} />
             </div>
@@ -998,29 +998,29 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 
       case 'loading':
         return (
-          <div className="rounded-lg border border-slate-300 bg-white p-8 text-center" aria-live="polite">
-            <h2 className="mb-2 text-xl font-bold text-slate-900">{t('loading_title')}</h2>
-            <p className="mb-4 text-sm text-slate-700">{t('loading_desc')}</p>
-            <div className="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-slate-300 border-t-slate-900" aria-label={t('loading_title')} />
+          <div className="rounded-lg border border-primary/20 bg-white p-8 text-center" aria-live="polite">
+            <h2 className="mb-2 text-xl font-bold text-secondary">{t('loading_title')}</h2>
+            <p className="mb-4 text-sm text-secondary/80">{t('loading_desc')}</p>
+            <div className="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-primary/20 border-t-primary" aria-label={t('loading_title')} />
           </div>
         );
 
       case 'results':
         return (
-          <section className="rounded-lg border border-slate-300 bg-white p-6" aria-live="polite">
+          <section className="rounded-lg border border-primary/20 bg-white p-6" aria-live="polite">
             {form.criticalConditionsAnswer === 'yes' ? (
               /* ── Empathetic disqualification ────────── */
               <>
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-amber-50 ring-1 ring-amber-200">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 ring-1 ring-primary/30">
                   <span className="text-2xl">🤝</span>
                 </div>
-                <h2 className="mb-2 text-xl font-bold text-slate-900">{t('results_not_eligible_title')}</h2>
-                <p className="mb-4 text-sm leading-relaxed text-slate-700">
+                <h2 className="mb-2 text-xl font-bold text-secondary">{t('results_not_eligible_title')}</h2>
+                <p className="mb-4 text-sm leading-relaxed text-secondary/80">
                   {t('results_not_eligible_desc')}
                 </p>
-                <div className="mb-4 rounded-md border border-slate-200 bg-slate-50 p-4 space-y-2">
-                  <p className="text-sm font-semibold text-slate-900">{t('results_recommend')}</p>
-                  <ul className="list-disc pl-5 space-y-1 text-sm text-slate-700">
+                <div className="mb-4 rounded-md border border-primary/10 bg-[#FAF8F4] p-4 space-y-2">
+                  <p className="text-sm font-semibold text-secondary">{t('results_recommend')}</p>
+                  <ul className="list-disc pl-5 space-y-1 text-sm text-secondary/80">
                     <li>{t('results_recommend_gp')}</li>
                     <li>{t('results_recommend_lifestyle')}</li>
                     <li>{t('results_recommend_contact')}</li>
@@ -1028,7 +1028,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                 </div>
                 <a
                   href="/contact"
-                  className="inline-block rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
+                  className="inline-block rounded-md bg-secondary px-4 py-2 text-sm font-semibold text-white hover:bg-secondary/90"
                 >
                   {t('book_consultation')}
                 </a>
@@ -1036,15 +1036,15 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
             ) : (
               /* ── Qualified results ────────── */
               <>
-                <h2 className="mb-2 text-xl font-bold text-slate-900">{t('results_title')}</h2>
-                <p className="mb-4 text-sm text-slate-700">
+                <h2 className="mb-2 text-xl font-bold text-secondary">{t('results_title')}</h2>
+                <p className="mb-4 text-sm text-secondary/80">
                   {t('results_eligible_desc')}
                 </p>
-                <div className="mb-4 rounded-md border border-slate-300 bg-slate-50 p-3">
-                  <p className="text-sm font-semibold text-slate-900">{t('results_bmi')}</p>
-                  <p className="text-2xl font-bold text-slate-900">{bmi ?? t('results_na')}</p>
+                <div className="mb-4 rounded-md border border-primary/20 bg-[#FAF8F4] p-3">
+                  <p className="text-sm font-semibold text-secondary">{t('results_bmi')}</p>
+                  <p className="text-2xl font-bold text-secondary">{bmi ?? t('results_na')}</p>
                 </div>
-                <div className="space-y-1 text-sm text-slate-800">
+                <div className="space-y-1 text-sm text-secondary/90">
                   <p>{t('results_critical')}<strong>{t('no')}</strong></p>
                   <p>{t('results_meds')}<strong>{form.usesCurrentMeds === 'yes' ? t('yes') : t('no')}</strong></p>
                   <p>{t('results_glp1')}<strong>{form.usesOtherGlp1 === 'yes' ? t('yes') : t('no')}</strong></p>
@@ -1068,18 +1068,18 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       />
 
       <section
-        className="relative z-10 flex h-[100dvh] w-full max-w-3xl flex-col bg-slate-100 text-slate-900 md:h-[90vh] md:rounded-xl md:shadow-2xl"
+        className="relative z-10 flex h-[100dvh] w-full max-w-3xl flex-col bg-[#FAF8F4] text-secondary md:h-[90vh] md:rounded-xl md:shadow-2xl"
         role="dialog"
         aria-modal="true"
         aria-label={t('dialog_aria')}
         tabIndex={0}
       >
-        <header className="flex items-center justify-between border-b border-slate-300 bg-white px-5 py-4">
-          <h1 className="text-lg font-bold text-slate-900">{t('dialog_title')}</h1>
+        <header className="flex items-center justify-between border-b border-primary/20 bg-white px-5 py-4">
+          <h1 className="text-lg font-bold text-secondary">{t('dialog_title')}</h1>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md border border-slate-300 bg-white p-2 text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-900/30"
+            className="rounded-md border border-primary/20 bg-white p-2 text-secondary hover:bg-[#F5F0E8] focus:outline-none focus:ring-2 focus:ring-primary/30"
             aria-label={t('close')}
             tabIndex={0}
           >
@@ -1092,12 +1092,12 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           {questionContent()}
         </div>
 
-        <footer className="flex items-center justify-between gap-3 border-t border-slate-300 bg-white px-5 py-4">
+        <footer className="flex items-center justify-between gap-3 border-t border-primary/20 bg-white px-5 py-4">
           <button
             type="button"
             onClick={handleBack}
             disabled={stepIndex <= 0 || step === 'loading' || step === 'results'}
-            className="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-md border border-primary/20 bg-white px-4 py-2 text-sm font-semibold text-secondary disabled:cursor-not-allowed disabled:opacity-50"
             tabIndex={0}
           >
             {t('back')}
@@ -1108,7 +1108,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
               type="button"
               onClick={handleNext}
               disabled={step === 'loading' || isLoadingResult}
-              className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-500"
+              className="rounded-md bg-secondary px-4 py-2 text-sm font-semibold text-white hover:bg-secondary/90 disabled:cursor-not-allowed disabled:bg-primary/50"
               tabIndex={0}
             >
               {step === 'q15_legal' ? t('submit') : t('next')}
@@ -1119,7 +1119,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
             <button
               type="button"
               onClick={onClose}
-              className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
+              className="rounded-md bg-secondary px-4 py-2 text-sm font-semibold text-white hover:bg-secondary/90"
               tabIndex={0}
             >
               {t('close')}
