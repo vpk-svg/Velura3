@@ -21,18 +21,18 @@ interface FaceMapZone {
 }
 
 const FACE_MAP_ZONES: FaceMapZone[] = [
-  { id: 'voorhoofd',       nameKey: 'facemap_voorhoofd',       descKey: 'facemap_voorhoofd_desc',       priceKey: 'facemap_voorhoofd_price',       x: 50,   y: 24,   side: 'center' },
-  { id: 'frons',            nameKey: 'facemap_frons',            descKey: 'facemap_frons_desc',            priceKey: 'facemap_frons_price',            x: 50,   y: 37,   side: 'center' },
-  { id: 'kraaienpootjes',   nameKey: 'facemap_kraaienpootjes',   descKey: 'facemap_kraaienpootjes_desc',   priceKey: 'facemap_kraaienpootjes_price',   x: 72,   y: 47,   side: 'right' },
-  { id: 'wenkbrauwen',      nameKey: 'facemap_wenkbrauwen',      descKey: 'facemap_wenkbrauwen_desc',      priceKey: 'facemap_wenkbrauwen_price',      x: 30,   y: 39,   side: 'left' },
-  { id: 'bunny-lines',      nameKey: 'facemap_bunny_lines',      descKey: 'facemap_bunny_lines_desc',      priceKey: 'facemap_bunny_lines_price',      x: 50,   y: 56,   side: 'center' },
-  { id: 'lip-flip',         nameKey: 'facemap_lip_flip',         descKey: 'facemap_lip_flip_desc',         priceKey: 'facemap_lip_flip_price',         x: 50,   y: 75,   side: 'center' },
-  { id: 'gummy-smile',      nameKey: 'facemap_gummy_smile',      descKey: 'facemap_gummy_smile_desc',      priceKey: 'facemap_gummy_smile_price',      x: 38,   y: 70,   side: 'left' },
-  { id: 'masseter',         nameKey: 'facemap_masseter',         descKey: 'facemap_masseter_desc',         priceKey: 'facemap_masseter_price',         x: 72,   y: 75,   side: 'right' },
-  { id: 'kin',              nameKey: 'facemap_kin',              descKey: 'facemap_kin_desc',              priceKey: 'facemap_kin_price',              x: 50,   y: 89,   side: 'center' },
-  { id: 'hals',             nameKey: 'facemap_hals',             descKey: 'facemap_hals_desc',             priceKey: 'facemap_hals_price',             x: 50,   y: 105,  side: 'center' },
-  { id: 'hyperhidrose',     nameKey: 'facemap_hyperhidrose',     descKey: 'facemap_hyperhidrose_desc',     priceKey: 'facemap_hyperhidrose_price',     x: 26,   y: 75,   side: 'left' },
-  { id: 'nefertiti',        nameKey: 'facemap_nefertiti',        descKey: 'facemap_nefertiti_desc',        priceKey: 'facemap_nefertiti_price',        x: 70,   y: 96,   side: 'right' },
+  { id: 'voorhoofd',       nameKey: 'facemap_voorhoofd',       descKey: 'facemap_voorhoofd_desc',       priceKey: 'facemap_voorhoofd_price',       x: 50,   y: 28,   side: 'center' },
+  { id: 'frons',            nameKey: 'facemap_frons',            descKey: 'facemap_frons_desc',            priceKey: 'facemap_frons_price',            x: 50,   y: 36,   side: 'center' },
+  { id: 'kraaienpootjes',   nameKey: 'facemap_kraaienpootjes',   descKey: 'facemap_kraaienpootjes_desc',   priceKey: 'facemap_kraaienpootjes_price',   x: 72,   y: 39,   side: 'right' },
+  { id: 'wenkbrauwen',      nameKey: 'facemap_wenkbrauwen',      descKey: 'facemap_wenkbrauwen_desc',      priceKey: 'facemap_wenkbrauwen_price',      x: 30,   y: 35,   side: 'left' },
+  { id: 'bunny-lines',      nameKey: 'facemap_bunny_lines',      descKey: 'facemap_bunny_lines_desc',      priceKey: 'facemap_bunny_lines_price',      x: 50,   y: 43,   side: 'center' },
+  { id: 'lip-flip',         nameKey: 'facemap_lip_flip',         descKey: 'facemap_lip_flip_desc',         priceKey: 'facemap_lip_flip_price',         x: 50,   y: 52,   side: 'center' },
+  { id: 'gummy-smile',      nameKey: 'facemap_gummy_smile',      descKey: 'facemap_gummy_smile_desc',      priceKey: 'facemap_gummy_smile_price',      x: 38,   y: 50,   side: 'left' },
+  { id: 'masseter',         nameKey: 'facemap_masseter',         descKey: 'facemap_masseter_desc',         priceKey: 'facemap_masseter_price',         x: 72,   y: 58,   side: 'right' },
+  { id: 'kin',              nameKey: 'facemap_kin',              descKey: 'facemap_kin_desc',              priceKey: 'facemap_kin_price',              x: 50,   y: 66,   side: 'center' },
+  { id: 'hals',             nameKey: 'facemap_hals',             descKey: 'facemap_hals_desc',             priceKey: 'facemap_hals_price',             x: 50,   y: 78,   side: 'center' },
+  { id: 'hyperhidrose',     nameKey: 'facemap_hyperhidrose',     descKey: 'facemap_hyperhidrose_desc',     priceKey: 'facemap_hyperhidrose_price',     x: 26,   y: 55,   side: 'left' },
+  { id: 'nefertiti',        nameKey: 'facemap_nefertiti',        descKey: 'facemap_nefertiti_desc',        priceKey: 'facemap_nefertiti_price',        x: 70,   y: 64,   side: 'right' },
 ];
 
 /* ── SVG Face Line Art (aligned to Ava — viewBox 0 0 100 137) ── */
@@ -41,7 +41,7 @@ function FaceSVG() {
     <>
       <defs>
         {/* Glow & Skin Gradients */}
-        <linearGradient id="skinGrad" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id="skinGrad" x1="0" y1="4" x2="0" y2="5.2">
           <stop offset="0%" stopColor="#DFBC9D" stopOpacity="0.1" />
           <stop offset="50%" stopColor="#DFBC9D" stopOpacity="0.05" />
           <stop offset="100%" stopColor="#DFBC9D" stopOpacity="0.01" />
@@ -52,7 +52,7 @@ function FaceSVG() {
           <stop offset="100%" stopColor="#D4AF37" stopOpacity="0" />
         </radialGradient>
 
-        <linearGradient id="lipGrad" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id="lipGrad" x1="0" y1="4" x2="0" y2="5.2">
           <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.25" />
           <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.1" />
         </linearGradient>
@@ -73,297 +73,297 @@ function FaceSVG() {
 
         {/* ── Hair silhouette base ── */}
         <path fill="url(#hairGrad)" stroke="none" d="
-          M 50 -5
-          C 18 -5, -2 25, 5 65
-          C 10 85, 5 115, 15 137
-          L 25 137
-          C 15 115, 12 95, 18 65
-          C 22 35, 35 8, 50 8
-          C 65 8, 78 35, 82 65
-          C 88 95, 85 115, 75 137
-          L 85 137
-          C 95 115, 90 85, 95 65
-          C 102 25, 82 -5, 50 -5 Z
+          M 50 -12
+          C 18 -12, -2 26.8, 5 47.5
+          C 10 62, 5 110.9, 15 153
+          L 25 153
+          C 15 110.9, 12 71, 18 47.5
+          C 22 32.7, 35 14, 50 14
+          C 65 14, 78 32.7, 82 47.5
+          C 88 71, 85 110.9, 75 153
+          L 85 153
+          C 95 110.9, 90 62, 95 47.5
+          C 102 26.8, 82 -12, 50 -12 Z
         " />
 
         {/* Flowing hair shadow */}
         <path opacity="0.1" fill="#D4AF37" stroke="none" d="
-          M 50 2
-          C 23 2, -2 25, -2 65
-          C -2 95, 5 120, 15 137
-          L 25 137
-          C 15 115, 10 95, 10 65
-          C 14 35, 30 13, 50 13
-          C 70 13, 86 35, 90 65
-          C 90 95, 85 115, 75 137
-          L 85 137
-          C 95 120, 102 95, 102 65
-          C 102 25, 77 2, 50 2 Z
+          M 50 -5
+          C 23 -5, -2 26.8, -2 47.5
+          C -2 71, 5 121.8, 15 153
+          L 25 153
+          C 15 110.9, 10 71, 10 47.5
+          C 14 32.7, 30 19.6, 50 19.6
+          C 70 19.6, 86 32.7, 90 47.5
+          C 90 71, 85 110.9, 75 153
+          L 85 153
+          C 95 121.8, 102 71, 102 47.5
+          C 102 26.8, 77 -5, 50 -5 Z
         " />
 
       {/* ── Flowing hair strands ── */}
       <path strokeWidth="0.45" opacity="0.6" d="
-        M 50 5
-        C 28 5, 10 20, 7 50
-        C 4 65, 4 85, 10 105
-        C 14 117, 20 125, 24 132
+        M 50 10.2
+        C 28 10.2, 10 23.8, 7 40.8
+        C 4 47.5, 4 62, 10 82.6
+        C 14 96.5, 20 110.9, 24 126.1
       " />
       <path strokeWidth="0.45" opacity="0.6" d="
-        M 50 5
-        C 72 5, 90 20, 93 50
-        C 96 65, 96 85, 90 105
-        C 86 117, 80 125, 76 132
+        M 50 10.2
+        C 72 10.2, 90 23.8, 93 40.8
+        C 96 47.5, 96 62, 90 82.6
+        C 86 96.5, 80 110.9, 76 126.1
       " />
       <path strokeWidth="0.3" opacity="0.3" d="
-        M 50 7
-        C 35 7, 20 22, 16 48
-        C 12 65, 14 80, 20 100
+        M 50 12.8
+        C 35 12.8, 20 25, 16 39.9
+        C 12 47.5, 14 57, 20 76.8
       " />
       <path strokeWidth="0.3" opacity="0.3" d="
-        M 50 7
-        C 65 7, 80 22, 84 48
-        C 88 65, 86 80, 80 100
+        M 50 12.8
+        C 65 12.8, 80 25, 84 39.9
+        C 88 47.5, 86 57, 80 76.8
       " />
 
       {/* ── Face outline (aligned to Ava) ── */}
         <path fill="url(#skinGrad)" strokeWidth="0.6" d="
-          M 50 12
-          C 40 12, 33 17, 30 24
-          C 27 32, 27 38, 27 44
-          C 27 50, 28 56, 30 62
-          C 32 68, 34 74, 37 78
-          C 39 82, 43 85, 46 87
-          C 48 88, 49 88.5, 50 89
-          C 51 88.5, 52 88, 54 87
-          C 57 85, 61 82, 63 78
-          C 66 74, 68 68, 70 62
-          C 72 56, 73 50, 73 44
-          C 73 38, 73 32, 70 24
-          C 67 17, 60 12, 50 12 Z
+          M 50 19
+          C 40 19, 33 22, 30 26.2
+          C 27 30.9, 27 34.5, 27 37.9
+          C 27 40.8, 28 43.5, 30 46.2
+          C 32 48.9, 34 51.6, 37 55
+          C 39 59, 43 62, 46 64
+          C 48 65, 49 65.5, 50 66
+          C 51 65.5, 52 65, 54 64
+          C 57 62, 61 59, 63 55
+          C 66 51.6, 68 48.9, 70 46.2
+          C 72 43.5, 73 40.8, 73 37.9
+          C 73 34.5, 73 30.9, 70 26.2
+          C 67 22, 60 19, 50 19 Z
         " />
 
         {/* ── Cheekbone blush ── */}
-        <ellipse cx="32" cy="58" rx="7" ry="11" fill="url(#cheekBlush)" stroke="none" transform="rotate(-30 32 58)" />
-        <ellipse cx="68" cy="58" rx="7" ry="11" fill="url(#cheekBlush)" stroke="none" transform="rotate(30 68 58)" />
+        <ellipse cx="32" cy="44.4" rx="7" ry="5" fill="url(#cheekBlush)" stroke="none" transform="rotate(-30 32 44.4)" />
+        <ellipse cx="68" cy="44.4" rx="7" ry="5" fill="url(#cheekBlush)" stroke="none" transform="rotate(30 68 44.4)" />
 
         {/* ── Nose glow ── */}
-        <ellipse cx="50" cy="55" rx="3.5" ry="14" fill="url(#noseGlow)" stroke="none" />
+        <ellipse cx="50" cy="43" rx="3.5" ry="6" fill="url(#noseGlow)" stroke="none" />
 
         {/* ── Neck base fill ── */}
         <path fill="url(#skinGrad)" strokeWidth="0.4" d="
-          M 40 90
-          C 38 95, 37 101, 37 106
-          C 37 110, 38 115, 40 120
-          L 60 120
-          C 62 115, 63 110, 63 106
-          C 63 101, 62 95, 60 90 Z
+          M 40 66.8
+          C 38 71, 37 78, 37 83.8
+          C 37 88.4, 38 94.2, 40 100
+          L 60 100
+          C 62 94.2, 63 88.4, 63 83.8
+          C 63 78, 62 71, 60 66.8 Z
         " />
 
       {/* ── Hairline ── */}
       <path strokeWidth="0.35" opacity="0.45" d="
-        M 32 24
-        C 34 16, 40 11, 50 11
-        C 60 11, 66 16, 68 24
+        M 32 26.2
+        C 34 21.4, 40 17.8, 50 17.8
+        C 60 17.8, 66 21.4, 68 26.2
       " />
       <path strokeWidth="0.25" opacity="0.2" d="
-        M 34 21
-        C 37 14, 43 10, 50 10
-        C 57 10, 63 14, 66 21
+        M 34 24.4
+        C 37 20.2, 43 16.5, 50 16.5
+        C 57 16.5, 63 20.2, 66 24.4
       " />
 
       {/* ── Left eyebrow (arched) ── */}
       <path fill="#2F231A" stroke="none" d="
-        M 32 40
-        C 34 37, 36.5 36, 39 36.5
-        C 42 37.5, 44 38.5, 46 40
-        C 44 38, 41 36, 39 35.5
-        C 36 35, 33 36, 32 40 Z
+        M 32 35.6
+        C 34 33.9, 36.5 33.3, 39 33.6
+        C 42 34.2, 44 34.8, 46 35.6
+        C 44 34.5, 41 33.3, 39 33
+        C 36 32.7, 33 33.3, 32 35.6 Z
       " opacity="0.6" />
       <path strokeWidth="0.65" d="
-        M 32 40
-        C 34 37, 36.5 36, 39 36.5
-        C 42 37.5, 44 38.5, 46 40
+        M 32 35.6
+        C 34 33.9, 36.5 33.3, 39 33.6
+        C 42 34.2, 44 34.8, 46 35.6
       " />
 
       {/* ── Right eyebrow (arched) ── */}
       <path fill="#2F231A" stroke="none" d="
-        M 68 40
-        C 66 37, 63.5 36, 61 36.5
-        C 58 37.5, 56 38.5, 54 40
-        C 56 38, 59 36, 61 35.5
-        C 64 35, 67 36, 68 40 Z
+        M 68 35.6
+        C 66 33.9, 63.5 33.3, 61 33.6
+        C 58 34.2, 56 34.8, 54 35.6
+        C 56 34.5, 59 33.3, 61 33
+        C 64 32.7, 67 33.3, 68 35.6 Z
       " opacity="0.6" />
       <path strokeWidth="0.65" d="
-        M 68 40
-        C 66 37, 63.5 36, 61 36.5
-        C 58 37.5, 56 38.5, 54 40
+        M 68 35.6
+        C 66 33.9, 63.5 33.3, 61 33.6
+        C 58 34.2, 56 34.8, 54 35.6
       " />
 
         {/* ── Left eye (almond) ── */}
       <path fill="rgba(253, 252, 240, 0.4)" strokeWidth="0.45" d="
-        M 34 46
-        C 35.5 43, 38 42, 40 42.5
-        C 43 43.5, 45.5 45, 46 46.5
-        C 44.5 48, 42 49, 40 49
-        C 37 48.8, 35 48, 34 46 Z
+        M 34 39
+        C 35.5 37.3, 38 36.8, 40 37
+        C 43 37.6, 45.5 38.4, 46 39.2
+        C 44.5 39.9, 42 40.4, 40 40.4
+        C 37 40.3, 35 39.9, 34 39 Z
       " />
-      <circle cx="40" cy="46" r="2.8" fill="rgba(90, 58, 31, 0.5)" stroke="none" />
-      <circle cx="40" cy="46" r="1.4" fill="rgba(0,0,0,0.6)" stroke="none" />
-      <circle cx="39" cy="45.2" r="0.4" fill="#FFF" stroke="none" opacity="0.8" />
+      <circle cx="40" cy="39" r="2.8" fill="rgba(90, 58, 31, 0.5)" stroke="none" />
+      <circle cx="40" cy="39" r="1.4" fill="rgba(0,0,0,0.6)" stroke="none" />
+      <circle cx="39" cy="38.6" r="0.4" fill="#FFF" stroke="none" opacity="0.8" />
 
       {/* Eyelash hints */}
-      <path strokeWidth="0.3" d="M 34 46 C 32 44.5, 30 43.5, 29 42.5" />
-      <path strokeWidth="0.3" d="M 35.5 43.5 C 34.5 42, 32.5 40.5, 31.5 39.5" />
-      <path strokeWidth="0.3" d="M 38 42.5 C 37 40.5, 36 38.5, 36 37.5" />
-      <circle cx="40" cy="46" r="1.6" strokeWidth="0.35" opacity="0.4" />
+      <path strokeWidth="0.3" d="M 34 39 C 32 38.2, 30 37.6, 29 37" />
+      <path strokeWidth="0.3" d="M 35.5 37.6 C 34.5 36.8, 32.5 35.9, 31.5 35.3" />
+      <path strokeWidth="0.3" d="M 38 37 C 37 35.9, 36 34.8, 36 34.2" />
+      <circle cx="40" cy="39" r="1.6" strokeWidth="0.35" opacity="0.4" />
 
       {/* ── Right eye (almond) ── */}
       <path fill="rgba(253, 252, 240, 0.4)" strokeWidth="0.45" d="
-        M 66 46
-        C 64.5 43, 62 42, 60 42.5
-        C 57 43.5, 54.5 45, 54 46.5
-        C 55.5 48, 58 49, 60 49
-        C 63 48.8, 65 48, 66 46 Z
+        M 66 39
+        C 64.5 37.3, 62 36.8, 60 37
+        C 57 37.6, 54.5 38.4, 54 39.2
+        C 55.5 39.9, 58 40.4, 60 40.4
+        C 63 40.3, 65 39.9, 66 39 Z
       " />
-      <circle cx="60" cy="46" r="2.8" fill="rgba(90, 58, 31, 0.5)" stroke="none" />
-      <circle cx="60" cy="46" r="1.4" fill="rgba(0,0,0,0.6)" stroke="none" />
-      <circle cx="61" cy="45.2" r="0.4" fill="#FFF" stroke="none" opacity="0.8" />
+      <circle cx="60" cy="39" r="2.8" fill="rgba(90, 58, 31, 0.5)" stroke="none" />
+      <circle cx="60" cy="39" r="1.4" fill="rgba(0,0,0,0.6)" stroke="none" />
+      <circle cx="61" cy="38.6" r="0.4" fill="#FFF" stroke="none" opacity="0.8" />
 
       {/* Eyelash hints */}
-      <path strokeWidth="0.3" d="M 66 46 C 68 44.5, 70 43.5, 71 42.5" />
-      <path strokeWidth="0.3" d="M 64.5 43.5 C 65.5 42, 67.5 40.5, 68.5 39.5" />
-      <path strokeWidth="0.3" d="M 62 42.5 C 63 40.5, 64 38.5, 64 37.5" />
-      <circle cx="60" cy="46" r="1.6" strokeWidth="0.35" opacity="0.4" />
+      <path strokeWidth="0.3" d="M 66 39 C 68 38.2, 70 37.6, 71 37" />
+      <path strokeWidth="0.3" d="M 64.5 37.6 C 65.5 36.8, 67.5 35.9, 68.5 35.3" />
+      <path strokeWidth="0.3" d="M 62 37 C 63 35.9, 64 34.8, 64 34.2" />
+      <circle cx="60" cy="39" r="1.6" strokeWidth="0.35" opacity="0.4" />
 
       {/* ── Nose bridge ── */}
       <path strokeWidth="0.35" opacity="0.5" d="
-        M 48 42
-        C 47.5 47, 47 52, 46.5 58
-        C 46 60, 45.5 62, 45 63.5
+        M 48 36.8
+        C 47.5 39.5, 47 41.7, 46.5 44.4
+        C 46 45.3, 45.5 46.2, 45 46.9
       " />
       <path strokeWidth="0.35" opacity="0.5" d="
-        M 52 42
-        C 52.5 47, 53 52, 53.5 58
-        C 54 60, 54.5 62, 55 63.5
+        M 52 36.8
+        C 52.5 39.5, 53 41.7, 53.5 44.4
+        C 54 45.3, 54.5 46.2, 55 46.9
       " />
 
       {/* ── Nose tip & nostrils ── */}
       <path strokeWidth="0.45" d="
-        M 45 63.5
-        C 44 64.5, 43.5 65.5, 44 66
-        C 44.5 66.5, 46 66.7, 48 66.3
-        C 49 66, 50 65.7, 50 65.7
-        C 50 65.7, 51 66, 52 66.3
-        C 54 66.7, 55.5 66.5, 56 66
-        C 56.5 65.5, 56 64.5, 55 63.5
+        M 45 46.9
+        C 44 47.3, 43.5 47.8, 44 48
+        C 44.5 48.2, 46 48.3, 48 48.1
+        C 49 48, 50 47.9, 50 47.9
+        C 50 47.9, 51 48, 52 48.1
+        C 54 48.3, 55.5 48.2, 56 48
+        C 56.5 47.8, 56 47.3, 55 46.9
       " />
 
       {/* ── Upper lip (cupid's bow) ── */}
       <path strokeWidth="0.5" d="
-        M 43 75
-        C 44.5 72.5, 47 71.5, 48.5 72.5
-        C 49 73, 50 73.5, 50 73.5
-        C 50 73.5, 51 73, 51.5 72.5
-        C 53 71.5, 55.5 72.5, 57 75
-        C 55.5 75.5, 53 76, 50 76
-        C 47 76, 44.5 75.5, 43 75 Z
+        M 43 52
+        C 44.5 50.9, 47 50.4, 48.5 50.9
+        C 49 51.1, 50 51.3, 50 51.3
+        C 50 51.3, 51 51.1, 51.5 50.9
+        C 53 50.4, 55.5 50.9, 57 52
+        C 55.5 52.5, 53 53, 50 53
+        C 47 53, 44.5 52.5, 43 52 Z
       " fill="url(#lipGrad)" />
 
       {/* ── Lower lip ── */}
       <path strokeWidth="0.5" d="
-        M 43 75
-        C 44.5 78.5, 47 80, 50 80
-        C 53 80, 55.5 78.5, 57 75
-        C 55.5 76, 53 77, 50 77
-        C 47 77, 44.5 76, 43 75 Z
+        M 43 52
+        C 44.5 55.5, 47 57, 50 57
+        C 53 57, 55.5 55.5, 57 52
+        C 55.5 53, 53 54, 50 54
+        C 47 54, 44.5 53, 43 52 Z
       " fill="url(#lipGrad)" />
 
       {/* Glossy lip highlight */}
       <path fill="rgba(255,255,255,0.4)" d="
-        M 46 78
-        C 48 78.8, 52 78.8, 54 78
-        C 52.5 78.3, 47.5 78.3, 46 78 Z
+        M 46 55
+        C 48 55.8, 52 55.8, 54 55
+        C 52.5 55.3, 47.5 55.3, 46 55 Z
       " />
 
       {/* ── Lip center line ── */}
       <path strokeWidth="0.8" stroke="rgba(47, 35, 26, 0.4)" d="
-        M 43 75
-        C 46 76.5, 50 76, 50 76
-        C 50 76, 54 76.5, 57 75
+        M 43 52
+        C 46 53.5, 50 53, 50 53
+        C 50 53, 54 53.5, 57 52
       " />
 
       {/* ── Philtrum ── */}
-      <path strokeWidth="0.2" opacity="0.2" d="M 48.5 66.5 L 48.8 73" />
-      <path strokeWidth="0.2" opacity="0.2" d="M 51.5 66.5 L 51.2 73" />
+      <path strokeWidth="0.2" opacity="0.2" d="M 48.5 48.2 L 48.8 51.1" />
+      <path strokeWidth="0.2" opacity="0.2" d="M 51.5 48.2 L 51.2 51.1" />
 
       {/* ── Chin ── */}
       <path strokeWidth="0.25" opacity="0.35" d="
-        M 45 87.5
-        C 47 88.5, 50 89, 50 89
-        C 50 89, 53 88.5, 55 87.5
+        M 45 64.5
+        C 47 65.5, 50 66, 50 66
+        C 50 66, 53 65.5, 55 64.5
       " />
 
       {/* ── Nasolabial folds ── */}
-      <path strokeWidth="0.2" opacity="0.2" d="M 42 62 C 41 66, 40.5 70, 41 75" />
-      <path strokeWidth="0.2" opacity="0.2" d="M 58 62 C 59 66, 59.5 70, 59 75" />
+      <path strokeWidth="0.2" opacity="0.2" d="M 42 46.2 C 41 48, 40.5 49.8, 41 52" />
+      <path strokeWidth="0.2" opacity="0.2" d="M 58 46.2 C 59 48, 59.5 49.8, 59 52" />
 
       {/* ── Cheekbone highlights ── */}
-      <path strokeWidth="0.2" opacity="0.15" d="M 29 57 C 31 55, 35 54, 38 54.5" />
-      <path strokeWidth="0.2" opacity="0.15" d="M 71 57 C 69 55, 65 54, 62 54.5" />
+      <path strokeWidth="0.2" opacity="0.15" d="M 29 44 C 31 43, 35 42.6, 38 42.8" />
+      <path strokeWidth="0.2" opacity="0.15" d="M 71 44 C 69 43, 65 42.6, 62 42.8" />
 
       {/* ── Ears ── */}
       <path strokeWidth="0.3" opacity="0.3" d="
-        M 26 43
-        C 24 45, 23 48, 23 51
-        C 23 54, 24 56, 26 57
+        M 26 37.3
+        C 24 38.4, 23 39.9, 23 41.2
+        C 23 42.6, 24 43.5, 26 44
       " />
       <path strokeWidth="0.3" opacity="0.3" d="
-        M 74 43
-        C 76 45, 77 48, 77 51
-        C 77 54, 76 56, 74 57
+        M 74 37.3
+        C 76 38.4, 77 39.9, 77 41.2
+        C 77 42.6, 76 43.5, 74 44
       " />
 
       {/* ── Neck ── */}
       <path strokeWidth="0.4" opacity="0.5" d="
-        M 40 90
-        C 38 95, 37 101, 37 106
-        C 37 110, 38 115, 40 120
+        M 40 66.8
+        C 38 71, 37 78, 37 83.8
+        C 37 88.4, 38 94.2, 40 100
       " />
       <path strokeWidth="0.4" opacity="0.5" d="
-        M 60 90
-        C 62 95, 63 101, 63 106
-        C 63 110, 62 115, 60 120
+        M 60 66.8
+        C 62 71, 63 78, 63 83.8
+        C 63 88.4, 62 94.2, 60 100
       " />
 
       {/* ── Platysma / neck details ── */}
-      <path strokeWidth="0.2" opacity="0.18" d="M 44 93 C 43 100, 42 107, 42 115" />
-      <path strokeWidth="0.2" opacity="0.18" d="M 56 93 C 57 100, 58 107, 58 115" />
-      <path strokeWidth="0.2" opacity="0.15" d="M 50 91 C 50 100, 50 108, 50 117" />
+      <path strokeWidth="0.2" opacity="0.18" d="M 44 69.3 C 43 76.8, 42 84.9, 42 94.2" />
+      <path strokeWidth="0.2" opacity="0.18" d="M 56 69.3 C 57 76.8, 58 84.9, 58 94.2" />
+      <path strokeWidth="0.2" opacity="0.15" d="M 50 67.7 C 50 76.8, 50 86.1, 50 96.5" />
 
       {/* ── Neck base / clavicle hint ── */}
       <path strokeWidth="0.35" opacity="0.25" d="
-        M 28 120
-        C 34 118, 42 116, 50 116
-        C 58 116, 66 118, 72 120
+        M 28 100
+        C 34 97.7, 42 95.4, 50 95.4
+        C 58 95.4, 66 97.7, 72 100
       " />
 
       {/* ── Forehead structure lines ── */}
-      <line x1="36" y1="27" x2="64" y2="27" strokeWidth="0.15" opacity="0.12" />
-      <line x1="34" y1="31" x2="66" y2="31" strokeWidth="0.12" opacity="0.1" />
+      <line x1="36" y1="27.9" x2="64" y2="27.9" strokeWidth="0.15" opacity="0.12" />
+      <line x1="34" y1="30.3" x2="66" y2="30.3" strokeWidth="0.12" opacity="0.1" />
 
       {/* ── Jawline accent ── */}
       <path strokeWidth="0.25" opacity="0.25" d="
-        M 33 78
-        C 35 82, 38 85, 43 87
+        M 33 55
+        C 35 59, 38 62, 43 64
       " />
       <path strokeWidth="0.25" opacity="0.25" d="
-        M 67 78
-        C 65 82, 62 85, 57 87
+        M 67 55
+        C 65 59, 62 62, 57 64
       " />
 
       {/* ── Temple hollows ── */}
-      <path strokeWidth="0.15" opacity="0.12" d="M 29 35 C 30 39, 30.5 42, 31 44" />
-      <path strokeWidth="0.15" opacity="0.12" d="M 71 35 C 70 39, 69.5 42, 69 44" />
+      <path strokeWidth="0.15" opacity="0.12" d="M 29 32.7 C 30 35.1, 30.5 36.8, 31 37.9" />
+      <path strokeWidth="0.15" opacity="0.12" d="M 71 32.7 C 70 35.1, 69.5 36.8, 69 37.9" />
     </g>
     </>
   );
