@@ -13,6 +13,7 @@ import DetailsForm, { type DetailsFormData } from '@/components/treatments/Detai
 import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import Testimonials from '@/components/Testimonials';
 import BottomCta from '@/components/BottomCta';
+import BotoxFaceMap from '@/components/BotoxFaceMap';
 import { BOTOX_ZONES } from '@/lib/data/botox-zones';
 import { EASE_PREMIUM } from '@/lib/motion';
 
@@ -20,14 +21,22 @@ export default function BotoxPageClient() {
   const t = useTranslations('botox_page');
   const locale = useLocale();
   const [selectedZones, setSelectedZones] = useState<string[]>([]);
+  const [activeExternalZoneId, setActiveExternalZoneId] = useState<string | null>(null);
   const [step, setStep] = useState<'select' | 'details' | 'done'>('select');
   const [isLoading, setIsLoading] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const toggleZone = useCallback((zoneId: string) => {
-    setSelectedZones((prev) =>
-      prev.includes(zoneId) ? prev.filter((z) => z !== zoneId) : [...prev, zoneId]
-    );
+    setSelectedZones((prev) => {
+      const isAdding = !prev.includes(zoneId);
+      if (isAdding) {
+        // Trigger flare in BotoxFaceMap
+        setActiveExternalZoneId(zoneId);
+        // Resetting it right after so the map handles its own timeout/flare sequence
+        setTimeout(() => setActiveExternalZoneId(null), 50);
+      }
+      return isAdding ? [...prev, zoneId] : prev.filter((z) => z !== zoneId);
+    });
   }, []);
 
   const removeZone = useCallback((zoneId: string) => {
@@ -161,6 +170,9 @@ export default function BotoxPageClient() {
           </div>
         </Container>
       </section>
+
+      {/* ═══ 1b. INTERACTIVE FACE MAP ══════════════════ */}
+      <BotoxFaceMap activeExternalZoneId={activeExternalZoneId} />
 
       {/* ═══ 2. TRUST INDICATORS + QUICK INFO ══════════ */}
       <section className="py-section-y bg-background-light overflow-hidden" aria-label={t('trust_label')}>

@@ -1064,6 +1064,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       <div
         className="absolute inset-0"
         aria-hidden="true"
+        onClick={onClose}
       />
 
       <section

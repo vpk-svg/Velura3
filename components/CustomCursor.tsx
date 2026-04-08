@@ -26,6 +26,11 @@ export default function CustomCursor() {
 
         const handleMouseOver = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
+            // Skip custom cursor effects inside [data-no-custom-cursor] sections
+            if (target.closest?.('[data-no-custom-cursor]')) {
+                setIsHovering(false);
+                return;
+            }
             if (
                 target.tagName.toLowerCase() === 'a' ||
                 target.tagName.toLowerCase() === 'button' ||
@@ -53,7 +58,7 @@ export default function CustomCursor() {
     return (
         <>
             <motion.div
-                className="fixed top-0 left-0 w-4 h-4 rounded-full bg-primary pointer-events-none z-top mix-blend-difference"
+                className="fixed top-0 left-0 w-4 h-4 rounded-full bg-primary pointer-events-none z-[10001] shadow-[0_0_0_1px_rgba(0,0,0,0.3)]"
                 animate={{
                     x: mousePosition.x - 8,
                     y: mousePosition.y - 8,
@@ -68,7 +73,7 @@ export default function CustomCursor() {
                 }}
             />
             <motion.div
-                className="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary/50 pointer-events-none z-top"
+                className="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary/50 pointer-events-none z-[10001]"
                 animate={{
                     x: mousePosition.x - 16,
                     y: mousePosition.y - 16,
