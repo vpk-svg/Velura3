@@ -24,7 +24,7 @@ const BA_ITEMS = [
   { id: 'jawline-fillers', labelNl: 'Kaaklijn Fillers', labelEn: 'Jawline Fillers' },
   { id: 'cheek-fillers', labelNl: 'Wangen Fillers', labelEn: 'Cheek Fillers' },
   { id: 'bbl', labelNl: 'BBL Behandeling', labelEn: 'BBL Treatment' },
-  { id: 'weight-loss', labelNl: 'Gewichtsverlies', labelEn: 'Weight Loss', beforeImage: '/before.webp', afterImage: '/after.webp' },
+  { id: 'weight-loss', labelNl: 'Gewichtsverlies', labelEn: 'Weight Loss', beforeImage: '/after.webp', afterImage: '/before.webp' },
 ] as const satisfies readonly BeforeAfterItem[];
 
 function SliderCard({ item, locale }: { item: BeforeAfterItem; locale: string }) {

@@ -17,7 +17,6 @@ export default function TeamSection() {
             role: t('member1_role'),
             big: t('member1_big'),
             img: "/images/Newteam/Athina Barza.jpg",
-            hoverOverlay: "/images/team/athena-hover-overlay.png",
         },
         {
             name: t('member2_name'),
@@ -77,7 +76,7 @@ export default function TeamSection() {
                                     fill
                                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     loading="lazy"
-                                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                                    className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                                 />
                                 {member.hoverOverlay && (
                                     <Image

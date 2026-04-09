@@ -21,7 +21,6 @@ export default function BotoxPageClient() {
   const t = useTranslations('botox_page');
   const locale = useLocale();
   const [selectedZones, setSelectedZones] = useState<string[]>([]);
-  const [activeExternalZoneId, setActiveExternalZoneId] = useState<string | null>(null);
   const [step, setStep] = useState<'select' | 'details' | 'done'>('select');
   const [isLoading, setIsLoading] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -29,12 +28,6 @@ export default function BotoxPageClient() {
   const toggleZone = useCallback((zoneId: string) => {
     setSelectedZones((prev) => {
       const isAdding = !prev.includes(zoneId);
-      if (isAdding) {
-        // Trigger flare in BotoxFaceMap
-        setActiveExternalZoneId(zoneId);
-        // Resetting it right after so the map handles its own timeout/flare sequence
-        setTimeout(() => setActiveExternalZoneId(null), 50);
-      }
       return isAdding ? [...prev, zoneId] : prev.filter((z) => z !== zoneId);
     });
   }, []);
@@ -171,8 +164,8 @@ export default function BotoxPageClient() {
         </Container>
       </section>
 
-      {/* ═══ 1b. INTERACTIVE FACE MAP ══════════════════ */}
-      <BotoxFaceMap activeExternalZoneId={activeExternalZoneId} />
+      {/* ═══ 1b. TREATMENT MAP ════════════════════════ */}
+      <BotoxFaceMap />
 
       {/* ═══ 2. TRUST INDICATORS + QUICK INFO ══════════ */}
       <section className="py-section-y bg-background-light overflow-hidden" aria-label={t('trust_label')}>
