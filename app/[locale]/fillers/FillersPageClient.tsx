@@ -200,6 +200,14 @@ export default function FillersPage() {
                 <ArrowDown className="w-3.5 h-3.5" strokeWidth={2} />
               </a>
             </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: EASE_PREMIUM }}
+              className="mt-6 font-sans text-sm text-background-light/50 tracking-wide"
+            >
+              {t('hero_price_anchor')}
+            </motion.p>
           </div>
         </Container>
         {/* Scroll indicator */}
@@ -325,7 +333,7 @@ export default function FillersPage() {
               />
             </div>
 
-            <div className="space-y-6">
+            <div className="lg:sticky lg:top-28 space-y-6 self-start">
               <TreatmentCart
                 zones={FILLERS_ZONES}
                 selectedZones={selectedZones}
@@ -490,6 +498,18 @@ export default function FillersPage() {
                 </motion.div>
               ))}
             </motion.div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Philosophy CTA */}
+      <section className="py-8 bg-white overflow-hidden">
+        <Container>
+          <div className="text-center">
+            <p className="font-sans text-secondary/60 text-base mb-3">{t('philosophy_cta')}</p>
+            <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+              {t('philosophy_cta_link')}
+            </ConsultTrigger>
           </div>
         </Container>
       </section>
@@ -683,6 +703,15 @@ export default function FillersPage() {
                 {t('cta_button')}
               </ConsultTrigger>
             </motion.div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2, ease: EASE_PREMIUM }}
+              className="mt-6 font-sans text-sm text-background-light/40 tracking-wide"
+            >
+              {t('cta_urgency')}
+            </motion.p>
           </div>
         </Container>
       </section>

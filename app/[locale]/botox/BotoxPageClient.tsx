@@ -44,10 +44,6 @@ export default function BotoxPageClient() {
       if (prev.includes(zoneId)) return prev;
       return [...prev, zoneId];
     });
-    // Scroll to cart section after a brief delay for state to update
-    setTimeout(() => {
-      document.getElementById('zones')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 300);
   }, []);
 
   const handleDetailsSubmit = useCallback(async (data: DetailsFormData) => {
@@ -107,6 +103,10 @@ export default function BotoxPageClient() {
     { q: t('faq_q2'), a: t('faq_a2') },
     { q: t('faq_q3'), a: t('faq_a3') },
     { q: t('faq_q4'), a: t('faq_a4') },
+    { q: t('faq_q5'), a: t('faq_a5') },
+    { q: t('faq_q6'), a: t('faq_a6') },
+    { q: t('faq_q7'), a: t('faq_a7') },
+    { q: t('faq_q8'), a: t('faq_a8') },
   ];
 
   return (
@@ -174,7 +174,21 @@ export default function BotoxPageClient() {
               >
                 {t('hero_cta')}
               </ConsultTrigger>
+              <a
+                href="#zones"
+                className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-4 text-xs tracking-[0.22em] border border-background-light/20 text-background-light/80 hover:border-primary hover:text-primary transition-all duration-300"
+              >
+                {t('hero_cta_secondary')}
+              </a>
             </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: EASE_PREMIUM }}
+              className="mt-6 font-sans text-sm text-background-light/50 tracking-wide"
+            >
+              {t('hero_price_anchor')}
+            </motion.p>
           </div>
         </Container>
       </section>
@@ -199,16 +213,12 @@ export default function BotoxPageClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease: EASE_PREMIUM }}
-                className={`rounded-xl px-5 py-4 flex items-center gap-3 ${
-                  info.filled
-                    ? 'bg-secondary text-white'
-                    : 'bg-white text-secondary border border-secondary/5 shadow-soft-sm'
-                }`}
+                className="rounded-xl px-5 py-4 flex items-center gap-3 bg-white text-secondary border border-secondary/5 shadow-soft-sm"
               >
                 <Clock size={14} className="text-primary shrink-0" />
                 <div>
                   <span className="font-sans text-sm font-bold block">{info.value}</span>
-                  <span className={`font-sans text-[10px] uppercase tracking-wider ${info.filled ? 'text-white/60' : 'text-secondary/50'}`}>
+                  <span className={`font-sans text-[10px] uppercase tracking-wider text-secondary/50`}>
                     {info.label}
                   </span>
                 </div>
@@ -225,7 +235,7 @@ export default function BotoxPageClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: EASE_PREMIUM }}
-                className="group flex flex-col items-center text-center"
+                className={`group flex flex-col items-center text-center ${i === 0 ? 'bg-primary/[0.04] rounded-xl p-6 -m-2 border border-primary/10' : ''}`}
               >
                 <div className="text-primary mb-5 transition-transform duration-300 ease-premium group-hover:scale-110" aria-hidden="true">
                   {pillar.icon}
@@ -293,6 +303,16 @@ export default function BotoxPageClient() {
           </div>
         </Container>
       </section>
+
+      {/* Process micro-CTA */}
+      <div className="text-center -mt-8 mb-8">
+        <ConsultTrigger
+          from="botox"
+          className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
+        >
+          {t('process_cta')}
+        </ConsultTrigger>
+      </div>
 
       {/* ═══ 4. ZONE SELECTOR + CART ═══════════════════ */}
       <section className="py-section-y bg-white overflow-hidden" id="zones">
@@ -455,6 +475,10 @@ export default function BotoxPageClient() {
               </motion.div>
             ))}
           </div>
+          <p className="text-center mt-8 font-sans text-sm text-secondary/50">
+            {t('faq_contact')}{' '}
+            <a href={`/${locale}/contact`} className="text-primary hover:underline font-medium">{t('faq_contact_link')}</a>
+          </p>
         </Container>
       </section>
 
@@ -467,9 +491,15 @@ export default function BotoxPageClient() {
               <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-primary font-semibold mb-4">
                 {t('availability_label')}
               </p>
-              <p className="font-sans font-light text-secondary/60 text-base leading-relaxed">
+              <p className="font-sans font-light text-secondary/60 text-base leading-relaxed mb-6">
                 {t('availability_desc')}
               </p>
+              <a
+                href="#zones"
+                className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-3 text-[10px] tracking-[0.2em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
+              >
+                {t('availability_cta')}
+              </a>
             </div>
           </div>
         </Container>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import BotoxPageClient from './BotoxPageClient';
+import { FAQ_ITEMS } from '@/lib/data/faq';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -37,8 +38,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function BotoxPage({ params }: PageProps) {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'botox_page' });
 
-  const jsonLd = {
+  const botoxFaqs = FAQ_ITEMS.filter((f) => f.category === 'botox');
+
+  const jsonLd = [
+    {
     '@context': 'https://schema.org',
     '@type': 'MedicalProcedure',
     name: locale === 'nl' ? 'Botox Behandeling' : 'Botox Treatment',
@@ -73,7 +78,20 @@ export default async function BotoxPage({ params }: PageProps) {
         unitText: locale === 'nl' ? 'per zone' : 'per zone',
       },
     },
-  };
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: botoxFaqs.map((faq) => ({
+        '@type': 'Question',
+        name: t.has(faq.questionKey) ? t(faq.questionKey) : '',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: t.has(faq.answerKey) ? t(faq.answerKey) : '',
+        },
+      })),
+    },
+  ];
 
   return (
     <>

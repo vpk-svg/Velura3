@@ -33,6 +33,8 @@ export const FAQ_ITEMS: FaqItem[] = [
   // Shape
   { id: 's1', category: 'shape', questionKey: 'q_s1', answerKey: 'a_s1' },
   { id: 's2', category: 'shape', questionKey: 'q_s2', answerKey: 'a_s2' },
+  { id: 's3', category: 'shape', questionKey: 'q_s3', answerKey: 'a_s3' },
+  { id: 's4', category: 'shape', questionKey: 'q_s4', answerKey: 'a_s4' },
   // Pricing
   { id: 'p1', category: 'pricing', questionKey: 'q_p1', answerKey: 'a_p1' },
   { id: 'p2', category: 'pricing', questionKey: 'q_p2', answerKey: 'a_p2' },

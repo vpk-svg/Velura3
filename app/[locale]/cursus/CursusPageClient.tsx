@@ -19,6 +19,8 @@ import {
   AlertCircle,
   CheckCircle2,
   Loader2,
+  Sparkles,
+  Briefcase,
 } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
@@ -38,7 +40,7 @@ import {
 } from '@/lib/data/course';
 
 /* ── Icon map for highlights ── */
-const HIGHLIGHT_ICONS = [Shield, BookOpen, Users, Award] as const;
+const HIGHLIGHT_ICONS = [Shield, BookOpen, Users, Award, Sparkles, Briefcase] as const;
 
 /* ── Tag color map ── */
 const TAG_COLORS: Record<string, string> = {
@@ -105,7 +107,7 @@ export default function CursusPageClient() {
   }, []);
 
   /* ── Accordion states ── */
-  const [openCurriculum, setOpenCurriculum] = useState<string | null>(null);
+  const [openCurriculum, setOpenCurriculum] = useState<string | null>('mod-1');
   const [openFaq, setOpenFaq] = useState<string | null>(null);
 
   /* ── Form handlers ── */
@@ -259,6 +261,15 @@ export default function CursusPageClient() {
                   {t('cta_curriculum')}
                 </a>
               </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2, ease: EASE_PREMIUM }}
+                className="mt-4 font-sans text-sm text-background-light/50"
+              >
+                {t('hero_price')}
+              </motion.p>
             </div>
 
             {/* Hero image — visible on all screens */}
@@ -345,7 +356,7 @@ export default function CursusPageClient() {
             <div>
               <SectionHeader
                 label={t('prereq_label')}
-                title={locale === 'nl' ? 'Vereisten' : 'Requirements'}
+                title={t('prereq_title')}
                 align="left"
               />
               <ul className="space-y-3">
@@ -376,6 +387,10 @@ export default function CursusPageClient() {
             title={t('outcomes_title')}
             subtitle={t('outcomes_subtitle')}
           />
+
+          <p className="text-center max-w-2xl mx-auto font-sans text-secondary/60 text-sm mb-8 -mt-4">
+            {t('outcomes_lead')}
+          </p>
 
           <div
             ref={outcomesRef}
@@ -409,6 +424,10 @@ export default function CursusPageClient() {
             title={t('curriculum_title')}
             subtitle={t('curriculum_subtitle')}
           />
+
+          <p className="text-center max-w-2xl mx-auto font-sans text-secondary/50 text-sm mb-6 -mt-2">
+            {t('curriculum_duration')}
+          </p>
 
           <div className="max-w-3xl mx-auto space-y-3">
             {CURRICULUM.map((mod, i) => {
@@ -545,6 +564,16 @@ export default function CursusPageClient() {
                   </span>
                 ))}
               </motion.div>
+
+              <motion.blockquote
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.08, ease: EASE_PREMIUM }}
+                className="border-l-2 border-primary/30 pl-4 mb-6 italic font-sans text-secondary/60 text-sm leading-relaxed"
+              >
+                &ldquo;{t('instructor_quote')}&rdquo;
+              </motion.blockquote>
 
               <motion.p
                 initial={{ opacity: 0, y: 12 }}
@@ -865,7 +894,7 @@ export default function CursusPageClient() {
                             {t('field_terms_link')}
                           </Link>
                           {' & '}
-                          <Link href={`/${locale}/terms`} className="underline text-primary hover:text-primary/80">
+                          <Link href={`/${locale}/privacy`} className="underline text-primary hover:text-primary/80">
                             {t('field_privacy')}
                           </Link>
                         </span>
@@ -885,6 +914,10 @@ export default function CursusPageClient() {
                     )}
 
                     {/* Submit */}
+                    <p className="text-center font-sans text-xs text-secondary/40">
+                      {t('form_reassurance')}
+                    </p>
+
                     <button
                       type="submit"
                       disabled={submitting}
@@ -919,7 +952,8 @@ export default function CursusPageClient() {
 
                   <p className="font-display text-6xl text-background-light mb-1">{t('pricing_amount')}</p>
                   <p className="font-sans text-background-light/50 text-sm mb-2">{t('pricing_vat')}</p>
-                  <p className="font-sans text-primary/80 text-xs mb-8">{t('pricing_early_bird_note')}</p>
+                  <p className="font-sans text-primary/80 text-xs mb-2">{t('pricing_early_bird_note')}</p>
+                  <p className="font-sans text-background-light/40 text-xs mb-8">{t('pricing_early_bird_deadline')}</p>
 
                   <div className="space-y-2.5">
                     {PRICING_INCLUSIONS.map((key) => (

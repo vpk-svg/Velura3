@@ -179,6 +179,27 @@ export default function ShapePage() {
               </a>
             </motion.div>
 
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.18, ease: EASE_PREMIUM }}
+              className="font-sans text-sm text-background-light/50 tracking-wide mb-4"
+            >
+              {t('hero_price_anchor')}
+            </motion.p>
+
+            <motion.a
+              href="#safety"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.22, ease: EASE_PREMIUM }}
+              className="inline-flex items-center gap-2 font-sans text-xs text-primary/80 hover:text-primary transition-colors underline underline-offset-4"
+            >
+              {t('hero_compare')}
+            </motion.a>
+
+            <div className="mt-8" />
+
             {/* Trust badges */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -200,6 +221,62 @@ export default function ShapePage() {
               ))}
             </motion.div>
           </div>
+        </Container>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          SAFETY COMPARISON — Surgical BBL vs. Filler BBL
+          ═══════════════════════════════════════════════════════ */}
+      <section id="safety" className="py-section-y bg-page-shape overflow-hidden">
+        <Container>
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+            className="bg-secondary p-8 md:p-16 lg:p-20 rounded-3xl relative overflow-hidden"
+          >
+            <div className="relative z-10 flex flex-col md:flex-row gap-12 items-center">
+              <div className="md:w-1/2">
+                <h2 className="font-display text-display-lg text-background-light italic mb-8">
+                  {t('safety_title')}
+                </h2>
+                <p className="text-lg text-background-light/70 font-light mb-8 leading-relaxed">
+                  {t('safety_desc')}
+                </p>
+                <div className="flex items-center gap-4 text-primary mb-8">
+                  <ShieldCheck size={32} aria-hidden="true" />
+                  <span className="font-sans uppercase tracking-widest text-sm font-semibold">
+                    {t('safety_badge')}
+                  </span>
+                </div>
+                <ConsultTrigger
+                  className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-pill text-sm font-semibold tracking-wide hover:bg-primary/90 transition-colors"
+                >
+                  {t('safety_cta')} <ArrowRight size={16} />
+                </ConsultTrigger>
+              </div>
+
+              <div className="md:w-1/2 grid grid-cols-1 gap-6">
+                <div className="bg-background-light/5 p-8 rounded-2xl backdrop-blur-sm">
+                  <h3 className="font-display text-2xl text-background-light mb-2">
+                    {t('safety_surgical_title')}
+                  </h3>
+                  <p className="text-[#C4785A]/90 text-sm font-sans uppercase mb-4 font-semibold tracking-wider">
+                    {t('safety_surgical_risk')}
+                  </p>
+                  <p className="text-background-light/60 text-sm">{t('safety_surgical_desc')}</p>
+                </div>
+                <div className="bg-primary p-8 rounded-2xl">
+                  <h3 className="font-display text-2xl text-white mb-2">{t('safety_fab_title')}</h3>
+                  <p className="text-white/70 text-sm font-sans uppercase mb-4 font-semibold tracking-wider">
+                    {t('safety_fab_risk')}
+                  </p>
+                  <p className="text-white/80 text-sm">{t('safety_fab_desc')}</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </Container>
       </section>
 
@@ -372,58 +449,6 @@ export default function ShapePage() {
               </div>
             </motion.div>
           </div>
-        </Container>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════
-          SAFETY COMPARISON — Surgical BBL vs. Filler BBL
-          H4 → H3 fix, red-400 → terracotta, Lucide icons
-          ═══════════════════════════════════════════════════════ */}
-      <section className="py-section-y bg-page-shape overflow-hidden">
-        <Container>
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-            className="bg-secondary p-8 md:p-16 lg:p-20 rounded-3xl relative overflow-hidden"
-          >
-            <div className="relative z-10 flex flex-col md:flex-row gap-12 items-center">
-              <div className="md:w-1/2">
-                <h2 className="font-display text-display-lg text-background-light italic mb-8">
-                  {t('safety_title')}
-                </h2>
-                <p className="text-lg text-background-light/70 font-light mb-8 leading-relaxed">
-                  {t('safety_desc')}
-                </p>
-                <div className="flex items-center gap-4 text-primary">
-                  <ShieldCheck size={32} aria-hidden="true" />
-                  <span className="font-sans uppercase tracking-widest text-sm font-semibold">
-                    {t('safety_badge')}
-                  </span>
-                </div>
-              </div>
-
-              <div className="md:w-1/2 grid grid-cols-1 gap-6">
-                <div className="bg-background-light/5 p-8 rounded-2xl backdrop-blur-sm">
-                  <h3 className="font-display text-2xl text-background-light mb-2">
-                    {t('safety_surgical_title')}
-                  </h3>
-                  <p className="text-[#C4785A]/90 text-sm font-sans uppercase mb-4 font-semibold tracking-wider">
-                    {t('safety_surgical_risk')}
-                  </p>
-                  <p className="text-background-light/60 text-sm">{t('safety_surgical_desc')}</p>
-                </div>
-                <div className="bg-primary p-8 rounded-2xl">
-                  <h3 className="font-display text-2xl text-white mb-2">{t('safety_fab_title')}</h3>
-                  <p className="text-white/70 text-sm font-sans uppercase mb-4 font-semibold tracking-wider">
-                    {t('safety_fab_risk')}
-                  </p>
-                  <p className="text-white/80 text-sm">{t('safety_fab_desc')}</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </Container>
       </section>
 
@@ -733,6 +758,12 @@ export default function ShapePage() {
               );
             })}
           </div>
+          <p className="text-center mt-8 text-secondary/60 text-sm">
+            {t('faq_contact')}{' '}
+            <a href={`/${locale}/contact`} className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors">
+              {t('faq_contact_link')}
+            </a>
+          </p>
         </Container>
       </section>
 
@@ -763,13 +794,16 @@ export default function ShapePage() {
                 >
                   {t('cta_button')}
                 </ConsultTrigger>
-                <ConsultTrigger
-                  from="bbl"
+                <a
+                  href={`/${locale}/faq`}
                   className="w-full md:w-auto inline-flex items-center gap-2 justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] border border-background-light/20 text-background-light hover:bg-background-light/10 transition-all duration-300"
                 >
                   {t('cta_button_secondary')} <ArrowRight size={14} />
-                </ConsultTrigger>
+                </a>
               </div>
+              <p className="mt-8 text-background-light/50 text-sm font-light">
+                {t('cta_trust')}
+              </p>
             </div>
           </motion.div>
         </Container>

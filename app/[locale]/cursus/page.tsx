@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import CursusPageClient from './CursusPageClient';
 import { getCourseDates, type Locale } from '@/lib/clinic-data';
+import { COURSE_FAQ } from '@/lib/data/course';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -38,9 +39,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CursusPage({ params }: PageProps) {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'cursus' });
   const dates = getCourseDates(locale as Locale);
 
-  const jsonLd = {
+  const jsonLd = [
+    {
     '@context': 'https://schema.org',
     '@type': 'Course',
     name: locale === 'nl' ? 'Cursus Injectables voor Artsen' : 'Injectables Course for Doctors',
@@ -87,7 +90,20 @@ export default async function CursusPage({ params }: PageProps) {
         },
       },
     })),
-  };
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: COURSE_FAQ.map((faq) => ({
+        '@type': 'Question',
+        name: t(faq.questionKey),
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: t(faq.answerKey),
+        },
+      })),
+    },
+  ];
 
   return (
     <>

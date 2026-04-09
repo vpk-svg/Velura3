@@ -139,7 +139,12 @@ function InfoModal({
           {onAddToCart && (
             <button
               type="button"
-              onClick={() => onAddToCart(zone.id)}
+              onClick={() => {
+                if (!isInCart) {
+                  onAddToCart(zone.id);
+                  onClose();
+                }
+              }}
               disabled={isInCart}
               className={`flex items-center justify-center w-11 h-11 rounded-full border-2 transition-all duration-200 ${
                 isInCart
