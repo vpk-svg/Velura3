@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { motion, type Variants } from 'motion/react';
 import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import {
   Shield, Stethoscope, Timer, Heart, CheckCircle2,
@@ -13,9 +14,13 @@ import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import BmiCalculator from '@/components/BmiCalculator';
-import { SHAPE_TREATMENTS } from '@/lib/data/shape-treatments';
+import { SHAPE_TREATMENTS, SHAPE_VARIANTS_FLAT } from '@/lib/data/shape-treatments';
 import { FAQ_ITEMS, type FaqItem } from '@/lib/data/faq';
 import { EASE_PREMIUM } from '@/lib/motion';
+import TreatmentMapGrid from '@/components/treatments/TreatmentMapGrid';
+import FloatingCart from '@/components/treatments/FloatingCart';
+import BookingSlotSelector from '@/components/booking/BookingSlotSelector';
+import DetailsForm, { type DetailsFormData } from '@/components/treatments/DetailsForm';
 
 /* ── Lucide icon map (replaces Material Symbols dependency) ── */
 const BENEFIT_ICONS: Record<string, React.ReactNode> = {
@@ -45,9 +50,54 @@ const CANDIDATE_CHECKS = ['bmi', 'age', 'health', 'expectations', 'nonsmoker'] a
 
 export default function ShapePage() {
   const t = useTranslations('shape_page');
+  const locale = useLocale() as 'nl' | 'en';
   const [openFaq, setOpenFaq] = useState<string | null>(null);
+  const [selectedVariants, setSelectedVariants] = useState<string[]>([]);
+  const [step, setStep] = useState<'select' | 'date' | 'details' | 'done'>('select');
+  const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const shapeFaqs: FaqItem[] = FAQ_ITEMS.filter((item) => item.category === 'shape');
+
+  const addToCart = useCallback((variantId: string) => {
+    setSelectedVariants((prev) => {
+      if (prev.includes(variantId)) return prev;
+      return [...prev, variantId];
+    });
+  }, []);
+
+  const removeFromCart = useCallback((variantId: string) => {
+    setSelectedVariants((prev) => prev.filter((v) => v !== variantId));
+  }, []);
+
+  const handleDetailsSubmit = useCallback(async (data: DetailsFormData) => {
+    setIsLoading(true);
+    try {
+      const selectedItems = SHAPE_VARIANTS_FLAT.filter((v) => selectedVariants.includes(v.id));
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          mode: 'payment',
+          treatmentType: 'shape',
+          zones: selectedItems.map((v) => ({ id: v.id, name: t(v.nameKey), priceCents: v.priceCents })),
+          customerDetails: data,
+          selectedSlotId,
+          locale,
+        }),
+      });
+      const result = await response.json();
+      if (result.url) {
+        window.location.href = result.url;
+      } else {
+        setStep('done');
+      }
+    } catch {
+      setStep('done');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [selectedVariants, t, locale, selectedSlotId]);
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -199,6 +249,86 @@ export default function ShapePage() {
           </Container>
         </section>
       ))}
+
+      {/* ═══════════════════════════════════════════════════════
+          INTERACTIVE TREATMENT SELECTOR — Click card + popup + add to cart
+          ═══════════════════════════════════════════════════════ */}
+      <TreatmentMapGrid
+        zones={SHAPE_VARIANTS_FLAT}
+        namespace="shape_page"
+        label={t('section_label')}
+        title={<>{locale === 'nl' ? 'Kies uw ' : 'Choose your '}<span className="italic font-light text-primary">{locale === 'nl' ? 'behandeling' : 'treatment'}</span></>}
+        subtitle={locale === 'nl' ? 'Klik op een behandeling voor meer informatie en voeg deze toe aan uw selectie.' : 'Click a treatment for more information and add it to your selection.'}
+        onAddToCart={addToCart}
+        cartZoneIds={selectedVariants}
+        bgClass="bg-page-shape"
+      />
+
+      {/* Date Selection */}
+      {step === 'date' && (
+        <section className="py-section-y bg-page-shape overflow-hidden" id="date-select">
+          <Container>
+            <div className="max-w-xl mx-auto">
+              <SectionHeader
+                label={locale === 'nl' ? 'Datum kiezen' : 'Choose date'}
+                title={<>{locale === 'nl' ? 'Kies uw ' : 'Choose your '}<span className="italic font-light text-primary">{locale === 'nl' ? 'zaterdag' : 'Saturday'}</span></>}
+              />
+              <div className="glass rounded-2xl border border-primary/10 p-8 md:p-10 shadow-soft-lg">
+                <BookingSlotSelector
+                  locale={locale}
+                  treatmentName={selectedVariants.map((id) => {
+                    const v = SHAPE_VARIANTS_FLAT.find((sv) => sv.id === id);
+                    return v ? t(v.nameKey) : id;
+                  }).join(', ')}
+                  onSlotSelect={setSelectedSlotId}
+                />
+                <motion.button
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  disabled={!selectedSlotId}
+                  onClick={() => setStep('details')}
+                  className="mt-6 w-full inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97] disabled:opacity-40 disabled:pointer-events-none"
+                >
+                  {locale === 'nl' ? 'Ga verder' : 'Continue'}
+                </motion.button>
+              </div>
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {/* Details Form */}
+      {step === 'details' && (
+        <section className="py-section-y bg-page-shape overflow-hidden">
+          <Container>
+            <div className="max-w-xl mx-auto">
+              <SectionHeader
+                label={t('details_label')}
+                title={<>{t('details_title')} <span className="italic font-light text-primary">{t('details_title_accent')}</span></>}
+              />
+              <div className="glass rounded-2xl border border-primary/10 p-8 md:p-10 shadow-soft-lg">
+                <DetailsForm
+                  onSubmit={handleDetailsSubmit}
+                  isLoading={isLoading}
+                  namespace="shape_page"
+                />
+              </div>
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {/* Confirmation */}
+      {step === 'done' && (
+        <section className="py-section-y bg-mint overflow-hidden">
+          <Container>
+            <div className="text-center max-w-xl mx-auto">
+              <h2 className="font-display text-display-md text-secondary mb-4">{t('done_title')}</h2>
+              <p className="font-sans text-secondary/60 leading-relaxed">{t('done_desc')}</p>
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* ═══════════════════════════════════════════════════════
           INTRODUCTION — What is a BBL / Buttock Filler?
@@ -644,6 +774,20 @@ export default function ShapePage() {
           </motion.div>
         </Container>
       </section>
+
+      {/* Floating Cart */}
+      <FloatingCart
+        zones={SHAPE_VARIANTS_FLAT}
+        selectedZones={selectedVariants}
+        onRemove={removeFromCart}
+        onProceed={() => {
+          setStep('date');
+          setTimeout(() => {
+            document.getElementById('date-select')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }}
+        namespace="shape_page"
+      />
     </>
   );
 }

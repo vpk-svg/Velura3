@@ -41,3 +41,10 @@ export const SHAPE_TREATMENTS: ShapeTreatment[] = [
     ],
   },
 ];
+
+/**
+ * Flattened variant list for use with ZoneSelector/FloatingCart.
+ */
+export const SHAPE_VARIANTS_FLAT = SHAPE_TREATMENTS.flatMap((t) =>
+  t.variants.map((v) => ({ id: v.id, nameKey: v.nameKey, priceCents: v.priceCents })),
+);

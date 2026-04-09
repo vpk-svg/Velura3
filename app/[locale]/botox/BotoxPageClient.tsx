@@ -15,6 +15,7 @@ import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import Testimonials from '@/components/Testimonials';
 import BottomCta from '@/components/BottomCta';
 import BotoxFaceMap from '@/components/BotoxFaceMap';
+import FloatingCart from '@/components/treatments/FloatingCart';
 import { BOTOX_ZONES } from '@/lib/data/botox-zones';
 import { EASE_PREMIUM } from '@/lib/motion';
 
@@ -476,6 +477,20 @@ export default function BotoxPageClient() {
 
       {/* ═══ 9. BOTTOM CTA ═════════════════════════════ */}
       <BottomCta />
+
+      {/* Floating Cart */}
+      <FloatingCart
+        zones={BOTOX_ZONES}
+        selectedZones={selectedZones}
+        onRemove={removeZone}
+        onProceed={() => {
+          setStep('date');
+          setTimeout(() => {
+            document.getElementById('date-select')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }}
+        namespace="botox_page"
+      />
     </>
   );
 }
