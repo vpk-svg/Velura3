@@ -3,22 +3,31 @@
 import { useRef, useState, useCallback, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useLocale } from 'next-intl';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Container from './ui/Container';
 import SectionHeader from './ui/SectionHeader';
 import { EASE_PREMIUM } from '@/lib/motion';
 
-/* Before/after pairs – replace placeholder colors with real images when available */
+interface BeforeAfterItem {
+  id: string;
+  labelNl: string;
+  labelEn: string;
+  beforeImage?: string;
+  afterImage?: string;
+}
+
+/* Before/after pairs – placeholders remain for items without dedicated images */
 const BA_ITEMS = [
   { id: 'botox-forehead', labelNl: 'Botox Voorhoofd', labelEn: 'Botox Forehead' },
   { id: 'lip-fillers', labelNl: 'Lipfillers', labelEn: 'Lip Fillers' },
   { id: 'jawline-fillers', labelNl: 'Kaaklijn Fillers', labelEn: 'Jawline Fillers' },
   { id: 'cheek-fillers', labelNl: 'Wangen Fillers', labelEn: 'Cheek Fillers' },
   { id: 'bbl', labelNl: 'BBL Behandeling', labelEn: 'BBL Treatment' },
-  { id: 'weight-loss', labelNl: 'Gewichtsverlies', labelEn: 'Weight Loss' },
-];
+  { id: 'weight-loss', labelNl: 'Gewichtsverlies', labelEn: 'Weight Loss', beforeImage: '/before.webp', afterImage: '/after.webp' },
+] as const satisfies readonly BeforeAfterItem[];
 
-function SliderCard({ item, locale }: { item: typeof BA_ITEMS[number]; locale: string }) {
+function SliderCard({ item, locale }: { item: BeforeAfterItem; locale: string }) {
   const [sliderPos, setSliderPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
@@ -47,6 +56,7 @@ function SliderCard({ item, locale }: { item: typeof BA_ITEMS[number]; locale: s
   }, []);
 
   const label = locale === 'nl' ? item.labelNl : item.labelEn;
+  const hasRealImages = Boolean(item.beforeImage && item.afterImage);
 
   return (
     <div className="snap-start shrink-0 w-[300px] md:w-[360px]">
@@ -63,16 +73,54 @@ function SliderCard({ item, locale }: { item: typeof BA_ITEMS[number]; locale: s
         aria-valuemax={100}
       >
         {/* "After" side (full background) */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/5 to-secondary/30 flex items-center justify-center">
-          <span className="font-sans text-xs uppercase tracking-[0.2em] text-primary/60 font-bold">After</span>
+        <div className="absolute inset-0">
+          {hasRealImages ? (
+            <Image
+              src={item.afterImage!}
+              alt={`${label} after resultaat`}
+              fill
+              loading="lazy"
+              sizes="(max-width: 768px) 300px, 360px"
+              className="object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/5 to-secondary/30 flex items-center justify-center">
+              <span className="font-sans text-xs uppercase tracking-[0.2em] text-primary/60 font-bold">After</span>
+            </div>
+          )}
+
+          {hasRealImages && (
+            <div className="absolute bottom-4 right-4 px-4 py-1.5 rounded-pill bg-primary/90 text-white font-sans text-xs uppercase tracking-[0.16em] font-bold shadow-soft-md">
+              After
+            </div>
+          )}
         </div>
 
         {/* "Before" side (clipped) */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-secondary/40 via-secondary/20 to-secondary/60 flex items-center justify-center"
+          className="absolute inset-0"
           style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
         >
-          <span className="font-sans text-xs uppercase tracking-[0.2em] text-white/60 font-bold">Before</span>
+          {hasRealImages ? (
+            <Image
+              src={item.beforeImage!}
+              alt={`${label} before resultaat`}
+              fill
+              loading="lazy"
+              sizes="(max-width: 768px) 300px, 360px"
+              className="object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-secondary/40 via-secondary/20 to-secondary/60 flex items-center justify-center">
+              <span className="font-sans text-xs uppercase tracking-[0.2em] text-white/60 font-bold">Before</span>
+            </div>
+          )}
+
+          {hasRealImages && (
+            <div className="absolute bottom-4 left-4 px-4 py-1.5 rounded-pill bg-secondary/80 text-white font-sans text-xs uppercase tracking-[0.16em] font-bold shadow-soft-md">
+              Before
+            </div>
+          )}
         </div>
 
         {/* Slider handle */}
