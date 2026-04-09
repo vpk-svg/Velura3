@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -15,18 +15,40 @@ import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import Testimonials from '@/components/Testimonials';
 import BottomCta from '@/components/BottomCta';
 import BotoxFaceMap from '@/components/BotoxFaceMap';
-import FloatingCart from '@/components/treatments/FloatingCart';
 import { BOTOX_ZONES } from '@/lib/data/botox-zones';
 import { EASE_PREMIUM } from '@/lib/motion';
+import { useCart } from '@/lib/cart-context';
 
 export default function BotoxPageClient() {
   const t = useTranslations('botox_page');
   const locale = useLocale();
+  const cart = useCart();
   const [selectedZones, setSelectedZones] = useState<string[]>([]);
   const [step, setStep] = useState<'select' | 'date' | 'details' | 'done'>('select');
   const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  /* Sync local selections to global cart */
+  useEffect(() => {
+    const currentBotoxIds = cart.getItemsByType('botox').map((i) => i.id);
+    // Add new selections
+    for (const zoneId of selectedZones) {
+      if (!currentBotoxIds.includes(zoneId)) {
+        const zone = BOTOX_ZONES.find((z) => z.id === zoneId);
+        if (zone) {
+          cart.addItem({ id: zone.id, type: 'botox', nameKey: zone.nameKey, namespace: 'botox_page', priceCents: zone.priceCents });
+        }
+      }
+    }
+    // Remove deselected
+    for (const id of currentBotoxIds) {
+      if (!selectedZones.includes(id)) {
+        cart.removeItem(id);
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedZones]);
 
   const toggleZone = useCallback((zoneId: string) => {
     setSelectedZones((prev) => {
@@ -507,20 +529,6 @@ export default function BotoxPageClient() {
 
       {/* ═══ 9. BOTTOM CTA ═════════════════════════════ */}
       <BottomCta />
-
-      {/* Floating Cart */}
-      <FloatingCart
-        zones={BOTOX_ZONES}
-        selectedZones={selectedZones}
-        onRemove={removeZone}
-        onProceed={() => {
-          setStep('date');
-          setTimeout(() => {
-            document.getElementById('date-select')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 100);
-        }}
-        namespace="botox_page"
-      />
     </>
   );
 }

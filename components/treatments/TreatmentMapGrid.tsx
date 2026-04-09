@@ -81,13 +81,18 @@ function InfoModal({
     };
   }, [onClose]);
 
+  const handleCloseModal = useCallback(() => {
+    document.body.style.overflow = '';
+    onClose();
+  }, [onClose]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-[10002] flex items-center justify-center bg-secondary/60 px-4 py-8 backdrop-blur-sm"
-      onClick={onClose}
+      onClick={handleCloseModal}
       data-no-custom-cursor="true"
       style={{ cursor: 'auto' }}
     >
@@ -101,7 +106,7 @@ function InfoModal({
       >
         <button
           type="button"
-          onClick={onClose}
+          onClick={handleCloseModal}
           className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-secondary/15 bg-secondary/5 text-secondary/60 hover:bg-secondary/10 hover:text-secondary transition-colors duration-200 cursor-pointer"
           aria-label="Sluiten"
         >
@@ -142,8 +147,8 @@ function InfoModal({
               onClick={() => {
                 if (!isInCart) {
                   onAddToCart(zone.id);
-                  onClose();
                 }
+                handleCloseModal();
               }}
               disabled={isInCart}
               className={`flex items-center justify-center w-11 h-11 rounded-full border-2 transition-all duration-200 ${

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion, type Variants } from 'motion/react';
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
@@ -31,18 +31,34 @@ import { FILLERS_ZONES } from '@/lib/data/fillers-zones';
 import { EASE_PREMIUM } from '@/lib/motion';
 import TreatmentCatalog from '@/components/treatments/TreatmentCatalog';
 import TreatmentMapGrid from '@/components/treatments/TreatmentMapGrid';
-import FloatingCart from '@/components/treatments/FloatingCart';
 import BookingSlotSelector from '@/components/booking/BookingSlotSelector';
 import { getFillerTreatments, type Locale } from '@/lib/clinic-data';
+import { useCart } from '@/lib/cart-context';
 
 export default function FillersPage() {
   const t = useTranslations('fillers_page');
   const locale = useLocale() as Locale;
+  const cart = useCart();
   const fillerTreatments = getFillerTreatments(locale);
   const [selectedZones, setSelectedZones] = useState<string[]>([]);
   const [step, setStep] = useState<'select' | 'date' | 'details' | 'done'>('select');
   const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  /* Sync local selections to global cart */
+  useEffect(() => {
+    const currentIds = cart.getItemsByType('fillers').map((i) => i.id);
+    for (const zoneId of selectedZones) {
+      if (!currentIds.includes(zoneId)) {
+        const zone = FILLERS_ZONES.find((z) => z.id === zoneId);
+        if (zone) cart.addItem({ id: zone.id, type: 'fillers', nameKey: zone.nameKey, namespace: 'fillers_page', priceCents: zone.priceCents });
+      }
+    }
+    for (const id of currentIds) {
+      if (!selectedZones.includes(id)) cart.removeItem(id);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedZones]);
 
   const toggleZone = useCallback((zoneId: string) => {
     setSelectedZones((prev) =>
@@ -716,19 +732,7 @@ export default function FillersPage() {
         </Container>
       </section>
 
-      {/* Floating Cart */}
-      <FloatingCart
-        zones={FILLERS_ZONES}
-        selectedZones={selectedZones}
-        onRemove={removeZone}
-        onProceed={() => {
-          setStep('date');
-          setTimeout(() => {
-            document.getElementById('date-select')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 100);
-        }}
-        namespace="fillers_page"
-      />
+      {/* Removed per-page FloatingCart — using global GlobalFloatingCart in layout */}
     </main>
   );
 }

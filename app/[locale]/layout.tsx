@@ -13,6 +13,8 @@ import StickyMobileActions from '@/components/StickyMobileActions';
 import CookieBanner from '@/components/CookieBanner';
 import Analytics from '@/components/Analytics';
 import { SurveyProvider } from '@/components/survey/SurveyFlow';
+import { CartProvider } from '@/lib/cart-context';
+import GlobalFloatingCart from '@/components/GlobalFloatingCart';
 import { routing } from '@/lib/i18n';
 
 const cormorant = Cormorant_Garamond({
@@ -121,6 +123,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col cursor-dot-active">
         <NextIntlClientProvider messages={messages} locale={resolvedParams.locale}>
+          <CartProvider>
           <SurveyProvider>
             <a href="#main-content" className="skip-link">
               Skip to main content
@@ -135,9 +138,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             <AiChatbot />
             <SocialProofPopup />
             <StickyMobileActions />
+            <GlobalFloatingCart />
             <CookieBanner />
             <Analytics />
           </SurveyProvider>
+          </CartProvider>
         </NextIntlClientProvider>
       </body>
     </html>

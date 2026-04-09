@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion, type Variants } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
@@ -18,9 +18,9 @@ import { SHAPE_TREATMENTS, SHAPE_VARIANTS_FLAT } from '@/lib/data/shape-treatmen
 import { FAQ_ITEMS, type FaqItem } from '@/lib/data/faq';
 import { EASE_PREMIUM } from '@/lib/motion';
 import TreatmentMapGrid from '@/components/treatments/TreatmentMapGrid';
-import FloatingCart from '@/components/treatments/FloatingCart';
 import BookingSlotSelector from '@/components/booking/BookingSlotSelector';
 import DetailsForm, { type DetailsFormData } from '@/components/treatments/DetailsForm';
+import { useCart } from '@/lib/cart-context';
 
 /* ── Lucide icon map (replaces Material Symbols dependency) ── */
 const BENEFIT_ICONS: Record<string, React.ReactNode> = {
@@ -51,6 +51,7 @@ const CANDIDATE_CHECKS = ['bmi', 'age', 'health', 'expectations', 'nonsmoker'] a
 export default function ShapePage() {
   const t = useTranslations('shape_page');
   const locale = useLocale() as 'nl' | 'en';
+  const cart = useCart();
   const [openFaq, setOpenFaq] = useState<string | null>(null);
   const [selectedVariants, setSelectedVariants] = useState<string[]>([]);
   const [step, setStep] = useState<'select' | 'date' | 'details' | 'done'>('select');
@@ -58,6 +59,21 @@ export default function ShapePage() {
   const [isLoading, setIsLoading] = useState(false);
 
   const shapeFaqs: FaqItem[] = FAQ_ITEMS.filter((item) => item.category === 'shape');
+
+  /* Sync local selections to global cart */
+  useEffect(() => {
+    const currentIds = cart.getItemsByType('shape').map((i) => i.id);
+    for (const variantId of selectedVariants) {
+      if (!currentIds.includes(variantId)) {
+        const variant = SHAPE_VARIANTS_FLAT.find((v) => v.id === variantId);
+        if (variant) cart.addItem({ id: variant.id, type: 'shape', nameKey: variant.nameKey, namespace: 'shape_page', priceCents: variant.priceCents });
+      }
+    }
+    for (const id of currentIds) {
+      if (!selectedVariants.includes(id)) cart.removeItem(id);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedVariants]);
 
   const addToCart = useCallback((variantId: string) => {
     setSelectedVariants((prev) => {
@@ -809,19 +825,7 @@ export default function ShapePage() {
         </Container>
       </section>
 
-      {/* Floating Cart */}
-      <FloatingCart
-        zones={SHAPE_VARIANTS_FLAT}
-        selectedZones={selectedVariants}
-        onRemove={removeFromCart}
-        onProceed={() => {
-          setStep('date');
-          setTimeout(() => {
-            document.getElementById('date-select')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 100);
-        }}
-        namespace="shape_page"
-      />
+      {/* Removed per-page FloatingCart — using global GlobalFloatingCart in layout */}
     </>
   );
 }

@@ -6,12 +6,14 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import Container from './ui/Container';
-import { ShieldCheck, Info, Thermometer, ChevronDown, ArrowRight, HelpCircle } from 'lucide-react';
+import { ShieldCheck, Info, Thermometer, ChevronDown, ArrowRight, HelpCircle, Plus, Check } from 'lucide-react';
 import { EASE_PREMIUM } from '@/lib/motion';
+import { useCart } from '@/lib/cart-context';
 
 export default function ProductShop() {
   const t = useTranslations('shop');
   const tMed = useTranslations('medicatie_page');
+  const cart = useCart();
   const [expandedProduct, setExpandedProduct] = useState<string | null>(null);
   const products = [
     {
@@ -261,6 +263,35 @@ export default function ProductShop() {
                   >
                     {t('cta')} <ArrowRight size={14} />
                   </ConsultTrigger>
+
+                  {/* Add to cart */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (!cart.hasItem(product.id)) {
+                        cart.addItem({
+                          id: product.id,
+                          type: 'medicatie',
+                          nameKey: `${product.id}_name`,
+                          namespace: 'shop',
+                          priceCents: product.priceCents,
+                        });
+                      } else {
+                        cart.removeItem(product.id);
+                      }
+                    }}
+                    className={`w-full mt-3 py-3 rounded-full font-sans text-[11px] tracking-[0.15em] uppercase transition-all duration-300 flex items-center justify-center gap-2 font-semibold border cursor-pointer ${
+                      cart.hasItem(product.id)
+                        ? 'border-green-500 bg-green-50 text-green-700'
+                        : 'border-secondary/15 text-secondary/60 hover:border-primary hover:text-primary'
+                    }`}
+                  >
+                    {cart.hasItem(product.id) ? (
+                      <><Check size={14} /> {tMed.has('added_to_cart') ? tMed('added_to_cart') : 'Toegevoegd'}</>
+                    ) : (
+                      <><Plus size={14} /> {tMed.has('add_to_cart') ? tMed('add_to_cart') : 'Toevoegen aan selectie'}</>
+                    )}
+                  </button>
                 </div>
               </motion.article>
             ))}
