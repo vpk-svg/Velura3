@@ -1,17 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import CheckoutButton from './CheckoutButton';
 import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import Container from './ui/Container';
-import { ShieldCheck, AlertTriangle, Thermometer } from 'lucide-react';
+import { ShieldCheck, Info, Thermometer, ChevronDown, ArrowRight, HelpCircle } from 'lucide-react';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function ProductShop() {
   const t = useTranslations('shop');
   const tMed = useTranslations('medicatie_page');
+  const [expandedProduct, setExpandedProduct] = useState<string | null>(null);
   const products = [
     {
       id: 'ozempic',
@@ -23,6 +24,7 @@ export default function ProductShop() {
       price: '€199',
       priceCents: 19900,
       badge: 'Rx',
+      productBadge: t('ozempic_badge'),
       imgSrc: '/images/products/ozempic.webp',
       gradient: 'bg-[radial-gradient(circle_at_center,#3B2A23,#1e1b14)]',
       detailTitle: tMed('detail_ozempic_title'),
@@ -60,6 +62,7 @@ export default function ProductShop() {
       price: '€249',
       priceCents: 24900,
       badge: 'Rx',
+      productBadge: t('wegovy_badge'),
       imgSrc: '/images/products/wegovy.webp',
       gradient: 'bg-[radial-gradient(circle_at_center,#3B2A23,#1e1b14)]',
       detailTitle: tMed('detail_wegovy_title'),
@@ -78,6 +81,7 @@ export default function ProductShop() {
       price: '€179',
       priceCents: 17900,
       badge: 'Rx',
+      productBadge: t('saxenda_badge'),
       imgSrc: '/images/products/saxenda.webp',
       gradient: 'bg-[radial-gradient(circle_at_center,#3B2A23,#1e1b14)]',
       detailTitle: tMed('detail_saxenda_title'),
@@ -143,6 +147,11 @@ export default function ProductShop() {
                       {product.topBadge}
                     </span>
                   )}
+                  {product.productBadge && !product.topBadge && (
+                    <span className="absolute top-5 right-5 z-10 font-sans text-secondary text-[10px] tracking-widest bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-pill uppercase font-semibold">
+                      {product.productBadge}
+                    </span>
+                  )}
                   <div className="relative w-full h-full drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)] opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-premium z-0">
                     <Image
                       src={product.imgSrc}
@@ -171,67 +180,112 @@ export default function ProductShop() {
                     {product.desc}
                   </p>
 
-                  {/* Medical Detail Card — separated benefits from risks */}
-                  <div className="mb-7 rounded-2xl border border-primary/10 bg-secondary/[0.02] p-4 space-y-4">
-                    <div className="flex items-center justify-between gap-3">
-                      <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-secondary/60 font-semibold">
-                        {product.detailTitle}
-                      </p>
-                      <span className="rounded-pill bg-primary/10 px-3 py-1 font-sans text-[10px] uppercase tracking-[0.18em] text-primary font-semibold">
-                        {product.detailFrequency}
+                  {/* Collapsible Medical Detail Card */}
+                  <div className="mb-7">
+                    <button
+                      type="button"
+                      onClick={() => setExpandedProduct(expandedProduct === product.id ? null : product.id)}
+                      className="w-full flex items-center justify-between rounded-2xl border border-primary/10 bg-secondary/[0.02] px-4 py-3 transition-colors hover:bg-secondary/[0.05]"
+                    >
+                      <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-secondary/60 font-semibold">
+                        {t('detail_toggle')}
                       </span>
-                    </div>
+                      <ChevronDown size={16} className={`text-primary transition-transform duration-300 ${expandedProduct === product.id ? 'rotate-180' : ''}`} />
+                    </button>
+                    <AnimatePresence>
+                      {expandedProduct === product.id && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: EASE_PREMIUM }}
+                          className="overflow-hidden"
+                        >
+                          <div className="rounded-b-2xl border border-t-0 border-primary/10 bg-secondary/[0.02] p-4 space-y-4">
+                            <div className="flex items-center justify-between gap-3">
+                              <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-secondary/60 font-semibold">
+                                {product.detailTitle}
+                              </p>
+                              <span className="rounded-pill bg-primary/10 px-3 py-1 font-sans text-[10px] uppercase tracking-[0.18em] text-primary font-semibold">
+                                {product.detailFrequency}
+                              </span>
+                            </div>
 
-                    {/* How it works — benefit */}
-                    <div className="flex gap-2.5 items-start">
-                      <ShieldCheck size={14} className="text-primary mt-0.5 shrink-0" aria-hidden="true" />
-                      <p className="font-sans text-xs leading-relaxed text-secondary/70">
-                        <strong className="text-secondary">{tMed('detail_tab_how')}:</strong>{' '}
-                        {product.detailHow}
-                      </p>
-                    </div>
+                            <div className="flex gap-2.5 items-start">
+                              <ShieldCheck size={14} className="text-primary mt-0.5 shrink-0" aria-hidden="true" />
+                              <p className="font-sans text-xs leading-relaxed text-secondary/70">
+                                <strong className="text-secondary">{tMed('detail_tab_how')}:</strong>{' '}
+                                {product.detailHow}
+                              </p>
+                            </div>
 
-                    {/* Divider between benefits and risks */}
-                    <div className="h-px bg-secondary/5" role="separator" />
+                            <div className="h-px bg-secondary/5" role="separator" />
 
-                    {/* Side effects — risk */}
-                    <div className="flex gap-2.5 items-start">
-                      <AlertTriangle size={14} className="text-amber-500 mt-0.5 shrink-0" aria-hidden="true" />
-                      <p className="font-sans text-xs leading-[1.7] text-secondary/65">
-                        <strong className="text-secondary">{tMed('detail_tab_side')}:</strong>{' '}
-                        {product.detailSide}
-                      </p>
-                    </div>
+                            <div className="flex gap-2.5 items-start">
+                              <Info size={14} className="text-secondary/40 mt-0.5 shrink-0" aria-hidden="true" />
+                              <div>
+                                <p className="font-sans text-[10px] text-secondary/40 mb-1">{t('side_effects_note')}</p>
+                                <p className="font-sans text-xs leading-[1.7] text-secondary/65">
+                                  <strong className="text-secondary">{tMed('detail_tab_side')}:</strong>{' '}
+                                  {product.detailSide}
+                                </p>
+                              </div>
+                            </div>
 
-                    {/* Storage — neutral info */}
-                    <div className="flex gap-2.5 items-start">
-                      <Thermometer size={14} className="text-secondary/40 mt-0.5 shrink-0" aria-hidden="true" />
-                      <p className="font-sans text-xs leading-relaxed text-secondary/55">
-                        <strong className="text-secondary/70">{tMed('detail_tab_storage')}:</strong>{' '}
-                        {product.detailStorage}
-                      </p>
-                    </div>
+                            <div className="flex gap-2.5 items-start">
+                              <Thermometer size={14} className="text-secondary/40 mt-0.5 shrink-0" aria-hidden="true" />
+                              <p className="font-sans text-xs leading-relaxed text-secondary/55">
+                                <strong className="text-secondary/70">{tMed('detail_tab_storage')}:</strong>{' '}
+                                {product.detailStorage}
+                              </p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
 
                   {/* Price */}
-                  <div className="flex items-end gap-2.5 mb-8">
+                  <div className="flex items-end gap-2.5 mb-2">
                     <span className="font-display text-4xl text-secondary leading-none">{product.price}</span>
                     <span className="font-sans font-semibold text-[10px] text-secondary/40 uppercase tracking-[0.2em] mb-1">
                       {t('per_month')}
                     </span>
                   </div>
+                  <p className="font-sans text-[11px] text-secondary/40 mb-8">{t('price_includes')}</p>
 
                   {/* CTA — route to consult, NOT direct checkout for Rx meds */}
                   <ConsultTrigger
                     from="medicatie"
-                    className="w-full py-5 rounded-full font-sans text-[11px] tracking-[0.2em] uppercase transition-all duration-500 flex items-center justify-center overflow-hidden font-semibold bg-primary text-white shadow-xl hover:shadow-primary/40 hover:-translate-y-1 active:scale-95 text-center"
+                    className="w-full py-5 rounded-full font-sans text-[11px] tracking-[0.2em] uppercase transition-all duration-500 flex items-center justify-center gap-2 overflow-hidden font-semibold bg-primary text-white shadow-xl hover:shadow-primary/40 hover:-translate-y-1 active:scale-95 text-center"
                   >
-                    {t('cta')}
+                    {t('cta')} <ArrowRight size={14} />
                   </ConsultTrigger>
                 </div>
               </motion.article>
             ))}
           </AnimatePresence>
+        </motion.div>
+
+        {/* Help Choosing Prompt */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: EASE_PREMIUM }}
+          className="mt-12 rounded-2xl border border-primary/10 bg-white p-8 flex flex-col sm:flex-row items-center gap-6 shadow-soft-sm"
+        >
+          <HelpCircle size={32} className="text-primary shrink-0" />
+          <div className="flex-1 text-center sm:text-left">
+            <p className="font-display text-lg text-secondary font-bold italic mb-1">{t('help_choose')}</p>
+            <p className="font-sans text-sm text-secondary/60">{t('help_choose_desc')}</p>
+          </div>
+          <ConsultTrigger
+            from="medicatie"
+            className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-8 py-4 font-sans text-[11px] tracking-[0.2em] uppercase font-semibold shadow-xl hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-500 whitespace-nowrap"
+          >
+            {t('help_choose_cta')} <ArrowRight size={14} />
+          </ConsultTrigger>
         </motion.div>
       </Container>
     </section>

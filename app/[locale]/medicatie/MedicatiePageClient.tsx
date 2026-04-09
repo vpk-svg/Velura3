@@ -18,7 +18,6 @@ import {
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ProductShop from '@/components/ProductShop';
-import TrustPillars from '@/components/TrustPillars';
 import PharmacyDisclaimer from '@/components/PharmacyDisclaimer';
 import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import { EASE_PREMIUM } from '@/lib/motion';
@@ -122,11 +121,11 @@ export default function MedicatiePage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3, ease: EASE_PREMIUM }}
-              className="inline-flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-pill px-6 py-3 mb-10"
+              className="inline-flex items-center gap-3 bg-white/10 border border-white/20 rounded-pill px-8 py-4 mb-10"
               role="status"
             >
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" aria-hidden="true" />
-              <span className="font-sans text-xs tracking-[0.15em] uppercase text-background-light/70 font-semibold">
+              <Pill size={16} className="text-primary" aria-hidden="true" />
+              <span className="font-sans text-xs tracking-[0.15em] uppercase text-background-light/80 font-semibold">
                 {t('rx_notice')}
               </span>
             </motion.div>
@@ -277,11 +276,6 @@ export default function MedicatiePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          TRUST PILLARS (existing component)
-          ═══════════════════════════════════════════════ */}
-      <TrustPillars />
-
-      {/* ═══════════════════════════════════════════════
           PHARMACY DISCLAIMER (existing component)
           ═══════════════════════════════════════════════ */}
       <PharmacyDisclaimer />
@@ -316,6 +310,7 @@ export default function MedicatiePage() {
             >
               {t('cta_button')} <ArrowRight size={14} aria-hidden="true" />
             </ConsultTrigger>
+            <p className="mt-4 font-sans text-sm text-secondary/40">{t('cta_social_proof')}</p>
           </motion.div>
         </Container>
       </section>

@@ -3,9 +3,10 @@
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { ShieldCheck } from 'lucide-react';
+import { ShieldCheck, Award, ArrowRight } from 'lucide-react';
 import Container from './ui/Container';
 import SectionHeader from './ui/SectionHeader';
+import ConsultTrigger from './consult/ConsultTrigger';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function TeamSection() {
@@ -16,36 +17,42 @@ export default function TeamSection() {
             name: t('member1_name'),
             role: t('member1_role'),
             big: t('member1_big'),
+            bio: t('member1_bio'),
             img: "/images/Newteam/Athina Barza.jpg",
         },
         {
             name: t('member2_name'),
             role: t('member2_role'),
             big: t('member2_big'),
+            bio: t('member2_bio'),
             img: "/images/Newteam/Ava.jpg",
         },
         {
             name: t('member3_name'),
             role: t('member3_role'),
             big: t('member3_big'),
+            bio: t('member3_bio'),
             img: "/images/Newteam/Elissa.jpg",
         },
         {
             name: t('member4_name'),
             role: t('member4_role'),
             big: t('member4_big'),
+            bio: t('member4_bio'),
             img: "/images/Newteam/Ryan.jpg",
         },
         {
             name: t('member5_name'),
             role: t('member5_role'),
             big: t('member5_big'),
+            bio: t('member5_bio'),
             img: "/images/Newteam/Mevlut.jpg",
         },
         {
             name: t('member6_name'),
             role: t('member6_role'),
             big: t('member6_big'),
+            bio: t('member6_bio'),
             img: "/images/Newteam/Fleur.jpg",
         },
     ];
@@ -78,17 +85,6 @@ export default function TeamSection() {
                                     loading="lazy"
                                     className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                                 />
-                                {member.hoverOverlay && (
-                                    <Image
-                                        src={member.hoverOverlay}
-                                        alt=""
-                                        fill
-                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                        loading="lazy"
-                                        aria-hidden="true"
-                                        className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                    />
-                                )}
                                 <div className="absolute inset-0 bg-secondary/20 mix-blend-multiply opacity-40 group-hover:opacity-0 transition-opacity duration-500" aria-hidden="true" />
                             </div>
                             <h3 className="font-display text-2xl md:text-3xl text-secondary mb-3 italic group-hover:text-primary transition-colors duration-300">
@@ -99,10 +95,25 @@ export default function TeamSection() {
                             </p>
                             {member.big && (
                                 <p className="inline-flex items-center gap-1.5 font-sans text-secondary/60 text-xs tracking-[0.05em] mt-3">
-                                    <ShieldCheck className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
+                                    {member.big.startsWith('BIG') || member.big.startsWith('BIG') ? (
+                                        <ShieldCheck className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
+                                    ) : (
+                                        <Award className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
+                                    )}
                                     {member.big}
                                 </p>
                             )}
+                            {member.bio && (
+                                <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed mt-4 max-w-xs">
+                                    {member.bio}
+                                </p>
+                            )}
+                            <ConsultTrigger
+                                from="other"
+                                className="inline-flex items-center gap-2 font-sans text-xs text-primary font-semibold uppercase tracking-wider mt-5 hover:gap-3 transition-all"
+                            >
+                                {t('cta_book', { name: member.name.split(' ')[0] })} <ArrowRight size={14} />
+                            </ConsultTrigger>
                         </motion.li>
                     ))}
                 </ul>

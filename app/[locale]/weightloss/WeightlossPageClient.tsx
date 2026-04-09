@@ -1,10 +1,11 @@
 'use client';
 
-import { motion, type Variants } from 'motion/react';
+import { motion, type Variants, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ShieldCheck, ArrowRight, Star } from 'lucide-react';
+import { useState } from 'react';
+import { ShieldCheck, ArrowRight, Star, Stethoscope, RefreshCw, HeartPulse, Truck, ChevronDown } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ProgramTimeline from '@/components/ProgramTimeline';
@@ -25,6 +26,10 @@ const PRODUCTS = PRODUCT_KEYS.map((key) => ({
 export default function WeightlossPage() {
   const t = useTranslations('weightloss_page');
   const tMed = useTranslations('medicatie_page');
+  const tShop = useTranslations('shop');
+  const [expandedProduct, setExpandedProduct] = useState<string | null>(null);
+
+  const uspIcons = [Stethoscope, RefreshCw, HeartPulse, Truck];
 
   const usps = [
     t('usp1'),
@@ -99,23 +104,23 @@ export default function WeightlossPage() {
               </ConsultTrigger>
               <Link
                 href="#producten"
-                className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-sm tracking-[0.3em] border-2 border-background-light/30 text-background-light hover:border-primary hover:text-primary transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 font-sans uppercase font-semibold text-xs tracking-[0.2em] text-background-light/70 hover:text-primary transition-colors duration-300"
               >
-                {t('hero_cta_products')}
+                {t('hero_cta_products')} <ArrowRight size={14} />
               </Link>
             </motion.div>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.3, ease: EASE_PREMIUM }}
-              className="mt-8 flex items-center gap-3 text-background-light/50"
+              className="mt-8 inline-flex items-center gap-3 bg-white/10 rounded-pill px-6 py-2.5"
             >
               <div className="flex text-primary" aria-hidden="true">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3.5 h-3.5 fill-current" />
                 ))}
               </div>
-              <span className="font-sans text-xs tracking-wide">{t('hero_social_proof')}</span>
+              <span className="font-sans text-xs tracking-wide text-background-light/80">{t('hero_social_proof')}</span>
             </motion.div>
           </div>
         </Container>
@@ -159,20 +164,42 @@ export default function WeightlossPage() {
                 <p className="font-sans text-sm text-secondary/60 leading-relaxed mb-4 flex-grow">
                   {t(`product_${product.key}_desc`)}
                 </p>
-                <div className="mb-4 rounded-2xl border border-primary/10 bg-secondary/[0.02] p-4">
-                  <div className="flex items-center justify-between gap-3 mb-3">
-                    <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-secondary/60 font-semibold">
-                      {tMed(`detail_${product.key}_title`)}
-                    </p>
-                    <span className="rounded-pill bg-primary/10 px-3 py-1 font-sans text-[10px] uppercase tracking-[0.18em] text-primary font-semibold">
-                      {tMed(`detail_${product.key}_frequency`)}
+                <div className="mb-4">
+                  <button
+                    type="button"
+                    onClick={() => setExpandedProduct(expandedProduct === product.key ? null : product.key)}
+                    className="w-full flex items-center justify-between rounded-2xl border border-primary/10 bg-secondary/[0.02] px-4 py-3 transition-colors hover:bg-secondary/[0.05]"
+                  >
+                    <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-secondary/60 font-semibold">
+                      {tShop('detail_toggle')}
                     </span>
-                  </div>
-                  <div className="space-y-2.5">
-                    <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_how')}:</span> {tMed(`detail_${product.key}_how`)}</p>
-                    <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_side')}:</span> {tMed(`detail_${product.key}_side`)}</p>
-                    <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_storage')}:</span> {tMed(`detail_${product.key}_storage`)}</p>
-                  </div>
+                    <ChevronDown size={16} className={`text-primary transition-transform duration-300 ${expandedProduct === product.key ? 'rotate-180' : ''}`} />
+                  </button>
+                  <AnimatePresence>
+                    {expandedProduct === product.key && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: EASE_PREMIUM }}
+                        className="overflow-hidden"
+                      >
+                        <div className="rounded-b-2xl border border-t-0 border-primary/10 bg-secondary/[0.02] p-4 space-y-2.5">
+                          <div className="flex items-center justify-between gap-3 mb-1">
+                            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-secondary/60 font-semibold">
+                              {tMed(`detail_${product.key}_title`)}
+                            </p>
+                            <span className="rounded-pill bg-primary/10 px-3 py-1 font-sans text-[10px] uppercase tracking-[0.18em] text-primary font-semibold">
+                              {tMed(`detail_${product.key}_frequency`)}
+                            </span>
+                          </div>
+                          <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_how')}:</span> {tMed(`detail_${product.key}_how`)}</p>
+                          <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_side')}:</span> {tMed(`detail_${product.key}_side`)}</p>
+                          <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_storage')}:</span> {tMed(`detail_${product.key}_storage`)}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
                 <div className="flex items-center justify-between mt-auto pt-4 border-t border-secondary/5">
                   <span className="font-display text-2xl text-primary font-semibold">{product.price}<span className="text-sm font-sans font-light text-secondary/50">/mnd</span></span>
@@ -219,7 +246,9 @@ export default function WeightlossPage() {
                 align="left"
               />
               <ul className="space-y-5">
-                {usps.map((item, idx) => (
+                {usps.map((item, idx) => {
+                  const UspIcon = uspIcons[idx];
+                  return (
                   <motion.li
                     key={idx}
                     initial={{ opacity: 0, x: -20 }}
@@ -228,10 +257,11 @@ export default function WeightlossPage() {
                     transition={{ delay: 0.1 + idx * 0.12, ease: EASE_PREMIUM }}
                     className="flex items-start gap-4"
                   >
-                    <ShieldCheck className="w-5 h-5 text-primary mt-0.5 shrink-0" strokeWidth={1.5} />
+                    <UspIcon className="w-5 h-5 text-primary mt-0.5 shrink-0" strokeWidth={1.5} />
                     <span className="font-sans font-light text-secondary/70 text-base md:text-lg leading-relaxed">{item}</span>
                   </motion.li>
-                ))}
+                  );
+                })}
               </ul>
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
@@ -240,8 +270,8 @@ export default function WeightlossPage() {
                 transition={{ delay: 0.6, ease: EASE_PREMIUM }}
                 className="mt-8"
               >
-                <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-4 text-xs tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
-                  {t('why_cta')}
+                <ConsultTrigger className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-xs tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+                  {t('why_cta')} <ArrowRight size={14} />
                 </ConsultTrigger>
               </motion.div>
             </div>
@@ -250,7 +280,7 @@ export default function WeightlossPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-section-y bg-secondary overflow-hidden">
+      <section className="py-section-y bg-background-light border-t border-secondary/5 overflow-hidden">
         <Container>
           <div className="text-center max-w-3xl mx-auto">
             <motion.span
@@ -267,7 +297,7 @@ export default function WeightlossPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
-              className="font-display text-display-lg text-background-light mb-6"
+              className="font-display text-display-lg text-secondary mb-6"
             >
               {t('cta_title')}
             </motion.h2>
@@ -276,7 +306,7 @@ export default function WeightlossPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-              className="font-sans font-light text-background-light/70 text-lg md:text-xl leading-relaxed mb-10"
+              className="font-sans font-light text-secondary/70 text-lg md:text-xl leading-relaxed mb-10"
             >
               {t('cta_desc')}
             </motion.p>
@@ -285,10 +315,19 @@ export default function WeightlossPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
+              className="flex flex-col items-center gap-4"
             >
-              <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
-                {t('cta_button')}
+              <ConsultTrigger className="inline-flex items-center justify-center gap-2.5 rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+                {t('cta_button')} <ArrowRight size={14} />
               </ConsultTrigger>
+              <div className="flex items-center gap-2">
+                <div className="flex text-primary" aria-hidden="true">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3 h-3 fill-current" />
+                  ))}
+                </div>
+                <span className="font-sans text-xs text-secondary/50">{t('cta_social_proof')}</span>
+              </div>
             </motion.div>
           </div>
         </Container>

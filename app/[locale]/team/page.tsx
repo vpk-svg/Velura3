@@ -1,20 +1,20 @@
 import type { Metadata } from 'next';
 import TeamSection from '@/components/TeamSection';
-import HowItWorks from '@/components/HowItWorks';
-import TrustPillars from '@/components/TrustPillars';
+import TeamTrustPillars from '@/components/TeamTrustPillars';
+import TeamBottomCta from '@/components/TeamBottomCta';
 
 export const metadata: Metadata = {
-  title: 'Ons Team | Fab Clinic',
+  title: 'Ons Team — BIG-Geregistreerde Cosmetische Artsen | FAB Clinic',
   description:
-    'Maak kennis met de BIG-geregistreerde artsen en specialisten van Fab Clinic.',
+    'Maak kennis met ons team van BIG-geregistreerde cosmetische artsen en specialisten. Persoonlijke begeleiding bij afvallen, botox & fillers.',
 };
 
 export default function TeamPage() {
   return (
     <main className="pt-32">
       <TeamSection />
-      <HowItWorks />
-      <TrustPillars />
+      <TeamTrustPillars />
+      <TeamBottomCta />
     </main>
   );
 }
