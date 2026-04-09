@@ -30,7 +30,7 @@ export default function FullWidthHeaderImage() {
             {/* Parallax background */}
             <motion.div style={{ scale, y }} className="absolute inset-0 z-0">
                 <Image
-                    src="/images/hero-atmos.webp"
+                    src="/images/spares/f41827a0-e243-47b5-8a11-3e354b930092.jpg"
                     alt="FAB Clinic - The Skin Centre"
                     fill
                     priority
