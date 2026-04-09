@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { X, ArrowRight } from 'lucide-react';
+import { X, ArrowRight, Plus, Check } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { EASE_PREMIUM } from '@/lib/motion';
@@ -82,10 +82,14 @@ function InfoModal({
   zone,
   t,
   onClose,
+  onAddToCart,
+  isInCart,
 }: {
   zone: FaceMapZone;
   t: ReturnType<typeof useTranslations>;
   onClose: () => void;
+  onAddToCart?: (zoneId: string) => void;
+  isInCart?: boolean;
 }) {
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -146,13 +150,30 @@ function InfoModal({
           {t(zone.extraKey)}
         </p>
 
-        <div className="flex items-end gap-3 p-4 bg-primary/5 rounded-xl border border-primary/10">
-          <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-semibold">
-            {t('facemap_price_from')}
-          </span>
-          <span className="font-display text-3xl font-bold text-primary">
-            {t(zone.priceKey)}
-          </span>
+        <div className="flex items-center justify-between p-4 bg-primary/5 rounded-xl border border-primary/10">
+          <div className="flex items-end gap-3">
+            <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-semibold">
+              {t('facemap_price_from')}
+            </span>
+            <span className="font-display text-3xl font-bold text-primary">
+              {t(zone.priceKey)}
+            </span>
+          </div>
+          {onAddToCart && (
+            <button
+              type="button"
+              onClick={() => onAddToCart(zone.id)}
+              disabled={isInCart}
+              className={`flex items-center justify-center w-11 h-11 rounded-full border-2 transition-all duration-200 ${
+                isInCart
+                  ? 'border-green-500 bg-green-50 text-green-600'
+                  : 'border-primary bg-white text-primary hover:bg-primary hover:text-white shadow-soft-sm hover:shadow-gold-glow active:scale-95'
+              }`}
+              aria-label={isInCart ? 'Toegevoegd' : 'Toevoegen aan winkelwagen'}
+            >
+              {isInCart ? <Check size={20} strokeWidth={2.5} /> : <Plus size={20} strokeWidth={2.5} />}
+            </button>
+          )}
         </div>
       </motion.div>
     </motion.div>
@@ -161,9 +182,11 @@ function InfoModal({
 
 interface BotoxFaceMapProps {
   activeExternalZoneId?: string | null;
+  onAddToCart?: (zoneId: string) => void;
+  cartZoneIds?: string[];
 }
 
-export default function BotoxFaceMap({ activeExternalZoneId }: BotoxFaceMapProps = {}) {
+export default function BotoxFaceMap({ activeExternalZoneId, onAddToCart, cartZoneIds = [] }: BotoxFaceMapProps = {}) {
   const t = useTranslations('botox_page');
   const [activeZone, setActiveZone] = useState<FaceMapZone | null>(null);
 
@@ -227,7 +250,7 @@ export default function BotoxFaceMap({ activeExternalZoneId }: BotoxFaceMapProps
       </Container>
 
       <AnimatePresence>
-        {activeZone && <InfoModal zone={activeZone} t={t} onClose={handleClose} />}
+        {activeZone && <InfoModal zone={activeZone} t={t} onClose={handleClose} onAddToCart={onAddToCart} isInCart={cartZoneIds.includes(activeZone.id)} />}
       </AnimatePresence>
     </section>
   );

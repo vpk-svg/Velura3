@@ -7,9 +7,10 @@ import { generateSaturdaySlots, type BookingSlot, type Locale } from '@/lib/clin
 interface BookingSlotSelectorProps {
   locale: Locale;
   treatmentName: string;
+  onSlotSelect?: (slotId: string | null) => void;
 }
 
-export default function BookingSlotSelector({ locale, treatmentName }: BookingSlotSelectorProps) {
+export default function BookingSlotSelector({ locale, treatmentName, onSlotSelect }: BookingSlotSelectorProps) {
   const slots = useMemo(() => generateSaturdaySlots(), []);
   const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
 
@@ -36,7 +37,12 @@ export default function BookingSlotSelector({ locale, treatmentName }: BookingSl
             <button
               key={slot.id}
               type="button"
-              onClick={() => slot.isAvailable && setSelectedSlotId(slot.id)}
+              onClick={() => {
+                if (slot.isAvailable) {
+                  setSelectedSlotId(slot.id);
+                  onSlotSelect?.(slot.id);
+                }
+              }}
               disabled={!slot.isAvailable}
               className={`rounded-2xl border px-3 py-3 text-left transition-all duration-200 ${
                 slot.isAvailable

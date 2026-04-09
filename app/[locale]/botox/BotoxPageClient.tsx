@@ -10,6 +10,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import ZoneSelector from '@/components/treatments/ZoneSelector';
 import TreatmentCart from '@/components/treatments/TreatmentCart';
 import DetailsForm, { type DetailsFormData } from '@/components/treatments/DetailsForm';
+import BookingSlotSelector from '@/components/booking/BookingSlotSelector';
 import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import Testimonials from '@/components/Testimonials';
 import BottomCta from '@/components/BottomCta';
@@ -21,7 +22,8 @@ export default function BotoxPageClient() {
   const t = useTranslations('botox_page');
   const locale = useLocale();
   const [selectedZones, setSelectedZones] = useState<string[]>([]);
-  const [step, setStep] = useState<'select' | 'details' | 'done'>('select');
+  const [step, setStep] = useState<'select' | 'date' | 'details' | 'done'>('select');
+  const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -34,6 +36,17 @@ export default function BotoxPageClient() {
 
   const removeZone = useCallback((zoneId: string) => {
     setSelectedZones((prev) => prev.filter((z) => z !== zoneId));
+  }, []);
+
+  const addToCartAndScroll = useCallback((zoneId: string) => {
+    setSelectedZones((prev) => {
+      if (prev.includes(zoneId)) return prev;
+      return [...prev, zoneId];
+    });
+    // Scroll to cart section after a brief delay for state to update
+    setTimeout(() => {
+      document.getElementById('zones')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
   }, []);
 
   const handleDetailsSubmit = useCallback(async (data: DetailsFormData) => {
@@ -49,6 +62,7 @@ export default function BotoxPageClient() {
           treatmentType: 'botox',
           zones: selectedItems.map((z) => ({ id: z.id, name: t(z.nameKey), priceCents: z.priceCents })),
           customerDetails: data,
+          selectedSlotId,
           locale,
         }),
       });
@@ -165,7 +179,7 @@ export default function BotoxPageClient() {
       </section>
 
       {/* ═══ 1b. TREATMENT MAP ════════════════════════ */}
-      <BotoxFaceMap />
+      <BotoxFaceMap onAddToCart={addToCartAndScroll} cartZoneIds={selectedZones} />
 
       {/* ═══ 2. TRUST INDICATORS + QUICK INFO ══════════ */}
       <section className="py-section-y bg-background-light overflow-hidden" aria-label={t('trust_label')}>
@@ -311,7 +325,7 @@ export default function BotoxPageClient() {
                 <motion.button
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  onClick={() => setStep('details')}
+                  onClick={() => setStep('date')}
                   className="w-full inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
                 >
                   {t('proceed_to_details')}
@@ -321,6 +335,39 @@ export default function BotoxPageClient() {
           </div>
         </Container>
       </section>
+
+      {/* ═══ 4b. DATE SELECTION ═════════════════════ */}
+      {step === 'date' && (
+        <section className="py-section-y bg-page-botox overflow-hidden" id="date-select">
+          <Container>
+            <div className="max-w-xl mx-auto">
+              <SectionHeader
+                label={locale === 'nl' ? 'Datum kiezen' : 'Choose date'}
+                title={<>{locale === 'nl' ? 'Kies uw ' : 'Choose your '}<span className="italic font-light text-primary">{locale === 'nl' ? 'zaterdag' : 'Saturday'}</span></>}
+              />
+              <div className="glass rounded-2xl border border-primary/10 p-8 md:p-10 shadow-soft-lg">
+                <BookingSlotSelector
+                  locale={locale as 'nl' | 'en'}
+                  treatmentName={selectedZones.map((id) => {
+                    const z = BOTOX_ZONES.find((bz) => bz.id === id);
+                    return z ? t(z.nameKey) : id;
+                  }).join(', ')}
+                  onSlotSelect={setSelectedSlotId}
+                />
+                <motion.button
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  disabled={!selectedSlotId}
+                  onClick={() => setStep('details')}
+                  className="mt-6 w-full inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97] disabled:opacity-40 disabled:pointer-events-none"
+                >
+                  {locale === 'nl' ? 'Ga verder' : 'Continue'}
+                </motion.button>
+              </div>
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* ═══ 5. DETAILS FORM ═══════════════════════════ */}
       {step === 'details' && (

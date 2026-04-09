@@ -43,6 +43,21 @@
     .cursor-dot-active * {
       cursor: none;
     }
+    /* Restore native cursor inside modals / overlays that opt out */
+    [data-no-custom-cursor],
+    [data-no-custom-cursor] *,
+    [data-no-custom-cursor] button,
+    [data-no-custom-cursor] a,
+    [data-no-custom-cursor] input,
+    [data-no-custom-cursor] textarea,
+    [data-no-custom-cursor] select {
+      cursor: auto !important;
+    }
+    [data-no-custom-cursor] button,
+    [data-no-custom-cursor] a,
+    [data-no-custom-cursor] [role="button"] {
+      cursor: pointer !important;
+    }
   }
 }
 
