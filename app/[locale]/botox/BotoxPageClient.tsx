@@ -100,7 +100,7 @@ export default function BotoxPageClient() {
       <section className="relative w-full pt-40 pb-section-y overflow-hidden bg-secondary" aria-label="Botox hero">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/treatments/botox.jpg"
+            src="/images/spares/cosmetic-botox-injection-female-forehead.jpg"
             alt=""
             fill
             priority

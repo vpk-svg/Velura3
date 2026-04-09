@@ -15,7 +15,7 @@ export default function WeightlossHeader() {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-atmos.png"
+          src="/images/spares/cheery-attractive-brunette-slender-millennial-woman-wearing-huge-jeans.jpg"
           alt=""
           fill
           className="object-cover opacity-30"

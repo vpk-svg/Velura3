@@ -19,14 +19,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title,
       description,
-      images: [{ url: '/images/hero-atmos.png', width: 1200, height: 630, alt: title }],
+      images: [{ url: '/images/spares/cheery-attractive-brunette-slender-millennial-woman-wearing-huge-jeans.jpg', width: 1200, height: 630, alt: title }],
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: ['/images/hero-atmos.png'],
+      images: ['/images/spares/cheery-attractive-brunette-slender-millennial-woman-wearing-huge-jeans.jpg'],
     },
     alternates: {
       canonical: `/${locale}/trajecten`,

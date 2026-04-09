@@ -32,7 +32,7 @@ export default function LifestyleSection() {
                             className="w-full h-full relative"
                         >
                             <Image
-                                src="/images/lifestyle-coaching.png"
+                                src="/images/spares/portrait-scale-happy-woman-with-apple-studio-nutrition-diet-weightloss-gray-background-healthy-body-wellness-model-with-fruit-fitness-workout-goals-digestion-benefits.jpg"
                                 alt="Personalized Lifestyle Coaching Session"
                                 fill
                                 loading="lazy"

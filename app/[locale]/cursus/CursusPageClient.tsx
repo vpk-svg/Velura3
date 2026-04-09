@@ -184,7 +184,7 @@ export default function CursusPageClient() {
       <section className="relative w-full pt-40 pb-24 bg-gradient-to-br from-secondary via-secondary to-burgundy overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <Image
-            src="/images/treatments/botox-hero.jpg"
+            src="/images/spares/beautiful-young-woman-getting-botox-cosmetic-injection-her-face.jpg"
             alt=""
             fill
             className="object-cover"
@@ -269,7 +269,7 @@ export default function CursusPageClient() {
               className="relative aspect-[4/3] lg:aspect-[4/3] aspect-video rounded-2xl overflow-hidden shadow-soft-xl"
             >
               <Image
-                src="/images/treatments/fillers-hero.jpg"
+                src="/images/spares/unrecognizable-beautiful-female-face-with-small-pink-syringe-mouth-close-up-attractive-womans.jpg"
                 alt={t('hero_img_alt')}
                 fill
                 className="object-cover"
@@ -946,7 +946,7 @@ export default function CursusPageClient() {
               {/* Course environment photo */}
               <div className="relative rounded-2xl overflow-hidden aspect-[16/9] shadow-soft-lg">
                 <Image
-                  src="/images/treatments/botox-hero.jpg"
+                  src="/images/spares/beautiful-young-woman-getting-botox-cosmetic-injection-her-face.jpg"
                   alt={t('env_img_alt')}
                   fill
                   className="object-cover"

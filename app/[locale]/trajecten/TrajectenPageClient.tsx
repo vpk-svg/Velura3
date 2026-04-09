@@ -55,7 +55,7 @@ export default function TrajectenPage() {
       <section className="relative w-full pt-40 pb-section-y overflow-hidden bg-secondary">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-atmos.png"
+            src="/images/spares/cheery-attractive-brunette-slender-millennial-woman-wearing-huge-jeans.jpg"
             alt=""
             fill
             className="object-cover opacity-20"
@@ -171,7 +171,7 @@ export default function TrajectenPage() {
                 className="w-full h-full relative"
               >
                 <Image
-                  src="/images/lifestyle-coaching.png"
+                  src="/images/spares/portrait-scale-happy-woman-with-apple-studio-nutrition-diet-weightloss-gray-background-healthy-body-wellness-model-with-fruit-fitness-workout-goals-digestion-benefits.jpg"
                   alt="Lifestyle coaching session"
                   fill
                   loading="lazy"

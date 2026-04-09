@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       'Veilige BBL bilfillers en body contouring door BIG-geregistreerde specialisten. Geen operatie, geen hersteltijd.',
     url: `${BASE_URL}/nl/shape`,
     type: 'website',
-    images: [{ url: `${BASE_URL}/images/bbl-example.png`, width: 1200, height: 630, alt: 'BBL Body Contouring bij FAB CLINIC' }],
+    images: [{ url: `${BASE_URL}/images/spares/skincare-woman-beauty-butt-studio-with-wellness-underwear-fitness-cosmetics-liposuction-bum-cellulite-treatment-female-body-with-isolated-white-background-cosmetology.jpg`, width: 1200, height: 630, alt: 'BBL Body Contouring bij FAB CLINIC' }],
   },
 };
 

@@ -14,7 +14,7 @@ const TREATMENTS = [
     key: 'botox',
     href: '/botox',
     icon: Syringe,
-    image: '/images/treatments/botox-hero.jpg',
+    image: '/images/spares/beautiful-young-woman-getting-botox-cosmetic-injection-her-face.jpg',
     nl: {
       title: 'Botox',
       desc: 'Rimpels verminderen met veilige, subtiele injecties door ervaren artsen.',
@@ -30,7 +30,7 @@ const TREATMENTS = [
     key: 'fillers',
     href: '/fillers',
     icon: Sparkles,
-    image: '/images/treatments/fillers-hero.jpg',
+    image: '/images/spares/unrecognizable-beautiful-female-face-with-small-pink-syringe-mouth-close-up-attractive-womans.jpg',
     nl: {
       title: 'Fillers',
       desc: 'Volume herstellen en contouren verfijnen voor een natuurlijk resultaat.',

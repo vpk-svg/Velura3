@@ -27,7 +27,7 @@ export default function TreatmentsDualRow() {
                         <Card className="group flex flex-col h-full">
                             <figure className="relative aspect-[16/10] overflow-hidden bg-secondary/5">
                                 <Image
-                                    src="/images/treatments/botox.jpg"
+                                    src="/images/spares/cosmetic-botox-injection-female-forehead.jpg"
                                     alt="Clinical Botox Procedure Example"
                                     fill
                                     loading="lazy"
@@ -64,7 +64,7 @@ export default function TreatmentsDualRow() {
                         <Card className="group flex flex-col h-full">
                             <figure className="relative aspect-[16/10] overflow-hidden bg-secondary/5">
                                 <Image
-                                    src="/images/treatments/fillers.jpg"
+                                    src="/images/spares/high-angle-woman-getting-lip-fillers.jpg"
                                     alt="Dermal Filler Lip Enhancement Result"
                                     fill
                                     loading="lazy"

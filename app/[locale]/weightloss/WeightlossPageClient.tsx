@@ -51,7 +51,7 @@ export default function WeightlossPage() {
       <section className="relative w-full pt-40 pb-section-y overflow-hidden bg-secondary" aria-labelledby="weightloss-hero-title">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/treatments/weightloss.jpg"
+            src="/images/spares/female-fitness-model-holding-tape-measurer-around-her-waist-weightloss-concept.jpg"
             alt=""
             fill
             priority
@@ -202,7 +202,7 @@ export default function WeightlossPage() {
                 className="w-full h-full relative"
               >
                 <Image
-                  src="/images/treatments/weightloss.jpg"
+                  src="/images/spares/female-fitness-model-holding-tape-measurer-around-her-waist-weightloss-concept.jpg"
                   alt={t('why_image_alt')}
                   fill
                   loading="lazy"

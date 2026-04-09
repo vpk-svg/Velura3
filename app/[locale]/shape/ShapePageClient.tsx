@@ -67,7 +67,7 @@ export default function ShapePage() {
       <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden bg-secondary">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/bbl-example.png"
+            src="/images/spares/skincare-woman-beauty-butt-studio-with-wellness-underwear-fitness-cosmetics-liposuction-bum-cellulite-treatment-female-body-with-isolated-white-background-cosmetology.jpg"
             alt=""
             fill
             priority
@@ -215,7 +215,7 @@ export default function ShapePage() {
             >
               <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
               <Image
-                src="/images/bbl-example.png"
+                src="/images/spares/skincare-woman-beauty-butt-studio-with-wellness-underwear-fitness-cosmetics-liposuction-bum-cellulite-treatment-female-body-with-isolated-white-background-cosmetology.jpg"
                 alt={t('intro_img_alt')}
                 width={600}
                 height={500}
@@ -360,7 +360,7 @@ export default function ShapePage() {
                 className={`group min-h-[440px] md:min-h-[500px] relative overflow-hidden rounded-2xl ${step.offset}`}
               >
                 <Image
-                  src="/images/bbl-example.png"
+                  src="/images/spares/skincare-woman-beauty-butt-studio-with-wellness-underwear-fitness-cosmetics-liposuction-bum-cellulite-treatment-female-body-with-isolated-white-background-cosmetology.jpg"
                   alt={t(`method_${step.key}_title`)}
                   fill
                   loading="lazy"
@@ -546,7 +546,7 @@ export default function ShapePage() {
               className="relative"
             >
               <Image
-                src="/images/bbl-example.png"
+                src="/images/spares/skincare-woman-beauty-butt-studio-with-wellness-underwear-fitness-cosmetics-liposuction-bum-cellulite-treatment-female-body-with-isolated-white-background-cosmetology.jpg"
                 alt={t('aftercare_img_alt')}
                 width={600}
                 height={500}

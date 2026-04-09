@@ -85,7 +85,7 @@ export default function ContactSection() {
                             <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" aria-hidden="true" />
                             <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-secondary to-transparent z-10" aria-hidden="true" />
                             <Image
-                                src="/images/cta-atmos.png"
+                                src="/images/spares/turkish-woman-face-closeup-with-elegant-updo-white-top-gray-background-beauty-studio-promo-with-syringe-needle-touching-lip-lip-augmentation-fashion-editorial-style-image.jpg"
                                 alt="Contact FAB Clinic"
                                 fill
                                 sizes="(max-width: 1024px) 100vw, 50vw"

@@ -20,14 +20,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title,
       description,
-      images: [{ url: '/images/treatments/fillers-hero.jpg', width: 1200, height: 630, alt: title }],
+      images: [{ url: '/images/spares/unrecognizable-beautiful-female-face-with-small-pink-syringe-mouth-close-up-attractive-womans.jpg', width: 1200, height: 630, alt: title }],
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: ['/images/treatments/fillers-hero.jpg'],
+      images: ['/images/spares/unrecognizable-beautiful-female-face-with-small-pink-syringe-mouth-close-up-attractive-womans.jpg'],
     },
     alternates: {
       canonical: `/${locale}/cursus`,

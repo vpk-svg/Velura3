@@ -133,7 +133,7 @@ export default function FillersPage() {
       <section className="relative w-full min-h-[85vh] flex items-center overflow-hidden bg-secondary">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/treatments/fillers.jpg"
+            src="/images/spares/high-angle-woman-getting-lip-fillers.jpg"
             alt=""
             fill
             priority
@@ -254,7 +254,7 @@ export default function FillersPage() {
           >
             <div className="relative rounded-md overflow-hidden bg-gradient-to-r from-secondary to-secondary/95 p-8 md:p-12 shadow-soft-lg">
               <div className="absolute inset-0 opacity-[0.04]" aria-hidden="true">
-                <Image src="/images/bbl-example.png" alt="" fill className="object-cover" sizes="100vw" />
+                <Image src="/images/spares/skincare-woman-beauty-butt-studio-with-wellness-underwear-fitness-cosmetics-liposuction-bum-cellulite-treatment-female-body-with-isolated-white-background-cosmetology.jpg" alt="" fill className="object-cover" sizes="100vw" />
               </div>
               <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12">
                 <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
@@ -370,7 +370,7 @@ export default function FillersPage() {
               className="flex-1 relative w-full aspect-[3/4] max-h-[600px] rounded-md overflow-hidden group shadow-soft-lg bg-secondary/5"
             >
               <Image
-                src="/images/treatments/fillers.jpg"
+                src="/images/spares/high-angle-woman-getting-lip-fillers.jpg"
                 alt={t('what_img_alt')}
                 fill
                 loading="lazy"
@@ -451,7 +451,7 @@ export default function FillersPage() {
               className="flex-1 relative w-full aspect-[4/5] max-h-[520px] rounded-md overflow-hidden shadow-soft-lg bg-secondary/5"
             >
               <Image
-                src="/images/filler-example.png"
+                src="/images/spares/contour-modeling-with-fillers-high-quality-photo.jpg"
                 alt={t('safety_img_alt')}
                 fill
                 loading="lazy"

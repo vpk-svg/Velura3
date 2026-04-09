@@ -28,7 +28,7 @@ export default function BblBmiDualRow() {
                         <Card className="group flex flex-col h-full">
                             <figure className="relative aspect-[16/10] overflow-hidden bg-secondary/5">
                                 <Image
-                                    src="/images/bbl-example.png"
+                                    src="/images/spares/skincare-woman-beauty-butt-studio-with-wellness-underwear-fitness-cosmetics-liposuction-bum-cellulite-treatment-female-body-with-isolated-white-background-cosmetology.jpg"
                                     alt="Liquid BBL Contouring Illustration"
                                     fill
                                     loading="lazy"

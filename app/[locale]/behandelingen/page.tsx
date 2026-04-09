@@ -23,14 +23,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title,
       description,
-      images: [{ url: '/images/treatments/botox-hero.jpg', width: 1200, height: 630, alt: title }],
+      images: [{ url: '/images/spares/beautiful-young-woman-getting-botox-cosmetic-injection-her-face.jpg', width: 1200, height: 630, alt: title }],
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: ['/images/treatments/botox-hero.jpg'],
+      images: ['/images/spares/beautiful-young-woman-getting-botox-cosmetic-injection-her-face.jpg'],
     },
     alternates: {
       canonical: `/${locale}/behandelingen`,

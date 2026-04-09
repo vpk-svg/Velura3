@@ -19,14 +19,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title,
       description,
-      images: [{ url: '/images/treatments/fillers.jpg', width: 1200, height: 630, alt: title }],
+      images: [{ url: '/images/spares/high-angle-woman-getting-lip-fillers.jpg', width: 1200, height: 630, alt: title }],
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: ['/images/treatments/fillers.jpg'],
+      images: ['/images/spares/high-angle-woman-getting-lip-fillers.jpg'],
     },
     alternates: {
       canonical: `/${locale}/fillers`,
