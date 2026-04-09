@@ -30,6 +30,9 @@ import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import { FILLERS_ZONES } from '@/lib/data/fillers-zones';
 import { EASE_PREMIUM } from '@/lib/motion';
 import TreatmentCatalog from '@/components/treatments/TreatmentCatalog';
+import TreatmentMapGrid from '@/components/treatments/TreatmentMapGrid';
+import FloatingCart from '@/components/treatments/FloatingCart';
+import BookingSlotSelector from '@/components/booking/BookingSlotSelector';
 import { getFillerTreatments, type Locale } from '@/lib/clinic-data';
 
 export default function FillersPage() {
@@ -37,7 +40,8 @@ export default function FillersPage() {
   const locale = useLocale() as Locale;
   const fillerTreatments = getFillerTreatments(locale);
   const [selectedZones, setSelectedZones] = useState<string[]>([]);
-  const [step, setStep] = useState<'select' | 'details' | 'done'>('select');
+  const [step, setStep] = useState<'select' | 'date' | 'details' | 'done'>('select');
+  const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const toggleZone = useCallback((zoneId: string) => {
@@ -48,6 +52,13 @@ export default function FillersPage() {
 
   const removeZone = useCallback((zoneId: string) => {
     setSelectedZones((prev) => prev.filter((z) => z !== zoneId));
+  }, []);
+
+  const addToCartFromPopup = useCallback((zoneId: string) => {
+    setSelectedZones((prev) => {
+      if (prev.includes(zoneId)) return prev;
+      return [...prev, zoneId];
+    });
   }, []);
 
   const handleDetailsSubmit = useCallback(async (data: DetailsFormData) => {
@@ -63,6 +74,7 @@ export default function FillersPage() {
           treatmentType: 'fillers',
           zones: selectedItems.map((z) => ({ id: z.id, name: t(z.nameKey), priceCents: z.priceCents })),
           customerDetails: data,
+          selectedSlotId,
           locale,
         }),
       });
@@ -133,7 +145,7 @@ export default function FillersPage() {
       <section className="relative w-full min-h-[85vh] flex items-center overflow-hidden bg-secondary">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/spares/high-angle-woman-getting-lip-fillers.jpg"
+            src="/images/spares/spare 2/Women reviewing notes in consultation.png"
             alt=""
             fill
             priority
@@ -205,6 +217,18 @@ export default function FillersPage() {
           />
         </motion.div>
       </section>
+
+      {/* =============================================
+          TREATMENT MAP — Clickable cards with popup + add to cart
+          ============================================= */}
+      <TreatmentMapGrid
+        zones={FILLERS_ZONES.map((z) => ({ ...z, descKey: undefined }))}
+        namespace="fillers_page"
+        label={t('zones_label')}
+        title={<>{t('zones_title')} <span className="italic font-light text-primary">{t('zones_title_accent')}</span></>}
+        onAddToCart={addToCartFromPopup}
+        cartZoneIds={selectedZones}
+      />
 
       {/* =============================================
           TREATMENT ZONES - Face zones grid + separate BBL highlight
@@ -314,7 +338,7 @@ export default function FillersPage() {
                 <motion.button
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  onClick={() => setStep('details')}
+                  onClick={() => setStep('date')}
                   className="w-full inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
                 >
                   {t('proceed_to_details')}
@@ -324,6 +348,39 @@ export default function FillersPage() {
           </div>
         </Container>
       </section>
+
+      {/* Date Selection */}
+      {step === 'date' && (
+        <section className="py-section-y bg-page-fillers overflow-hidden" id="date-select">
+          <Container>
+            <div className="max-w-xl mx-auto">
+              <SectionHeader
+                label={locale === 'nl' ? 'Datum kiezen' : 'Choose date'}
+                title={<>{locale === 'nl' ? 'Kies uw ' : 'Choose your '}<span className="italic font-light text-primary">{locale === 'nl' ? 'zaterdag' : 'Saturday'}</span></>}
+              />
+              <div className="glass rounded-2xl border border-primary/10 p-8 md:p-10 shadow-soft-lg">
+                <BookingSlotSelector
+                  locale={locale}
+                  treatmentName={selectedZones.map((id) => {
+                    const z = FILLERS_ZONES.find((fz) => fz.id === id);
+                    return z ? t(z.nameKey) : id;
+                  }).join(', ')}
+                  onSlotSelect={setSelectedSlotId}
+                />
+                <motion.button
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  disabled={!selectedSlotId}
+                  onClick={() => setStep('details')}
+                  className="mt-6 w-full inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97] disabled:opacity-40 disabled:pointer-events-none"
+                >
+                  {locale === 'nl' ? 'Ga verder' : 'Continue'}
+                </motion.button>
+              </div>
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* Details Form */}
       {step === 'details' && (
@@ -370,7 +427,7 @@ export default function FillersPage() {
               className="flex-1 relative w-full aspect-[3/4] max-h-[600px] rounded-md overflow-hidden group shadow-soft-lg bg-secondary/5"
             >
               <Image
-                src="/images/spares/high-angle-woman-getting-lip-fillers.jpg"
+                src="/images/spares/fillers-natural-volume.png"
                 alt={t('what_img_alt')}
                 fill
                 loading="lazy"
@@ -451,7 +508,7 @@ export default function FillersPage() {
               className="flex-1 relative w-full aspect-[4/5] max-h-[520px] rounded-md overflow-hidden shadow-soft-lg bg-secondary/5"
             >
               <Image
-                src="/images/spares/contour-modeling-with-fillers-high-quality-photo.jpg"
+                src="/images/spares/fillers-premium-producten.png"
                 alt={t('safety_img_alt')}
                 fill
                 loading="lazy"
@@ -629,6 +686,20 @@ export default function FillersPage() {
           </div>
         </Container>
       </section>
+
+      {/* Floating Cart */}
+      <FloatingCart
+        zones={FILLERS_ZONES}
+        selectedZones={selectedZones}
+        onRemove={removeZone}
+        onProceed={() => {
+          setStep('date');
+          setTimeout(() => {
+            document.getElementById('date-select')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }}
+        namespace="fillers_page"
+      />
     </main>
   );
 }
