@@ -1,10 +1,9 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import { X } from 'lucide-react';
+import { X, ArrowRight } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { EASE_PREMIUM } from '@/lib/motion';
@@ -15,65 +14,38 @@ interface FaceMapZone {
   descKey: string;
   extraKey: string;
   priceKey: string;
-  x: number;
-  y: number;
-  side: 'left' | 'right';
+  group: string;
+  icon: string;
 }
 
-const FACE_MAP_ZONES: FaceMapZone[] = [
-  { id: 'wenkbrauwen', nameKey: 'facemap_wenkbrauwen', descKey: 'facemap_wenkbrauwen_desc', extraKey: 'facemap_wenkbrauwen_extra', priceKey: 'facemap_wenkbrauwen_price', x: 32, y: 31, side: 'left' },
-  { id: 'voorhoofd', nameKey: 'facemap_voorhoofd', descKey: 'facemap_voorhoofd_desc', extraKey: 'facemap_voorhoofd_extra', priceKey: 'facemap_voorhoofd_price', x: 50, y: 24, side: 'left' },
-  { id: 'frons', nameKey: 'facemap_frons', descKey: 'facemap_frons_desc', extraKey: 'facemap_frons_extra', priceKey: 'facemap_frons_price', x: 50, y: 34, side: 'left' },
-  { id: 'gummy-smile', nameKey: 'facemap_gummy_smile', descKey: 'facemap_gummy_smile_desc', extraKey: 'facemap_gummy_smile_extra', priceKey: 'facemap_gummy_smile_price', x: 40, y: 52, side: 'left' },
-  { id: 'hyperhidrose', nameKey: 'facemap_hyperhidrose', descKey: 'facemap_hyperhidrose_desc', extraKey: 'facemap_hyperhidrose_extra', priceKey: 'facemap_hyperhidrose_price', x: 25, y: 60, side: 'left' },
-  { id: 'hals', nameKey: 'facemap_hals', descKey: 'facemap_hals_desc', extraKey: 'facemap_hals_extra', priceKey: 'facemap_hals_price', x: 48, y: 80, side: 'left' },
-  { id: 'kraaienpootjes', nameKey: 'facemap_kraaienpootjes', descKey: 'facemap_kraaienpootjes_desc', extraKey: 'facemap_kraaienpootjes_extra', priceKey: 'facemap_kraaienpootjes_price', x: 73, y: 38, side: 'right' },
-  { id: 'bunny-lines', nameKey: 'facemap_bunny_lines', descKey: 'facemap_bunny_lines_desc', extraKey: 'facemap_bunny_lines_extra', priceKey: 'facemap_bunny_lines_price', x: 56, y: 44, side: 'right' },
-  { id: 'lip-flip', nameKey: 'facemap_lip_flip', descKey: 'facemap_lip_flip_desc', extraKey: 'facemap_lip_flip_extra', priceKey: 'facemap_lip_flip_price', x: 50, y: 57, side: 'right' },
-  { id: 'masseter', nameKey: 'facemap_masseter', descKey: 'facemap_masseter_desc', extraKey: 'facemap_masseter_extra', priceKey: 'facemap_masseter_price', x: 73, y: 61, side: 'right' },
-  { id: 'kin', nameKey: 'facemap_kin', descKey: 'facemap_kin_desc', extraKey: 'facemap_kin_extra', priceKey: 'facemap_kin_price', x: 51, y: 68, side: 'right' },
-  { id: 'nefertiti', nameKey: 'facemap_nefertiti', descKey: 'facemap_nefertiti_desc', extraKey: 'facemap_nefertiti_extra', priceKey: 'facemap_nefertiti_price', x: 69, y: 74, side: 'right' },
+const GROUPS = [
+  { key: 'boven', labelNl: 'Boven gezicht', labelEn: 'Upper face' },
+  { key: 'midden', labelNl: 'Midden gezicht', labelEn: 'Mid face' },
+  { key: 'onder', labelNl: 'Onder gezicht', labelEn: 'Lower face' },
+  { key: 'hals', labelNl: 'Hals & lichaam', labelEn: 'Neck & body' },
 ];
 
-function FaceNode({
-  zone,
-  isActive,
-  onClick,
-}: {
-  zone: FaceMapZone;
-  isActive: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-      style={{ left: `${zone.x}%`, top: `${zone.y}%` }}
-      aria-label={zone.id}
-    >
-      <span className={`absolute inset-0 rounded-full bg-primary/25 blur-md transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-70'}`} />
-      <motion.span
-        animate={{ scale: isActive ? [1, 1.14, 1] : [1, 1.05, 1] }}
-        transition={{ duration: isActive ? 1 : 1.8, repeat: Infinity, ease: 'easeInOut' }}
-        className={`relative flex h-5 w-5 items-center justify-center rounded-full border shadow-[0_0_0_6px_rgba(198,166,93,0.14)] transition-colors duration-300 ${
-          isActive ? 'border-primary bg-primary' : 'border-white/80 bg-secondary'
-        }`}
-      >
-        <span className="h-1.5 w-1.5 rounded-full bg-white" />
-      </motion.span>
-    </button>
-  );
-}
+const FACE_MAP_ZONES: FaceMapZone[] = [
+  { id: 'voorhoofd',    nameKey: 'facemap_voorhoofd',    descKey: 'facemap_voorhoofd_desc',    extraKey: 'facemap_voorhoofd_extra',    priceKey: 'facemap_voorhoofd_price',    group: 'boven',  icon: '〰' },
+  { id: 'frons',        nameKey: 'facemap_frons',        descKey: 'facemap_frons_desc',        extraKey: 'facemap_frons_extra',        priceKey: 'facemap_frons_price',        group: 'boven',  icon: '눈' },
+  { id: 'wenkbrauwen',  nameKey: 'facemap_wenkbrauwen',  descKey: 'facemap_wenkbrauwen_desc',  extraKey: 'facemap_wenkbrauwen_extra',  priceKey: 'facemap_wenkbrauwen_price',  group: 'boven',  icon: '⌒' },
+  { id: 'kraaienpootjes', nameKey: 'facemap_kraaienpootjes', descKey: 'facemap_kraaienpootjes_desc', extraKey: 'facemap_kraaienpootjes_extra', priceKey: 'facemap_kraaienpootjes_price', group: 'midden', icon: '☀' },
+  { id: 'bunny-lines',  nameKey: 'facemap_bunny_lines',  descKey: 'facemap_bunny_lines_desc',  extraKey: 'facemap_bunny_lines_extra',  priceKey: 'facemap_bunny_lines_price',  group: 'midden', icon: '≋' },
+  { id: 'gummy-smile',  nameKey: 'facemap_gummy_smile',  descKey: 'facemap_gummy_smile_desc',  extraKey: 'facemap_gummy_smile_extra',  priceKey: 'facemap_gummy_smile_price',  group: 'midden', icon: '◡' },
+  { id: 'lip-flip',     nameKey: 'facemap_lip_flip',     descKey: 'facemap_lip_flip_desc',     extraKey: 'facemap_lip_flip_extra',     priceKey: 'facemap_lip_flip_price',     group: 'midden', icon: '◞' },
+  { id: 'masseter',     nameKey: 'facemap_masseter',     descKey: 'facemap_masseter_desc',     extraKey: 'facemap_masseter_extra',     priceKey: 'facemap_masseter_price',     group: 'onder',  icon: '▽' },
+  { id: 'kin',          nameKey: 'facemap_kin',          descKey: 'facemap_kin_desc',          extraKey: 'facemap_kin_extra',          priceKey: 'facemap_kin_price',          group: 'onder',  icon: '◡' },
+  { id: 'hals',         nameKey: 'facemap_hals',         descKey: 'facemap_hals_desc',         extraKey: 'facemap_hals_extra',         priceKey: 'facemap_hals_price',         group: 'hals',   icon: '⌇' },
+  { id: 'nefertiti',   nameKey: 'facemap_nefertiti',    descKey: 'facemap_nefertiti_desc',    extraKey: 'facemap_nefertiti_extra',    priceKey: 'facemap_nefertiti_price',    group: 'hals',   icon: '✦' },
+  { id: 'hyperhidrose', nameKey: 'facemap_hyperhidrose', descKey: 'facemap_hyperhidrose_desc', extraKey: 'facemap_hyperhidrose_extra', priceKey: 'facemap_hyperhidrose_price', group: 'hals',   icon: '◈' },
+];
 
-function ZoneCard({
+function TreatmentCard({
   zone,
-  isActive,
   t,
   onClick,
 }: {
   zone: FaceMapZone;
-  isActive: boolean;
   t: ReturnType<typeof useTranslations>;
   onClick: () => void;
 }) {
@@ -81,30 +53,27 @@ function ZoneCard({
     <motion.button
       type="button"
       onClick={onClick}
-      whileHover={{ y: -2 }}
-      whileTap={{ scale: 0.99 }}
-      className={`group relative w-full rounded-[1.6rem] border bg-white px-5 py-5 text-left shadow-soft-sm transition-all duration-300 cursor-pointer ${
-        isActive ? 'border-primary shadow-soft-lg ring-1 ring-primary/30' : 'border-secondary/10 hover:border-primary/25 hover:shadow-soft-md'
-      }`}
+      whileHover={{ y: -3, scale: 1.01 }}
+      whileTap={{ scale: 0.98 }}
+      className="group w-full rounded-2xl border border-secondary/10 bg-white px-5 py-5 text-left shadow-soft-sm hover:border-primary/30 hover:shadow-soft-lg transition-all duration-300 cursor-pointer flex flex-col gap-3"
     >
-      <span className={`absolute top-1/2 h-px w-6 -translate-y-1/2 bg-primary/30 hidden lg:block ${zone.side === 'left' ? 'right-[-1.5rem]' : 'left-[-1.5rem]'}`} />
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="font-sans text-[10px] uppercase tracking-[0.24em] text-primary font-semibold mb-2">
-            {t('facemap_card_label')}
-          </p>
-          <h3 className="font-display text-2xl italic leading-tight text-secondary">
-            {t(zone.nameKey)}
-          </h3>
-        </div>
-        <span className={`mt-1 h-3 w-3 shrink-0 rounded-full transition-colors duration-300 ${isActive ? 'bg-primary' : 'bg-primary/35 group-hover:bg-primary/65'}`} />
+      <div className="flex items-start justify-between gap-2">
+        <h3 className="font-display text-xl italic leading-tight text-secondary group-hover:text-primary transition-colors duration-200">
+          {t(zone.nameKey)}
+        </h3>
+        <ArrowRight size={16} className="shrink-0 mt-1 text-primary/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
       </div>
-      <p className="mt-3 font-sans text-sm leading-relaxed text-secondary/70">
+      <p className="font-sans text-xs leading-relaxed text-secondary/60 line-clamp-2">
         {t(zone.extraKey)}
       </p>
-      <p className="mt-4 font-sans text-[11px] uppercase tracking-[0.16em] text-secondary/45">
-        {t('facemap_more_info')}
-      </p>
+      <div className="mt-auto pt-2 border-t border-secondary/5 flex items-center justify-between">
+        <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/40 font-semibold">
+          {t('facemap_price_from')}
+        </span>
+        <span className="font-display text-lg text-primary font-semibold">
+          {t(zone.priceKey)}
+        </span>
+      </div>
     </motion.button>
   );
 }
@@ -120,14 +89,10 @@ function InfoModal({
 }) {
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
+      if (event.key === 'Escape') onClose();
     };
-
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleEscape);
-
     return () => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handleEscape);
@@ -139,7 +104,7 @@ function InfoModal({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[10002] flex items-center justify-center bg-secondary/72 px-4 py-8 backdrop-blur-sm"
+      className="fixed inset-0 z-[10002] flex items-center justify-center bg-secondary/60 px-4 py-8 backdrop-blur-sm"
       onClick={onClose}
       data-no-custom-cursor="true"
       style={{ cursor: 'auto' }}
@@ -149,13 +114,13 @@ function InfoModal({
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 16, scale: 0.98 }}
         transition={{ duration: 0.35, ease: EASE_PREMIUM }}
-        className="relative w-full max-w-xl overflow-hidden rounded-[2rem] border border-primary/15 bg-[#11110f] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.35)]"
-        onClick={(event) => event.stopPropagation()}
+        className="relative w-full max-w-xl overflow-hidden rounded-[2rem] border border-primary/20 bg-white p-8 shadow-[0_24px_80px_rgba(0,0,0,0.2)]"
+        onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-primary transition-colors duration-200 hover:bg-white/10 cursor-pointer"
+          className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-secondary/15 bg-secondary/5 text-secondary/60 hover:bg-secondary/10 hover:text-secondary transition-colors duration-200 cursor-pointer"
           aria-label={t('facemap_close_label')}
         >
           <X size={18} />
@@ -163,34 +128,32 @@ function InfoModal({
 
         <div className="inline-flex items-center gap-2 mb-5">
           <span className="h-2 w-2 rounded-full bg-primary" />
-          <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-primary/80 font-semibold">
+          <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-primary font-semibold">
             {t('facemap_modal_label')}
           </span>
         </div>
 
-        <h3 className="font-display text-3xl italic text-background-light mb-4">
+        <h3 className="font-display text-3xl italic text-secondary mb-4">
           {t(zone.nameKey)}
         </h3>
 
-        <div className="mb-6 h-px w-14 bg-primary/35" />
+        <div className="mb-6 h-px w-14 bg-primary/40" />
 
-        <p className="font-sans text-sm leading-relaxed text-background-light/72 mb-5">
+        <p className="font-sans text-sm leading-relaxed text-secondary/70 mb-4">
           {t(zone.descKey)}
         </p>
-        <p className="font-sans text-sm leading-relaxed text-primary/85 mb-8">
+        <p className="font-sans text-sm leading-relaxed text-secondary/60 mb-8 italic">
           {t(zone.extraKey)}
         </p>
 
-        <div className="flex items-end gap-3 mb-8">
-          <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-background-light/45 font-semibold">
+        <div className="flex items-end gap-3 p-4 bg-primary/5 rounded-xl border border-primary/10">
+          <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-semibold">
             {t('facemap_price_from')}
           </span>
           <span className="font-display text-3xl font-bold text-primary">
             {t(zone.priceKey)}
           </span>
         </div>
-
-        <div className="h-px w-full bg-gradient-to-r from-primary/30 via-primary/10 to-transparent" />
       </motion.div>
     </motion.div>
   );
@@ -203,30 +166,15 @@ interface BotoxFaceMapProps {
 export default function BotoxFaceMap({ activeExternalZoneId }: BotoxFaceMapProps = {}) {
   const t = useTranslations('botox_page');
   const [activeZone, setActiveZone] = useState<FaceMapZone | null>(null);
-  const zonesBySide = useMemo(
-    () => ({
-      left: FACE_MAP_ZONES.filter((zone) => zone.side === 'left'),
-      right: FACE_MAP_ZONES.filter((zone) => zone.side === 'right'),
-    }),
-    [],
-  );
 
   useEffect(() => {
-    if (!activeExternalZoneId) {
-      return;
-    }
-
+    if (!activeExternalZoneId) return;
     const nextZone = FACE_MAP_ZONES.find((zone) => zone.id === activeExternalZoneId) ?? null;
     setActiveZone(nextZone);
   }, [activeExternalZoneId]);
 
-  const handleZoneOpen = useCallback((zone: FaceMapZone) => {
-    setActiveZone(zone);
-  }, []);
-
-  const handleClose = useCallback(() => {
-    setActiveZone(null);
-  }, []);
+  const handleZoneOpen = useCallback((zone: FaceMapZone) => setActiveZone(zone), []);
+  const handleClose = useCallback(() => setActiveZone(null), []);
 
   return (
     <section
@@ -242,68 +190,39 @@ export default function BotoxFaceMap({ activeExternalZoneId }: BotoxFaceMapProps
           subtitle={t('facemap_subtitle')}
         />
 
-        <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-[minmax(0,1fr)_24rem_minmax(0,1fr)] lg:items-center lg:gap-8 xl:grid-cols-[minmax(0,1fr)_28rem_minmax(0,1fr)]">
-          <div className="space-y-4 lg:pr-2">
-            {zonesBySide.left.map((zone, index) => (
+        <div className="space-y-12">
+          {GROUPS.map((group, gi) => {
+            const zones = FACE_MAP_ZONES.filter((z) => z.group === group.key);
+            return (
               <motion.div
-                key={zone.id}
-                initial={{ opacity: 0, x: -18 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.45, delay: index * 0.05, ease: EASE_PREMIUM }}
+                key={group.key}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.5, delay: gi * 0.08, ease: EASE_PREMIUM }}
               >
-                <ZoneCard zone={zone} isActive={activeZone?.id === zone.id} t={t} onClick={() => handleZoneOpen(zone)} />
+                <div className="flex items-center gap-4 mb-5">
+                  <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-primary font-semibold">
+                    {group.labelNl}
+                  </span>
+                  <div className="flex-1 h-px bg-primary/15" />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {zones.map((zone, zi) => (
+                    <motion.div
+                      key={zone.id}
+                      initial={{ opacity: 0, y: 14 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: '-40px' }}
+                      transition={{ duration: 0.4, delay: zi * 0.06, ease: EASE_PREMIUM }}
+                    >
+                      <TreatmentCard zone={zone} t={t} onClick={() => handleZoneOpen(zone)} />
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.7, ease: EASE_PREMIUM }}
-            className="relative my-10 lg:my-0"
-          >
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-[28rem] overflow-hidden rounded-[2.4rem] border border-primary/15 bg-[#d7d2c8] shadow-soft-lg">
-              <Image
-                src="/images/Newteam/Ava.jpg"
-                alt={t('facemap_image_alt')}
-                fill
-                sizes="(max-width: 1024px) 80vw, 28rem"
-                className="object-cover"
-                priority={false}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-secondary/30 via-transparent to-white/10" />
-              <div className="absolute left-5 top-5 rounded-full bg-white/88 px-3 py-1.5 shadow-soft-sm">
-                <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/70 font-semibold">
-                  {t('facemap_tap_hint')}
-                </p>
-              </div>
-
-              {FACE_MAP_ZONES.map((zone) => (
-                <FaceNode
-                  key={zone.id}
-                  zone={zone}
-                  isActive={activeZone?.id === zone.id}
-                  onClick={() => handleZoneOpen(zone)}
-                />
-              ))}
-            </div>
-          </motion.div>
-
-          <div className="space-y-4 lg:pl-2">
-            {zonesBySide.right.map((zone, index) => (
-              <motion.div
-                key={zone.id}
-                initial={{ opacity: 0, x: 18 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.45, delay: index * 0.05, ease: EASE_PREMIUM }}
-              >
-                <ZoneCard zone={zone} isActive={activeZone?.id === zone.id} t={t} onClick={() => handleZoneOpen(zone)} />
-              </motion.div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </Container>
 
