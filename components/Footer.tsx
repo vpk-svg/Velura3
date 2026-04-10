@@ -95,7 +95,7 @@ export default function Footer() {
               { href: '/faq', label: t('link_faq') },
             ]},
             { title: t('assessments'), links: [
-              { href: '/weightloss', label: t('link_bmi') },
+              { href: '/bmi', label: t('link_bmi') },
               { href: '/contact', label: t('link_consult') },
               { href: '/contact', label: t('link_booking') },
             ]},

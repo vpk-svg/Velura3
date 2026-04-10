@@ -590,52 +590,6 @@ export default function ShapePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          CANDIDATE SECTION - "Am I a Candidate?" + BMI Calculator
-          ═══════════════════════════════════════════════════════ */}
-      <section id="candidate" className="py-section-y bg-page-shape overflow-hidden">
-        <Container>
-          <SectionHeader
-            label={t('candidate_label')}
-            title={t('candidate_title')}
-            subtitle={t('candidate_subtitle')}
-          />
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start max-w-6xl mx-auto">
-            {/* Candidacy checklist */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-              className="space-y-4"
-            >
-              {CANDIDATE_CHECKS.map((check) => (
-                <div key={check} className="flex items-start gap-4 p-5 rounded-xl bg-surface-elevated shadow-soft-sm">
-                  <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <CheckCircle2 size={16} className="text-primary" />
-                  </span>
-                  <div>
-                    <h3 className="font-display text-lg text-secondary mb-1">{t(`candidate_${check}`)}</h3>
-                    <p className="text-secondary/60 font-light text-sm leading-relaxed">{t(`candidate_${check}_desc`)}</p>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-
-            {/* Embedded BMI Calculator */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.15, ease: EASE_PREMIUM }}
-              className="bg-surface-elevated rounded-2xl border border-secondary/5 p-6 md:p-8 shadow-soft-lg"
-            >
-              <BmiCalculator isEmbed />
-            </motion.div>
-          </div>
-        </Container>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════
           RECOVERY TIMELINE - Visual day-by-day breakdown
           ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y bg-page-shape overflow-hidden">

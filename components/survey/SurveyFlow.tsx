@@ -1064,11 +1064,10 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       <div
         className="absolute inset-0"
         aria-hidden="true"
-        onClick={onClose}
       />
 
       <section
-        className="relative z-10 flex h-[100dvh] w-full max-w-3xl flex-col bg-[#FAF8F4] text-secondary md:h-[90vh] md:rounded-xl md:shadow-2xl"
+        className="relative z-10 flex h-[100dvh] w-full max-w-3xl flex-col bg-page-shape text-secondary md:h-[90vh] md:rounded-xl md:shadow-2xl"
         role="dialog"
         aria-modal="true"
         aria-label={t('dialog_aria')}
