@@ -12,7 +12,7 @@ export default function TeamPreview() {
   const t = useTranslations('team_preview');
 
   const teamMembers = [
-    { name: t('member1_name'), role: t('member1_role'), image: '/images/Newteam/Athiná Barza.jpg', position: 'object-[center_20%]' },
+    { name: t('member1_name'), role: t('member1_role'), image: '/images/Newteam/athina-barza.jpg', position: 'object-[center_20%]' },
     { name: t('member2_name'), role: t('member2_role'), image: '/images/Newteam/Ava.jpg', position: 'object-[center_15%]' },
     { name: t('member3_name'), role: t('member3_role'), image: '/images/Newteam/Elissa.jpg', position: 'object-top' },
   ];

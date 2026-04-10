@@ -18,7 +18,7 @@ export default function TeamSection() {
             role: t('member1_role'),
             big: t('member1_big'),
             bio: t('member1_bio'),
-            img: "/images/Newteam/Athiná Barza.jpg",
+            img: "/images/Newteam/athina-barza.jpg",
         },
         {
             name: t('member2_name'),

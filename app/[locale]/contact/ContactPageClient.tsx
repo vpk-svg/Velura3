@@ -33,7 +33,7 @@ import {
 /* ── Constants ────────────────────────────────────────────────── */
 
 const TEAM_MEMBERS = [
-  { nameKey: 'member1_name', roleKey: 'member1_role', bigKey: 'member1_big', img: '/images/Newteam/Athiná Barza.jpg' },
+  { nameKey: 'member1_name', roleKey: 'member1_role', bigKey: 'member1_big', img: '/images/Newteam/athina-barza.jpg' },
   { nameKey: 'member2_name', roleKey: 'member2_role', bigKey: 'member2_big', img: '/images/Newteam/Ava.jpg' },
   { nameKey: 'member3_name', roleKey: 'member3_role', bigKey: 'member3_big', img: '/images/Newteam/Elissa.jpg' },
   { nameKey: 'member4_name', roleKey: 'member4_role', bigKey: 'member4_big', img: '/images/Newteam/Ryan.jpg' },
