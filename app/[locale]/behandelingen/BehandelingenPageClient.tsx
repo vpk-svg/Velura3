@@ -14,7 +14,7 @@ const TREATMENTS = [
     key: 'botox',
     href: '/botox',
     icon: Syringe,
-    image: '/images/spares/beautiful-young-woman-getting-botox-cosmetic-injection-her-face.jpg',
+    image: '/images/botox-example.png',
     nl: {
       title: 'Botox',
       desc: 'Rimpels verminderen met veilige, subtiele injecties door ervaren artsen.',
@@ -30,7 +30,7 @@ const TREATMENTS = [
     key: 'fillers',
     href: '/fillers',
     icon: Sparkles,
-    image: '/images/spares/unrecognizable-beautiful-female-face-with-small-pink-syringe-mouth-close-up-attractive-womans.jpg',
+    image: '/images/filler-example.png',
     nl: {
       title: 'Fillers',
       desc: 'Volume herstellen en contouren verfijnen voor een natuurlijk resultaat.',
@@ -46,7 +46,7 @@ const TREATMENTS = [
     key: 'bbl',
     href: '/shape',
     icon: Dumbbell,
-    image: '/images/treatments/shape-hero.jpg',
+    image: '/images/bbl-example.png',
     nl: {
       title: 'BBL',
       desc: 'Non-invasieve body contouring voor een strakker silhouet.',
@@ -62,7 +62,7 @@ const TREATMENTS = [
     key: 'weightloss',
     href: '/weightloss',
     icon: TrendingDown,
-    image: '/images/treatments/weightloss-hero.jpg',
+    image: '/images/lifestyle-coaching.png',
     nl: {
       title: 'Gewichtsverlies',
       desc: 'Medisch begeleid afvallen met GLP-1 medicatie en coaching.',
