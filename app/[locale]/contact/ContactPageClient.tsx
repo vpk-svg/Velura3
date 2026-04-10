@@ -487,8 +487,6 @@ export default function ContactPage() {
         </Container>
       </section>
 
-      <NewsletterSection />
-
       {/* ═══════ COMING SOON: Amsterdam, Rotterdam, Den Haag ═══════ */}
       <section className="py-section-y bg-page-contact">
         <Container>
@@ -525,6 +523,8 @@ export default function ContactPage() {
           </div>
         </Container>
       </section>
+
+      <NewsletterSection />
     </>
   );
 }
