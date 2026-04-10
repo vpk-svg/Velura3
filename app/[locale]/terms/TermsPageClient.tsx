@@ -142,7 +142,7 @@ const articles = [
 function renderText(text: string) {
   const parts = text.split(/\*\*(.+?)\*\*/g);
   return parts.map((part, i) =>
-    i % 2 === 1 ? <strong key={i} className="font-semibold text-background-light">{part}</strong> : part
+    i % 2 === 1 ? <strong key={i} className="font-semibold text-secondary">{part}</strong> : part
   );
 }
 
@@ -183,7 +183,7 @@ export default function TermsPage() {
       </section>
 
       {/* Content */}
-      <section className="py-section-y bg-page-faq">
+      <section className="py-section-y bg-white">
         <Container>
           <div className="max-w-3xl mx-auto">
             {/* Intro */}
@@ -192,12 +192,12 @@ export default function TermsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-              className="mb-16 p-8 rounded-2xl border border-primary/10 bg-secondary/40"
+              className="mb-16 p-8 rounded-2xl border border-secondary/10 bg-secondary/5"
             >
-              <p className="font-sans font-light text-background-light/70 text-sm leading-relaxed mb-3">
-                <span className="text-primary font-semibold">Contactgegevens</span>
+              <p className="font-sans font-light text-secondary/80 text-sm leading-relaxed mb-3">
+                <span className="text-secondary font-semibold">Contactgegevens</span>
               </p>
-              <p className="font-sans font-light text-background-light/60 text-sm leading-loose">
+              <p className="font-sans font-light text-secondary/70 text-sm leading-loose">
                 Golden Palm Europe B.V. · FAB Clinic<br />
                 Achterdoelen 63, Ede<br />
                 KvK: 70926468<br />
@@ -221,17 +221,17 @@ export default function TermsPage() {
                   transition={{ duration: 0.5, delay: idx * 0.02, ease: EASE_PREMIUM }}
                 >
                   <div className="flex items-start gap-5">
-                    <span className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center font-sans text-primary text-xs font-bold tracking-wider">
+                    <span className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary/5 border border-secondary/10 flex items-center justify-center font-sans text-secondary text-xs font-bold tracking-wider">
                       {article.number}
                     </span>
                     <div className="flex-1 pt-2">
-                      <h2 className="font-display text-xl text-background-light mb-3 font-semibold">
+                      <h2 className="font-display text-xl text-secondary mb-3 font-semibold">
                         Artikel {article.number} - {article.title}
                       </h2>
                       <ul className="space-y-2">
                         {article.items.map((item, i) => (
-                          <li key={i} className="font-sans font-light text-background-light/65 text-sm leading-relaxed flex gap-3">
-                            <span className="text-primary/40 mt-1 flex-shrink-0">-</span>
+                          <li key={i} className="font-sans font-light text-secondary/70 text-sm leading-relaxed flex gap-3">
+                            <span className="text-secondary/30 mt-1 flex-shrink-0">-</span>
                             <span>{renderText(item)}</span>
                           </li>
                         ))}
@@ -239,7 +239,7 @@ export default function TermsPage() {
                     </div>
                   </div>
                   {idx < articles.length - 1 && (
-                    <div className="mt-10 h-px bg-primary/8 ml-15" />
+                    <div className="mt-10 h-px bg-secondary/5 ml-15" />
                   )}
                 </motion.div>
               ))}
