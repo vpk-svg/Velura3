@@ -15,16 +15,66 @@ interface BeforeAfterItem {
   labelEn: string;
   beforeImage?: string;
   afterImage?: string;
+  beforeObjectPosition?: string;
+  afterObjectPosition?: string;
 }
 
-/* Before/after pairs – placeholders remain for items without dedicated images */
+/* Before/after pairs – combined side-by-side images: left = before, right = after */
 const BA_ITEMS = [
-  { id: 'botox-forehead', labelNl: 'Botox Voorhoofd', labelEn: 'Botox Forehead' },
-  { id: 'lip-fillers', labelNl: 'Lipfillers', labelEn: 'Lip Fillers' },
-  { id: 'jawline-fillers', labelNl: 'Kaaklijn Fillers', labelEn: 'Jawline Fillers' },
-  { id: 'cheek-fillers', labelNl: 'Wangen Fillers', labelEn: 'Cheek Fillers' },
-  { id: 'bbl', labelNl: 'BBL Behandeling', labelEn: 'BBL Treatment' },
-  { id: 'weight-loss', labelNl: 'Gewichtsverlies', labelEn: 'Weight Loss', beforeImage: '/after.webp', afterImage: '/before.webp' },
+  {
+    id: 'botox-forehead',
+    labelNl: 'Botox Voorhoofd',
+    labelEn: 'Botox Forehead',
+    beforeImage: '/images/beforeafter/botoxbeforeafter.webp',
+    afterImage: '/images/beforeafter/botoxbeforeafter.webp',
+    beforeObjectPosition: 'left center',
+    afterObjectPosition: 'right center',
+  },
+  {
+    id: 'lip-fillers',
+    labelNl: 'Lipfillers',
+    labelEn: 'Lip Fillers',
+    beforeImage: '/images/beforeafter/22133-lip-fillers-beforeafter.jpg',
+    afterImage: '/images/beforeafter/22133-lip-fillers-beforeafter.jpg',
+    beforeObjectPosition: 'left center',
+    afterObjectPosition: 'right center',
+  },
+  {
+    id: 'jawline-fillers',
+    labelNl: 'Kaaklijn Fillers',
+    labelEn: 'Jawline Fillers',
+    beforeImage: '/images/beforeafter/jawline-filler-before-and-after.webp',
+    afterImage: '/images/beforeafter/jawline-filler-before-and-after.webp',
+    beforeObjectPosition: 'left center',
+    afterObjectPosition: 'right center',
+  },
+  {
+    id: 'cheek-fillers',
+    labelNl: 'Wangen Fillers',
+    labelEn: 'Cheek Fillers',
+    beforeImage: '/images/beforeafter/cheekfillerbeforeafter.jpeg',
+    afterImage: '/images/beforeafter/cheekfillerbeforeafter.jpeg',
+    beforeObjectPosition: 'left center',
+    afterObjectPosition: 'right center',
+  },
+  {
+    id: 'bbl',
+    labelNl: 'BBL Behandeling',
+    labelEn: 'BBL Treatment',
+    beforeImage: '/images/beforeafter/natural-bbl-before-and-after-back-view-results-usa.webp',
+    afterImage: '/images/beforeafter/natural-bbl-before-and-after-back-view-results-usa.webp',
+    beforeObjectPosition: 'left center',
+    afterObjectPosition: 'right center',
+  },
+  {
+    id: 'weight-loss',
+    labelNl: 'Gewichtsverlies',
+    labelEn: 'Weight Loss',
+    beforeImage: '/images/beforeafter/Before-after-weightloss.jpg',
+    afterImage: '/images/beforeafter/Before-after-weightloss.jpg',
+    beforeObjectPosition: 'left center',
+    afterObjectPosition: 'right center',
+  },
 ] as const satisfies readonly BeforeAfterItem[];
 
 function SliderCard({ item, locale }: { item: BeforeAfterItem; locale: string }) {
@@ -82,6 +132,7 @@ function SliderCard({ item, locale }: { item: BeforeAfterItem; locale: string })
               loading="lazy"
               sizes="(max-width: 768px) 300px, 360px"
               className="object-cover"
+              style={{ objectPosition: item.afterObjectPosition ?? 'center' }}
             />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/5 to-secondary/30 flex items-center justify-center">
@@ -109,6 +160,7 @@ function SliderCard({ item, locale }: { item: BeforeAfterItem; locale: string })
               loading="lazy"
               sizes="(max-width: 768px) 300px, 360px"
               className="object-cover"
+              style={{ objectPosition: item.beforeObjectPosition ?? 'center' }}
             />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-secondary/40 via-secondary/20 to-secondary/60 flex items-center justify-center">
