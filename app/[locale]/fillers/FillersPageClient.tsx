@@ -29,17 +29,15 @@ import DetailsForm, { type DetailsFormData } from '@/components/treatments/Detai
 import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import { FILLERS_ZONES } from '@/lib/data/fillers-zones';
 import { EASE_PREMIUM } from '@/lib/motion';
-import TreatmentCatalog from '@/components/treatments/TreatmentCatalog';
 import TreatmentMapGrid from '@/components/treatments/TreatmentMapGrid';
 import BookingSlotSelector from '@/components/booking/BookingSlotSelector';
-import { getFillerTreatments, type Locale } from '@/lib/clinic-data';
+import { type Locale } from '@/lib/clinic-data';
 import { useCart } from '@/lib/cart-context';
 
 export default function FillersPage() {
   const t = useTranslations('fillers_page');
   const locale = useLocale() as Locale;
   const cart = useCart();
-  const fillerTreatments = getFillerTreatments(locale);
   const [selectedZones, setSelectedZones] = useState<string[]>([]);
   const [step, setStep] = useState<'select' | 'date' | 'details' | 'done'>('select');
   const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
@@ -246,7 +244,7 @@ export default function FillersPage() {
           TREATMENT MAP - Clickable cards with popup + add to cart
           ============================================= */}
       <TreatmentMapGrid
-        zones={FILLERS_ZONES.map((z) => ({ ...z, descKey: undefined }))}
+        zones={FILLERS_ZONES}
         namespace="fillers_page"
         label={t('zones_label')}
         title={<>{t('zones_title')} <span className="italic font-light text-primary">{t('zones_title_accent')}</span></>}
@@ -664,17 +662,6 @@ export default function FillersPage() {
           </motion.div>
         </Container>
       </section>
-
-      {/* =============================================
-          TREATMENT CATALOG - Using translations
-          ============================================= */}
-      <TreatmentCatalog
-        locale={locale}
-        treatments={fillerTreatments}
-        label={t('catalog_label')}
-        title={t('catalog_title')}
-        subtitle={t('catalog_subtitle')}
-      />
 
       {/* =============================================
           BOTTOM CTA - Dark, authoritative closing

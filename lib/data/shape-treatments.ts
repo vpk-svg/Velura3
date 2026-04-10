@@ -24,22 +24,6 @@ export const SHAPE_TREATMENTS: ShapeTreatment[] = [
       { id: 'butt-premium', nameKey: 'treatment_bbl_variant_premium', priceCents: 420000 },
     ],
   },
-  {
-    id: 'ooglidcorrectie',
-    nameKey: 'treatment_eyelid',
-    variants: [
-      { id: 'ooglid-boven', nameKey: 'treatment_eyelid_variant_upper', priceCents: 150000 },
-      { id: 'ooglid-onder', nameKey: 'treatment_eyelid_variant_lower', priceCents: 175000 },
-      { id: 'ooglid-beide', nameKey: 'treatment_eyelid_variant_both', priceCents: 280000 },
-    ],
-  },
-  {
-    id: 'vet-onderkin',
-    nameKey: 'treatment_double_chin',
-    variants: [
-      { id: 'onderkin-injection', nameKey: 'treatment_double_chin_variant_injection', priceCents: 95000 },
-    ],
-  },
 ];
 
 /**

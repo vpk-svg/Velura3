@@ -488,6 +488,43 @@ export default function ContactPage() {
       </section>
 
       <NewsletterSection />
+
+      {/* ═══════ COMING SOON: Amsterdam, Rotterdam, Den Haag ═══════ */}
+      <section className="py-section-y bg-page-contact">
+        <Container>
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-4 block font-semibold">
+              {locale === 'nl' ? 'UITBREIDING' : 'EXPANSION'}
+            </span>
+            <h2 className="font-display text-display-md text-secondary italic mb-4">
+              {locale === 'nl' ? 'Binnenkort ook bij u in de buurt' : 'Coming soon near you'}
+            </h2>
+            <p className="font-sans text-secondary/60 text-base leading-relaxed mb-10">
+              {locale === 'nl'
+                ? 'FAB Clinic breidt uit naar de drie grootste steden van Nederland. Wij laten u weten zodra onze deuren opengaan.'
+                : 'FAB Clinic is expanding to the three largest cities in the Netherlands. We will notify you as soon as our doors open.'}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {[
+                { city: 'Amsterdam' },
+                { city: 'Rotterdam' },
+                { city: locale === 'nl' ? 'Den Haag' : 'The Hague' },
+              ].map(({ city }) => (
+                <div
+                  key={city}
+                  className="rounded-xl border border-primary/15 bg-white p-8 shadow-soft-sm flex flex-col items-center gap-3"
+                >
+                  <MapPin size={24} className="text-primary" aria-hidden="true" />
+                  <h3 className="font-display text-2xl italic text-secondary">{city}</h3>
+                  <span className="inline-flex items-center gap-1.5 rounded-pill bg-primary/10 text-primary px-4 py-1.5 text-[10px] uppercase tracking-[0.2em] font-semibold">
+                    {locale === 'nl' ? 'Binnenkort' : 'Coming Soon'}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
     </>
   );
 }

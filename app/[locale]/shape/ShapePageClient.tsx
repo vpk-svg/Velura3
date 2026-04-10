@@ -39,9 +39,9 @@ const BENEFITS = [
 const AFTERCARE_STEPS = ['1', '2', '3', '4'] as const;
 
 const METHOD_STEPS = [
-  { key: 'step1', offset: '', num: '01' },
-  { key: 'step2', offset: 'md:mt-12', num: '02' },
-  { key: 'step3', offset: 'md:mt-24', num: '03' },
+  { key: 'step1', offset: '', num: '01', image: '/images/BBL/BBL consult.jpg' },
+  { key: 'step2', offset: 'md:mt-12', num: '02', image: '/images/BBL/BBL drawing.webp' },
+  { key: 'step3', offset: 'md:mt-24', num: '03', image: '/images/BBL/BBL anesthesia.jpg' },
 ] as const;
 
 const RECOVERY_MILESTONES = ['day1', 'week1', 'week2', 'month1', 'month3'] as const;
@@ -531,7 +531,7 @@ export default function ShapePage() {
                 className={`group min-h-[440px] md:min-h-[500px] relative overflow-hidden rounded-2xl ${step.offset}`}
               >
                 <Image
-                  src="/images/spares/skincare-woman-beauty-butt-studio-with-wellness-underwear-fitness-cosmetics-liposuction-bum-cellulite-treatment-female-body-with-isolated-white-background-cosmetology.jpg"
+                  src={step.image}
                   alt={t(`method_${step.key}_title`)}
                   fill
                   loading="lazy"
@@ -717,7 +717,7 @@ export default function ShapePage() {
               className="relative"
             >
               <Image
-                src="/images/spares/skincare-woman-beauty-butt-studio-with-wellness-underwear-fitness-cosmetics-liposuction-bum-cellulite-treatment-female-body-with-isolated-white-background-cosmetology.jpg"
+                src="/images/BBL/bbl result.png"
                 alt={t('aftercare_img_alt')}
                 width={600}
                 height={500}

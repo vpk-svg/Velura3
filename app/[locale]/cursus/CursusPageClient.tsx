@@ -30,7 +30,6 @@ import { EASE_PREMIUM } from '@/lib/motion';
 import {
   CURRICULUM,
   LEARNING_OUTCOMES,
-  INSTRUCTOR,
   COURSE_TESTIMONIALS,
   COURSE_FAQ,
   PRICING_INCLUSIONS,
@@ -508,101 +507,6 @@ export default function CursusPageClient() {
                 </motion.div>
               );
             })}
-          </div>
-        </Container>
-      </section>
-
-      {/* ════════════════════════════ INSTRUCTOR ════════════════════════════ */}
-      <section className="py-section-y bg-page-cursus">
-        <Container>
-          <SectionHeader
-            label={t('instructor_label')}
-            title={t('instructor_title')}
-          />
-
-          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-[280px_1fr] gap-10 items-start">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-              className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-soft-lg mx-auto md:mx-0 max-w-[280px] w-full transition-all duration-300 hover:shadow-[0_0_38px_rgba(212,175,55,0.48)]"
-            >
-              <Image
-                src={INSTRUCTOR.image}
-                alt={INSTRUCTOR.name}
-                fill
-                className="object-cover"
-                sizes="280px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-secondary/20 to-transparent" />
-            </motion.div>
-
-            <div>
-              <motion.h3
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-                className="font-display text-3xl text-secondary mb-1"
-              >
-                {INSTRUCTOR.name}
-              </motion.h3>
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.05, ease: EASE_PREMIUM }}
-                className="flex flex-wrap gap-2 mb-4"
-              >
-                {INSTRUCTOR.credentials.map((cred) => (
-                  <span
-                    key={cred}
-                    className="text-[10px] uppercase tracking-[0.15em] font-semibold bg-primary/10 text-primary px-3 py-1 rounded-pill"
-                  >
-                    {cred}
-                  </span>
-                ))}
-              </motion.div>
-
-              <motion.blockquote
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.08, ease: EASE_PREMIUM }}
-                className="border-l-2 border-primary/30 pl-4 mb-6 italic font-sans text-secondary/60 text-sm leading-relaxed"
-              >
-                &ldquo;{t('instructor_quote')}&rdquo;
-              </motion.blockquote>
-
-              <motion.p
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-                className="font-sans text-secondary/70 leading-relaxed mb-6"
-              >
-                {t('instructor_bio')}
-              </motion.p>
-
-              <div className="grid grid-cols-3 gap-4">
-                {INSTRUCTOR.stats.map((stat, i) => (
-                  <motion.div
-                    key={stat.labelKey}
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.15 + i * 0.08, ease: EASE_PREMIUM }}
-                    className="text-center bg-white rounded-2xl p-4 shadow-soft-sm border border-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_34px_rgba(212,175,55,0.42)]"
-                  >
-                    <p className="font-display text-3xl text-primary mb-1">{stat.value}</p>
-                    <p className="font-sans text-xs text-secondary/50 uppercase tracking-wider">
-                      {t(stat.labelKey)}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
           </div>
         </Container>
       </section>
