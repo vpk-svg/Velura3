@@ -329,48 +329,6 @@ export default function FillersPage() {
       {/* =============================================
           INTERACTIVE ZONE SELECTOR + CART
           ============================================= */}
-      <section id="book" className="py-section-y bg-white overflow-hidden scroll-mt-24">
-        <Container>
-          <SectionHeader
-            label={t('selector_label')}
-            title={<>{t('selector_title')} <span className="italic font-light text-primary">{t('selector_title_accent')}</span></>}
-            subtitle={t('selector_subtitle')}
-          />
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            <div className="lg:col-span-2">
-              <ZoneSelector
-                zones={FILLERS_ZONES}
-                selectedZones={selectedZones}
-                onToggle={toggleZone}
-                namespace="fillers_page"
-              />
-            </div>
-
-            <div className="lg:sticky lg:top-28 space-y-6 self-start">
-              <TreatmentCart
-                zones={FILLERS_ZONES}
-                selectedZones={selectedZones}
-                onRemove={removeZone}
-                onRestore={toggleZone}
-                namespace="fillers_page"
-              />
-
-              {selectedZones.length > 0 && step === 'select' && (
-                <motion.button
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  onClick={() => setStep('date')}
-                  className="w-full inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
-                >
-                  {t('proceed_to_details')}
-                </motion.button>
-              )}
-            </div>
-          </div>
-        </Container>
-      </section>
-
       {/* Date Selection */}
       {step === 'date' && (
         <section className="py-section-y bg-page-fillers overflow-hidden" id="date-select">
