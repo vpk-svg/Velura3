@@ -40,8 +40,8 @@ const AFTERCARE_STEPS = ['1', '2', '3', '4'] as const;
 
 const METHOD_STEPS = [
   { key: 'step1', offset: '', num: '01', image: '/images/BBL/BBL consult.jpg' },
-  { key: 'step2', offset: 'md:mt-12', num: '02', image: '/images/BBL/BBL drawing.webp' },
-  { key: 'step3', offset: 'md:mt-24', num: '03', image: '/images/BBL/BBL anesthesia.jpg' },
+  { key: 'step2', offset: 'md:mt-12', num: '02', image: '/images/BBL/BBL anesthesia.jpg' },
+  { key: 'step3', offset: 'md:mt-24', num: '03', image: '/images/BBL/BBL drawing.webp' },
 ] as const;
 
 const RECOVERY_MILESTONES = ['day1', 'week1', 'week2', 'month1', 'month3'] as const;
