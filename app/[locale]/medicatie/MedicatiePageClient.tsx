@@ -62,7 +62,7 @@ export default function MedicatiePage() {
   return (
     <main className="min-h-screen">
       {/* ═══════════════════════════════════════════════
-          HERO — Medication-specific, dark clinical hero
+          HERO - Medication-specific, dark clinical hero
           ═══════════════════════════════════════════════ */}
       <section
         ref={heroRef}
@@ -116,7 +116,7 @@ export default function MedicatiePage() {
               {t('hero_desc')}
             </motion.p>
 
-            {/* Rx notice — prominent for medical compliance */}
+            {/* Rx notice - prominent for medical compliance */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -147,7 +147,7 @@ export default function MedicatiePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          HOW GLP-1 WORKS — 3 mechanism cards
+          HOW GLP-1 WORKS - 3 mechanism cards
           ═══════════════════════════════════════════════ */}
       <section
         aria-labelledby="how-glp1-title"
@@ -199,7 +199,7 @@ export default function MedicatiePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          PRODUCT COMPARISON — Section header + ProductShop
+          PRODUCT COMPARISON - Section header + ProductShop
           ═══════════════════════════════════════════════ */}
       <div className="bg-page-medicatie">
         <section aria-labelledby="compare-title" className="pt-section-y">
@@ -221,7 +221,7 @@ export default function MedicatiePage() {
       </div>
 
       {/* ═══════════════════════════════════════════════
-          SAFETY GUARANTEES — 4 items in a clinical grid
+          SAFETY GUARANTEES - 4 items in a clinical grid
           ═══════════════════════════════════════════════ */}
       <section
         aria-labelledby="safety-title"
@@ -281,7 +281,7 @@ export default function MedicatiePage() {
       <PharmacyDisclaimer />
 
       {/* ═══════════════════════════════════════════════
-          BOTTOM CTA — Route to screening, not checkout
+          BOTTOM CTA - Route to screening, not checkout
           ═══════════════════════════════════════════════ */}
       <section
         aria-labelledby="med-cta-title"

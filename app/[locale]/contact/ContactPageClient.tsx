@@ -33,7 +33,7 @@ import {
 /* ── Constants ────────────────────────────────────────────────── */
 
 const TEAM_MEMBERS = [
-  { nameKey: 'member1_name', roleKey: 'member1_role', bigKey: 'member1_big', img: '/images/Newteam/Athina Barza.jpg' },
+  { nameKey: 'member1_name', roleKey: 'member1_role', bigKey: 'member1_big', img: '/images/Newteam/Athiná Barza.jpg' },
   { nameKey: 'member2_name', roleKey: 'member2_role', bigKey: 'member2_big', img: '/images/Newteam/Ava.jpg' },
   { nameKey: 'member3_name', roleKey: 'member3_role', bigKey: 'member3_big', img: '/images/Newteam/Elissa.jpg' },
   { nameKey: 'member4_name', roleKey: 'member4_role', bigKey: 'member4_big', img: '/images/Newteam/Ryan.jpg' },
@@ -148,7 +148,7 @@ export default function ContactPage() {
                   {t('form_title')}
                 </h3>
 
-                {/* Honeypot — visually hidden, skipped by tab */}
+                {/* Honeypot - visually hidden, skipped by tab */}
                 <div className="absolute -left-[9999px]" aria-hidden="true">
                   <label htmlFor={`${formId}-website`}>Website</label>
                   <input

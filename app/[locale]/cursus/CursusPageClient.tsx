@@ -272,7 +272,7 @@ export default function CursusPageClient() {
               </motion.p>
             </div>
 
-            {/* Hero image — visible on all screens */}
+            {/* Hero image - visible on all screens */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -767,7 +767,7 @@ export default function CursusPageClient() {
                   <fieldset disabled={submitting} className="space-y-5">
                     <legend className="sr-only">{t('register_title')}</legend>
 
-                    {/* Honeypot — hidden from real users */}
+                    {/* Honeypot - hidden from real users */}
                     <div className="absolute -left-[9999px]" aria-hidden="true">
                       <label htmlFor="hp-field">{t('field_honeypot')}</label>
                       <input

@@ -176,7 +176,7 @@ export default function TermsPage() {
               transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
               className="font-sans font-light text-background-light/70 text-lg leading-relaxed"
             >
-              Golden Palm Europe B.V., handelend onder de naam FAB Clinic — KvK 70926468 — Achterdoelen 63, Ede
+              Golden Palm Europe B.V., handelend onder de naam FAB Clinic - KvK 70926468 - Achterdoelen 63, Ede
             </motion.p>
           </div>
         </Container>
@@ -226,12 +226,12 @@ export default function TermsPage() {
                     </span>
                     <div className="flex-1 pt-2">
                       <h2 className="font-display text-xl text-background-light mb-3 font-semibold">
-                        Artikel {article.number} — {article.title}
+                        Artikel {article.number} - {article.title}
                       </h2>
                       <ul className="space-y-2">
                         {article.items.map((item, i) => (
                           <li key={i} className="font-sans font-light text-background-light/65 text-sm leading-relaxed flex gap-3">
-                            <span className="text-primary/40 mt-1 flex-shrink-0">—</span>
+                            <span className="text-primary/40 mt-1 flex-shrink-0">-</span>
                             <span>{renderText(item)}</span>
                           </li>
                         ))}
@@ -253,7 +253,7 @@ export default function TermsPage() {
               transition={{ duration: 0.6, ease: EASE_PREMIUM }}
               className="mt-16 text-center font-sans text-xs text-background-light/30 uppercase tracking-[0.25em] font-semibold"
             >
-              Einde algemene voorwaarden — FAB Clinic © {new Date().getFullYear()}
+              Einde algemene voorwaarden - FAB Clinic © {new Date().getFullYear()}
             </motion.p>
           </div>
         </Container>

@@ -101,7 +101,7 @@ export const INSTRUCTOR: CourseInstructor = {
   name: 'Athiná Barza',
   titleKey: 'instructor_title',
   bioKey: 'instructor_bio',
-  image: '/images/Newteam/Athina Barza.jpg',
+  image: '/images/Newteam/Athiná Barza.jpg',
   credentials: ['BIG-geregistreerd arts 19937285901', 'Cosmetisch arts NVCG'],
   stats: [
     { labelKey: 'stat_experience', value: '10+' },

@@ -34,7 +34,7 @@ export default function FloatingCart({
 
   return (
     <>
-      {/* Floating badge button — fixed right side */}
+      {/* Floating badge button - fixed right side */}
       <motion.button
         type="button"
         initial={{ scale: 0, opacity: 0 }}

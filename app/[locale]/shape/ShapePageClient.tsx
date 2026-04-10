@@ -128,7 +128,7 @@ export default function ShapePage() {
   return (
     <>
       {/* ═══════════════════════════════════════════════════════
-          HERO — Full-viewport immersive hero with trust badges
+          HERO - Full-viewport immersive hero with trust badges
           ═══════════════════════════════════════════════════════ */}
       <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden bg-secondary">
         <div className="absolute inset-0 z-0">
@@ -241,7 +241,7 @@ export default function ShapePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          SAFETY COMPARISON — Surgical BBL vs. Filler BBL
+          SAFETY COMPARISON - Surgical BBL vs. Filler BBL
           ═══════════════════════════════════════════════════════ */}
       <section id="safety" className="py-section-y bg-page-shape overflow-hidden">
         <Container>
@@ -344,7 +344,7 @@ export default function ShapePage() {
       ))}
 
       {/* ═══════════════════════════════════════════════════════
-          INTERACTIVE TREATMENT SELECTOR — Click card + popup + add to cart
+          INTERACTIVE TREATMENT SELECTOR - Click card + popup + add to cart
           ═══════════════════════════════════════════════════════ */}
       <TreatmentMapGrid
         zones={SHAPE_VARIANTS_FLAT}
@@ -424,7 +424,7 @@ export default function ShapePage() {
       )}
 
       {/* ═══════════════════════════════════════════════════════
-          INTRODUCTION — What is a BBL / Buttock Filler?
+          INTRODUCTION - What is a BBL / Buttock Filler?
           ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y bg-surface overflow-hidden">
         <Container>
@@ -469,7 +469,7 @@ export default function ShapePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          CREDENTIALS — Surgical Safety & BIG Registration
+          CREDENTIALS - Surgical Safety & BIG Registration
           ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y bg-surface overflow-hidden">
         <Container>
@@ -508,7 +508,7 @@ export default function ShapePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          THE METHOD — 3 Staggered Cards with step numbers
+          THE METHOD - 3 Staggered Cards with step numbers
           ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y bg-page-shape overflow-hidden">
         <Container>
@@ -560,7 +560,7 @@ export default function ShapePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          BENEFITS GRID — With SectionHeader + Lucide icons
+          BENEFITS GRID - With SectionHeader + Lucide icons
           ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y bg-surface overflow-hidden">
         <Container>
@@ -590,7 +590,7 @@ export default function ShapePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          CANDIDATE SECTION — "Am I a Candidate?" + BMI Calculator
+          CANDIDATE SECTION - "Am I a Candidate?" + BMI Calculator
           ═══════════════════════════════════════════════════════ */}
       <section id="candidate" className="py-section-y bg-page-shape overflow-hidden">
         <Container>
@@ -636,7 +636,7 @@ export default function ShapePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          RECOVERY TIMELINE — Visual day-by-day breakdown
+          RECOVERY TIMELINE - Visual day-by-day breakdown
           ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y bg-page-shape overflow-hidden">
         <Container>
@@ -681,7 +681,7 @@ export default function ShapePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          AFTERCARE — Tips + image + quote (now visible on mobile)
+          AFTERCARE - Tips + image + quote (now visible on mobile)
           ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y bg-surface overflow-hidden">
         <Container>
@@ -726,7 +726,7 @@ export default function ShapePage() {
                 className="rounded-xl shadow-soft-lg"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
-              {/* Quote — absolute on md+, block on mobile */}
+              {/* Quote - absolute on md+, block on mobile */}
               <div className="mt-6 md:mt-0 md:absolute md:-bottom-10 md:-right-10 bg-primary p-8 md:p-10 rounded-xl">
                 <p className="text-white font-display text-2xl italic">{t('aftercare_quote')}</p>
               </div>
@@ -736,7 +736,7 @@ export default function ShapePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          FAQ — Shape-specific questions (SEO rich snippets)
+          FAQ - Shape-specific questions (SEO rich snippets)
           ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y bg-page-shape overflow-hidden">
         <Container>
@@ -784,7 +784,7 @@ export default function ShapePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          FINAL CTA — Full-width immersive call-to-action
+          FINAL CTA - Full-width immersive call-to-action
           ═══════════════════════════════════════════════════════ */}
       <section className="py-section-y overflow-hidden">
         <Container>
@@ -825,7 +825,7 @@ export default function ShapePage() {
         </Container>
       </section>
 
-      {/* Removed per-page FloatingCart — using global GlobalFloatingCart in layout */}
+      {/* Removed per-page FloatingCart - using global GlobalFloatingCart in layout */}
     </>
   );
 }

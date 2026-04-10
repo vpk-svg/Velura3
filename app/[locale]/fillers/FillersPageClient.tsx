@@ -243,7 +243,7 @@ export default function FillersPage() {
       </section>
 
       {/* =============================================
-          TREATMENT MAP — Clickable cards with popup + add to cart
+          TREATMENT MAP - Clickable cards with popup + add to cart
           ============================================= */}
       <TreatmentMapGrid
         zones={FILLERS_ZONES.map((z) => ({ ...z, descKey: undefined }))}
@@ -732,7 +732,7 @@ export default function FillersPage() {
         </Container>
       </section>
 
-      {/* Removed per-page FloatingCart — using global GlobalFloatingCart in layout */}
+      {/* Removed per-page FloatingCart - using global GlobalFloatingCart in layout */}
     </main>
   );
 }

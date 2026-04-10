@@ -41,7 +41,7 @@ export default function ZoneSelector({ zones, selectedZones, onToggle, namespace
               type="button"
               role="checkbox"
               aria-checked={isSelected}
-              aria-label={`${t(zone.nameKey)} — €${(zone.priceCents / 100).toFixed(0)}`}
+              aria-label={`${t(zone.nameKey)} - €${(zone.priceCents / 100).toFixed(0)}`}
               onClick={() => onToggle(zone.id)}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}

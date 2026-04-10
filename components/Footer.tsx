@@ -3,28 +3,64 @@
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import { Instagram, Facebook, Phone } from 'lucide-react';
+import { motion, useReducedMotion, type Variants } from 'motion/react';
 import Container from './ui/Container';
 import { Link } from '@/lib/navigation';
 
 export default function Footer() {
   const t = useTranslations('footer');
   const locale = useLocale();
+  const shouldReduceMotion = useReducedMotion();
 
   const linkClass = 'hover:text-primary focus-visible:text-primary transition-colors duration-200 block';
+  const easePremium: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+  const footerColumnsVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.08,
+      },
+    },
+  };
+
+  const footerColumnItemVariants: Variants = {
+    hidden: { opacity: 0, y: 18 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: easePremium },
+    },
+  };
 
   return (
     <footer className="bg-secondary text-background-light pt-section-y pb-16">
       <Container>
         {/* Wordmark */}
-        <div className="text-center mb-20" aria-hidden="true">
+        <motion.div
+          className="text-center mb-20"
+          aria-hidden="true"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={shouldReduceMotion ? undefined : { once: true, amount: 0.5 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.9, ease: easePremium }}
+        >
           <span className="font-display text-6xl md:text-8xl lg:text-[10rem] text-primary tracking-[0.2em] font-semibold opacity-[0.06] select-none">
             FAB CLINIC
           </span>
-        </div>
+        </motion.div>
 
         {/* Links Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-16 mb-20">
-          <div className="col-span-2 lg:col-span-1">
+        <motion.div
+          className="grid grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-16 mb-20"
+          variants={footerColumnsVariants}
+          initial={shouldReduceMotion ? false : 'hidden'}
+          whileInView={shouldReduceMotion ? undefined : 'visible'}
+          viewport={shouldReduceMotion ? undefined : { once: true, amount: 0.2 }}
+        >
+          <motion.div className="col-span-2 lg:col-span-1" variants={footerColumnItemVariants}>
             <h3 className="font-display text-white text-xl mb-6 font-bold tracking-tighter">FAB <span className="text-primary italic drop-shadow-[0_0_10px_rgba(198,166,93,0.4)]">CLINIC</span></h3>
             <p className="font-sans font-light text-background-light/50 text-sm leading-relaxed max-w-xs">
               {t('about_text')}
@@ -40,7 +76,7 @@ export default function Footer() {
                 <Phone size={18} />
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {[
             { title: t('treatments'), links: [
@@ -70,7 +106,7 @@ export default function Footer() {
               { href: '/wkkgz', label: t('link_wkkgz') },
             ]},
           ].map((col) => (
-            <nav key={col.title} aria-label={col.title}>
+            <motion.nav key={col.title} aria-label={col.title} variants={footerColumnItemVariants}>
               <h4 className="font-sans text-primary text-[11px] tracking-[0.3em] uppercase mb-8 font-semibold">
                 {col.title}
               </h4>
@@ -79,9 +115,9 @@ export default function Footer() {
                   <li key={`${col.title}-${link.href}-${link.label}`}><Link href={link.href} className={linkClass}>{link.label}</Link></li>
                 ))}
               </ul>
-            </nav>
+            </motion.nav>
           ))}
-        </div>
+        </motion.div>
 
         {/* Divider */}
         <div className="h-px bg-primary/10 mb-12" />
@@ -97,10 +133,17 @@ export default function Footer() {
 
           {/* Payment Badges */}
           <div className="flex flex-wrap justify-center gap-4">
-            {['iDEAL', 'Amex', 'Visa', 'Mastercard', 'STP'].map((method) => (
-              <span key={method} className="font-sans text-[10px] tracking-widest uppercase border border-background-light/5 px-4 py-1.5 rounded-pill hover:border-primary/20 transition-colors duration-200 cursor-default">
+            {['iDEAL', 'Amex', 'Visa', 'Mastercard', 'STP'].map((method, index) => (
+              <motion.span
+                key={method}
+                className="font-sans text-[10px] tracking-widest uppercase border border-background-light/5 px-4 py-1.5 rounded-pill hover:border-primary/20 transition-colors duration-200 cursor-default"
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={shouldReduceMotion ? undefined : { once: true, amount: 0.8 }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.45, delay: shouldReduceMotion ? 0 : index * 0.05, ease: easePremium }}
+              >
                 {method}
-              </span>
+              </motion.span>
             ))}
           </div>
         </div>

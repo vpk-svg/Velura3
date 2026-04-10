@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
     /* ── Honeypot check ──────────────────────────── */
     if (body.website) {
-      // Bot filled the hidden field — silently accept to avoid signalling detection
+      // Bot filled the hidden field - silently accept to avoid signalling detection
       return NextResponse.json({ success: true });
     }
 
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
     const clinicEmail = process.env.CLINIC_EMAIL || 'shots@fabclinic.eu';
     await sendEmail({
       to: clinicEmail,
-      subject: `Nieuwe intake: ${name} — ${treatment}`,
+      subject: `Nieuwe intake: ${name} - ${treatment}`,
       replyTo: email,
       html: `
         <h2>Nieuwe intake aanvraag</h2>
@@ -50,7 +50,7 @@ export async function POST(request: Request) {
           <tr><td style="padding:6px 12px;font-weight:bold;">E-mail</td><td style="padding:6px 12px;">${escapeHtml(email)}</td></tr>
           <tr><td style="padding:6px 12px;font-weight:bold;">Geboortedatum</td><td style="padding:6px 12px;">${escapeHtml(dob)}</td></tr>
           <tr><td style="padding:6px 12px;font-weight:bold;">Telefoon</td><td style="padding:6px 12px;">${escapeHtml(phone)}</td></tr>
-          <tr><td style="padding:6px 12px;font-weight:bold;">Omschrijving</td><td style="padding:6px 12px;">${escapeHtml(description || '—')}</td></tr>
+          <tr><td style="padding:6px 12px;font-weight:bold;">Omschrijving</td><td style="padding:6px 12px;">${escapeHtml(description || '-')}</td></tr>
         </table>
       `,
     });
@@ -58,14 +58,14 @@ export async function POST(request: Request) {
     /* ── Send confirmation email to user ─────────── */
     await sendEmail({
       to: email,
-      subject: 'Uw intake is ontvangen — FAB Clinic',
+      subject: 'Uw intake is ontvangen - FAB Clinic',
       html: `
         <div style="font-family:sans-serif;max-width:480px;">
           <h2 style="color:#3B2A23;">Bedankt, ${escapeHtml(firstName)}!</h2>
           <p>Wij hebben uw intake voor <strong>${escapeHtml(treatment)}</strong> in goede orde ontvangen.</p>
           <p>Ons team neemt binnen <strong>24 uur</strong> contact met u op om een afspraak in te plannen.</p>
           <hr style="border:none;border-top:1px solid #e5e5e5;margin:24px 0;" />
-          <p style="font-size:12px;color:#888;">FAB Clinic — Nieuwe Stationsstraat 20, 6711 AG Ede</p>
+          <p style="font-size:12px;color:#888;">FAB Clinic - Nieuwe Stationsstraat 20, 6711 AG Ede</p>
         </div>
       `,
     });

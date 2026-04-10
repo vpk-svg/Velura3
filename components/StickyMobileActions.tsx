@@ -2,13 +2,20 @@
 
 import { useTranslations } from 'next-intl';
 import { Phone, MessageCircle } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { Link } from '@/lib/navigation';
 
 export default function StickyMobileActions() {
   const t = useTranslations('sticky_mobile');
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-floating lg:hidden bg-white/95 backdrop-blur-md border-t border-secondary/[0.06] shadow-soft-lg safe-area-pb">
+    <motion.div
+      className="fixed bottom-0 left-0 right-0 z-floating lg:hidden bg-white/95 backdrop-blur-md border-t border-secondary/[0.06] shadow-soft-lg safe-area-pb"
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+      animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+      transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+    >
       <div className="flex items-center gap-3 px-4 py-3">
         <Link
           href="/contact"
@@ -27,6 +34,6 @@ export default function StickyMobileActions() {
           WhatsApp
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 }

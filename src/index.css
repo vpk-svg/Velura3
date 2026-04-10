@@ -95,10 +95,10 @@
 
   /* WCAG AA minimum contrast helper: use instead of text-secondary/40-50 on light bgs */
   .text-muted {
-    color: rgba(59, 42, 35, 0.65); /* ~4.8:1 on #FDFCF0 — passes AA */
+    color: rgba(59, 42, 35, 0.65); /* ~4.8:1 on #FDFCF0 - passes AA */
   }
   .text-muted-strong {
-    color: rgba(59, 42, 35, 0.75); /* ~5.6:1 on #FDFCF0 — passes AA+AAA */
+    color: rgba(59, 42, 35, 0.75); /* ~5.6:1 on #FDFCF0 - passes AA+AAA */
   }
 
   /* Segmented progress track */

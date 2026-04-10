@@ -277,7 +277,7 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
               <div className="relative aspect-[3/4]">
                 <Image
                   src={beforeAfterSlides[slideIndex].before}
-                  alt={locale === 'nl' ? `${t(treatment.titleKey)} — voor behandeling` : `${t(treatment.titleKey)} — before treatment`}
+                  alt={locale === 'nl' ? `${t(treatment.titleKey)} - voor behandeling` : `${t(treatment.titleKey)} - before treatment`}
                   fill
                   loading="lazy"
                   quality={85}
@@ -291,7 +291,7 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
               <div className="relative aspect-[3/4]">
                 <Image
                   src={beforeAfterSlides[slideIndex].after}
-                  alt={locale === 'nl' ? `${t(treatment.titleKey)} — na behandeling` : `${t(treatment.titleKey)} — after treatment`}
+                  alt={locale === 'nl' ? `${t(treatment.titleKey)} - na behandeling` : `${t(treatment.titleKey)} - after treatment`}
                   fill
                   loading="lazy"
                   quality={85}

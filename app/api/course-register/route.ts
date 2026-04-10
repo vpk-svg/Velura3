@@ -30,7 +30,7 @@ interface RegistrationBody {
   education?: string;
   dateId?: string;
   locale?: string;
-  honeypot?: string;          // spam trap — must be empty
+  honeypot?: string;          // spam trap - must be empty
 }
 
 export async function POST(req: Request) {
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
 
     const body = (await req.json()) as RegistrationBody;
 
-    // Honeypot check — bots fill hidden fields
+    // Honeypot check - bots fill hidden fields
     if (body.honeypot) {
       // Silently accept to not tip off bots
       return NextResponse.json({ ok: true });

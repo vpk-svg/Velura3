@@ -2,6 +2,7 @@
 
 import { useLocale } from 'next-intl';
 import { useTransition } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
 import { usePathname, useRouter } from '@/lib/navigation';
 
 interface LanguageToggleProps {
@@ -13,6 +14,7 @@ export default function LanguageToggle({ isScrolled = false }: LanguageTogglePro
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
+  const shouldReduceMotion = useReducedMotion();
 
   const handleLocaleChange = (newLocale: string) => {
     if (newLocale === locale) return;
@@ -22,7 +24,7 @@ export default function LanguageToggle({ isScrolled = false }: LanguageTogglePro
     });
   };
 
-  const activeColorClass = 'bg-secondary text-background-light';
+  const activeColorClass = 'text-background-light';
   const inactiveColorClass = 'text-secondary/60 hover:text-primary';
   const borderColor = 'border-secondary/20';
 
@@ -31,16 +33,30 @@ export default function LanguageToggle({ isScrolled = false }: LanguageTogglePro
       <button
         onClick={() => handleLocaleChange('nl')}
         disabled={isPending}
-        className={`px-4 py-1.5 rounded-full transition-all duration-300 font-bold ${locale === 'nl' ? activeColorClass : inactiveColorClass}`}
+        className="relative px-4 py-1.5 rounded-full transition-all duration-300 font-bold"
       >
-        NL
+        {locale === 'nl' ? (
+          <motion.span
+            layoutId="active-locale-pill"
+            className="absolute inset-0 rounded-full bg-secondary"
+            transition={shouldReduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 500, damping: 35, mass: 0.7 }}
+          />
+        ) : null}
+        <span className={`relative z-[1] ${locale === 'nl' ? activeColorClass : inactiveColorClass}`}>NL</span>
       </button>
       <button
         onClick={() => handleLocaleChange('en')}
         disabled={isPending}
-        className={`px-4 py-1.5 rounded-full transition-all duration-300 font-bold ${locale === 'en' ? activeColorClass : inactiveColorClass}`}
+        className="relative px-4 py-1.5 rounded-full transition-all duration-300 font-bold"
       >
-        EN
+        {locale === 'en' ? (
+          <motion.span
+            layoutId="active-locale-pill"
+            className="absolute inset-0 rounded-full bg-secondary"
+            transition={shouldReduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 500, damping: 35, mass: 0.7 }}
+          />
+        ) : null}
+        <span className={`relative z-[1] ${locale === 'en' ? activeColorClass : inactiveColorClass}`}>EN</span>
       </button>
     </div>
   );

@@ -39,13 +39,13 @@ const PILLARS: Pillar[] = [
     nl: {
       title: 'Behandeling',
       description:
-        'Maak een afspraak voor een behandeling: Botox, Fillers of Body Contouring. Geen vragenlijst nodig — kies uw behandeling en plan direct een consult.',
+        'Maak een afspraak voor een behandeling: Botox, Fillers of Body Contouring. Geen vragenlijst nodig - kies uw behandeling en plan direct een consult.',
       cta: 'Kies Behandeling',
     },
     en: {
       title: 'Treatment',
       description:
-        'Book an appointment for a treatment: Botox, Fillers or Body Contouring. No questionnaire needed — choose your treatment and schedule a consultation.',
+        'Book an appointment for a treatment: Botox, Fillers or Body Contouring. No questionnaire needed - choose your treatment and schedule a consultation.',
       cta: 'Choose Treatment',
     },
     href: (locale) => `/${locale}/consult/plan?focus=other`,
@@ -203,7 +203,7 @@ export default function ConsultChooserPage() {
             </p>
           </div>
 
-          {/* 3 Pillars — Home view */}
+          {/* 3 Pillars - Home view */}
           {showPillars && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {PILLARS.map((pillar) => (
@@ -236,7 +236,7 @@ export default function ConsultChooserPage() {
             </div>
           )}
 
-          {/* Context-specific options — From specific page */}
+          {/* Context-specific options - From specific page */}
           {contextOptions && (
             <div
               className={`grid gap-6 ${

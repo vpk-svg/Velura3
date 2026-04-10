@@ -125,7 +125,7 @@ export default function ProductShop() {
                   ease: EASE_PREMIUM,
                 }}
                 className="bg-white rounded-md overflow-hidden shadow-soft-sm hover:shadow-soft-lg border border-secondary/5 flex flex-col group relative"
-                aria-label={`${product.name} — ${product.activeIngredient}`}
+                aria-label={`${product.name} - ${product.activeIngredient}`}
               >
                 {/* Visual Area */}
                 <div
@@ -157,7 +157,7 @@ export default function ProductShop() {
                   <div className="relative w-full h-full drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)] opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-premium z-0">
                     <Image
                       src={product.imgSrc}
-                      alt={`${product.name} (${product.activeIngredient}) — ${product.detailFrequency}`}
+                      alt={`${product.name} (${product.activeIngredient}) - ${product.detailFrequency}`}
                       fill
                       loading="lazy"
                       className="object-contain p-4"
@@ -256,7 +256,7 @@ export default function ProductShop() {
                   </div>
                   <p className="font-sans text-[11px] text-secondary/40 mb-8">{t('price_includes')}</p>
 
-                  {/* CTA — route to consult, NOT direct checkout for Rx meds */}
+                  {/* CTA - route to consult, NOT direct checkout for Rx meds */}
                   <ConsultTrigger
                     from="medicatie"
                     className="w-full py-5 rounded-full font-sans text-[11px] tracking-[0.2em] uppercase transition-all duration-500 flex items-center justify-center gap-2 overflow-hidden font-semibold bg-primary text-white shadow-xl hover:shadow-primary/40 hover:-translate-y-1 active:scale-95 text-center"
