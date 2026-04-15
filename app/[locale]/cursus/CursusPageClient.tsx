@@ -1,10 +1,9 @@
 'use client';
 
-import { useState, useRef, useCallback, type FormEvent } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { motion, useInView, AnimatePresence } from 'motion/react';
 import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
 import {
   Check,
   Award,
@@ -12,15 +11,12 @@ import {
   BookOpen,
   Shield,
   ChevronDown,
-  GraduationCap,
   Clock,
   Star,
   Quote,
-  AlertCircle,
-  CheckCircle2,
-  Loader2,
   Sparkles,
   Briefcase,
+  CheckCircle2,
 } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
@@ -50,50 +46,10 @@ const TAG_COLORS: Record<string, string> = {
   tag_certificate: 'bg-primary/10 text-primary',
 };
 
-/* ── Form state ── */
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  big: string;
-  education: string;
-  date: string;
-  terms: boolean;
-  hp: string; // honeypot
-}
-
-interface FormErrors {
-  name?: string;
-  email?: string;
-  phone?: string;
-  big?: string;
-  education?: string;
-  date?: string;
-  terms?: string;
-  server?: string;
-}
-
-const INITIAL_FORM: FormData = {
-  name: '',
-  email: '',
-  phone: '',
-  big: '',
-  education: '',
-  date: '',
-  terms: false,
-  hp: '',
-};
-
 export default function CursusPageClient() {
   const t = useTranslations('cursus');
   const locale = useLocale() as Locale;
   const dates = getCourseDates(locale);
-
-  /* ── Form state ── */
-  const [form, setForm] = useState<FormData>(INITIAL_FORM);
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
   /* ── Date card → form linking ── */
   const [selectedDate, setSelectedDate] = useState('');
@@ -101,79 +57,12 @@ export default function CursusPageClient() {
 
   const handleDateSelect = useCallback((id: string) => {
     setSelectedDate(id);
-    setForm((prev) => ({ ...prev, date: id }));
     formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, []);
 
   /* ── Accordion states ── */
   const [openCurriculum, setOpenCurriculum] = useState<string | null>('mod-1');
   const [openFaq, setOpenFaq] = useState<string | null>(null);
-
-  /* ── Form handlers ── */
-  const updateField = useCallback(
-    <K extends keyof FormData>(key: K, value: FormData[K]) => {
-      setForm((prev) => ({ ...prev, [key]: value }));
-      setErrors((prev) => ({ ...prev, [key]: undefined }));
-    },
-    [],
-  );
-
-  const validate = useCallback((): FormErrors => {
-    const e: FormErrors = {};
-    if (!form.name.trim()) e.name = t('err_name');
-    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      e.email = t('err_email');
-    if (!form.phone.trim() || form.phone.replace(/\D/g, '').length < 8)
-      e.phone = t('err_phone');
-    if (!form.big.trim() || !/^\d{9,11}$/.test(form.big.replace(/\s/g, '')))
-      e.big = t('err_big');
-    if (!form.education.trim()) e.education = t('err_education');
-    if (!form.date) e.date = t('err_date');
-    if (!form.terms) e.terms = t('err_terms');
-    return e;
-  }, [form, t]);
-
-  const handleSubmit = useCallback(
-    async (e: FormEvent) => {
-      e.preventDefault();
-
-      // Honeypot check
-      if (form.hp) return;
-
-      const errs = validate();
-      if (Object.keys(errs).length > 0) {
-        setErrors(errs);
-        return;
-      }
-
-      setSubmitting(true);
-      setErrors({});
-
-      try {
-        const res = await fetch('/api/course-register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: form.name.trim(),
-            email: form.email.trim(),
-            phone: form.phone.trim(),
-            big: form.big.trim(),
-            education: form.education.trim(),
-            dateId: form.date,
-            locale,
-          }),
-        });
-
-        if (!res.ok) throw new Error('Server error');
-        setSubmitted(true);
-      } catch {
-        setErrors({ server: t('err_server') });
-      } finally {
-        setSubmitting(false);
-      }
-    },
-    [form, validate, locale, t],
-  );
 
   /* ── Refs for in-view animations ── */
   const outcomesRef = useRef<HTMLDivElement>(null);
@@ -648,198 +537,79 @@ export default function CursusPageClient() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* ── Registration Form ── */}
-            <AnimatePresence mode="wait">
-              {submitted ? (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="rounded-2xl border border-emerald-200 bg-emerald-50 p-8 shadow-soft-sm flex flex-col items-center justify-center text-center gap-4"
+            <form
+              id="registration-form"
+              action="https://api.web3forms.com/submit"
+              method="POST"
+              ref={formRef}
+              className="rounded-2xl border border-primary/15 bg-white p-8 shadow-soft-sm space-y-5"
+            >
+              <input type="hidden" name="access_key" value="c010bbc1-f907-4b78-8d1f-a6edec488ded" />
+              <input type="hidden" name="subject" value="New Customer Inquiry from Website" />
+              <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="name"
+                  className="block font-sans text-xs uppercase tracking-[0.15em] text-secondary/60 font-semibold mb-2"
                 >
-                  <CheckCircle2 size={48} className="text-emerald-600" />
-                  <h2 className="font-display text-2xl text-secondary">{t('success_title')}</h2>
-                  <p className="font-sans text-secondary/70">{t('success_desc')}</p>
-                </motion.div>
-              ) : (
-                <motion.form
-                  key="form"
-                  ref={formRef}
-                  onSubmit={handleSubmit}
-                  noValidate
-                  className="rounded-2xl border border-primary/15 bg-white p-8 shadow-soft-sm space-y-5"
+                  Customer Name:
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Full Name"
+                  required
+                  className="w-full rounded-lg border border-secondary/20 bg-background-light px-4 py-3 text-sm font-sans outline-none transition-all duration-200 focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="email"
+                  className="block font-sans text-xs uppercase tracking-[0.15em] text-secondary/60 font-semibold mb-2"
                 >
-                  <fieldset disabled={submitting} className="space-y-5">
-                    <legend className="sr-only">{t('register_title')}</legend>
+                  Customer Email Address:
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="email@example.com"
+                  required
+                  className="w-full rounded-lg border border-secondary/20 bg-background-light px-4 py-3 text-sm font-sans outline-none transition-all duration-200 focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                />
+              </div>
 
-                    {/* Honeypot - hidden from real users */}
-                    <div className="absolute -left-[9999px]" aria-hidden="true">
-                      <label htmlFor="hp-field">{t('field_honeypot')}</label>
-                      <input
-                        id="hp-field"
-                        name="hp"
-                        type="text"
-                        tabIndex={-1}
-                        autoComplete="off"
-                        value={form.hp}
-                        onChange={(e) => updateField('hp', e.target.value)}
-                      />
-                    </div>
+              <div className="space-y-2">
+                <label
+                  htmlFor="message"
+                  className="block font-sans text-xs uppercase tracking-[0.15em] text-secondary/60 font-semibold mb-2"
+                >
+                  Message:
+                </label>
+                <textarea
+                  name="message"
+                  id="message"
+                  rows={5}
+                  placeholder="How can we help?"
+                  required
+                  className="w-full rounded-lg border border-secondary/20 bg-background-light px-4 py-3 text-sm font-sans outline-none transition-all duration-200 focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                />
+              </div>
 
-                    {/* Name */}
-                    <InputField
-                      id="reg-name"
-                      label={t('field_name')}
-                      type="text"
-                      autoComplete="name"
-                      required
-                      value={form.name}
-                      error={errors.name}
-                      onChange={(v) => updateField('name', v)}
-                    />
+              <button
+                type="submit"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-xs tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300"
+              >
+                Submit Form
+              </button>
 
-                    {/* Email */}
-                    <InputField
-                      id="reg-email"
-                      label={t('field_email')}
-                      type="email"
-                      autoComplete="email"
-                      required
-                      value={form.email}
-                      error={errors.email}
-                      onChange={(v) => updateField('email', v)}
-                    />
-
-                    {/* Phone */}
-                    <InputField
-                      id="reg-phone"
-                      label={t('field_phone')}
-                      type="tel"
-                      autoComplete="tel"
-                      required
-                      value={form.phone}
-                      error={errors.phone}
-                      onChange={(v) => updateField('phone', v)}
-                    />
-
-                    {/* BIG registration */}
-                    <InputField
-                      id="reg-big"
-                      label={t('field_big')}
-                      type="text"
-                      inputMode="numeric"
-                      required
-                      value={form.big}
-                      error={errors.big}
-                      onChange={(v) => updateField('big', v)}
-                    />
-
-                    {/* Education */}
-                    <InputField
-                      id="reg-education"
-                      label={t('field_education')}
-                      type="text"
-                      required
-                      value={form.education}
-                      error={errors.education}
-                      onChange={(v) => updateField('education', v)}
-                    />
-
-                    {/* Date select */}
-                    <div>
-                      <label
-                        htmlFor="reg-date"
-                        className="block font-sans text-xs uppercase tracking-[0.15em] text-secondary/60 font-semibold mb-2"
-                      >
-                        {t('field_date')} <span className="text-rose-500">*</span>
-                      </label>
-                      <select
-                        id="reg-date"
-                        name="date"
-                        required
-                        value={form.date}
-                        onChange={(e) => updateField('date', e.target.value)}
-                        className={`w-full rounded-lg border bg-background-light px-4 py-3 text-sm font-sans outline-none transition-all duration-200 focus:ring-2 focus:ring-primary/30 focus:border-primary ${
-                          errors.date ? 'border-rose-400' : 'border-secondary/20'
-                        }`}
-                        aria-describedby={errors.date ? 'reg-date-err' : undefined}
-                      >
-                        <option value="">{t('field_date_placeholder')}</option>
-                        {dates.map((d) => (
-                          <option key={d.id} value={d.id}>
-                            {d.dateLabel}
-                          </option>
-                        ))}
-                      </select>
-                      {errors.date && (
-                        <p id="reg-date-err" className="flex items-center gap-1.5 mt-1.5 font-sans text-xs text-rose-600" role="alert">
-                          <AlertCircle size={12} /> {errors.date}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Terms */}
-                    <div>
-                      <label
-                        htmlFor="reg-terms"
-                        className="flex items-start gap-3 cursor-pointer"
-                      >
-                        <input
-                          id="reg-terms"
-                          name="terms"
-                          type="checkbox"
-                          checked={form.terms}
-                          onChange={(e) => updateField('terms', e.target.checked)}
-                          className="mt-1 w-5 h-5 rounded border-secondary/20 accent-primary focus:ring-2 focus:ring-primary/30"
-                          aria-describedby={errors.terms ? 'reg-terms-err' : undefined}
-                        />
-                        <span className="font-sans text-sm text-secondary/75 leading-relaxed">
-                          {t('field_terms')}{' '}
-                          <Link href={`/${locale}/terms`} className="underline text-primary hover:text-primary/80">
-                            {t('field_terms_link')}
-                          </Link>
-                          {' & '}
-                          <Link href={`/${locale}/privacy`} className="underline text-primary hover:text-primary/80">
-                            {t('field_privacy')}
-                          </Link>
-                        </span>
-                      </label>
-                      {errors.terms && (
-                        <p id="reg-terms-err" className="flex items-center gap-1.5 mt-1.5 font-sans text-xs text-rose-600 pl-8" role="alert">
-                          <AlertCircle size={12} /> {errors.terms}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Server error */}
-                    {errors.server && (
-                      <p className="flex items-center gap-2 rounded-lg bg-rose-50 border border-rose-200 p-3 font-sans text-sm text-rose-700" role="alert">
-                        <AlertCircle size={16} /> {errors.server}
-                      </p>
-                    )}
-
-                    {/* Submit */}
-                    <p className="text-center font-sans text-xs text-secondary/40">
-                      {t('form_reassurance')}
-                    </p>
-
-                    <button
-                      type="submit"
-                      disabled={submitting}
-                      className="w-full inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-xs tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
-                    >
-                      {submitting ? (
-                        <>
-                          <Loader2 size={16} className="animate-spin" />
-                          {t('submitting')}
-                        </>
-                      ) : (
-                        t('submit')
-                      )}
-                    </button>
-                  </fieldset>
-                </motion.form>
-              )}
-            </AnimatePresence>
+              <p className="text-center font-sans text-[10px] text-secondary/40 pt-2">
+                {t('form_reassurance')}
+              </p>
+            </form>
 
             {/* ── Pricing Card ── */}
             <div className="flex flex-col gap-6">
@@ -897,64 +667,5 @@ export default function CursusPageClient() {
         </Container>
       </section>
     </>
-  );
-}
-
-/* ══════════════════════════════════════════════════════════════════════════
-   Reusable Input Field
-   ══════════════════════════════════════════════════════════════════════════ */
-
-interface InputFieldProps {
-  id: string;
-  label: string;
-  type: string;
-  value: string;
-  error?: string;
-  onChange: (value: string) => void;
-  autoComplete?: string;
-  required?: boolean;
-  inputMode?: 'numeric' | 'text' | 'email' | 'tel';
-}
-
-function InputField({
-  id,
-  label,
-  type,
-  value,
-  error,
-  onChange,
-  autoComplete,
-  required,
-  inputMode,
-}: InputFieldProps) {
-  return (
-    <div>
-      <label
-        htmlFor={id}
-        className="block font-sans text-xs uppercase tracking-[0.15em] text-secondary/60 font-semibold mb-2"
-      >
-        {label} {required && <span className="text-rose-500">*</span>}
-      </label>
-      <input
-        id={id}
-        name={id}
-        type={type}
-        inputMode={inputMode}
-        autoComplete={autoComplete}
-        required={required}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className={`w-full rounded-lg border bg-background-light px-4 py-3 text-sm font-sans outline-none transition-all duration-200 focus:ring-2 focus:ring-primary/30 focus:border-primary ${
-          error ? 'border-rose-400' : 'border-secondary/20'
-        }`}
-        aria-describedby={error ? `${id}-err` : undefined}
-        aria-invalid={error ? 'true' : undefined}
-      />
-      {error && (
-        <p id={`${id}-err`} className="flex items-center gap-1.5 mt-1.5 font-sans text-xs text-rose-600" role="alert">
-          <AlertCircle size={12} /> {error}
-        </p>
-      )}
-    </div>
   );
 }
