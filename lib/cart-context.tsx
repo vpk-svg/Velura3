@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useCallback, useContext, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 
 export type CartItemType = 'botox' | 'fillers' | 'shape' | 'medicatie';
 
@@ -27,10 +27,43 @@ interface CartContextValue {
   count: number;
 }
 
+const STORAGE_KEY = 'fab-clinic-cart';
+
+function loadFromStorage(): CartItem[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) return parsed;
+  } catch { /* ignore corrupt data */ }
+  return [];
+}
+
+function saveToStorage(items: CartItem[]) {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+  } catch { /* ignore quota errors */ }
+}
+
 const CartContext = createContext<CartContextValue | null>(null);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const hydrated = useRef(false);
+
+  /* Hydrate from localStorage once on client mount */
+  useEffect(() => {
+    const stored = loadFromStorage();
+    if (stored.length > 0) setItems(stored);
+    hydrated.current = true;
+  }, []);
+
+  /* Persist to localStorage on every change (after initial hydration) */
+  useEffect(() => {
+    if (hydrated.current) saveToStorage(items);
+  }, [items]);
 
   const addItem = useCallback((item: Omit<CartItem, 'quantity'>) => {
     setItems((prev) => {

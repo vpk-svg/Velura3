@@ -161,11 +161,11 @@ export default function GlobalFloatingCart() {
                   </span>
                 </div>
                 <a
-                  href="/contact"
+                  href={`/${locale}/checkout`}
                   onClick={() => setIsOpen(false)}
                   className="w-full inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-8 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97] cursor-pointer"
                 >
-                  {locale === 'nl' ? 'Ga verder' : 'Proceed'}
+                  {locale === 'nl' ? 'Naar checkout' : 'Go to checkout'}
                   <ChevronRight size={14} />
                 </a>
               </div>
