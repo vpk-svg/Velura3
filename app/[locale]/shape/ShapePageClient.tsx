@@ -72,7 +72,7 @@ export default function ShapePage() {
     for (const id of currentIds) {
       if (!selectedVariants.includes(id)) cart.removeItem(id);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedVariants]);
 
   const addToCart = useCallback((variantId: string) => {
@@ -536,7 +536,7 @@ export default function ShapePage() {
                   fill
                   loading="lazy"
                   quality={85}
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/30 to-transparent opacity-70" />
