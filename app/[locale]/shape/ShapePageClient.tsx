@@ -323,7 +323,7 @@ export default function ShapePage() {
               subtitle={t(`${treatment.nameKey}_desc`)}
             />
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto"
+              className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
@@ -333,7 +333,7 @@ export default function ShapePage() {
                 <motion.div
                   key={variant.id}
                   variants={itemVariants}
-                  className="bg-surface-elevated rounded-lg border border-secondary/5 p-6 shadow-soft-sm hover:shadow-soft-lg transition-all duration-300 group"
+                  className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] max-w-sm bg-surface-elevated rounded-lg border border-secondary/5 p-6 shadow-soft-sm hover:shadow-soft-lg transition-all duration-300 group"
                 >
                   <h3 className="font-display text-xl text-secondary italic font-bold mb-2 group-hover:text-primary transition-colors">
                     {t(variant.nameKey)}

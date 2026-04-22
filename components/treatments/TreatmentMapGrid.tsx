@@ -242,7 +242,7 @@ export default function TreatmentMapGrid({
       <Container>
         <SectionHeader label={label} title={title} subtitle={subtitle} />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="flex flex-wrap justify-center gap-4">
           {zones.map((zone, zi) => (
             <motion.div
               key={zone.id}
@@ -250,6 +250,7 @@ export default function TreatmentMapGrid({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.4, delay: zi * 0.06, ease: EASE_PREMIUM }}
+              className="w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.33%-11px)] max-w-sm"
             >
               <TreatmentCard
                 zone={zone}
