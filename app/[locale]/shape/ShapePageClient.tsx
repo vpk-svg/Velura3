@@ -133,12 +133,12 @@ export default function ShapePage() {
       <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden bg-secondary">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/spares/skincare-woman-beauty-butt-studio-with-wellness-underwear-fitness-cosmetics-liposuction-bum-cellulite-treatment-female-body-with-isolated-white-background-cosmetology.jpg"
+            src="/images/placeholders/1-800x600.png"
             alt=""
             fill
             priority
             quality={85}
-            className="object-cover opacity-20 mix-blend-overlay"
+            className="object-cover opacity-30 mix-blend-overlay"
             sizes="100vw"
             aria-hidden="true"
           />
@@ -252,6 +252,17 @@ export default function ShapePage() {
             transition={{ duration: 0.8, ease: EASE_PREMIUM }}
             className="bg-secondary p-8 md:p-16 lg:p-20 rounded-3xl relative overflow-hidden"
           >
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/images/placeholders/3-800x600.png"
+                alt="BBL Safety Background"
+                fill
+                quality={85}
+                className="object-cover opacity-20 mix-blend-overlay grayscale"
+                sizes="100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-secondary/40 to-transparent" />
+            </div>
             <div className="relative z-10 flex flex-col md:flex-row gap-12 items-center">
               <div className="md:w-1/2">
                 <h2 className="font-display text-display-lg text-background-light italic mb-8">
@@ -438,13 +449,13 @@ export default function ShapePage() {
             >
               <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
               <Image
-                src="/images/spares/skincare-woman-beauty-butt-studio-with-wellness-underwear-fitness-cosmetics-liposuction-bum-cellulite-treatment-female-body-with-isolated-white-background-cosmetology.jpg"
+                src="/images/placeholders/2-800x600.png"
                 alt={t('intro_img_alt')}
                 width={600}
                 height={500}
                 loading="lazy"
                 quality={85}
-                className="relative z-10 rounded-xl shadow-soft-lg brightness-105 contrast-[1.02] transition-all duration-700"
+                className="relative z-10 rounded-xl shadow-soft-lg transition-all duration-700"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </motion.div>
