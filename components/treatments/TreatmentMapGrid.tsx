@@ -3,14 +3,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { X, ArrowRight, Plus, Check } from 'lucide-react';
+import { X, ArrowRight, Plus, Check, Sparkles } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { EASE_PREMIUM } from '@/lib/motion';
 import type { Zone } from '@/components/treatments/ZoneSelector';
 
 interface TreatmentZone extends Zone {
-  descKey?: string;
+  shortDescKey: string;
+  whyKey: string;
 }
 
 function TreatmentCard({
@@ -28,29 +29,41 @@ function TreatmentCard({
     <motion.button
       type="button"
       onClick={onClick}
-      whileHover={{ y: -3, scale: 1.01 }}
+      whileHover={{ y: -6, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className="group w-full rounded-2xl border border-secondary/10 bg-white px-5 py-5 text-left shadow-soft-sm hover:border-primary/30 hover:shadow-soft-lg transition-all duration-300 cursor-pointer flex flex-col gap-3"
+      className="group w-full rounded-2xl border border-secondary/10 bg-white p-6 text-left shadow-soft-sm hover:border-primary/40 hover:shadow-soft-lg transition-all duration-300 cursor-pointer flex flex-col gap-4"
     >
-      <div className="flex items-start justify-between gap-2">
-        <h3 className="font-display text-xl italic leading-tight text-secondary group-hover:text-primary transition-colors duration-200">
-          {t(zone.nameKey)}
-        </h3>
-        {isInCart ? (
-          <span className="shrink-0 mt-1 w-5 h-5 rounded-full bg-green-500 text-white flex items-center justify-center">
-            <Check size={12} strokeWidth={3} />
-          </span>
-        ) : (
-          <ArrowRight size={16} className="shrink-0 mt-1 text-primary/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
-        )}
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1">
+          <h3 className="font-display text-xl italic leading-tight text-secondary group-hover:text-primary transition-colors duration-200 mb-2">
+            {t(zone.nameKey)}
+          </h3>
+          <p className="font-sans text-xs text-secondary/60 line-clamp-2 leading-relaxed">
+            {t(zone.shortDescKey)}
+          </p>
+        </div>
+        <div className="shrink-0 pt-1">
+          {isInCart ? (
+            <div className="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center shadow-soft-sm">
+              <Check size={14} strokeWidth={3} />
+            </div>
+          ) : (
+            <div className="w-8 h-8 rounded-full border border-primary/20 flex items-center justify-center text-primary/40 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300">
+              <Plus size={16} strokeWidth={2.5} />
+            </div>
+          )}
+        </div>
       </div>
-      <div className="mt-auto pt-2 border-t border-secondary/5 flex items-center justify-between">
+      <div className="mt-auto pt-4 border-t border-secondary/5 flex items-center justify-between">
         <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/40 font-semibold">
           {t('facemap_price_from')}
         </span>
-        <span className="font-display text-lg text-primary font-semibold">
-          €{(zone.priceCents / 100).toFixed(0)}
-        </span>
+        <div className="flex items-baseline gap-1">
+          <span className="font-sans text-xs text-primary font-medium">€</span>
+          <span className="font-display text-2xl text-primary font-semibold">
+            {(zone.priceCents / 100).toFixed(0)}
+          </span>
+        </div>
       </div>
     </motion.button>
   );
@@ -91,76 +104,102 @@ function InfoModal({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[10002] flex items-center justify-center bg-secondary/60 px-4 py-8 backdrop-blur-sm"
+      className="fixed inset-0 z-[10002] flex items-center justify-center bg-secondary/80 px-4 py-8 backdrop-blur-md"
       onClick={handleCloseModal}
       data-no-custom-cursor="true"
       style={{ cursor: 'auto' }}
     >
       <motion.div
-        initial={{ opacity: 0, y: 20, scale: 0.98 }}
+        initial={{ opacity: 0, y: 30, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 16, scale: 0.98 }}
-        transition={{ duration: 0.35, ease: EASE_PREMIUM }}
-        className="relative w-full max-w-xl overflow-hidden rounded-[2rem] border border-primary/20 bg-white p-8 shadow-[0_24px_80px_rgba(0,0,0,0.2)]"
+        exit={{ opacity: 0, y: 20, scale: 0.95 }}
+        transition={{ duration: 0.4, ease: EASE_PREMIUM }}
+        className="relative w-full max-w-lg overflow-hidden rounded-[2.5rem] border border-primary/20 bg-white p-10 shadow-[0_32px_100px_rgba(0,0,0,0.3)]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={handleCloseModal}
-          className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-secondary/15 bg-secondary/5 text-secondary/60 hover:bg-secondary/10 hover:text-secondary transition-colors duration-200 cursor-pointer"
+          className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full border border-secondary/10 bg-secondary/[0.03] text-secondary/40 hover:bg-secondary/10 hover:text-secondary hover:rotate-90 transition-all duration-300 cursor-pointer"
           aria-label="Sluiten"
         >
-          <X size={18} />
+          <X size={20} />
         </button>
 
-        <div className="inline-flex items-center gap-2 mb-5">
-          <span className="h-2 w-2 rounded-full bg-primary" />
-          <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-primary font-semibold">
-            {t('facemap_modal_label')}
-          </span>
-        </div>
-
-        <h3 className="font-display text-3xl italic text-secondary mb-4">
-          {t(zone.nameKey)}
-        </h3>
-
-        <div className="mb-6 h-px w-14 bg-primary/40" />
-
-        {zone.descKey && (
-          <p className="font-sans text-sm leading-relaxed text-secondary/70 mb-8">
-            {t(zone.descKey)}
-          </p>
-        )}
-
-        <div className="flex items-center justify-between p-4 bg-primary/5 rounded-xl border border-primary/10">
-          <div className="flex items-end gap-3">
-            <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-semibold">
-              {t('facemap_price_from')}
-            </span>
-            <span className="font-display text-3xl font-bold text-primary">
-              €{(zone.priceCents / 100).toFixed(0)}
+        <div className="flex flex-col h-full">
+          <div className="inline-flex items-center gap-2.5 mb-6">
+            <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+            <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
+              {t('facemap_modal_label')}
             </span>
           </div>
-          {onAddToCart && (
-            <button
-              type="button"
-              onClick={() => {
-                if (!isInCart) {
-                  onAddToCart(zone.id);
-                }
-                handleCloseModal();
-              }}
-              disabled={isInCart}
-              className={`flex items-center justify-center w-11 h-11 rounded-full border-2 transition-all duration-200 ${
-                isInCart
-                  ? 'border-green-500 bg-green-50 text-green-600'
-                  : 'border-primary bg-white text-primary hover:bg-primary hover:text-white shadow-soft-sm hover:shadow-gold-glow active:scale-95'
-              }`}
-              aria-label={isInCart ? 'Toegevoegd' : 'Toevoegen'}
-            >
-              {isInCart ? <Check size={20} strokeWidth={2.5} /> : <Plus size={20} strokeWidth={2.5} />}
-            </button>
-          )}
+
+          <h3 className="font-display text-4xl italic text-secondary mb-6 leading-tight">
+            {t(zone.nameKey)}
+          </h3>
+
+          <div className="space-y-8 mb-10">
+            {/* Short Description */}
+            <div>
+              <p className="font-sans text-lg text-secondary/80 leading-relaxed italic border-l-2 border-primary/30 pl-5">
+                {t(zone.shortDescKey)}
+              </p>
+            </div>
+
+            {/* Why This Treatment */}
+            <div className="bg-secondary/[0.02] rounded-3xl p-6 border border-secondary/5">
+              <h4 className="font-sans text-[10px] uppercase tracking-[0.25em] text-secondary/40 font-bold mb-3 flex items-center gap-2">
+                <Sparkles size={12} className="text-primary" />
+                {t('facemap_why_label')}
+              </h4>
+              <p className="font-sans text-[15px] leading-relaxed text-secondary/70">
+                {t(zone.whyKey)}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-auto flex items-center justify-between gap-6 p-2">
+            <div className="flex flex-col gap-1">
+              <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/40 font-bold">
+                {t('facemap_price_from')}
+              </span>
+              <div className="flex items-baseline gap-1.5">
+                <span className="font-sans text-lg text-primary font-medium">€</span>
+                <span className="font-display text-4xl font-bold text-primary">
+                  {(zone.priceCents / 100).toFixed(0)}
+                </span>
+              </div>
+            </div>
+
+            {onAddToCart && (
+              <button
+                type="button"
+                onClick={() => {
+                  if (!isInCart) {
+                    onAddToCart(zone.id);
+                  }
+                  handleCloseModal();
+                }}
+                className={`flex-1 flex items-center justify-center gap-3 py-5 rounded-full font-sans uppercase font-bold text-[11px] tracking-[0.25em] transition-all duration-300 ${isInCart
+                  ? 'bg-green-500 text-white shadow-soft-lg cursor-default'
+                  : 'bg-primary text-white shadow-gold-glow hover:shadow-soft-xl hover:-translate-y-0.5 active:translate-y-0'
+                  }`}
+                aria-label={isInCart ? 'Toegevoegd' : 'Toevoegen aan selectie'}
+              >
+                {isInCart ? (
+                  <>
+                    <Check size={18} strokeWidth={3} />
+                    <span>Toegevoegd</span>
+                  </>
+                ) : (
+                  <>
+                    <Plus size={18} strokeWidth={3} />
+                    <span>Toevoegen</span>
+                  </>
+                )}
+              </button>
+            )}
+          </div>
         </div>
       </motion.div>
     </motion.div>

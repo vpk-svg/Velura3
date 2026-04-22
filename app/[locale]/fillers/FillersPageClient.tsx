@@ -55,7 +55,7 @@ export default function FillersPage() {
     for (const id of currentIds) {
       if (!selectedZones.includes(id)) cart.removeItem(id);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedZones]);
 
   const toggleZone = useCallback((zoneId: string) => {
@@ -246,8 +246,8 @@ export default function FillersPage() {
       <TreatmentMapGrid
         zones={FILLERS_ZONES}
         namespace="fillers_page"
-        label={t('zones_label')}
-        title={<>{t('zones_title')} <span className="italic font-light text-primary">{t('zones_title_accent')}</span></>}
+        label={t('map_label')}
+        title={<>{t('map_title')} <span className="italic font-light text-primary">{t('map_title_accent')}</span></>}
         onAddToCart={addToCartFromPopup}
         cartZoneIds={selectedZones}
       />
