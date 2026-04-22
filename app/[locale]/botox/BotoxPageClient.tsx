@@ -253,7 +253,7 @@ export default function BotoxPage() {
               className="flex-1 relative w-full aspect-[3/4] max-h-[600px] rounded-md overflow-hidden group shadow-soft-lg bg-secondary/5"
             >
               <Image
-                src="/images/spares/botox-treatment-fab.png"
+                src="/images/placeholders/4-800x600.png"
                 alt={t('what_img_alt')}
                 fill
                 loading="lazy"
@@ -346,7 +346,7 @@ export default function BotoxPage() {
               className="flex-1 relative w-full aspect-[4/5] max-h-[520px] rounded-md overflow-hidden shadow-soft-lg bg-secondary/5"
             >
               <Image
-                src="/images/spares/botox-safety-fab.png"
+                src="/images/placeholders/6-800x600.png"
                 alt={t('safety_img_alt')}
                 fill
                 loading="lazy"
