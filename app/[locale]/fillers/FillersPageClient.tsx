@@ -214,14 +214,6 @@ export default function FillersPage() {
                 <ArrowDown className="w-3.5 h-3.5" strokeWidth={2} />
               </a>
             </motion.div>
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2, ease: EASE_PREMIUM }}
-              className="mt-6 font-sans text-sm text-background-light/50 tracking-wide"
-            >
-              {t('hero_price_anchor')}
-            </motion.p>
           </div>
         </Container>
         {/* Scroll indicator */}

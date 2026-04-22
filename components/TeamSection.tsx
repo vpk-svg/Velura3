@@ -39,20 +39,13 @@ export default function TeamSection() {
             role: t('member4_role'),
             big: t('member4_big'),
             bio: t('member4_bio'),
-            img: "/images/Newteam/Ryan.jpg",
+            img: "/images/Newteam/Mevlut.jpg",
         },
         {
             name: t('member5_name'),
             role: t('member5_role'),
             big: t('member5_big'),
             bio: t('member5_bio'),
-            img: "/images/Newteam/Mevlut.jpg",
-        },
-        {
-            name: t('member6_name'),
-            role: t('member6_role'),
-            big: t('member6_big'),
-            bio: t('member6_bio'),
             img: "/images/Newteam/Fleur.jpg",
         },
     ];

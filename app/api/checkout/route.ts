@@ -86,6 +86,7 @@ export async function POST(req: Request) {
           zoneIds: zones.map((z) => z.id).join(','),
           customerEmail: customerDetails?.email || '',
           customerName: `${customerDetails?.firstName || ''} ${customerDetails?.lastName || ''}`.trim(),
+          bookingSlot: body.bookingSlot || '',
           veluraSource: 'treatment-booking',
         },
       });

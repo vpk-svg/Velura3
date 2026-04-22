@@ -195,15 +195,6 @@ export default function ShapePage() {
               </a>
             </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.18, ease: EASE_PREMIUM }}
-              className="font-sans text-sm text-background-light/50 tracking-wide mb-4"
-            >
-              {t('hero_price_anchor')}
-            </motion.p>
-
             <motion.a
               href="#safety"
               initial={{ opacity: 0 }}
@@ -360,8 +351,8 @@ export default function ShapePage() {
       <TreatmentMapGrid
         zones={SHAPE_VARIANTS_FLAT}
         namespace="shape_page"
-        label={t('section_label')}
-        title={<>{locale === 'nl' ? 'Kies uw ' : 'Choose your '}<span className="italic font-light text-primary">{locale === 'nl' ? 'behandeling' : 'treatment'}</span></>}
+        label={t('map_label')}
+        title={<>{t('map_title')} <span className="italic font-light text-primary">{t('map_title_accent')}</span></>}
         subtitle={locale === 'nl' ? 'Klik op een behandeling voor meer informatie en voeg deze toe aan uw selectie.' : 'Click a treatment for more information and add it to your selection.'}
         onAddToCart={addToCart}
         cartZoneIds={selectedVariants}
