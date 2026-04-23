@@ -48,6 +48,7 @@ export default function Navbar() {
     { name: t('botox'), href: '/botox' },
     { name: t('fillers'), href: '/fillers' },
     { name: 'BBL', href: '/shape' },
+    { name: 'Skinboosters', href: '/skinboosters' },
     { name: locale === 'nl' ? 'Cursus' : 'Course', href: '/cursus' },
     { name: t('contact'), href: '/contact' },
   ];

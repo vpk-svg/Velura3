@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 
-export type CartItemType = 'botox' | 'fillers' | 'shape' | 'medicatie';
+export type CartItemType = 'botox' | 'fillers' | 'shape' | 'medicatie' | 'skinboosters';
 
 export interface CartItem {
   id: string;
