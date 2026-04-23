@@ -234,7 +234,7 @@ export default function SkinboostersPageClient() {
                             className="flex-1 relative w-full aspect-[3/4] max-h-[600px] rounded-md overflow-hidden group shadow-soft-lg bg-secondary/5"
                         >
                             <Image
-                                src="/images/placeholders/4-800x600.png"
+                                src="/images/beforeafterloveable/KON1434_Large_6b9a28ef-7593-4647-b156-b09999e61f71.webp"
                                 alt={t('what_title')}
                                 fill
                                 loading="lazy"
@@ -278,7 +278,7 @@ export default function SkinboostersPageClient() {
                             className="flex-1 relative w-full aspect-[4/5] max-h-[520px] rounded-md overflow-hidden shadow-soft-lg bg-secondary/5"
                         >
                             <Image
-                                src="/images/placeholders/6-800x600.png"
+                                src="/images/beforeafterloveable/SkinBooster.png"
                                 alt={t('safety_title')}
                                 fill
                                 loading="lazy"
