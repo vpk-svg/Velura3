@@ -22,6 +22,15 @@ interface BeforeAfterItem {
 /* Before/after pairs – combined side-by-side images: left = before, right = after */
 const BA_ITEMS = [
   {
+    id: 'forehead-lines-loveable',
+    labelNl: 'Voorhoofdslijnen',
+    labelEn: 'Forehead Lines',
+    beforeImage: '/images/beforeafterloveable/vrouw-voorhoofdslijnen-.jpg',
+    afterImage: '/images/beforeafterloveable/vrouw-zonder-voorhoofdslijnen.jpg',
+    beforeObjectPosition: 'center',
+    afterObjectPosition: 'center',
+  },
+  {
     id: 'botox-forehead',
     labelNl: 'Botox Voorhoofd',
     labelEn: 'Botox Forehead',

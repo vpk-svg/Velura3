@@ -60,10 +60,9 @@ export default function SkinboostersPageClient() {
     /* -- Zone info cards -- */
     const faceZones = [
         { title: t('zone1_title'), desc: t('zone1_desc'), icon: <Sparkles className="w-6 h-6" strokeWidth={1.5} /> },
-        { title: t('zone2_title'), desc: t('zone2_desc'), icon: <Droplets className="w-6 h-6" strokeWidth={1.5} /> },
-        { title: t('zone3_title'), desc: t('zone3_desc'), icon: <CircleDot className="w-6 h-6" strokeWidth={1.5} /> },
-        { title: t('zone4_title'), desc: t('zone4_desc'), icon: <Gem className="w-6 h-6" strokeWidth={1.5} /> },
-        { title: t('zone5_title'), desc: t('zone5_desc'), icon: <Eye className="w-6 h-6" strokeWidth={1.5} /> },
+        { title: t('zone2_title'), desc: t('zone2_desc'), icon: <CircleDot className="w-6 h-6" strokeWidth={1.5} /> },
+        { title: t('zone3_title'), desc: t('zone3_desc'), icon: <Gem className="w-6 h-6" strokeWidth={1.5} /> },
+        { title: t('zone4_title'), desc: t('zone4_desc'), icon: <Eye className="w-6 h-6" strokeWidth={1.5} /> },
     ];
 
     const safetyItems = [

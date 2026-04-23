@@ -79,32 +79,41 @@ export default function Footer() {
           </motion.div>
 
           {[
-            { title: t('treatments'), links: [
-              { href: '/botox', label: t('link_botox') },
-              { href: '/fillers', label: t('link_fillers') },
-              { href: '/shape', label: 'BBL' },
-              { href: '/weightloss', label: t('link_weightloss') },
-              { href: '/medicatie', label: t('link_medicatie') },
-              { href: '/trajecten', label: t('link_wellness') },
-              { href: '/cursus', label: locale === 'nl' ? 'Cursus' : 'Course' },
-            ]},
-            { title: t('practice'), links: [
-              { href: '/team', label: t('link_specialists') },
-              { href: '/weightloss', label: t('link_methodology') },
-              { href: '/contact', label: t('link_locations') },
-              { href: '/faq', label: t('link_faq') },
-            ]},
-            { title: t('assessments'), links: [
-              { href: '/bmi', label: t('link_bmi') },
-              { href: '/contact', label: t('link_consult') },
-              { href: '/contact', label: t('link_booking') },
-            ]},
-            { title: t('legal'), links: [
-              { href: '/privacy', label: t('link_privacy') },
-              { href: '/terms', label: t('link_terms') },
-              { href: '/cookies', label: t('link_cookies') },
-              { href: '/wkkgz', label: t('link_wkkgz') },
-            ]},
+            {
+              title: t('treatments'), links: [
+                { href: '/botox', label: t('link_botox') },
+                { href: '/fillers', label: t('link_fillers') },
+                { href: '/shape', label: 'BBL' },
+                { href: '/weightloss', label: t('link_weightloss') },
+                { href: '/medicatie', label: t('link_medicatie') },
+                { href: '/trajecten', label: t('link_wellness') },
+                { href: '/cursus', label: locale === 'nl' ? 'Cursus' : 'Course' },
+              ]
+            },
+            {
+              title: t('practice'), links: [
+                { href: '/team', label: t('link_specialists') },
+                { href: '/weightloss', label: t('link_methodology') },
+                { href: '/contact', label: t('link_locations') },
+                { href: '/faq', label: t('link_faq') },
+              ]
+            },
+            {
+              title: t('assessments'), links: [
+                { href: '/bmi', label: t('link_bmi') },
+                { href: '/contact', label: t('link_consult') },
+                { href: '/contact', label: t('link_booking') },
+              ]
+            },
+            {
+              title: t('legal'), links: [
+                { href: '/privacy', label: t('link_privacy') },
+                { href: '/terms', label: t('link_terms') },
+                { href: '/cookies', label: t('link_cookies') },
+                { href: '/wkkgz', label: t('link_wkkgz') },
+                { href: '/klachten', label: locale === 'nl' ? 'Klachten' : 'Complaints' },
+              ]
+            },
           ].map((col) => (
             <motion.nav key={col.title} aria-label={col.title} variants={footerColumnItemVariants}>
               <h4 className="font-sans text-primary text-[11px] tracking-[0.3em] uppercase mb-8 font-semibold">
