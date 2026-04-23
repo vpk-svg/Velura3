@@ -31,4 +31,5 @@ export const FILLERS_ZONES: FillersZone[] = [
   { id: 'signature-40-ml', nameKey: 'zone_signature_40ml', shortDescKey: 'zone_signature_short', whyKey: 'zone_signature_why', priceCents: 116000 },
   { id: 'signature-50-ml', nameKey: 'zone_signature_50ml', shortDescKey: 'zone_signature_short', whyKey: 'zone_signature_why', priceCents: 145000 },
   { id: 'buttfiller-100ml', nameKey: 'zone_buttfiller_100ml', shortDescKey: 'zone_buttfiller_short', whyKey: 'zone_buttfiller_why', priceCents: 275000 },
+  { id: 'fillers-oplossen', nameKey: 'zone_fillers_oplossen', shortDescKey: 'zone_fillers_oplossen_short', whyKey: 'zone_fillers_oplossen_why', priceCents: 8000 },
 ];

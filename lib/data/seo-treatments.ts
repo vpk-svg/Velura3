@@ -15,11 +15,11 @@ export interface SeoTreatment {
 
 export const SEO_TREATMENTS: SeoTreatment[] = [
   // Botox
-  { slug: 'voorhoofd-botox', category: 'botox', titleKey: 'voorhoofd_title', descKey: 'voorhoofd_desc', heroImage: '/images/spares/cosmetic-botox-injection-female-forehead.jpg', priceFrom: '€90', features: ['voorhoofd_f1', 'voorhoofd_f2', 'voorhoofd_f3'] },
-  { slug: 'frons-botox', category: 'botox', titleKey: 'frons_title', descKey: 'frons_desc', heroImage: '/images/spares/cosmetic-botox-injection-female-forehead.jpg', priceFrom: '€90', features: ['frons_f1', 'frons_f2', 'frons_f3'] },
-  { slug: 'kraaienpootjes-botox', category: 'botox', titleKey: 'kraaienpootjes_title', descKey: 'kraaienpootjes_desc', heroImage: '/images/spares/cosmetic-botox-injection-female-forehead.jpg', priceFrom: '€90', features: ['kraaienpootjes_f1', 'kraaienpootjes_f2', 'kraaienpootjes_f3'] },
-  { slug: 'masseter-botox', category: 'botox', titleKey: 'masseter_title', descKey: 'masseter_desc', heroImage: '/images/spares/cosmetic-botox-injection-female-forehead.jpg', priceFrom: '€90', features: ['masseter_f1', 'masseter_f2', 'masseter_f3'] },
-  { slug: 'hyperhidrose-behandeling', category: 'botox', titleKey: 'hyperhidrose_title', descKey: 'hyperhidrose_desc', heroImage: '/images/spares/cosmetic-botox-injection-female-forehead.jpg', priceFrom: '€90', features: ['hyperhidrose_f1', 'hyperhidrose_f2', 'hyperhidrose_f3'] },
+  { slug: 'voorhoofd-botox', category: 'botox', titleKey: 'voorhoofd_title', descKey: 'voorhoofd_desc', heroImage: '/images/spares/cosmetic-botox-injection-female-forehead.jpg', priceFrom: '€110', features: ['voorhoofd_f1', 'voorhoofd_f2', 'voorhoofd_f3'] },
+  { slug: 'frons-botox', category: 'botox', titleKey: 'frons_title', descKey: 'frons_desc', heroImage: '/images/spares/cosmetic-botox-injection-female-forehead.jpg', priceFrom: '€100', features: ['frons_f1', 'frons_f2', 'frons_f3'] },
+  { slug: 'kraaienpootjes-botox', category: 'botox', titleKey: 'kraaienpootjes_title', descKey: 'kraaienpootjes_desc', heroImage: '/images/spares/cosmetic-botox-injection-female-forehead.jpg', priceFrom: '€100', features: ['kraaienpootjes_f1', 'kraaienpootjes_f2', 'kraaienpootjes_f3'] },
+  { slug: 'masseter-botox', category: 'botox', titleKey: 'masseter_title', descKey: 'masseter_desc', heroImage: '/images/spares/cosmetic-botox-injection-female-forehead.jpg', priceFrom: '€280', features: ['masseter_f1', 'masseter_f2', 'masseter_f3'] },
+  { slug: 'hyperhidrose-behandeling', category: 'botox', titleKey: 'hyperhidrose_title', descKey: 'hyperhidrose_desc', heroImage: '/images/spares/cosmetic-botox-injection-female-forehead.jpg', priceFrom: '€400', features: ['hyperhidrose_f1', 'hyperhidrose_f2', 'hyperhidrose_f3'] },
   // Fillers
   { slug: 'lip-fillers', category: 'fillers', titleKey: 'lippen_title', descKey: 'lippen_desc', heroImage: '/images/spares/high-angle-woman-getting-lip-fillers.jpg', priceFrom: '€350', features: ['lippen_f1', 'lippen_f2', 'lippen_f3'] },
   { slug: 'kaaklijn-fillers', category: 'fillers', titleKey: 'kaaklijn_title', descKey: 'kaaklijn_desc', heroImage: '/images/spares/high-angle-woman-getting-lip-fillers.jpg', priceFrom: '€450', features: ['kaaklijn_f1', 'kaaklijn_f2', 'kaaklijn_f3'] },

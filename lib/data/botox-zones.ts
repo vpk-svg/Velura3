@@ -1,6 +1,5 @@
 /**
- * Botox zone data.
- * Each zone has a price of €90.
+ * Botox zone data with individualized pricing.
  */
 
 export interface BotoxZone {
