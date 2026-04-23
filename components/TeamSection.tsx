@@ -86,7 +86,7 @@ export default function TeamSection() {
                             <p className="font-sans text-primary text-[11px] tracking-[0.3em] uppercase font-semibold">
                                 {member.role}
                             </p>
-                            {member.big && (
+                            {member.big && member.name !== t('member5_name') && (
                                 <p className="inline-flex items-center gap-1.5 font-sans text-secondary/60 text-xs tracking-[0.05em] mt-3">
                                     {member.big.startsWith('BIG') || member.big.startsWith('BIG') ? (
                                         <ShieldCheck className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
@@ -96,17 +96,14 @@ export default function TeamSection() {
                                     {member.big}
                                 </p>
                             )}
-                            {member.bio && (
-                                <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed mt-4 max-w-xs">
-                                    {member.bio}
-                                </p>
+                            {member.name !== t('member5_name') && (
+                                <ConsultTrigger
+                                    from="other"
+                                    className="inline-flex items-center gap-2 font-sans text-xs text-primary font-semibold uppercase tracking-wider mt-5 hover:gap-3 transition-all"
+                                >
+                                    {t('cta_book', { name: member.name.split(' ')[0] })} <ArrowRight size={14} />
+                                </ConsultTrigger>
                             )}
-                            <ConsultTrigger
-                                from="other"
-                                className="inline-flex items-center gap-2 font-sans text-xs text-primary font-semibold uppercase tracking-wider mt-5 hover:gap-3 transition-all"
-                            >
-                                {t('cta_book', { name: member.name.split(' ')[0] })} <ArrowRight size={14} />
-                            </ConsultTrigger>
                         </motion.li>
                     ))}
                 </ul>
