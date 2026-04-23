@@ -69,7 +69,6 @@ export default function ConsultPlanPage() {
       { id: 'weightloss:mounjaro', label: 'Mounjaro' },
       { id: 'weightloss:ozempic', label: 'Ozempic' },
       { id: 'weightloss:wegovy', label: 'Wegovy' },
-      { id: 'weightloss:saxenda', label: 'Saxenda' },
       { id: 'weightloss:medical-screening', label: isNl ? 'Medische intake zonder medicijnkeuze' : 'Medical intake without product choice' },
     ],
     [isNl],
@@ -200,11 +199,10 @@ export default function ConsultPlanPage() {
                           key={option.id}
                           type="button"
                           onClick={() => toggleOption(option.id)}
-                          className={`text-left rounded-xl border px-4 py-4 transition-all duration-250 font-sans text-sm leading-relaxed ${
-                            active
+                          className={`text-left rounded-xl border px-4 py-4 transition-all duration-250 font-sans text-sm leading-relaxed ${active
                               ? 'border-primary bg-primary/10 text-secondary shadow-soft-sm'
                               : 'border-secondary/15 bg-white text-secondary/75 hover:border-primary/40'
-                          }`}
+                            }`}
                         >
                           <span className="flex items-center justify-between gap-3">
                             <span>{option.label}</span>

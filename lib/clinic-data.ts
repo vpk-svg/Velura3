@@ -87,7 +87,7 @@ type LocalizedTreatment = {
 const botoxTreatments: LocalizedTreatment[] = [
   {
     id: 'fronsrimpels',
-    price: '€140',
+    price: '€100',
     tags: [{ id: 'botox', label: 'Botox' }, { id: 'popular', label: 'Popular' }],
     name: { nl: 'Fronsrimpels', en: 'Frown Lines' },
     description: {
@@ -97,7 +97,7 @@ const botoxTreatments: LocalizedTreatment[] = [
   },
   {
     id: 'voorhoofd',
-    price: '€140',
+    price: '€110',
     tags: [{ id: 'botox', label: 'Botox' }],
     name: { nl: 'Voorhoofd geheel', en: 'Full Forehead' },
     description: {
@@ -107,7 +107,7 @@ const botoxTreatments: LocalizedTreatment[] = [
   },
   {
     id: 'kraaienpootjes',
-    price: '€130',
+    price: '€100',
     tags: [{ id: 'botox', label: 'Botox' }],
     name: { nl: 'Kraaienpootjes', en: "Crow’s Feet" },
     description: {
@@ -117,7 +117,7 @@ const botoxTreatments: LocalizedTreatment[] = [
   },
   {
     id: 'lipflip',
-    price: '€75',
+    price: '€80',
     tags: [{ id: 'botox', label: 'Botox' }, { id: 'subtle', label: 'Subtle' }],
     name: { nl: 'Lipflip', en: 'Lip Flip' },
     description: {
@@ -127,7 +127,7 @@ const botoxTreatments: LocalizedTreatment[] = [
   },
   {
     id: 'wenkbrauwlift',
-    price: '€75',
+    price: '€80',
     tags: [{ id: 'botox', label: 'Botox' }, { id: 'refined', label: 'Refined' }],
     name: { nl: 'Wenkbrauwlift', en: 'Brow Lift' },
     description: {
@@ -157,7 +157,7 @@ const botoxTreatments: LocalizedTreatment[] = [
   },
   {
     id: 'gummy-smile',
-    price: '€75',
+    price: '€80',
     tags: [{ id: 'botox', label: 'Botox' }],
     name: { nl: 'Gummy Smile', en: 'Gummy Smile' },
     description: {
@@ -167,7 +167,7 @@ const botoxTreatments: LocalizedTreatment[] = [
   },
   {
     id: 'bunny-lines',
-    price: '€75',
+    price: '€80',
     tags: [{ id: 'botox', label: 'Botox' }],
     name: { nl: 'Bunny Lines', en: 'Bunny Lines' },
     description: {
@@ -177,7 +177,7 @@ const botoxTreatments: LocalizedTreatment[] = [
   },
   {
     id: 'kin',
-    price: '€75',
+    price: '€80',
     tags: [{ id: 'botox', label: 'Botox' }],
     name: { nl: 'Kin', en: 'Chin' },
     description: {
@@ -185,19 +185,10 @@ const botoxTreatments: LocalizedTreatment[] = [
       en: 'Smooths chin texture and minimizes pebbled appearance.',
     },
   },
-  {
-    id: 'platysma-hals',
-    price: '€110',
-    tags: [{ id: 'botox', label: 'Botox' }, { id: 'contour', label: 'Contour' }],
-    name: { nl: 'Platysma (hals)', en: 'Platysma (Neck)' },
-    description: {
-      nl: 'Verzacht zichtbare halsbanden en verfijnt de halslijn.',
-      en: 'Softens visible neck bands and refines neckline definition.',
-    },
-  },
+
   {
     id: 'face-slimming',
-    price: '€260',
+    price: '€280',
     tags: [{ id: 'botox', label: 'Botox' }, { id: 'contour', label: 'Contour' }],
     name: { nl: 'Face Slimming', en: 'Face Slimming' },
     description: {
@@ -237,7 +228,7 @@ const botoxTreatments: LocalizedTreatment[] = [
   },
   {
     id: 'nek-nefertiti',
-    price: '€200',
+    price: '€240',
     tags: [{ id: 'botox', label: 'Botox' }, { id: 'contour', label: 'Contour' }],
     name: { nl: 'Nek Nefertiti', en: 'Nefertiti Neck Lift' },
     description: {
@@ -247,7 +238,7 @@ const botoxTreatments: LocalizedTreatment[] = [
   },
   {
     id: 'overmatig-zweten-klein',
-    price: '€490',
+    price: '€400',
     tags: [{ id: 'botox', label: 'Botox' }, { id: 'medical', label: 'Medical' }],
     name: { nl: 'Overmatig zweten (klein)', en: 'Excessive Sweating (Small Area)' },
     description: {
@@ -276,6 +267,16 @@ const fillerTreatments: LocalizedTreatment[] = [
     description: {
       nl: 'Subtiele volumeverbetering en contourdefinitie met premium hyaluronzuur.',
       en: 'Refined lip volume and definition with premium hyaluronic acid.',
+    },
+  },
+  {
+    id: 'fillers-oplossen',
+    price: 'v.a. €80',
+    tags: [{ id: 'filler', label: 'Filler' }],
+    name: { nl: 'Fillers oplossen', en: 'Dissolving fillers' },
+    description: {
+      nl: 'Veilige afbraak van hyaluronzuur fillers met behulp van hyaluronidase.',
+      en: 'Safe breakdown of hyaluronic acid fillers using hyaluronidase.',
     },
   },
   {
@@ -474,7 +475,7 @@ const weightLossOptionsLocalized = {
   ozempic: {
     name: { nl: 'Ozempic', en: 'Ozempic' },
     subtitle: { nl: 'Semaglutide · Wekelijkse injectie', en: 'Semaglutide · Weekly injection' },
-    pricingText: { nl: 'vanaf €249 voor de eerste maand', en: 'from €249 for the first month' },
+    pricingText: { nl: 'v.a. €299 incl. Begeleiding', en: 'from €299 incl. Guidance' },
     description: {
       nl: 'Medisch begeleide GLP-1 therapie met bewezen effect op eetlustregulatie.',
       en: 'Medically supervised GLP-1 therapy with proven appetite regulation benefits.',
@@ -483,7 +484,7 @@ const weightLossOptionsLocalized = {
   mounjaro: {
     name: { nl: 'Mounjaro', en: 'Mounjaro' },
     subtitle: { nl: 'Tirzepatide · Wekelijkse injectie', en: 'Tirzepatide · Weekly injection' },
-    pricingText: { nl: 'vanaf €360 per maand', en: 'from €360 per month' },
+    pricingText: { nl: '€425,00 incl. Begeleiding', en: '€425.00 incl. Guidance' },
     description: {
       nl: 'Dubbele GLP-1/GIP agonist voor geavanceerde begeleiding bij gewichtsverlies.',
       en: 'Dual GLP-1/GIP agonist for advanced, physician-led weight management.',
@@ -494,44 +495,44 @@ const weightLossOptionsLocalized = {
 export function getClinicContactInfo(locale: Locale): ClinicContactInfo {
   return locale === 'nl'
     ? {
-        clinicName: 'FabClinic EDE',
-        address: 'Nieuwe Stationsstraat 20, 6711 AG Ede',
-        email: 'shots@fabclinic.eu',
-        phone: '', /* TODO: add real phone number when available */
-        openingHours: 'Zaterdag (alleen op afspraak)',
-        mapsEmbedUrl:
-          'https://www.google.com/maps?q=Nieuwe+Stationsstraat+20,+Ede&output=embed',
-      }
+      clinicName: 'FabClinic EDE',
+      address: 'Nieuwe Stationsstraat 20, 6711 AG Ede',
+      email: 'shots@fabclinic.eu',
+      phone: '', /* TODO: add real phone number when available */
+      openingHours: 'Zaterdag (alleen op afspraak)',
+      mapsEmbedUrl:
+        'https://www.google.com/maps?q=Nieuwe+Stationsstraat+20,+Ede&output=embed',
+    }
     : {
-        clinicName: 'FabClinic EDE',
-        address: 'Nieuwe Stationsstraat 20, 6711 AG Ede, The Netherlands',
-        email: 'shots@fabclinic.eu',
-        phone: '', /* TODO: add real phone number when available */
-        openingHours: 'Saturday (by appointment only)',
-        mapsEmbedUrl:
-          'https://www.google.com/maps?q=Nieuwe+Stationsstraat+20,+Ede&output=embed',
-      };
+      clinicName: 'FabClinic EDE',
+      address: 'Nieuwe Stationsstraat 20, 6711 AG Ede, The Netherlands',
+      email: 'shots@fabclinic.eu',
+      phone: '', /* TODO: add real phone number when available */
+      openingHours: 'Saturday (by appointment only)',
+      mapsEmbedUrl:
+        'https://www.google.com/maps?q=Nieuwe+Stationsstraat+20,+Ede&output=embed',
+    };
 }
 
 export function getIntakeTreatmentOptions(locale: Locale): IntakeFieldOption[] {
   return locale === 'nl'
     ? [
-        { id: 'fillers', label: 'Fillers' },
-        { id: 'botox', label: 'Botox' },
-        { id: 'bbl', label: 'BBL' },
-        { id: 'anders', label: 'Anders' },
-      ]
+      { id: 'fillers', label: 'Fillers' },
+      { id: 'botox', label: 'Botox' },
+      { id: 'bbl', label: 'BBL' },
+      { id: 'anders', label: 'Anders' },
+    ]
     : [
-        { id: 'fillers', label: 'Fillers' },
-        { id: 'botox', label: 'Botox' },
-        { id: 'bbl', label: 'BBL' },
-        { id: 'anders', label: 'Other' },
-      ];
+      { id: 'fillers', label: 'Fillers' },
+      { id: 'botox', label: 'Botox' },
+      { id: 'bbl', label: 'BBL' },
+      { id: 'anders', label: 'Other' },
+    ];
 }
 
 export function getBotoxTreatments(locale: Locale): TreatmentItem[] {
-  if (botoxTreatments.length !== 18) {
-    throw new Error('Botox treatments list must contain exactly 18 items.');
+  if (botoxTreatments.length !== 17) {
+    throw new Error('Botox treatments list must contain exactly 17 items.');
   }
 
   return botoxTreatments.map((item) => ({
@@ -645,51 +646,51 @@ export function getQuestionnaireSteps(locale: Locale): QuestionnaireStep[] {
 export function getCourseDates(locale: Locale): CourseDate[] {
   return locale === 'nl'
     ? [
-        {
-          id: 'course-1',
-          title: 'Injectables Cursus - 1 juli 2026',
-          dateLabel: '1 juli 2026 - bijna vol',
-          status: 'almost_full',
-          percentFilled: 92,
-        },
-        {
-          id: 'course-2',
-          title: 'Injectables Cursus - 30 september 2026',
-          dateLabel: '30 september 2026 - 80% geboekt',
-          status: 'limited',
-          percentFilled: 80,
-        },
-        {
-          id: 'course-3',
-          title: 'Injectables Cursus - 20 december 2026',
-          dateLabel: '20 december 2026 - beschikbaar',
-          status: 'open',
-          percentFilled: 35,
-        },
-      ]
+      {
+        id: 'course-1',
+        title: 'Injectables Cursus - 1 juli 2026',
+        dateLabel: '1 juli 2026 - bijna vol',
+        status: 'almost_full',
+        percentFilled: 92,
+      },
+      {
+        id: 'course-2',
+        title: 'Injectables Cursus - 30 september 2026',
+        dateLabel: '30 september 2026 - 80% geboekt',
+        status: 'limited',
+        percentFilled: 80,
+      },
+      {
+        id: 'course-3',
+        title: 'Injectables Cursus - 20 december 2026',
+        dateLabel: '20 december 2026 - beschikbaar',
+        status: 'open',
+        percentFilled: 35,
+      },
+    ]
     : [
-        {
-          id: 'course-1',
-          title: 'Injectables Course - 1 July 2026',
-          dateLabel: '1 July 2026 - almost full',
-          status: 'almost_full',
-          percentFilled: 92,
-        },
-        {
-          id: 'course-2',
-          title: 'Injectables Course - 30 September 2026',
-          dateLabel: '30 September 2026 - 80% booked',
-          status: 'limited',
-          percentFilled: 80,
-        },
-        {
-          id: 'course-3',
-          title: 'Injectables Course - 20 December 2026',
-          dateLabel: '20 December 2026 - available',
-          status: 'open',
-          percentFilled: 35,
-        },
-      ];
+      {
+        id: 'course-1',
+        title: 'Injectables Course - 1 July 2026',
+        dateLabel: '1 July 2026 - almost full',
+        status: 'almost_full',
+        percentFilled: 92,
+      },
+      {
+        id: 'course-2',
+        title: 'Injectables Course - 30 September 2026',
+        dateLabel: '30 September 2026 - 80% booked',
+        status: 'limited',
+        percentFilled: 80,
+      },
+      {
+        id: 'course-3',
+        title: 'Injectables Course - 20 December 2026',
+        dateLabel: '20 December 2026 - available',
+        status: 'open',
+        percentFilled: 35,
+      },
+    ];
 }
 
 function toIsoDate(date: Date): string {
@@ -962,43 +963,43 @@ export function getPractitionerPlaceholders(locale: Locale): Array<{
 }> {
   return locale === 'nl'
     ? [
-        {
-          title: 'Dr. [Naam Voornaam]',
-          subtitle: 'Cosmetisch Arts KNMG · Gezichtsanatomie specialist',
-          todoLabel: 'TODO: voeg bio, registratienummer en specialisaties toe',
-          imageSrc: '/images/team/placeholder-doctor-1.jpg',
-        },
-        {
-          title: 'Drs. [Naam Voornaam]',
-          subtitle: 'BIG-geregistreerd arts · Injectable safety lead',
-          todoLabel: 'TODO: voeg ervaring, opleidingen en consultstijl toe',
-          imageSrc: '/images/team/placeholder-doctor-2.jpg',
-        },
-        {
-          title: '[Naam Voornaam]',
-          subtitle: 'Verpleegkundig specialist · Patiëntcoördinatie',
-          todoLabel: 'TODO: voeg begeleidingsrol en expertisegebieden toe',
-          imageSrc: '/images/team/placeholder-practitioner-3.jpg',
-        },
-      ]
+      {
+        title: 'Dr. [Naam Voornaam]',
+        subtitle: 'Cosmetisch Arts KNMG · Gezichtsanatomie specialist',
+        todoLabel: 'TODO: voeg bio, registratienummer en specialisaties toe',
+        imageSrc: '/images/team/placeholder-doctor-1.jpg',
+      },
+      {
+        title: 'Drs. [Naam Voornaam]',
+        subtitle: 'BIG-geregistreerd arts · Injectable safety lead',
+        todoLabel: 'TODO: voeg ervaring, opleidingen en consultstijl toe',
+        imageSrc: '/images/team/placeholder-doctor-2.jpg',
+      },
+      {
+        title: '[Naam Voornaam]',
+        subtitle: 'Verpleegkundig specialist · Patiëntcoördinatie',
+        todoLabel: 'TODO: voeg begeleidingsrol en expertisegebieden toe',
+        imageSrc: '/images/team/placeholder-practitioner-3.jpg',
+      },
+    ]
     : [
-        {
-          title: 'Dr. [First Last Name]',
-          subtitle: 'Cosmetic Physician · Facial Anatomy Specialist',
-          todoLabel: 'TODO: add bio, registration number, and specialties',
-          imageSrc: '/images/team/placeholder-doctor-1.jpg',
-        },
-        {
-          title: 'Drs. [First Last Name]',
-          subtitle: 'Licensed Medical Doctor · Injectable Safety Lead',
-          todoLabel: 'TODO: add experience, training, and consultation style',
-          imageSrc: '/images/team/placeholder-doctor-2.jpg',
-        },
-        {
-          title: '[First Last Name]',
-          subtitle: 'Nurse Specialist · Patient Journey Coordinator',
-          todoLabel: 'TODO: add support scope and area expertise',
-          imageSrc: '/images/team/placeholder-practitioner-3.jpg',
-        },
-      ];
+      {
+        title: 'Dr. [First Last Name]',
+        subtitle: 'Cosmetic Physician · Facial Anatomy Specialist',
+        todoLabel: 'TODO: add bio, registration number, and specialties',
+        imageSrc: '/images/team/placeholder-doctor-1.jpg',
+      },
+      {
+        title: 'Drs. [First Last Name]',
+        subtitle: 'Licensed Medical Doctor · Injectable Safety Lead',
+        todoLabel: 'TODO: add experience, training, and consultation style',
+        imageSrc: '/images/team/placeholder-doctor-2.jpg',
+      },
+      {
+        title: '[First Last Name]',
+        subtitle: 'Nurse Specialist · Patient Journey Coordinator',
+        todoLabel: 'TODO: add support scope and area expertise',
+        imageSrc: '/images/team/placeholder-practitioner-3.jpg',
+      },
+    ];
 }

@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
-  title: 'GLP-1 Afvalmedicatie op Recept | Ozempic, Mounjaro, Wegovy, Saxenda | FAB Clinic',
+  title: 'GLP-1 Afvalmedicatie op Recept | Ozempic, Mounjaro, Wegovy | FAB Clinic',
   description:
-    'Klinisch bewezen GLP-1 afvalmedicatie voorgeschreven door BIG-geregistreerde artsen. Ozempic, Mounjaro, Wegovy en Saxenda - veilig geleverd via erkende apotheek. Gratis screening.',
+    'Klinisch bewezen GLP-1 afvalmedicatie voorgeschreven door BIG-geregistreerde artsen. Ozempic, Mounjaro en Wegovy - veilig geleverd via erkende apotheek. Gratis screening.',
   openGraph: {
     title: 'GLP-1 Afvalmedicatie op Recept | FAB Clinic',
     description:
-      'Bewezen afvalmedicatie onder medische begeleiding. Ozempic, Mounjaro, Wegovy & Saxenda via BIG-geregistreerde artsen.',
+      'Bewezen afvalmedicatie onder medische begeleiding. Ozempic, Mounjaro & Wegovy via BIG-geregistreerde artsen.',
     type: 'website',
   },
 };
@@ -63,16 +63,6 @@ export default function MedicatieLayout({ children }: { children: ReactNode }) {
                 '@type': 'Drug',
                 name: 'Wegovy',
                 activeIngredient: 'Semaglutide',
-                prescriptionStatus: 'PrescriptionOnly',
-                administrationRoute: 'Subcutaneous injection',
-                dosageForm: 'Pre-filled pen',
-                mechanismOfAction: 'GLP-1 receptor agonist',
-                manufacturer: { '@type': 'Organization', name: 'Novo Nordisk' },
-              },
-              {
-                '@type': 'Drug',
-                name: 'Saxenda',
-                activeIngredient: 'Liraglutide',
                 prescriptionStatus: 'PrescriptionOnly',
                 administrationRoute: 'Subcutaneous injection',
                 dosageForm: 'Pre-filled pen',

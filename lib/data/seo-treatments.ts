@@ -34,7 +34,7 @@ export const SEO_TREATMENTS: SeoTreatment[] = [
   { slug: 'ozempic-afvallen', category: 'weightloss', titleKey: 'ozempic_title', descKey: 'ozempic_desc', heroImage: '/images/spares/female-fitness-model-holding-tape-measurer-around-her-waist-weightloss-concept.jpg', priceFrom: '€199/mnd', features: ['ozempic_f1', 'ozempic_f2', 'ozempic_f3'] },
   { slug: 'mounjaro-afvallen', category: 'weightloss', titleKey: 'mounjaro_title', descKey: 'mounjaro_desc', heroImage: '/images/spares/female-fitness-model-holding-tape-measurer-around-her-waist-weightloss-concept.jpg', priceFrom: '€299/mnd', features: ['mounjaro_f1', 'mounjaro_f2', 'mounjaro_f3'] },
   { slug: 'wegovy-afvallen', category: 'weightloss', titleKey: 'wegovy_title', descKey: 'wegovy_desc', heroImage: '/images/spares/female-fitness-model-holding-tape-measurer-around-her-waist-weightloss-concept.jpg', priceFrom: '€249/mnd', features: ['wegovy_f1', 'wegovy_f2', 'wegovy_f3'] },
-  { slug: 'saxenda-afvallen', category: 'weightloss', titleKey: 'saxenda_title', descKey: 'saxenda_desc', heroImage: '/images/spares/female-fitness-model-holding-tape-measurer-around-her-waist-weightloss-concept.jpg', priceFrom: '€179/mnd', features: ['saxenda_f1', 'saxenda_f2', 'saxenda_f3'] },
+
   { slug: 'glp1-medicatie', category: 'weightloss', titleKey: 'glp1_title', descKey: 'glp1_desc', heroImage: '/images/spares/female-fitness-model-holding-tape-measurer-around-her-waist-weightloss-concept.jpg', features: ['glp1_f1', 'glp1_f2', 'glp1_f3'] },
   { slug: 'medisch-afvallen', category: 'weightloss', titleKey: 'medical_title', descKey: 'medical_desc', heroImage: '/images/spares/female-fitness-model-holding-tape-measurer-around-her-waist-weightloss-concept.jpg', features: ['medical_f1', 'medical_f2', 'medical_f3'] },
 ];

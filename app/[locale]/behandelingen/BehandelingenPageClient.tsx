@@ -66,12 +66,12 @@ const TREATMENTS = [
     nl: {
       title: 'Gewichtsverlies',
       desc: 'Medisch begeleid afvallen met GLP-1 medicatie en coaching.',
-      items: ['Ozempic', 'Mounjaro', 'Wegovy', 'Saxenda', 'GLP-1 medicatie', 'Medisch afvallen'],
+      items: ['Ozempic', 'Mounjaro', 'Wegovy', 'GLP-1 medicatie', 'Medisch afvallen'],
     },
     en: {
       title: 'Weight Loss',
       desc: 'Medically supervised weight loss with GLP-1 medication and coaching.',
-      items: ['Ozempic', 'Mounjaro', 'Wegovy', 'Saxenda', 'GLP-1 medication', 'Medical weight loss'],
+      items: ['Ozempic', 'Mounjaro', 'Wegovy', 'GLP-1 medication', 'Medical weight loss'],
     },
   },
 ];

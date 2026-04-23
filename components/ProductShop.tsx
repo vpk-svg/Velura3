@@ -23,8 +23,8 @@ export default function ProductShop() {
       activeIngredient: t('ozempic_type'),
       type: t('ozempic_type'),
       desc: t('ozempic_desc'),
-      price: '€199',
-      priceCents: 19900,
+      price: 'v.a. €299',
+      priceCents: 29900,
       badge: 'Rx',
       productBadge: t('ozempic_badge'),
       imgSrc: '/images/products/ozempic.webp',
@@ -42,8 +42,8 @@ export default function ProductShop() {
       activeIngredient: t('mounjaro_type'),
       type: t('mounjaro_type'),
       desc: t('mounjaro_desc'),
-      price: '€299',
-      priceCents: 29900,
+      price: 'v.a. €425',
+      priceCents: 42500,
       badge: 'Rx',
       topBadge: t('mounjaro_badge'),
       imgSrc: '/images/products/mounjaro.webp',
@@ -61,8 +61,8 @@ export default function ProductShop() {
       activeIngredient: t('wegovy_type'),
       type: t('wegovy_type'),
       desc: t('wegovy_desc'),
-      price: '€249',
-      priceCents: 24900,
+      price: 'v.a. €399',
+      priceCents: 39900,
       badge: 'Rx',
       productBadge: t('wegovy_badge'),
       imgSrc: '/images/products/wegovy.webp',
@@ -72,25 +72,6 @@ export default function ProductShop() {
       detailHow: tMed('detail_wegovy_how'),
       detailSide: tMed('detail_wegovy_side'),
       detailStorage: tMed('detail_wegovy_storage'),
-    },
-    {
-      id: 'saxenda',
-      category: 'GLP-1',
-      name: t('saxenda_name'),
-      activeIngredient: t('saxenda_type'),
-      type: t('saxenda_type'),
-      desc: t('saxenda_desc'),
-      price: '€179',
-      priceCents: 17900,
-      badge: 'Rx',
-      productBadge: t('saxenda_badge'),
-      imgSrc: '/images/products/saxenda.webp',
-      gradient: 'bg-[radial-gradient(circle_at_center,#3B2A23,#1e1b14)]',
-      detailTitle: tMed('detail_saxenda_title'),
-      detailFrequency: tMed('detail_saxenda_frequency'),
-      detailHow: tMed('detail_saxenda_how'),
-      detailSide: tMed('detail_saxenda_side'),
-      detailStorage: tMed('detail_saxenda_storage'),
     },
   ];
 
@@ -280,11 +261,10 @@ export default function ProductShop() {
                         cart.removeItem(product.id);
                       }
                     }}
-                    className={`w-full mt-3 py-3 rounded-full font-sans text-[11px] tracking-[0.15em] uppercase transition-all duration-300 flex items-center justify-center gap-2 font-semibold border cursor-pointer ${
-                      cart.hasItem(product.id)
-                        ? 'border-green-500 bg-green-50 text-green-700'
-                        : 'border-secondary/15 text-secondary/60 hover:border-primary hover:text-primary'
-                    }`}
+                    className={`w-full mt-3 py-3 rounded-full font-sans text-[11px] tracking-[0.15em] uppercase transition-all duration-300 flex items-center justify-center gap-2 font-semibold border cursor-pointer ${cart.hasItem(product.id)
+                      ? 'border-green-500 bg-green-50 text-green-700'
+                      : 'border-secondary/15 text-secondary/60 hover:border-primary hover:text-primary'
+                      }`}
                   >
                     {cart.hasItem(product.id) ? (
                       <><Check size={14} /> {tMed.has('added_to_cart') ? tMed('added_to_cart') : 'Toegevoegd'}</>

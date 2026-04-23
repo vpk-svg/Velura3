@@ -14,12 +14,12 @@ import SurveyAutoOpen from '@/components/SurveyAutoOpen';
 import { PRODUCTS as PRODUCT_DATA } from '@/lib/products';
 import { EASE_PREMIUM } from '@/lib/motion';
 
-const PRODUCT_KEYS = ['mounjaro', 'ozempic', 'wegovy', 'saxenda'] as const;
+const PRODUCT_KEYS = ['mounjaro', 'ozempic', 'wegovy'] as const;
 
 const PRODUCTS = PRODUCT_KEYS.map((key) => ({
   key,
   image: `/images/products/${key}.webp`,
-  price: `€${Math.round(PRODUCT_DATA[key].priceCents / 100)}`,
+  price: `v.a. €${Math.round(PRODUCT_DATA[key].priceCents / 100)} incl. Begeleiding`,
   productId: key,
 }));
 
@@ -202,7 +202,7 @@ export default function WeightlossPage() {
                   </AnimatePresence>
                 </div>
                 <div className="flex items-center justify-between mt-auto pt-4 border-t border-secondary/5">
-                  <span className="font-display text-2xl text-primary font-semibold">{product.price}<span className="text-sm font-sans font-light text-secondary/50">/mnd</span></span>
+                  <span className="font-display text-2xl text-primary font-semibold">{product.price}</span>
                   <ConsultTrigger className="inline-flex items-center gap-2 font-sans text-xs text-primary font-semibold uppercase tracking-wider hover:gap-3 transition-all">
                     {t('product_cta')} <ArrowRight size={14} />
                   </ConsultTrigger>
@@ -249,17 +249,17 @@ export default function WeightlossPage() {
                 {usps.map((item, idx) => {
                   const UspIcon = uspIcons[idx];
                   return (
-                  <motion.li
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 + idx * 0.12, ease: EASE_PREMIUM }}
-                    className="flex items-start gap-4"
-                  >
-                    <UspIcon className="w-5 h-5 text-primary mt-0.5 shrink-0" strokeWidth={1.5} />
-                    <span className="font-sans font-light text-secondary/70 text-base md:text-lg leading-relaxed">{item}</span>
-                  </motion.li>
+                    <motion.li
+                      key={idx}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 + idx * 0.12, ease: EASE_PREMIUM }}
+                      className="flex items-start gap-4"
+                    >
+                      <UspIcon className="w-5 h-5 text-primary mt-0.5 shrink-0" strokeWidth={1.5} />
+                      <span className="font-sans font-light text-secondary/70 text-base md:text-lg leading-relaxed">{item}</span>
+                    </motion.li>
                   );
                 })}
               </ul>
