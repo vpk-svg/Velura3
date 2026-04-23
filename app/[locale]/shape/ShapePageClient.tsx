@@ -440,7 +440,7 @@ export default function ShapePage() {
             >
               <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
               <Image
-                src="/images/placeholders/2-800x600.png"
+                src="/images/beforeafterloveable/nieuwe-vrouw-bbl-after.jpg"
                 alt={t('intro_img_alt')}
                 width={600}
                 height={500}

@@ -492,7 +492,7 @@ export default function FillersPage() {
               className="flex-1 relative w-full aspect-[4/5] max-h-[520px] rounded-md overflow-hidden shadow-soft-lg bg-secondary/5"
             >
               <Image
-                src="/images/spares/fillers-premium-producten.png"
+                src="/images/beforeafterloveable/freepik_portrait-of-a-woman-with-_2851030711.png"
                 alt={t('safety_img_alt')}
                 fill
                 loading="lazy"
