@@ -440,13 +440,13 @@ export default function ShapePage() {
             >
               <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
               <Image
-                src="/images/beforeafterloveable/nieuwe-vrouw-bbl-after.jpg"
+                src="/images/beforeafterloveable/freepik_woman-viewed-from-back-af_2851058621.png"
                 alt={t('intro_img_alt')}
                 width={600}
                 height={500}
                 loading="lazy"
                 quality={85}
-                className="relative z-10 rounded-xl shadow-soft-lg transition-all duration-700"
+                className="relative z-10 rounded-xl shadow-soft-lg transition-all duration-700 hover:scale-[1.02] hover:shadow-gold-glow cursor-pointer"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </motion.div>
