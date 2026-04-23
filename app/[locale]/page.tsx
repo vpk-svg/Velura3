@@ -9,7 +9,6 @@ import Testimonials from '@/components/Testimonials';
 import BeforeAfterGallery from '@/components/BeforeAfterGallery';
 import PharmacyDisclaimer from '@/components/PharmacyDisclaimer';
 import type { Locale } from '@/lib/clinic-data';
-import TeamPreview from '@/components/TeamPreview';
 import FaqPreview from '@/components/FaqPreview';
 import BottomCta from '@/components/BottomCta';
 
@@ -36,8 +35,6 @@ export default function HomePage() {
       {/* 6b. Before & After Gallery */}
       <BeforeAfterGallery />
 
-      {/* 7. Team Preview */}
-      <TeamPreview />
 
       {/* 8. FAQ Preview */}
       <FaqPreview />

@@ -38,6 +38,7 @@ const SAFETY_ICONS = [Pill, Truck, Stethoscope, Phone] as const;
 
 export default function MedicatiePage() {
   const t = useTranslations('medicatie_page');
+  const tWeight = useTranslations('weightloss_page');
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -214,6 +215,21 @@ export default function MedicatiePage() {
               }
               subtitle={t('compare_desc')}
             />
+
+            <div className="mt-16 md:mt-24">
+              <SectionHeader
+                label={tWeight('products_label')}
+                title={
+                  <>
+                    {tWeight('products_title')}{' '}
+                    <span className="italic font-light text-primary">
+                      {tWeight('products_title_accent')}
+                    </span>
+                  </>
+                }
+                subtitle={tWeight('products_subtitle')}
+              />
+            </div>
           </Container>
         </section>
 
