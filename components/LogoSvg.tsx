@@ -1,4 +1,4 @@
-export default function LogoSvg({ className }: { className?: string }) {
+export default function LogoSvg({ className, useCurrentColor = false }: { className?: string, useCurrentColor?: boolean }) {
   return (
     // viewBox: 0 20 840 130 - crops top/bottom whitespace so text + gold line fill the element
     <svg
@@ -45,12 +45,12 @@ export default function LogoSvg({ className }: { className?: string }) {
 
         {/* Gold shimmer gradient */}
         <linearGradient id="fabGoldGrad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stopColor="#b8943e" />
-          <stop offset="15%"  stopColor="#d4af57" />
-          <stop offset="32%"  stopColor="#e8c96a" />
-          <stop offset="50%"  stopColor="#c6a04d" />
-          <stop offset="67%"  stopColor="#dabb5e" />
-          <stop offset="84%"  stopColor="#c9a44f" />
+          <stop offset="0%" stopColor="#b8943e" />
+          <stop offset="15%" stopColor="#d4af57" />
+          <stop offset="32%" stopColor="#e8c96a" />
+          <stop offset="50%" stopColor="#c6a04d" />
+          <stop offset="67%" stopColor="#dabb5e" />
+          <stop offset="84%" stopColor="#c9a44f" />
           <stop offset="100%" stopColor="#b8943e" />
         </linearGradient>
       </defs>
@@ -66,7 +66,7 @@ export default function LogoSvg({ className }: { className?: string }) {
         fontSize="94"
         fontWeight="500"
         letterSpacing="12"
-        fill="#2d1a10"
+        fill={useCurrentColor ? "currentColor" : "#2d1a10"}
         filter="url(#fabTextEmboss)"
       >
         FAB CLINIC

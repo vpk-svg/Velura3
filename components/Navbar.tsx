@@ -23,6 +23,22 @@ export default function Navbar() {
     setIsScrolled(latest > 20);
   });
 
+  const isDarkHeroPage = [
+    '/weightloss',
+    '/medicatie',
+    '/botox',
+    '/fillers',
+    '/shape',
+    '/skinboosters',
+    '/cursus',
+    '/faq',
+    '/terms',
+    '/trajecten',
+    '/behandelingen'
+  ].some(route => pathname.includes(route));
+
+  const useLightText = isDarkHeroPage && !isScrolled;
+
   // Close mobile menu on Escape
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape' && mobileMenuOpen) {
@@ -68,7 +84,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center group -ml-4" aria-label="FAB CLINIC - Home">
-            <LogoSvg className="h-9 w-auto md:h-11 transition-all duration-700 group-hover:scale-105" />
+            <LogoSvg className={`h-9 w-auto md:h-11 transition-all duration-700 group-hover:scale-105 ${useLightText ? 'text-background-light' : 'text-primary'}`} useCurrentColor={true} />
           </Link>
 
           {/* Desktop Nav */}
@@ -79,14 +95,17 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative transition-all duration-500 ease-premium font-display text-sm uppercase tracking-[0.15em] font-bold hover:text-primary hover:drop-shadow-[0_0_8px_rgba(107,66,38,0.4)] focus-visible:text-primary ${isActive ? 'text-primary' : 'text-primary/60'}`}
+                  className={`relative transition-all duration-500 ease-premium font-sans text-xs uppercase tracking-[0.15em] font-medium hover:drop-shadow-none ${isActive
+                      ? (useLightText ? 'text-white font-bold' : 'text-primary font-bold')
+                      : (useLightText ? 'text-background-light/90 hover:text-white' : 'text-primary/70 hover:text-primary')
+                    }`}
                   aria-current={isActive ? 'page' : undefined}
                 >
                   {link.name}
                   {isActive && (
                     <motion.span
                       layoutId="nav-active"
-                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-primary"
+                      className={`absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full ${useLightText ? 'bg-white' : 'bg-primary'}`}
                       transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                     />
                   )}
@@ -96,22 +115,22 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-10 justify-end -mr-4 pl-10">
-            <LanguageToggle isScrolled={isScrolled} />
-            <ConsultTrigger className="btn-primary">
+          <div className={`hidden md:flex items-center gap-10 justify-end -mr-4 pl-10 ${useLightText ? 'text-background-light' : ''}`}>
+            <LanguageToggle isScrolled={!useLightText} />
+            <ConsultTrigger className={`inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-3 text-[10px] tracking-[0.2em] transition-all duration-300 active:scale-[0.97] ${useLightText ? 'bg-background-light text-primary hover:bg-white' : 'bg-primary text-white hover:shadow-soft-md'}`}>
               {t('cta')}
             </ConsultTrigger>
           </div>
 
           {/* Mobile toggle */}
-          <div className="lg:hidden flex items-center gap-6 justify-end col-start-3">
-            <LanguageToggle isScrolled={isScrolled} />
+          <div className={`lg:hidden flex items-center gap-6 justify-end col-start-3 ${useLightText ? 'text-background-light' : ''}`}>
+            <LanguageToggle isScrolled={!useLightText} />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav"
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-              className={`p-2 transition-colors duration-300 text-primary hover:text-primary/70`}
+              className={`p-2 transition-colors duration-300 ${useLightText ? 'text-background-light hover:text-white' : 'text-primary hover:text-primary/70'}`}
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -137,7 +156,7 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-2xl font-display uppercase tracking-[0.15em] font-bold text-primary/80 hover:text-primary hover:drop-shadow-[0_0_12px_rgba(107,66,38,0.3)] transition-all duration-300"
+              className="text-2xl font-sans uppercase tracking-[0.15em] font-medium text-primary/80 hover:text-primary transition-all duration-300"
             >
               {link.name}
             </Link>
