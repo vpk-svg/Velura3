@@ -104,7 +104,7 @@ export default function PricingTimeline() {
                                 >
                                     <div className="w-full flex flex-col items-center mb-8">
                                         {item.optional && (
-                                            {t('optional')}
+                                            <span className="font-sans text-[10px] uppercase tracking-widest text-primary/60 font-semibold mb-2">{t('optional')}</span>
                                         )}
                                         <h3 className="font-display text-display-sm text-secondary italic">
                                             {item.month}
