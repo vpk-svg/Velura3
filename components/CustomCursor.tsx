@@ -56,37 +56,22 @@ export default function CustomCursor() {
     if (isTouchDevice) return null;
 
     return (
-        <>
-            <motion.div
-                className="fixed top-0 left-0 w-4 h-4 rounded-full bg-primary pointer-events-none z-[10001] shadow-[0_0_0_1px_rgba(0,0,0,0.3)]"
-                animate={{
-                    x: mousePosition.x - 8,
-                    y: mousePosition.y - 8,
-                    scale: isHovering ? 3 : 1,
-                    opacity: isHovering ? 0.5 : 1,
-                }}
-                transition={{
-                    type: 'spring',
-                    stiffness: 500,
-                    damping: 28,
-                    mass: 0.5,
-                }}
-            />
-            <motion.div
-                className="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary/50 pointer-events-none z-[10001]"
-                animate={{
-                    x: mousePosition.x - 16,
-                    y: mousePosition.y - 16,
-                    scale: isHovering ? 1.5 : 1,
-                    opacity: isHovering ? 0 : 1,
-                }}
-                transition={{
-                    type: 'spring',
-                    stiffness: 250,
-                    damping: 20,
-                    mass: 0.8,
-                }}
-            />
-        </>
+        <motion.div
+            className="fixed top-0 left-0 pointer-events-none z-[10001]"
+            animate={{
+                x: mousePosition.x,
+                y: mousePosition.y,
+            }}
+            transition={{
+                type: 'spring',
+                stiffness: 1000,
+                damping: 50,
+                mass: 0.2,
+            }}
+        >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(-10deg)', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))' }}>
+                <path d="M3 3L11 21L14 14L21 11L3 3Z" fill="#C5A059" stroke="white" strokeWidth="1.5" strokeLinejoin="round" />
+            </svg>
+        </motion.div>
     );
 }

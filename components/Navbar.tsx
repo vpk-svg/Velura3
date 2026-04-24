@@ -79,7 +79,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative transition-all duration-500 ease-premium font-display text-sm uppercase tracking-[0.15em] hover:text-primary focus-visible:text-primary ${isActive ? 'text-primary' : 'text-primary/60'}`}
+                  className={`relative transition-all duration-500 ease-premium font-display text-sm uppercase tracking-[0.15em] font-bold hover:text-primary hover:drop-shadow-[0_0_8px_rgba(107,66,38,0.4)] focus-visible:text-primary ${isActive ? 'text-primary' : 'text-primary/60'}`}
                   aria-current={isActive ? 'page' : undefined}
                 >
                   {link.name}
@@ -137,7 +137,7 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-2xl font-display uppercase tracking-[0.15em] text-primary/80 hover:text-primary transition-all duration-300"
+              className="text-2xl font-display uppercase tracking-[0.15em] font-bold text-primary/80 hover:text-primary hover:drop-shadow-[0_0_12px_rgba(107,66,38,0.3)] transition-all duration-300"
             >
               {link.name}
             </Link>

@@ -34,10 +34,9 @@ export default function FullWidthHeaderImage() {
                     alt="FAB Clinic"
                     fill
                     priority
-                    className="object-cover opacity-25 grayscale-[0.15]"
+                    className="object-cover opacity-40 grayscale-[0.05]"
                     sizes="100vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-background-light/50 via-transparent to-background-light/80" />
             </motion.div>
 
             {/* Centered Hero Content */}
@@ -54,8 +53,7 @@ export default function FullWidthHeaderImage() {
                     </div>
 
                     <h1 className="font-display text-display-xl text-primary leading-[1] mb-10">
-                        {t('title1')} <span className="font-script text-primary/70 text-7xl lowercase relative top-2 ml-2 -mr-2">and</span> <br />
-                        {t('title2')}
+                        {t('title1')} {t('title2')}
                     </h1>
 
                     <p className="font-sans font-light text-primary/70 text-lg md:text-xl leading-relaxed tracking-wide max-w-2xl mx-auto mb-14 px-4">
