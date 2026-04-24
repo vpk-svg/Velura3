@@ -66,7 +66,7 @@ export default function LogoSvg({ className, useCurrentColor = false }: { classN
         fontSize="94"
         fontWeight="500"
         letterSpacing="12"
-        fill={useCurrentColor ? "currentColor" : "#2d1a10"}
+        fill={useCurrentColor ? "currentColor" : "#000000"}
         filter="url(#fabTextEmboss)"
       >
         FAB CLINIC

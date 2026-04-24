@@ -84,7 +84,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center group -ml-4" aria-label="FAB CLINIC - Home">
-            <LogoSvg className={`h-9 w-auto md:h-11 transition-all duration-700 group-hover:scale-105 ${useLightText ? 'text-background-light' : 'text-primary'}`} useCurrentColor={true} />
+            <LogoSvg className={`h-9 w-auto md:h-11 transition-all duration-700 group-hover:scale-105 ${useLightText ? 'text-background-light' : 'text-black'}`} useCurrentColor={true} />
           </Link>
 
           {/* Desktop Nav */}
@@ -96,8 +96,8 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={`relative transition-all duration-500 ease-premium font-sans text-xs uppercase tracking-[0.15em] font-medium hover:drop-shadow-none ${isActive
-                      ? (useLightText ? 'text-white font-bold' : 'text-primary font-bold')
-                      : (useLightText ? 'text-background-light/90 hover:text-white' : 'text-primary/70 hover:text-primary')
+                    ? (useLightText ? 'text-white font-bold' : 'text-primary font-bold')
+                    : (useLightText ? 'text-background-light/90 hover:text-white' : 'text-primary/70 hover:text-primary')
                     }`}
                   aria-current={isActive ? 'page' : undefined}
                 >
