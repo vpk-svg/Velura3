@@ -6,12 +6,15 @@
    BASE LAYER - Warm Luxury Clinic Aesthetic
    ═══════════════════════════════════════════════════ */
 @layer base {
+  * {
+    cursor: none !important;
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    cursor: none;
   }
 
   body {
