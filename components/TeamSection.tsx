@@ -96,7 +96,7 @@ export default function TeamSection() {
                                     {member.big}
                                 </p>
                             )}
-                            {member.name !== t('member5_name') && (
+                            {member.name !== t('member5_name') && member.name !== t('member1_name') && (
                                 <ConsultTrigger
                                     from="other"
                                     className="inline-flex items-center gap-2 font-sans text-xs text-primary font-semibold uppercase tracking-wider mt-5 hover:gap-3 transition-all"

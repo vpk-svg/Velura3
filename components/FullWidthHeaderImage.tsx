@@ -52,11 +52,11 @@ export default function FullWidthHeaderImage() {
                         <div className="h-px w-16 bg-primary/30" />
                     </div>
 
-                    <h1 className="font-display text-display-xl text-primary leading-[1] mb-10">
+                    <h1 className="font-display text-display-xl text-primary leading-[1] mb-10 drop-shadow-sm">
                         {t('title1')} {t('title2')}
                     </h1>
 
-                    <p className="font-sans font-light text-primary/70 text-lg md:text-xl leading-relaxed tracking-wide max-w-2xl mx-auto mb-14 px-4">
+                    <p className="font-sans font-light text-primary/70 text-lg md:text-xl leading-relaxed tracking-wide max-w-2xl mx-auto mb-14 px-4 drop-shadow-sm">
                         {t('hero_subtitle')}
                     </p>
 

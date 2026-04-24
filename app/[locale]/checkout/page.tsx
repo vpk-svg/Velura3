@@ -419,7 +419,7 @@ export default function CheckoutPage() {
                                         <button
                                             onClick={handleProceedToPayment}
                                             disabled={isSubmitting}
-                                            className="w-full relative group overflow-hidden rounded-pill bg-primary px-8 py-5 text-[11px] font-bold uppercase tracking-[0.3em] text-white shadow-gold-glow transition-all duration-300 hover:shadow-soft-xl active:scale-[0.98] disabled:opacity-70 disabled:cursor-wait"
+                                            className="w-full relative group overflow-hidden rounded-pill bg-primary px-8 py-5 text-[11px] font-bold uppercase tracking-[0.3em] !text-white shadow-gold-glow transition-all duration-300 hover:shadow-soft-xl active:scale-[0.98] disabled:opacity-70 disabled:cursor-wait"
                                         >
                                             <span className="relative z-10 flex items-center justify-center gap-3">
                                                 {isSubmitting ? (
