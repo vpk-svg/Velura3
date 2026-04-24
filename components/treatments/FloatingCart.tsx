@@ -43,7 +43,6 @@ export default function FloatingCart({
         onClick={() => setIsOpen(true)}
         className="fixed right-5 bottom-28 z-[100] flex items-center justify-center w-14 h-14 rounded-full bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-shadow duration-300 active:scale-95 cursor-pointer"
         aria-label={`${t('cart_title')} (${count})`}
-        data-no-custom-cursor="true"
       >
         <ShoppingBag size={22} />
         <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-secondary text-white text-[11px] font-bold flex items-center justify-center shadow-md">
@@ -60,10 +59,8 @@ export default function FloatingCart({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
               className="fixed inset-0 z-[101] bg-secondary/40 backdrop-blur-sm"
-              data-no-custom-cursor="true"
-              style={{ cursor: 'auto' }}
+              onClick={() => setIsOpen(false)}
             />
 
             {/* Panel */}
@@ -73,8 +70,6 @@ export default function FloatingCart({
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               className="fixed right-0 top-0 bottom-0 z-[102] w-full max-w-sm bg-white shadow-[−20px_0_60px_rgba(0,0,0,0.15)] flex flex-col"
-              data-no-custom-cursor="true"
-              style={{ cursor: 'auto' }}
             >
               {/* Header */}
               <div className="flex items-center justify-between px-6 py-5 border-b border-secondary/5">

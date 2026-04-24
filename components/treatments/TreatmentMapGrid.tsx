@@ -127,8 +127,6 @@ function InfoModal({
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-[10002] flex items-center justify-center bg-secondary/80 px-4 py-8 backdrop-blur-md"
       onClick={handleCloseModal}
-      data-no-custom-cursor="true"
-      style={{ cursor: 'auto' }}
     >
       <motion.div
         initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -286,8 +284,6 @@ export default function TreatmentMapGrid({
   return (
     <section
       className={`py-section-y ${bgClass} overflow-hidden`}
-      data-no-custom-cursor="true"
-      style={{ cursor: 'auto' }}
     >
       <Container>
         <SectionHeader label={label} title={title} subtitle={subtitle} />

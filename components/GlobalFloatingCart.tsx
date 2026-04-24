@@ -50,7 +50,6 @@ export default function GlobalFloatingCart() {
             onClick={() => setIsOpen(true)}
             className="fixed right-5 bottom-24 lg:bottom-8 z-[250] flex items-center justify-center w-14 h-14 rounded-full bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-shadow duration-300 active:scale-95 cursor-pointer"
             aria-label={`Winkelwagen (${count})`}
-            data-no-custom-cursor="true"
           >
             <ShoppingBag size={22} />
             <motion.span
@@ -74,10 +73,8 @@ export default function GlobalFloatingCart() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
               className="fixed inset-0 z-[251] bg-secondary/40 backdrop-blur-sm"
-              data-no-custom-cursor="true"
-              style={{ cursor: 'auto' }}
+              onClick={() => setIsOpen(false)}
             />
 
             {/* Panel */}
@@ -87,8 +84,6 @@ export default function GlobalFloatingCart() {
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               className="fixed right-0 top-0 bottom-0 z-[252] w-full max-w-sm bg-white shadow-2xl flex flex-col"
-              data-no-custom-cursor="true"
-              style={{ cursor: 'auto' }}
             >
               {/* Header */}
               <div className="flex items-center justify-between px-6 py-5 border-b border-secondary/5">

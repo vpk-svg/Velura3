@@ -112,8 +112,6 @@ function InfoModal({
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-[10002] flex items-center justify-center bg-secondary/60 px-4 py-8 backdrop-blur-sm"
       onClick={handleCloseModal}
-      data-no-custom-cursor="true"
-      style={{ cursor: 'auto' }}
     >
       <motion.div
         initial={{ opacity: 0, y: 20, scale: 0.98 }}
@@ -166,8 +164,8 @@ function InfoModal({
               }}
               disabled={isInCart}
               className={`flex items-center justify-center w-11 h-11 rounded-full border-2 transition-all duration-200 ${isInCart
-                  ? 'border-primary bg-primary/10 text-primary'
-                  : 'border-primary bg-white text-primary hover:bg-primary hover:text-white shadow-soft-sm hover:shadow-gold-glow active:scale-95'
+                ? 'border-primary bg-primary/10 text-primary'
+                : 'border-primary bg-white text-primary hover:bg-primary hover:text-white shadow-soft-sm hover:shadow-gold-glow active:scale-95'
                 }`}
               aria-label={isInCart ? 'Toegevoegd' : 'Toevoegen aan winkelwagen'}
             >
@@ -203,8 +201,6 @@ export default function BotoxFaceMap({ activeExternalZoneId, onAddToCart, cartZo
     <section
       className="py-section-y bg-page-botox overflow-hidden"
       aria-label={t('facemap_label')}
-      data-no-custom-cursor="true"
-      style={{ cursor: 'auto' }}
     >
       <Container>
         <SectionHeader
