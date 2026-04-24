@@ -36,44 +36,44 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-secondary text-background-light pt-section-y pb-16">
+    <footer className="bg-clinic-sand border-t border-secondary/5 pt-section-y pb-20">
       <Container>
-        {/* Wordmark */}
+        {/* Wordmark - Ultra subtle */}
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-24"
           aria-hidden="true"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={shouldReduceMotion ? undefined : { once: true, amount: 0.5 }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.9, ease: easePremium }}
         >
-          <span className="font-display text-6xl md:text-8xl lg:text-[10rem] text-primary tracking-[0.2em] font-semibold opacity-[0.06] select-none">
-            FAB CLINIC
+          <span className="font-display text-6xl md:text-8xl lg:text-[10rem] text-secondary tracking-ultra-wide font-light opacity-[0.03] select-none uppercase">
+            Fab Clinic
           </span>
         </motion.div>
 
         {/* Links Grid */}
         <motion.div
-          className="grid grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-16 mb-20"
+          className="grid grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-10 mb-24"
           variants={footerColumnsVariants}
           initial={shouldReduceMotion ? false : 'hidden'}
           whileInView={shouldReduceMotion ? undefined : 'visible'}
-          viewport={shouldReduceMotion ? undefined : { once: true, amount: 0.2 }}
+          viewport={shouldReduceMotion ? undefined : { once: true, amount: 0.1 }}
         >
           <motion.div className="col-span-2 lg:col-span-1" variants={footerColumnItemVariants}>
-            <h3 className="font-display text-white text-xl mb-6 font-bold tracking-tighter">FAB <span className="text-primary italic drop-shadow-[0_0_10px_rgba(198,166,93,0.4)]">CLINIC</span></h3>
-            <p className="font-sans font-light text-background-light/50 text-sm leading-relaxed max-w-xs">
+            <h3 className="font-display text-secondary text-2xl mb-8 italic font-light">FAB <span className="text-primary italic">CLINIC</span></h3>
+            <p className="font-sans font-light text-secondary/60 text-xs leading-relaxed max-w-xs uppercase tracking-wider">
               {t('about_text')}
             </p>
-            <div className="flex gap-4 mt-6">
-              <a href="https://www.instagram.com/fabclinic.nl/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-background-light/60 hover:text-primary hover:border-primary/40 hover:bg-primary/10 transition-all duration-300" aria-label="Instagram">
-                <Instagram size={18} />
+            <div className="flex gap-4 mt-10">
+              <a href="https://www.instagram.com/fabclinic.nl/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-secondary/10 flex items-center justify-center text-secondary/40 hover:text-primary hover:border-primary/40 transition-all duration-500" aria-label="Instagram">
+                <Instagram size={16} strokeWidth={1.5} />
               </a>
-              <a href="https://www.facebook.com/fabclinic" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-background-light/60 hover:text-primary hover:border-primary/40 hover:bg-primary/10 transition-all duration-300" aria-label="Facebook">
-                <Facebook size={18} />
+              <a href="https://www.facebook.com/fabclinic" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-secondary/10 flex items-center justify-center text-secondary/40 hover:text-primary hover:border-primary/40 transition-all duration-500" aria-label="Facebook">
+                <Facebook size={16} strokeWidth={1.5} />
               </a>
-              <a href="https://wa.me/31600000000" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-background-light/60 hover:text-[#25D366] hover:border-[#25D366]/40 hover:bg-[#25D366]/10 transition-all duration-300" aria-label="WhatsApp">
-                <Phone size={18} />
+              <a href="https://wa.me/31600000000" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-secondary/10 flex items-center justify-center text-secondary/40 hover:text-primary hover:border-primary/40 transition-all duration-500" aria-label="WhatsApp">
+                <Phone size={16} strokeWidth={1.5} />
               </a>
             </div>
           </motion.div>
@@ -116,10 +116,10 @@ export default function Footer() {
             },
           ].map((col) => (
             <motion.nav key={col.title} aria-label={col.title} variants={footerColumnItemVariants}>
-              <h4 className="font-sans text-primary text-[11px] tracking-[0.3em] uppercase mb-8 font-semibold">
+              <h4 className="font-sans text-secondary/40 text-[10px] tracking-ultra-wide uppercase mb-10 font-bold">
                 {col.title}
               </h4>
-              <ul className="space-y-5 font-sans font-light text-sm text-background-light/70 uppercase tracking-[0.15em]">
+              <ul className="space-y-4 font-sans font-medium text-[10px] text-secondary/60 uppercase tracking-airy">
                 {col.links.map((link) => (
                   <li key={`${col.title}-${link.href}-${link.label}`}><Link href={link.href} className={linkClass}>{link.label}</Link></li>
                 ))}
@@ -129,23 +129,23 @@ export default function Footer() {
         </motion.div>
 
         {/* Divider */}
-        <div className="h-px bg-primary/10 mb-12" />
+        <div className="h-px bg-secondary/5 mb-12" />
 
         {/* Disclaimer */}
-        <p className="mb-16 text-center max-w-4xl mx-auto font-sans text-[10px] md:text-[11px] italic text-background-light/30 leading-relaxed uppercase tracking-[0.25em] font-semibold">
+        <p className="mb-16 text-center max-w-4xl mx-auto font-sans text-[9px] md:text-[10px] italic text-secondary/25 leading-relaxed uppercase tracking-ultra-wide">
           {t('disclaimer')}
         </p>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-background-light/40 uppercase tracking-[0.25em] font-semibold">
-          <p className="font-sans text-[10px]">{t('copyright')}</p>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-secondary/30 uppercase tracking-ultra-wide font-bold">
+          <p className="font-sans text-[9px]">{t('copyright')}</p>
 
           {/* Payment Badges */}
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-2">
             {['iDEAL', 'Amex', 'Visa', 'Mastercard', 'STP'].map((method, index) => (
               <motion.span
                 key={method}
-                className="font-sans text-[10px] tracking-widest uppercase border border-background-light/5 px-4 py-1.5 rounded-pill hover:border-primary/20 transition-colors duration-200 cursor-default"
+                className="font-sans text-[9px] uppercase border border-secondary/5 px-4 py-1.5 rounded-full hover:border-primary/20 transition-all duration-500 cursor-default"
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
                 whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={shouldReduceMotion ? undefined : { once: true, amount: 0.8 }}

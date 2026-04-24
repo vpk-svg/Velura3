@@ -47,71 +47,67 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="py-section-y bg-secondary text-background-light overflow-hidden" aria-label={t('label')}>
+    <section className="py-section-y bg-clinic-beige overflow-hidden" aria-label={t('label')}>
       <Container>
         <SectionHeader
-          light
           label={t('label')}
-          title={<>{t('title')} <span className="italic font-light text-primary">{t('subtitle')}</span></>}
+          title={<>{t('title')} <span className="font-script text-primary text-4xl lowercase relative -top-1 ml-1">{t('subtitle')}</span></>}
         />
 
-        {/* Navigation arrows */}
-        <div className="flex items-center justify-end gap-3 mb-8">
+        {/* Navigation arrows - Refined */}
+        <div className="flex items-center justify-end gap-4 mb-10">
           <button
             onClick={() => scroll('left')}
             disabled={!canScrollLeft}
-            className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary disabled:opacity-20 hover:bg-primary/10 transition-all duration-200"
+            className="w-12 h-12 rounded-full border border-secondary/10 flex items-center justify-center text-secondary disabled:opacity-20 hover:border-primary/40 hover:text-primary transition-all duration-500 ease-premium"
             aria-label="Previous"
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={20} strokeWidth={1.5} />
           </button>
           <button
             onClick={() => scroll('right')}
             disabled={!canScrollRight}
-            className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary disabled:opacity-20 hover:bg-primary/10 transition-all duration-200"
+            className="w-12 h-12 rounded-full border border-secondary/10 flex items-center justify-center text-secondary disabled:opacity-20 hover:border-primary/40 hover:text-primary transition-all duration-500 ease-premium"
             aria-label="Next"
           >
-            <ChevronRight size={20} />
+            <ChevronRight size={20} strokeWidth={1.5} />
           </button>
         </div>
 
         {/* Scrollable carousel */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 -mx-4 px-4"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
+          className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-8 -mx-4 px-4 hide-scrollbar"
         >
-          <style>{`[data-testimonial-scroll]::-webkit-scrollbar { display: none; }`}</style>
           {testimonials.map((testimonial, idx) => (
             <motion.blockquote
               key={testimonial.author}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: idx * 0.05, ease: EASE_PREMIUM }}
-              className="snap-start shrink-0 w-[320px] md:w-[360px] bg-white rounded-md p-8 shadow-soft-md relative group hover:-translate-y-3 transition-transform duration-300 ease-premium flex flex-col"
+              transition={{ duration: 0.8, delay: idx * 0.1, ease: EASE_PREMIUM }}
+              className="snap-start shrink-0 w-[300px] md:w-[400px] bg-clinic-sand rounded-2xl p-10 shadow-soft-md border border-secondary/5 relative group hover:border-primary/20 transition-all duration-700 flex flex-col"
             >
-              <div className="flex text-primary mb-8" role="img" aria-label={`${t('rating')}: 5/5`}>
+              <div className="flex gap-1 text-primary/40 mb-10" role="img" aria-label={`${t('rating')}: 5/5`}>
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-current" />
+                  <Star key={i} className="w-3.5 h-3.5 fill-current" />
                 ))}
               </div>
-              <p className="font-display text-xl md:text-2xl text-secondary italic leading-snug mb-10">
+
+              <p className="font-display text-2xl md:text-3xl text-secondary leading-snug mb-12 italic">
                 &ldquo;{testimonial.quote}&rdquo;
               </p>
-              <footer className="mt-auto border-t border-secondary/5 pt-8">
-                <cite className="not-italic">
-                  <span className="block font-sans text-secondary text-sm uppercase tracking-[0.2em] font-semibold">
+
+              <footer className="mt-auto pt-8 border-t border-secondary/5">
+                <cite className="not-italic flex flex-col gap-2">
+                  <span className="block font-sans text-secondary text-[10px] uppercase tracking-ultra-wide font-bold">
                     {testimonial.author.split('·')[0].trim()}
                   </span>
-                  <span className="block font-sans text-primary text-[10px] tracking-[0.3em] uppercase mt-1.5 font-semibold">
+                  <span className="block font-sans text-primary text-[10px] tracking-airy uppercase font-bold opacity-60">
                     {testimonial.author.split('·')[1]?.trim() || 'Verified Patient'}
                   </span>
                 </cite>
               </footer>
-              <div className="absolute top-8 right-8 text-primary opacity-[0.03] group-hover:opacity-10 transition-opacity duration-500" aria-hidden="true">
-                <Heart size={64} fill="currentColor" />
-              </div>
             </motion.blockquote>
           ))}
         </div>

@@ -1,7 +1,8 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { Link, usePathname } from '@/lib/navigation';
+import { useRouter, usePathname } from '@/lib/navigation';
+import { useCart } from '@/lib/cart-context';
 
 export type ConsultSubject = 'home' | 'weightloss' | 'botox' | 'fillers' | 'bbl' | 'medicatie' | 'intake' | 'other';
 
@@ -22,14 +23,33 @@ function subjectFromPath(pathname: string): ConsultSubject {
 }
 
 export default function ConsultTrigger({ children, className, from }: ConsultTriggerProps) {
+  const router = useRouter();
   const pathname = usePathname();
+  const { addItem, count } = useCart();
 
-  const source = from ?? subjectFromPath(pathname);
-  const href = `/consult?from=${encodeURIComponent(source)}`;
+  const handleConsult = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const source = from ?? subjectFromPath(pathname);
+
+    // If cart is empty, add a general consultation item based on the source
+    if (count === 0) {
+      if (source === 'botox') {
+        addItem({ id: 'consult:botox', type: 'botox', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0 });
+      } else if (source === 'fillers') {
+        addItem({ id: 'consult:fillers', type: 'fillers', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0 });
+      } else if (source === 'bbl') {
+        addItem({ id: 'consult:bbl', type: 'shape', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0 });
+      } else {
+        addItem({ id: 'consult:general', type: 'botox', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0 });
+      }
+    }
+
+    router.push('/checkout');
+  };
 
   return (
-    <Link href={href} className={className}>
+    <button onClick={handleConsult} className={className}>
       {children}
-    </Link>
+    </button>
   );
 }

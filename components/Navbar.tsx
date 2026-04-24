@@ -59,35 +59,35 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: EASE_PREMIUM }}
       className={`fixed top-0 left-0 right-0 z-nav transition-all duration-700 w-full border-b ${isScrolled
-        ? 'bg-white border-primary/10 shadow-soft-sm py-2'
-        : 'bg-white border-transparent py-4'
+        ? 'glass-heavy border-secondary/10 shadow-soft-sm py-1'
+        : 'bg-transparent border-transparent py-4'
         }`}
     >
       <Container>
         <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center group -ml-6" aria-label="FAB CLINIC - Home">
-            <LogoSvg className="h-10 w-auto md:h-12 drop-shadow-[0_0_12px_rgba(198,166,93,0.25)] group-hover:drop-shadow-[0_0_18px_rgba(198,166,93,0.35)] transition-all duration-500" />
+          <Link href="/" className="flex items-center group -ml-4" aria-label="FAB CLINIC - Home">
+            <LogoSvg className="h-9 w-auto md:h-11 transition-all duration-700 group-hover:scale-105" />
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-10" aria-label="Main navigation">
+          <nav className="hidden lg:flex items-center gap-12" aria-label="Main navigation">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative transition-all duration-300 ease-premium text-xs font-semibold uppercase tracking-[0.15em] hover:text-primary focus-visible:text-primary ${isActive ? 'text-primary' : 'text-secondary/80'}`}
+                  className={`relative transition-all duration-500 ease-premium text-[10px] font-bold uppercase tracking-ultra-wide hover:text-primary focus-visible:text-primary ${isActive ? 'text-primary' : 'text-secondary/70'}`}
                   aria-current={isActive ? 'page' : undefined}
                 >
                   {link.name}
                   {isActive && (
                     <motion.span
                       layoutId="nav-active"
-                      className="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-primary rounded-full"
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-primary"
+                      transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                     />
                   )}
                 </Link>
@@ -96,9 +96,9 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-8 justify-end -mr-6 pl-10">
+          <div className="hidden md:flex items-center gap-10 justify-end -mr-4 pl-10">
             <LanguageToggle isScrolled={isScrolled} />
-            <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-3 text-[10px] tracking-[0.2em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+            <ConsultTrigger className="btn-premium inline-flex items-center justify-center rounded-full font-sans uppercase font-bold px-10 py-3.5 text-[10px] tracking-airy bg-secondary text-white shadow-soft-md">
               {t('cta')}
             </ConsultTrigger>
           </div>
@@ -111,9 +111,9 @@ export default function Navbar() {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav"
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-              className={`p-2 transition-colors duration-300 text-secondary`}
+              className={`p-2 transition-colors duration-300 text-secondary hover:text-primary`}
             >
-              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
@@ -127,24 +127,24 @@ export default function Navbar() {
           height: mobileMenuOpen ? '100vh' : 0,
           opacity: mobileMenuOpen ? 1 : 0
         }}
-        transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-        className="lg:hidden overflow-hidden bg-background-light fixed inset-x-0 h-screen shadow-soft-xl"
+        transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+        className="lg:hidden overflow-hidden glass-heavy fixed inset-x-0 h-screen"
         aria-label="Mobile navigation"
       >
-        <div className="flex flex-col items-center justify-center h-full gap-10 px-10 pb-32 overflow-y-auto">
+        <div className="flex flex-col items-center justify-center h-full gap-12 px-10 pb-32">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-2xl font-sans text-secondary hover:text-primary tracking-widest font-bold transition-colors duration-200"
+              className="text-xl font-display italic text-secondary hover:text-primary tracking-airy transition-all duration-300"
             >
               {link.name}
             </Link>
           ))}
-          <div onClick={() => setMobileMenuOpen(false)}>
+          <div onClick={() => setMobileMenuOpen(false)} className="w-full max-w-xs mt-4">
             <ConsultTrigger
-              className="w-full max-w-xs inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
+              className="btn-premium w-full inline-flex items-center justify-center rounded-full font-sans uppercase font-bold px-12 py-5 text-xs tracking-ultra-wide bg-secondary text-white shadow-soft-lg"
             >
               {t('cta')}
             </ConsultTrigger>

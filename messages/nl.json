@@ -316,7 +316,8 @@
   },
   "consult_plan": {
     "meta_title": "Plan Uw Consult | FAB Clinic",
-    "meta_desc": "Kies uw behandeling(en) en plan direct uw consult bij FAB Clinic. Botox, fillers, BBL of intakegesprek - alles onder medische begeleiding."
+    "meta_desc": "Kies uw behandeling(en) en plan direct uw consult bij FAB Clinic. Botox, fillers, BBL of intakegesprek - alles onder medische begeleiding.",
+    "first-consult": "Gratis Intake / Adviesgesprek"
   },
   "newsletter": {
     "title": "Op de Hoogte Blijven",
@@ -758,13 +759,13 @@
     "zone_signature_30ml": "Full Face Contouring Signature 3,0 ML",
     "zone_signature_40ml": "Full Face Contouring Signature 4,0 ML",
     "zone_signature_50ml": "Full Face Contouring Signature 5,0 ML",
-    "zone_buttfiller_100ml": "Buttfiller (billift) \u2013 100ML (2 jaar resultaat)",
+    "zone_buttfiller_100ml": "Buttfiller (billift) – 100ML (2 jaar resultaat)",
     "desc_lippen_05ml": "Subtiele volumeverbetering en contourdefinitie met premium hyaluronzuur.",
     "desc_lippen_10ml": "Verticale projectie voor een strakke, elegante liplijn.",
     "desc_cheeks_10ml": "Herstelt midface volume en accentueert de contour van het gezicht.",
     "desc_cheeks_20ml": "Extra volume-opbouw voor meer projectie en contour in het midface gebied.",
     "desc_cheeks_30ml": "Uitgebreid contourplan voor maximale definitie van de jukbeenderen.",
-    "desc_jawline_10ml": "Cre\u00ebrt een strakkere kaaklijn en verbeterde definitie van het profiel.",
+    "desc_jawline_10ml": "Creërt een strakkere kaaklijn en verbeterde definitie van het profiel.",
     "desc_jawline_20ml": "Voor extra kaaklijnaccent en een strakker zijprofiel.",
     "desc_jawline_30ml": "Uitgebreide opbouw voor krachtige kaakcontouren.",
     "desc_jawline_40ml": "Maximale contourering voor een sterk gedefinieerde kaaklijn.",
@@ -839,7 +840,9 @@
     "zone_signature_why": "Voor een algehele verjonging en verfijning van alle gezichtscontouren in één signature behandeling.",
     "zone_buttfiller_short": "Rondere billen zonder operatie.",
     "zone_buttfiller_why": "Om de billen te liften en ronder te maken met direct resultaat en minimale hersteltijd.",
-    "facemap_why_label": "WAAROM DEZE BEHANDELING?"
+    "facemap_why_label": "WAAROM DEZE BEHANDELING?",
+    "zone_signature": "Full Face Contouring Signature",
+    "zone_buttfiller": "Buttfiller (billift)"
   },
   "sticky_mobile": {
     "consult": "Plan Consult"

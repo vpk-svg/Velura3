@@ -10,134 +10,112 @@ const config: Config = {
     extend: {
       /* ── Colour Tokens ─────────────────────────────── */
       colors: {
-        primary:            "#c6a65d",
-        "primary-light":    "#d8b56f",
-        "primary-dark":     "#a68b4c",
-        "primary-text":     "#8a7235",   /* WCAG AA compliant on white (4.55:1) */
-        secondary:          "#3B2A23",
-        "secondary-deep":   "#1e1b14",
-        ivory:              "#FDFCF0",
-        "background-light": "#FDFCF0",
-        "background-dark":  "#1e1b14",
-        "surface":          "#FEFDFB",
-        "surface-elevated":  "#FFFFFF",
-        "border-subtle":    "rgba(59,42,35,0.06)",
-        "mint":             "#E8F5EE",
-        "mint-dark":        "#2D8B5E",
-        "rose-soft":        "#FDF2F2",
-        "rose-dark":        "#C4494B",
-        "amber-soft":       "#FEF9EC",
-        "champagne":        "#F5E6D0",
-        "champagne-dark":   "#D4A574",
-        "burgundy":         "#722F37",
-        "burgundy-light":   "#8B3A42",
-        "sage":             "#B2C5A8",
-        "sage-dark":        "#7A9A6D",
-        "taupe":            "#B8A99A",
-        "taupe-dark":       "#8C7B6B",
-        "pearl":            "#F8F4ED",
-        "charcoal":         "#2C2C2C",
-        "bronze":           "#CD7F32",
-        "bronze-light":     "#DAA06D",
-        /* Page-specific subtle tints (very close to ivory #FDFCF0) */
-        "page-botox":       "#F9FBF6",   /* cool sage whisper */
-        "page-fillers":     "#FDF9F2",   /* warm champagne whisper */
-        "page-shape":       "#FAF8F4",   /* neutral pearl */
-        "page-weight":      "#F6FBF8",   /* soft mint whisper */
-        "page-team":        "#FBF8F4",   /* warm taupe whisper */
-        "page-contact":     "#FDF7F5",   /* gentle rose whisper */
-        "page-trajecten":   "#FCF8F0",   /* warm bronze whisper */
-        "page-cursus":      "#F8F6F8",   /* subtle mauve whisper */
-        "page-medicatie":   "#F8FAF6",   /* fresh green whisper */
-        "page-faq":         "#FAF9F4",   /* warm sand whisper */
+        // Base Palette
+        clinic: {
+          beige: "#F8F5F2", // Global background - soft warm cream
+          taupe: "#4A4440", // Primary text & borders - deep muted taupe
+          sand: "#FEFBF9", // Cards & Sections - pale sand/ivory
+          gold: "#D4AF37", // Metallic gold highlights
+          champagne: "#E7DCD0", // Soft secondary highlighting
+          mocha: "#6B5E55", // Deep accent
+          clay: "#B8A99A", // Muted secondary
+        },
+        // Semantic Mappings
+        primary: "#D4AF37", // clinic-gold
+        "primary-light": "#E0C56E",
+        "primary-dark": "#B08D2F",
+        secondary: "#4A4440", // clinic-taupe
+        "secondary-deep": "#35302D",
+        ivory: "#FEFBF9", // clinic-sand
+        "background-light": "#F8F5F2", // clinic-beige
+        "background-dark": "#35302D",
+        "surface": "#FEFBF9",
+        "surface-elevated": "#FFFFFF",
+        "border-subtle": "rgba(74, 68, 64, 0.08)",
+        "mint": "#E8F5EE",
+        "rose-soft": "#FDF2F2",
+        "amber-soft": "#FEF9EC",
+        "champagne": "#E7DCD0",
       },
 
-      /* ── Typography - 2 typefaces only ─────────────── */
+      /* ── Typography ────────────────────────────────── */
       fontFamily: {
-        sans:    ["var(--font-jost)", "sans-serif"],
+        sans: ["var(--font-jost)", "sans-serif"],
         display: ["var(--font-cormorant)", "serif"],
+        script: ["var(--font-pinyon)", "cursive"],
       },
       fontSize: {
-        "display-xl": ["clamp(3rem,8vw,6rem)",   { lineHeight: "0.9",  letterSpacing: "-0.03em" }],
-        "display-lg": ["clamp(2.25rem,5vw,4rem)", { lineHeight: "1.0",  letterSpacing: "-0.02em" }],
-        "display-md": ["clamp(1.75rem,3vw,2.5rem)", { lineHeight: "1.1", letterSpacing: "-0.015em" }],
-        "display-sm": ["clamp(1.25rem,2vw,1.5rem)", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
+        "display-xl": ["clamp(3.5rem, 9vw, 6.5rem)", { lineHeight: "1.0", letterSpacing: "-0.04em" }],
+        "display-lg": ["clamp(2.5rem, 6vw, 4.5rem)", { lineHeight: "1.1", letterSpacing: "-0.03em" }],
+        "display-md": ["clamp(1.85rem, 4vw, 2.75rem)", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
+        "display-sm": ["clamp(1.35rem, 2.5vw, 1.75rem)", { lineHeight: "1.3", letterSpacing: "-0.01em" }],
+      },
+      letterSpacing: {
+        "ultra-wide": "0.25em",
+        "airy": "0.15em",
       },
 
-      /* ── Spacing rhythm ────────────────────────────── */
+      /* ── Spacing ────────────────────────────── */
       spacing: {
-        "section-y": "clamp(5rem, 10vw, 8rem)",
+        "section-y": "clamp(6rem, 12vw, 10rem)",
       },
 
-      /* ── Border-radius - 3 values only ─────────────── */
+      /* ── Border-radius – Organic & Soft ─────────────── */
       borderRadius: {
-        sm:   "0.375rem",
-        md:   "0.75rem",
-        lg:   "1rem",
-        xl:   "1.25rem",
-        pill:  "9999px",
+        sm: "0.5rem",
+        md: "1rem",
+        lg: "1.5rem",
+        xl: "2rem",
+        "2xl": "3rem",
+        pill: "9999px",
       },
 
-      /* ── Shadows – soft, diffused, layered ─────────── */
+      /* ── Shadows – Minimal & Airy ─────────── */
       boxShadow: {
-        "soft-sm":   "0 1px 3px -1px rgba(59,42,35,0.04), 0 2px 8px -2px rgba(59,42,35,0.04)",
-        "soft-md":   "0 2px 6px -1px rgba(59,42,35,0.04), 0 8px 24px -4px rgba(59,42,35,0.06)",
-        "soft-lg":   "0 4px 12px -2px rgba(59,42,35,0.05), 0 16px 40px -8px rgba(59,42,35,0.08)",
-        "soft-xl":   "0 8px 20px -4px rgba(59,42,35,0.06), 0 24px 56px -12px rgba(59,42,35,0.10)",
-        "gold-glow": "0 4px 16px -4px rgba(198,166,93,0.25), 0 12px 36px -8px rgba(198,166,93,0.15)",
-        "input-rest":  "0 1px 2px 0 rgba(59,42,35,0.03), 0 1px 3px 0 rgba(59,42,35,0.02)",
-        "input-focus": "0 0 0 3px rgba(198,166,93,0.12), 0 2px 8px -2px rgba(198,166,93,0.10)",
-        "option-selected": "0 0 0 2px rgba(198,166,93,0.20), 0 4px 12px -4px rgba(198,166,93,0.12)",
-        "panel":     "0 12px 40px -8px rgba(30,27,20,0.12), 0 4px 16px -4px rgba(30,27,20,0.06)",
+        "soft-sm": "0 2px 8px -2px rgba(74, 68, 64, 0.03)",
+        "soft-md": "0 12px 32px -4px rgba(74, 68, 64, 0.05)",
+        "soft-lg": "0 20px 48px -8px rgba(74, 68, 64, 0.08)",
+        "soft-xl": "0 32px 64px -12px rgba(74, 68, 64, 0.12)",
+        "gold-glow": "0 8px 24px -4px rgba(212, 175, 55, 0.2)",
       },
 
       /* ── Max-widths ────────────────────────────────── */
       maxWidth: {
-        container: "80rem",
+        container: "85rem",
       },
 
-      /* ── z-index - 5-step scale ──────────────────── */
+      /* ── z-index ──────────────────── */
       zIndex: {
-        base:       "100",
-        floating:   "200",
-        overlay:    "300",
-        nav:        "400",
-        top:        "9999",
+        base: "100",
+        floating: "200",
+        overlay: "300",
+        nav: "400",
+        top: "9999",
       },
 
-      /* ── Transition timing ─────────────────────────── */
+      /* ── Transition Timing ─────────────────────────── */
       transitionTimingFunction: {
-        premium: "cubic-bezier(0.16, 1, 0.3, 1)",
+        premium: "cubic-bezier(0.23, 1, 0.32, 1)", // More breathable ease
       },
 
-      /* ── Keyframes & animations ────────────────────── */
+      /* ── Keyframes & Animations ────────────────────── */
       keyframes: {
         shimmer: {
           "100%": { transform: "translateX(100%)" },
         },
-        "fade-in-up": {
-          "0%":   { opacity: "0", transform: "translateY(8px)" },
+        "fade-in": {
+          "0%": { opacity: "0", transform: "translateY(12px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "check-draw": {
-          "0%":   { strokeDashoffset: "20" },
-          "100%": { strokeDashoffset: "0" },
-        },
-        "scale-in": {
-          "0%":   { transform: "scale(0.85)", opacity: "0" },
-          "100%": { transform: "scale(1)", opacity: "1" },
-        },
-        "subtle-pulse": {
-          "0%, 100%": { opacity: "1" },
-          "50%":     { opacity: "0.7" },
-        },
+        "reveal-up": {
+          "0%": { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" },
+          "100%": { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" },
+        }
       },
       animation: {
-        shimmer:        "shimmer 2s infinite",
-        "fade-in-up":   "fade-in-up 0.4s ease-out forwards",
-        "check-draw":   "check-draw 0.4s ease-out 0.2s forwards",
-        "scale-in":     "scale-in 0.35s cubic-bezier(0.16,1,0.3,1) forwards",
-        "subtle-pulse": "subtle-pulse 2s ease-in-out infinite",
+        shimmer: "shimmer 3s infinite",
+        "fade-in": "fade-in 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards",
+        "reveal-up": "reveal-up 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards",
       },
     },
   },

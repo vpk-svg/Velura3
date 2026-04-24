@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { Cormorant_Garamond, Jost } from 'next/font/google';
+import { Cormorant_Garamond, Jost, Pinyon_Script } from 'next/font/google';
 import '../../src/index.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -28,6 +28,12 @@ const jost = Jost({
   subsets: ['latin'],
   weight: ['300', '400', '500'],
   variable: '--font-jost',
+});
+
+const pinyon = Pinyon_Script({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-pinyon',
 });
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://fabclinic.be';
@@ -114,34 +120,34 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   };
 
   return (
-    <html lang={resolvedParams.locale} className={`${cormorant.variable} ${jost.variable}`}>
+    <html lang={resolvedParams.locale} className={`${cormorant.variable} ${jost.variable} ${pinyon.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased min-h-screen flex flex-col cursor-dot-active">
+      <body className="font-sans antialiased min-h-screen flex flex-col cursor-dot-active bg-background-light text-secondary">
         <NextIntlClientProvider messages={messages} locale={resolvedParams.locale}>
           <CartProvider>
-          <SurveyProvider>
-            <a href="#main-content" className="skip-link">
-              Skip to main content
-            </a>
-            <CustomCursor />
-            <ScrollProgress />
-            <Navbar />
-            <main id="main-content" className="flex-grow">
-              {children}
-            </main>
-            <Footer />
-            <AiChatbot />
-            <SocialProofPopup />
-            <StickyMobileActions />
-            <GlobalFloatingCart />
-            <CookieBanner />
-            <Analytics />
-          </SurveyProvider>
+            <SurveyProvider>
+              <a href="#main-content" className="skip-link">
+                Skip to main content
+              </a>
+              <CustomCursor />
+              <ScrollProgress />
+              <Navbar />
+              <main id="main-content" className="flex-grow">
+                {children}
+              </main>
+              <Footer />
+              <AiChatbot />
+              <SocialProofPopup />
+              <StickyMobileActions />
+              <GlobalFloatingCart />
+              <CookieBanner />
+              <Analytics />
+            </SurveyProvider>
           </CartProvider>
         </NextIntlClientProvider>
       </body>

@@ -295,7 +295,8 @@
   },
   "consult_plan": {
     "meta_title": "Plan Your Consultation | FAB Clinic",
-    "meta_desc": "Choose your treatment(s) and book your consultation at FAB Clinic. Botox, fillers, BBL or intake consultation - all under medical supervision."
+    "meta_desc": "Choose your treatment(s) and book your consultation at FAB Clinic. Botox, fillers, BBL or intake consultation - all under medical supervision.",
+    "first-consult": "Free Consultation / Advisory"
   },
   "newsletter": {
     "title": "Stay Informed",
@@ -737,7 +738,7 @@
     "zone_signature_30ml": "Full Face Contouring Signature 3.0 ML",
     "zone_signature_40ml": "Full Face Contouring Signature 4.0 ML",
     "zone_signature_50ml": "Full Face Contouring Signature 5.0 ML",
-    "zone_buttfiller_100ml": "Butt Filler (Butt Lift) \u2013 100ML (2-year result)",
+    "zone_buttfiller_100ml": "Butt Filler (Butt Lift) – 100ML (2-year result)",
     "desc_lippen_05ml": "Refined lip volume and definition with premium hyaluronic acid.",
     "desc_lippen_10ml": "Vertical projection technique for a lifted, elegant lip shape.",
     "desc_cheeks_10ml": "Restores mid-face volume and elevates cheek contour.",
@@ -818,7 +819,9 @@
     "zone_signature_why": "For overall rejuvenation and refinement of all facial contours in one signature treatment.",
     "zone_buttfiller_short": "Rounder curves, no surgery.",
     "zone_buttfiller_why": "To lift and round the buttocks with immediate results and minimal downtime.",
-    "facemap_why_label": "WHY THIS TREATMENT?"
+    "facemap_why_label": "WHY THIS TREATMENT?",
+    "zone_signature": "Full Face Contouring Signature",
+    "zone_buttfiller": "Buttfiller (bum lift)"
   },
   "sticky_mobile": {
     "consult": "Book Consult"

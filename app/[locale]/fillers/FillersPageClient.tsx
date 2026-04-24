@@ -27,7 +27,7 @@ import ZoneSelector from '@/components/treatments/ZoneSelector';
 import TreatmentCart from '@/components/treatments/TreatmentCart';
 import DetailsForm, { type DetailsFormData } from '@/components/treatments/DetailsForm';
 import ConsultTrigger from '@/components/consult/ConsultTrigger';
-import { FILLERS_ZONES } from '@/lib/data/fillers-zones';
+import { FILLERS_ZONES, FILLERS_GROUPS } from '@/lib/data/fillers-zones';
 import { EASE_PREMIUM } from '@/lib/motion';
 import TreatmentMapGrid from '@/components/treatments/TreatmentMapGrid';
 import BookingSlotSelector from '@/components/booking/BookingSlotSelector';
@@ -236,7 +236,7 @@ export default function FillersPage() {
           TREATMENT MAP - Clickable cards with popup + add to cart
           ============================================= */}
       <TreatmentMapGrid
-        zones={FILLERS_ZONES}
+        zones={FILLERS_GROUPS}
         namespace="fillers_page"
         label={t('map_label')}
         title={<>{t('map_title')} <span className="italic font-light text-primary">{t('map_title_accent')}</span></>}

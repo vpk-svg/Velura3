@@ -12,33 +12,39 @@ export default function BottomCta() {
   const t = useTranslations('bottom_cta');
 
   return (
-    <section className="py-section-y bg-secondary overflow-hidden" aria-label={t('label')}>
+    <section className="py-section-y bg-clinic-beige overflow-hidden" aria-label={t('label')}>
       <Container>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-          className="text-center max-w-3xl mx-auto"
+          transition={{ duration: 1, ease: EASE_PREMIUM }}
+          className="text-center max-w-4xl mx-auto bg-clinic-sand rounded-3xl p-12 md:p-20 border border-secondary/5 shadow-soft-xl"
         >
-          <span className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-6 block font-semibold">
-            {t('label')}
-          </span>
-          <h2 className="font-display text-display-lg text-background-light mb-6">
+          <div className="flex flex-col items-center gap-4 mb-8">
+            <span className="font-sans text-primary text-xs tracking-ultra-wide uppercase font-bold">
+              {t('label')}
+            </span>
+            <div className="h-px w-12 bg-primary/30" />
+          </div>
+
+          <h2 className="font-display text-display-lg text-secondary mb-8">
             {t('title')}
           </h2>
-          <p className="font-sans font-light text-background-light/70 text-lg md:text-xl leading-relaxed mb-10">
+
+          <p className="font-sans font-light text-secondary/60 text-lg md:text-xl leading-relaxed mb-12 max-w-2xl mx-auto uppercase tracking-wide">
             {t('desc')}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-white text-secondary shadow-soft-md hover:shadow-soft-lg transition-all duration-300 active:scale-[0.97]"
+              className="btn-premium inline-flex items-center justify-center gap-3 rounded-full font-sans uppercase font-bold px-12 py-5 text-[11px] tracking-airy border border-secondary/10 text-secondary"
             >
-              <Phone size={14} /> {t('cta_contact')}
+              <Phone size={14} strokeWidth={1.5} /> {t('cta_contact')}
             </Link>
-            <ConsultTrigger className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
-              <Calendar size={14} /> {t('cta_consult')}
+            <ConsultTrigger className="btn-premium inline-flex items-center justify-center gap-3 rounded-full font-sans uppercase font-bold px-12 py-5 text-[11px] tracking-airy bg-secondary text-white shadow-soft-lg">
+              <Calendar size={14} strokeWidth={1.5} /> {t('cta_consult')}
             </ConsultTrigger>
           </div>
         </motion.div>

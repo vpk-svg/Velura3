@@ -9,9 +9,16 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { EASE_PREMIUM } from '@/lib/motion';
 import type { Zone } from '@/components/treatments/ZoneSelector';
 
+interface TreatmentVariant {
+  id: string;
+  volumeLabel: string;
+  priceCents: number;
+}
+
 interface TreatmentZone extends Zone {
   shortDescKey: string;
   whyKey: string;
+  variants?: TreatmentVariant[];
 }
 
 function TreatmentCard({
@@ -74,14 +81,24 @@ function InfoModal({
   t,
   onClose,
   onAddToCart,
-  isInCart,
+  cartZoneIds = [],
 }: {
   zone: TreatmentZone;
   t: ReturnType<typeof useTranslations>;
   onClose: () => void;
   onAddToCart?: (zoneId: string) => void;
-  isInCart?: boolean;
+  cartZoneIds?: string[];
 }) {
+  const [selectedVariantId, setSelectedVariantId] = useState<string | null>(
+    zone.variants?.[0]?.id ?? null
+  );
+
+  const currentPrice = selectedVariantId
+    ? zone.variants?.find(v => v.id === selectedVariantId)?.priceCents || zone.priceCents
+    : zone.priceCents;
+
+  const currentId = selectedVariantId || zone.id;
+  const isInCart = cartZoneIds.includes(currentId);
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
@@ -156,17 +173,40 @@ function InfoModal({
                 {t(zone.whyKey)}
               </p>
             </div>
+
+            {zone.variants && zone.variants.length > 0 && (
+              <div className="pt-2">
+                <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/40 font-bold mb-3 block">
+                  Selecteer hoeveelheid
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {zone.variants.map((variant) => (
+                    <button
+                      key={variant.id}
+                      type="button"
+                      onClick={() => setSelectedVariantId(variant.id)}
+                      className={`px-4 py-2.5 rounded-full font-sans text-xs font-semibold transition-all duration-300 border ${selectedVariantId === variant.id
+                          ? 'bg-primary text-white border-primary shadow-soft-sm'
+                          : 'bg-white text-secondary/70 border-secondary/10 hover:border-primary/40 hover:text-primary'
+                        }`}
+                    >
+                      {variant.volumeLabel}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="mt-auto flex items-center justify-between gap-6 p-2">
             <div className="flex flex-col gap-1">
               <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/40 font-bold">
-                {t('facemap_price_from')}
+                {zone.variants?.length ? 'Prijs' : t('facemap_price_from')}
               </span>
               <div className="flex items-baseline gap-1.5">
                 <span className="font-sans text-lg text-primary font-medium">€</span>
                 <span className="font-display text-4xl font-bold text-primary">
-                  {(zone.priceCents / 100).toFixed(0)}
+                  {(currentPrice / 100).toFixed(0)}
                 </span>
               </div>
             </div>
@@ -176,7 +216,7 @@ function InfoModal({
                 type="button"
                 onClick={() => {
                   if (!isInCart) {
-                    onAddToCart(zone.id);
+                    onAddToCart(currentId);
                   }
                   handleCloseModal();
                 }}
@@ -256,7 +296,9 @@ export default function TreatmentMapGrid({
                 zone={zone}
                 t={t}
                 onClick={() => handleZoneOpen(zone)}
-                isInCart={cartZoneIds.includes(zone.id)}
+                isInCart={zone.variants
+                  ? zone.variants.some(v => cartZoneIds.includes(v.id))
+                  : cartZoneIds.includes(zone.id)}
               />
             </motion.div>
           ))}
@@ -270,7 +312,7 @@ export default function TreatmentMapGrid({
             t={t}
             onClose={handleClose}
             onAddToCart={onAddToCart}
-            isInCart={cartZoneIds.includes(activeZone.id)}
+            cartZoneIds={cartZoneIds}
           />
         )}
       </AnimatePresence>

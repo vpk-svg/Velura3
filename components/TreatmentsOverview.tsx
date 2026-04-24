@@ -33,16 +33,16 @@ export default function TreatmentsOverview() {
   };
 
   return (
-    <section className="py-section-y bg-white overflow-hidden" aria-label={t('label')}>
+    <section className="py-section-y bg-background-light overflow-hidden" aria-label={t('label')}>
       <Container>
         <SectionHeader
           label={t('label')}
-          title={<>{t('title')} <span className="italic font-light text-primary">{t('title_accent')}</span></>}
+          title={<>{t('title')} <span className="font-script text-primary text-4xl lower-case relative -top-1 ml-1">{t('title_accent')}</span></>}
           subtitle={t('subtitle')}
         />
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -55,20 +55,24 @@ export default function TreatmentsOverview() {
                 key={item.key}
                 href={item.href}
                 variants={itemVariants}
-                whileHover={{ y: -8, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
-                className="bg-background-light rounded-md p-8 shadow-soft-sm hover:shadow-soft-lg border border-primary/5 hover:border-primary/15 transition-all duration-300 group flex flex-col"
+                className="bg-clinic-sand rounded-xl p-10 shadow-soft-sm hover:shadow-soft-xl border border-secondary/5 hover:border-primary/20 transition-all duration-700 group flex flex-col items-center text-center"
               >
-                <div className="w-14 h-14 mb-6 bg-primary/5 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <Icon className="w-6 h-6" strokeWidth={1.5} />
+                <div className="w-16 h-16 mb-8 flex items-center justify-center text-secondary/60 group-hover:text-primary transition-all duration-700">
+                  <Icon className="w-8 h-8" strokeWidth={1} />
                 </div>
-                <h3 className="font-display text-xl text-secondary mb-3 italic font-bold group-hover:text-primary transition-colors duration-200">
+
+                <h3 className="font-display text-2xl text-secondary mb-4 italic group-hover:text-secondary/80 transition-colors duration-500">
                   {t(`${item.key}_title`)}
                 </h3>
-                <p className="font-sans font-light text-secondary/70 text-sm leading-relaxed flex-grow mb-4">
+
+                <div className="w-12 h-px bg-secondary/10 mb-6 group-hover:w-20 group-hover:bg-primary/30 transition-all duration-700" />
+
+                <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed flex-grow mb-8 px-2">
                   {t(`${item.key}_desc`)}
                 </p>
-                <span className="inline-flex items-center gap-1.5 font-sans text-[10px] uppercase tracking-[0.15em] text-primary font-bold">
-                  {t('view_cta')} <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+
+                <span className="inline-flex items-center gap-3 font-sans text-[10px] uppercase tracking-ultra-wide text-primary font-bold">
+                  {t('view_cta')} <div className="w-6 h-px bg-primary/40 group-hover:w-10 transition-all duration-700" />
                 </span>
               </MotionLink>
             );

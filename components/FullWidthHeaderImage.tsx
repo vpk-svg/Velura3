@@ -25,52 +25,66 @@ export default function FullWidthHeaderImage() {
         <section
             ref={containerRef}
             aria-label={t('label')}
-            className="relative w-full min-h-[70vh] md:min-h-screen overflow-hidden bg-secondary flex items-center"
+            className="relative w-full min-h-[75vh] md:min-h-screen overflow-hidden bg-clinic-beige flex items-center"
         >
-            {/* Parallax background */}
+            {/* Parallax background - Softened */}
             <motion.div style={{ scale, y }} className="absolute inset-0 z-0">
                 <Image
                     src="/images/hero-atmos.webp"
-                    alt="FAB Clinic - The Skin Centre"
+                    alt="FAB Clinic"
                     fill
                     priority
-                    className="object-cover opacity-75"
+                    className="object-cover opacity-30 grayscale-[0.2]"
                     sizes="100vw"
                 />
-                <div className="absolute inset-0 bg-secondary/55 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-gradient-to-b from-clinic-beige/40 via-transparent to-clinic-beige/80" />
             </motion.div>
 
             {/* Centered Hero Content */}
-            <div className="relative z-10 w-full max-w-container mx-auto px-4 md:px-8 py-24 md:py-32">
+            <div className="relative z-10 w-full max-w-container mx-auto px-4 md:px-12 py-32">
                 <motion.div
                     className="flex flex-col justify-center text-center max-w-4xl mx-auto"
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: EASE_PREMIUM }}
+                    transition={{ duration: 1.2, ease: EASE_PREMIUM }}
                 >
-                    <span className="font-sans text-primary text-xs md:text-sm tracking-[0.3em] uppercase mb-8 block font-semibold">
-                        {t('label')}
-                    </span>
-                    <h1 className="font-display text-display-xl text-background-light leading-[0.85] mb-8">
-                        <span className="font-extrabold">F</span>ace{' '}
-                        <span className="font-extrabold">a</span>nd <br />
-                        <span className="italic font-light text-primary">
-                          <span className="font-extrabold not-italic text-primary">B</span>eauty
+                    <div className="flex flex-col items-center gap-4 mb-10">
+                        <span className="font-sans text-primary text-xs md:text-sm tracking-ultra-wide uppercase font-semibold">
+                            {t('label')}
                         </span>
+                        <div className="h-px w-16 bg-primary/40" />
+                    </div>
+
+                    <h1 className="font-display text-display-xl text-secondary leading-[1] mb-10">
+                        {t('title1')} <span className="font-script text-primary text-7xl lowercase relative top-2 ml-2 -mr-2">and</span> <br />
+                        <span className="italic font-light">{t('title2')}</span>
                     </h1>
-                    <div className="w-20 h-px bg-primary/50 mx-auto mb-8" />
-                    <p className="font-sans font-light text-background-light/80 text-lg md:text-xl leading-relaxed tracking-wide max-w-2xl mx-auto mb-12">
+
+                    <p className="font-sans font-light text-secondary/80 text-lg md:text-xl leading-relaxed tracking-wide max-w-2xl mx-auto mb-14 px-4">
                         {t('hero_subtitle')}
                     </p>
-                    <div className="flex items-center justify-center">
+
+                    <div className="flex flex-wrap items-center justify-center gap-6">
                         <Link
                             href={`/${locale}/behandelingen`}
-                            className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
+                            className="btn-premium inline-flex items-center justify-center gap-3 rounded-full font-sans uppercase font-bold px-12 py-5 text-[11px] tracking-airy bg-secondary text-white shadow-soft-lg"
                         >
-                            {t('cta_treatments')} <ArrowRight size={14} />
+                            {t('cta_treatments')}
+                        </Link>
+                        <Link
+                            href={`/${locale}/trajecten`}
+                            className="btn-premium inline-flex items-center justify-center gap-3 rounded-full font-sans uppercase font-bold px-12 py-5 text-[11px] tracking-airy border border-secondary/20 text-secondary"
+                        >
+                            {t('explore')}
                         </Link>
                     </div>
                 </motion.div>
+            </div>
+
+            {/* Soft decorative element */}
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40">
+                <span className="font-sans text-[10px] uppercase tracking-ultra-wide">Scroll</span>
+                <div className="w-px h-12 bg-gradient-to-b from-secondary to-transparent" />
             </div>
         </section>
     );

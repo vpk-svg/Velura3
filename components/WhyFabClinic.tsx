@@ -21,14 +21,14 @@ export default function WhyFabClinic() {
   ];
 
   return (
-    <section className="py-section-y bg-background-light border-y border-secondary/5 overflow-hidden" aria-label={t('label')}>
+    <section className="py-section-y bg-clinic-beige/40 border-y border-secondary/5 overflow-hidden" aria-label={t('label')}>
       <Container>
         <SectionHeader
           label={t('label')}
-          title={<>{t('title')} <span className="italic font-light text-primary">{t('title_accent')}</span></>}
+          title={<>{t('title')} <span className="font-script text-primary text-4xl lowercase relative -top-1 ml-1">{t('title_accent')}</span></>}
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           {usps.map((usp, index) => {
             const Icon = usp.icon;
             return (
@@ -37,16 +37,18 @@ export default function WhyFabClinic() {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.08, ease: EASE_PREMIUM }}
+                transition={{ duration: 0.8, delay: index * 0.1, ease: EASE_PREMIUM }}
                 className="group flex flex-col items-center text-center"
               >
-                <div className="text-primary mb-6 transition-transform duration-300 ease-premium group-hover:scale-110 group-hover:rotate-6" aria-hidden="true">
-                  <Icon className="w-10 h-10" strokeWidth={1.5} />
+                <div className="w-16 h-16 mb-8 flex items-center justify-center text-secondary/40 group-hover:text-primary transition-all duration-700" aria-hidden="true">
+                  <Icon className="w-10 h-10" strokeWidth={1} />
                 </div>
-                <h3 className="font-sans text-secondary text-sm tracking-[0.2em] uppercase mb-3 font-semibold group-hover:text-primary transition-colors duration-300">
+
+                <h3 className="font-sans text-secondary text-[10px] tracking-ultra-wide uppercase mb-4 font-bold group-hover:text-secondary/80 transition-colors duration-500">
                   {t(`${usp.key}_title`)}
                 </h3>
-                <p className="font-sans font-light text-muted text-sm leading-relaxed max-w-[200px]">
+
+                <p className="font-sans font-light text-secondary/60 text-xs leading-relaxed max-w-[180px] uppercase tracking-wider">
                   {t(`${usp.key}_desc`)}
                 </p>
               </motion.div>

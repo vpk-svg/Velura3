@@ -29,24 +29,27 @@ export default function SectionHeader({
   const subtitleColor = light ? 'text-background-light/70' : 'text-secondary/70';
 
   return (
-    <header className={`mb-12 md:mb-16 max-w-4xl ${alignClass}`}>
+    <header className={`mb-16 md:mb-24 max-w-4xl ${alignClass}`}>
       {label && (
-        <motion.span
-          initial={{ opacity: 0, y: 16 }}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-          className={`font-sans ${labelColor} text-xs tracking-[0.2em] uppercase mb-6 block font-semibold`}
+          className="flex flex-col gap-2 mb-4"
         >
-          {label}
-        </motion.span>
+          <span className={`font-sans ${labelColor} text-xs tracking-ultra-wide uppercase block font-semibold`}>
+            {label}
+          </span>
+          <div className={`h-px w-12 bg-primary/30 ${align === 'center' ? 'mx-auto' : ''}`} />
+        </motion.div>
       )}
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
-        className={`font-display text-display-lg ${titleColor} mb-6`}
+        transition={{ duration: 1, delay: 0.1, ease: EASE_PREMIUM }}
+        className={`font-display text-display-lg ${titleColor} mb-8 leading-[1.1]`}
       >
         {title}
       </motion.h2>
@@ -55,8 +58,8 @@ export default function SectionHeader({
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-          className={`font-sans font-light ${subtitleColor} text-xl md:text-2xl leading-relaxed`}
+          transition={{ duration: 0.8, delay: 0.2, ease: EASE_PREMIUM }}
+          className={`font-sans font-light ${subtitleColor} text-lg md:text-xl leading-relaxed tracking-wide opacity-80`}
         >
           {subtitle}
         </motion.p>
