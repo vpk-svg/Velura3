@@ -34,8 +34,9 @@
   h2,
   h3,
   h4 {
-    @apply font-display font-light italic text-primary;
+    @apply font-display font-light italic;
     letter-spacing: -0.02em;
+    color: inherit;
   }
 
   h1 {
@@ -65,7 +66,8 @@
   label,
   button,
   a {
-    @apply font-sans text-primary;
+    @apply font-sans;
+    color: inherit;
   }
 
   /* Uppercase labels with generous letter-spacing */
