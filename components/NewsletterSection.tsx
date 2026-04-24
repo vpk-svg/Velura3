@@ -12,7 +12,7 @@ export default function NewsletterSection() {
   const consentId = useId();
 
   return (
-    <section className="py-section-y bg-secondary text-background-light" aria-label="Newsletter signup">
+    <section className="py-section-y bg-primary-dark text-background-light" aria-label="Newsletter signup">
       <Container>
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
@@ -57,7 +57,7 @@ export default function NewsletterSection() {
               </div>
               <button
                 type="submit"
-                className="px-10 py-4 bg-primary text-white font-sans text-xs tracking-[0.2em] uppercase rounded-pill hover:bg-white hover:text-secondary transition-all duration-300 ease-premium font-semibold whitespace-nowrap shadow-gold-glow focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+                className="px-10 py-4 bg-primary text-ivory font-sans text-xs tracking-[0.2em] uppercase rounded-pill hover:bg-background-light hover:text-primary-dark transition-all duration-300 ease-premium font-light whitespace-nowrap shadow-warm-glow focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
               >
                 {t('button')}
               </button>
@@ -70,7 +70,7 @@ export default function NewsletterSection() {
                 className="w-5 h-5 text-primary border-primary/30 rounded bg-transparent focus:ring-primary"
                 required
               />
-              <span className="font-sans font-light text-xs text-background-light/50 group-hover:text-background-light/80 transition-colors uppercase tracking-widest">
+              <span className="font-sans font-light text-xs text-background-light/50 group-hover:text-background-light/80 transition-colors uppercase tracking-[0.15em]">
                 {t('consent')}
               </span>
             </label>

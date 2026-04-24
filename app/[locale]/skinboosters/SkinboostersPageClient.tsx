@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { motion, type Variants } from 'motion/react';
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
@@ -27,35 +27,10 @@ import { SKINBOOSTERS_ZONES } from '@/lib/data/skinboosters-zones';
 import { EASE_PREMIUM } from '@/lib/motion';
 import TreatmentMapGrid from '@/components/treatments/TreatmentMapGrid';
 import { type Locale } from '@/lib/clinic-data';
-import { useCart } from '@/lib/cart-context';
 
 export default function SkinboostersPageClient() {
     const t = useTranslations('skinboosters_page');
     const locale = useLocale() as Locale;
-    const cart = useCart();
-    const [selectedZones, setSelectedZones] = useState<string[]>([]);
-
-    /* Sync local selections to global cart */
-    useEffect(() => {
-        const currentIds = cart.getItemsByType('skinboosters').map((i) => i.id);
-        for (const zoneId of selectedZones) {
-            if (!currentIds.includes(zoneId)) {
-                const zone = SKINBOOSTERS_ZONES.find((z) => z.id === zoneId);
-                if (zone) cart.addItem({ id: zone.id, type: 'skinboosters', nameKey: zone.nameKey, namespace: 'skinboosters_page', priceCents: zone.priceCents });
-            }
-        }
-        for (const id of currentIds) {
-            if (!selectedZones.includes(id)) cart.removeItem(id);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectedZones]);
-
-    const addToCartFromPopup = useCallback((zoneId: string) => {
-        setSelectedZones((prev) => {
-            if (prev.includes(zoneId)) return prev;
-            return [...prev, zoneId];
-        });
-    }, []);
 
     /* -- Zone info cards -- */
     const faceZones = [
@@ -176,8 +151,7 @@ export default function SkinboostersPageClient() {
                     namespace="skinboosters_page"
                     label={t('map_label')}
                     title={<>{t('map_title')} <span className="italic font-light text-primary">{t('map_title_accent')}</span></>}
-                    onAddToCart={addToCartFromPopup}
-                    cartZoneIds={selectedZones}
+                    hidePricing
                 />
             </section>
 

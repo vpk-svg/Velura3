@@ -25,8 +25,8 @@ export default function SectionHeader({
 }: SectionHeaderProps) {
   const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
   const labelColor = 'text-primary';
-  const titleColor = light ? 'text-background-light' : 'text-secondary';
-  const subtitleColor = light ? 'text-background-light/70' : 'text-secondary/70';
+  const titleColor = light ? 'text-background-light' : 'text-primary';
+  const subtitleColor = light ? 'text-background-light/70' : 'text-primary/70';
 
   return (
     <header className={`mb-16 md:mb-24 max-w-4xl ${alignClass}`}>
@@ -38,7 +38,7 @@ export default function SectionHeader({
           transition={{ duration: 0.6, ease: EASE_PREMIUM }}
           className="flex flex-col gap-2 mb-4"
         >
-          <span className={`font-sans ${labelColor} text-xs tracking-ultra-wide uppercase block font-semibold`}>
+          <span className={`font-sans ${labelColor} text-xs tracking-[0.2em] uppercase block font-light`}>
             {label}
           </span>
           <div className={`h-px w-12 bg-primary/30 ${align === 'center' ? 'mx-auto' : ''}`} />

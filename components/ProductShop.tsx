@@ -262,7 +262,7 @@ export default function ProductShop() {
                       }
                     }}
                     className={`w-full mt-3 py-3 rounded-full font-sans text-[11px] tracking-[0.15em] uppercase transition-all duration-300 flex items-center justify-center gap-2 font-semibold border cursor-pointer ${cart.hasItem(product.id)
-                      ? 'border-green-500 bg-green-50 text-green-700'
+                      ? 'border-primary bg-primary/10 text-primary'
                       : 'border-secondary/15 text-secondary/60 hover:border-primary hover:text-primary'
                       }`}
                   >

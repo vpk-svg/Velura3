@@ -21,9 +21,9 @@ export default function Card({
   return (
     <Tag
       className={clsx(
-        'bg-white rounded-md overflow-hidden border border-secondary/5 shadow-soft-sm',
+        'bg-surface rounded-md overflow-hidden border border-primary/5 shadow-soft-sm',
         'transition-all duration-500 ease-premium',
-        hover && 'hover:shadow-soft-lg hover:-translate-y-1 hover:border-primary/10',
+        hover && 'hover:shadow-soft-lg hover:-translate-y-1 hover:border-primary/15',
         className,
       )}
     >

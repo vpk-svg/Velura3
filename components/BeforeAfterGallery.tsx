@@ -168,7 +168,7 @@ function SliderCard({ item, locale }: { item: BeforeAfterItem; locale: string })
           </div>
         </div>
       </div>
-      <p className="mt-3 font-sans text-sm text-center text-secondary/80 font-medium">{label}</p>
+      <p className="mt-3 font-sans text-sm text-center text-primary/70 font-light">{label}</p>
     </div>
   );
 }
@@ -223,7 +223,7 @@ export default function BeforeAfterGallery() {
           <button
             onClick={() => scroll('left')}
             disabled={!canScrollLeft}
-            className="w-10 h-10 rounded-full border border-secondary/20 flex items-center justify-center text-secondary disabled:opacity-20 hover:border-primary hover:text-primary transition-all duration-200"
+            className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-primary disabled:opacity-20 hover:border-primary hover:text-primary transition-all duration-200"
             aria-label="Previous"
           >
             <ChevronLeft size={20} />
@@ -231,7 +231,7 @@ export default function BeforeAfterGallery() {
           <button
             onClick={() => scroll('right')}
             disabled={!canScrollRight}
-            className="w-10 h-10 rounded-full border border-secondary/20 flex items-center justify-center text-secondary disabled:opacity-20 hover:border-primary hover:text-primary transition-all duration-200"
+            className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-primary disabled:opacity-20 hover:border-primary hover:text-primary transition-all duration-200"
             aria-label="Next"
           >
             <ChevronRight size={20} />

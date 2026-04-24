@@ -19,9 +19,9 @@ interface ButtonProps {
 }
 
 const VARIANT_STYLES = {
-  primary:   'bg-primary text-white shadow-gold-glow hover:shadow-soft-xl',
-  secondary: 'bg-secondary text-white shadow-soft-md hover:shadow-soft-lg hover:bg-secondary-deep',
-  ghost:     'bg-transparent border border-secondary/10 text-secondary hover:border-primary hover:text-primary',
+  primary:   'bg-primary text-ivory shadow-warm-glow hover:shadow-soft-xl',
+  secondary: 'bg-primary/80 text-ivory shadow-soft-md hover:shadow-soft-lg hover:bg-primary',
+  ghost:     'bg-transparent border border-primary/20 text-primary hover:border-primary hover:bg-primary hover:text-ivory',
 } as const;
 
 const SIZE_STYLES = {
@@ -47,8 +47,8 @@ export default function Button({
   'aria-label': ariaLabel,
 }: ButtonProps) {
   const classes = clsx(
-    'inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold',
-    'transition-all duration-300 ease-premium relative overflow-hidden group',
+    'inline-flex items-center justify-center rounded-pill font-sans uppercase font-light',
+    'transition-all duration-500 ease-premium relative overflow-hidden group',
     'focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
     'active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none',
     VARIANT_STYLES[variant],
@@ -57,7 +57,7 @@ export default function Button({
   );
 
   const shimmer = variant === 'primary' && (
-    <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-[30deg] -translate-x-full group-hover:animate-shimmer" />
+    <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-ivory/15 to-transparent -skew-x-[30deg] -translate-x-full group-hover:animate-shimmer" />
   );
 
   const inner = href ? (

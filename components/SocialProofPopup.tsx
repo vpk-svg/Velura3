@@ -58,11 +58,11 @@ export default function SocialProofPopup() {
           animate={{ opacity: 1, x: 0, y: 0 }}
           exit={{ opacity: 0, x: -20, y: 20 }}
           transition={{ duration: 0.4, ease: EASE_PREMIUM }}
-          className="fixed bottom-24 left-6 z-floating max-w-xs bg-white rounded-xl shadow-panel ring-1 ring-secondary/[0.06] p-4 pr-10"
+          className="fixed bottom-24 left-6 z-floating max-w-xs bg-surface rounded-xl shadow-soft-lg ring-1 ring-primary/[0.08] p-4 pr-10"
         >
           <button
             onClick={handleDismiss}
-            className="absolute top-2 right-2 p-1 rounded-full text-secondary/30 hover:text-secondary/60 hover:bg-secondary/[0.04] transition-colors"
+            className="absolute top-2 right-2 p-1 rounded-full text-primary/30 hover:text-primary/60 hover:bg-primary/[0.04] transition-colors"
             aria-label={locale === 'en' ? 'Hide notification' : 'Verberg melding'}
           >
             <X size={14} />
@@ -73,10 +73,10 @@ export default function SocialProofPopup() {
               <Icon size={18} className="text-primary" />
             </div>
             <div>
-              <p className="font-sans text-sm text-secondary font-medium leading-snug">
-                {current.name} <span className="text-secondary/40">{locale === 'en' ? 'from' : 'uit'} {current.city}</span>
+              <p className="font-sans text-sm text-primary font-light leading-snug">
+                {current.name} <span className="text-primary/50">{locale === 'en' ? 'from' : 'uit'} {current.city}</span>
               </p>
-              <p className="font-sans text-xs text-secondary/50 mt-0.5">{current.treatment}</p>
+              <p className="font-sans text-xs text-primary/60 mt-0.5">{current.treatment}</p>
               {current.rating && (
                 <div className="flex gap-0.5 mt-1">
                   {[...Array(current.rating)].map((_, i) => (
@@ -84,7 +84,7 @@ export default function SocialProofPopup() {
                   ))}
                 </div>
               )}
-              <p className="font-sans text-[10px] text-secondary/30 mt-1 uppercase tracking-wider">{current.timeAgo}</p>
+              <p className="font-sans text-[10px] text-primary/40 mt-1 uppercase tracking-[0.15em]">{current.timeAgo}</p>
             </div>
           </div>
         </motion.div>

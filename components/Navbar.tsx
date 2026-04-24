@@ -59,7 +59,7 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: EASE_PREMIUM }}
       className={`fixed top-0 left-0 right-0 z-nav transition-all duration-700 w-full border-b ${isScrolled
-        ? 'glass-heavy border-secondary/10 shadow-soft-sm py-1'
+        ? 'glass-heavy border-primary/10 shadow-soft-sm py-1'
         : 'bg-transparent border-transparent py-4'
         }`}
     >
@@ -79,7 +79,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative transition-all duration-500 ease-premium text-[10px] font-bold uppercase tracking-ultra-wide hover:text-primary focus-visible:text-primary ${isActive ? 'text-primary' : 'text-secondary/70'}`}
+                  className={`relative transition-all duration-500 ease-premium text-[10px] font-light uppercase tracking-[0.2em] hover:text-primary focus-visible:text-primary ${isActive ? 'text-primary' : 'text-primary/60'}`}
                   aria-current={isActive ? 'page' : undefined}
                 >
                   {link.name}
@@ -98,7 +98,7 @@ export default function Navbar() {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-10 justify-end -mr-4 pl-10">
             <LanguageToggle isScrolled={isScrolled} />
-            <ConsultTrigger className="btn-premium inline-flex items-center justify-center rounded-full font-sans uppercase font-bold px-10 py-3.5 text-[10px] tracking-airy bg-secondary text-white shadow-soft-md">
+            <ConsultTrigger className="btn-primary">
               {t('cta')}
             </ConsultTrigger>
           </div>
@@ -111,7 +111,7 @@ export default function Navbar() {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav"
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-              className={`p-2 transition-colors duration-300 text-secondary hover:text-primary`}
+              className={`p-2 transition-colors duration-300 text-primary hover:text-primary/70`}
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -137,14 +137,14 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-xl font-display italic text-secondary hover:text-primary tracking-airy transition-all duration-300"
+              className="text-xl font-display italic text-primary/70 hover:text-primary tracking-[0.15em] transition-all duration-300"
             >
               {link.name}
             </Link>
           ))}
           <div onClick={() => setMobileMenuOpen(false)} className="w-full max-w-xs mt-4">
             <ConsultTrigger
-              className="btn-premium w-full inline-flex items-center justify-center rounded-full font-sans uppercase font-bold px-12 py-5 text-xs tracking-ultra-wide bg-secondary text-white shadow-soft-lg"
+              className="btn-primary w-full"
             >
               {t('cta')}
             </ConsultTrigger>

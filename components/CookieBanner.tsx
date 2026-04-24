@@ -39,11 +39,11 @@ export default function CookieBanner() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 40 }}
           transition={{ duration: 0.5, ease: EASE_PREMIUM }}
-          className="fixed bottom-20 lg:bottom-6 left-4 right-4 md:left-auto md:right-6 md:max-w-md z-overlay bg-white rounded-xl shadow-panel ring-1 ring-secondary/[0.06] p-6"
+          className="fixed bottom-20 lg:bottom-6 left-4 right-4 md:left-auto md:right-6 md:max-w-md z-overlay bg-surface rounded-xl shadow-soft-lg ring-1 ring-primary/[0.08] p-6"
         >
           <button
             onClick={decline}
-            className="absolute top-3 right-3 p-1 rounded-full text-secondary/30 hover:text-secondary/60 transition-colors"
+            className="absolute top-3 right-3 p-1 rounded-full text-primary/30 hover:text-primary/60 transition-colors"
             aria-label={t('decline')}
           >
             <X size={16} />
@@ -54,22 +54,22 @@ export default function CookieBanner() {
               <Cookie size={18} className="text-primary" />
             </div>
             <div className="flex-1">
-              <h3 className="font-sans text-sm font-semibold text-secondary mb-1">
+              <h3 className="font-sans text-sm font-light text-primary mb-1">
                 {t('title')}
               </h3>
-              <p className="font-sans text-xs text-secondary/50 leading-relaxed mb-4">
+              <p className="font-sans text-xs text-primary/60 leading-relaxed mb-4">
                 {t('description')}
               </p>
               <div className="flex items-center gap-3">
                 <button
                   onClick={accept}
-                  className="px-5 py-2 rounded-pill bg-primary text-white font-sans text-[10px] uppercase tracking-[0.15em] font-bold shadow-gold-glow transition-all hover:shadow-soft-xl active:scale-[0.97]"
+                  className="px-5 py-2 rounded-pill bg-primary text-ivory font-sans text-[10px] uppercase tracking-[0.15em] font-light shadow-warm-glow transition-all hover:shadow-soft-xl active:scale-[0.97]"
                 >
                   {t('accept')}
                 </button>
                 <button
                   onClick={decline}
-                  className="px-5 py-2 rounded-pill border border-secondary/10 text-secondary/50 font-sans text-[10px] uppercase tracking-[0.15em] font-bold transition-all hover:border-secondary/20 active:scale-[0.97]"
+                  className="px-5 py-2 rounded-pill border border-primary/20 text-primary/60 font-sans text-[10px] uppercase tracking-[0.15em] font-light transition-all hover:border-primary/30 active:scale-[0.97]"
                 >
                   {t('decline')}
                 </button>

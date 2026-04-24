@@ -51,7 +51,7 @@ export default function FaqPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05, ease: EASE_PREMIUM }}
-              className="bg-white rounded-lg border border-secondary/5 overflow-hidden"
+              className="bg-surface rounded-lg border border-primary/5 overflow-hidden"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -59,7 +59,7 @@ export default function FaqPreview() {
                 aria-expanded={openIndex === i}
                 aria-controls={`faq-panel-${i}`}
               >
-                <span className="font-sans text-secondary text-sm font-medium pr-4">{faq.q}</span>
+                <span className="font-sans text-primary text-sm font-light pr-4">{faq.q}</span>
                 <ChevronDown
                   size={18}
                   className={`text-primary shrink-0 transition-transform duration-300 ${openIndex === i ? 'rotate-180' : ''}`}
@@ -76,7 +76,7 @@ export default function FaqPreview() {
                     id={`faq-panel-${i}`}
                     role="region"
                   >
-                    <p className="px-6 pb-5 font-sans font-light text-secondary/60 text-sm leading-relaxed">
+                    <p className="px-6 pb-5 font-sans font-light text-primary/60 text-sm leading-relaxed">
                       {faq.a}
                     </p>
                   </motion.div>
@@ -87,7 +87,7 @@ export default function FaqPreview() {
         </div>
 
         <div className="text-center">
-          <Link href="/faq" className="inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.2em] text-primary font-bold hover:underline">
+          <Link href="/faq" className="inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.2em] text-primary font-light hover:underline">
             {t('cta')} <ArrowRight size={14} />
           </Link>
         </div>

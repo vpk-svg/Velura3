@@ -47,7 +47,7 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="py-section-y bg-clinic-beige overflow-hidden" aria-label={t('label')}>
+    <section className="py-section-y bg-background-light overflow-hidden" aria-label={t('label')}>
       <Container>
         <SectionHeader
           label={t('label')}
@@ -59,7 +59,7 @@ export default function Testimonials() {
           <button
             onClick={() => scroll('left')}
             disabled={!canScrollLeft}
-            className="w-12 h-12 rounded-full border border-secondary/10 flex items-center justify-center text-secondary disabled:opacity-20 hover:border-primary/40 hover:text-primary transition-all duration-500 ease-premium"
+            className="w-12 h-12 rounded-full border border-primary/15 flex items-center justify-center text-primary disabled:opacity-20 hover:border-primary/40 hover:text-primary transition-all duration-500 ease-premium"
             aria-label="Previous"
           >
             <ChevronLeft size={20} strokeWidth={1.5} />
@@ -67,7 +67,7 @@ export default function Testimonials() {
           <button
             onClick={() => scroll('right')}
             disabled={!canScrollRight}
-            className="w-12 h-12 rounded-full border border-secondary/10 flex items-center justify-center text-secondary disabled:opacity-20 hover:border-primary/40 hover:text-primary transition-all duration-500 ease-premium"
+            className="w-12 h-12 rounded-full border border-primary/15 flex items-center justify-center text-primary disabled:opacity-20 hover:border-primary/40 hover:text-primary transition-all duration-500 ease-premium"
             aria-label="Next"
           >
             <ChevronRight size={20} strokeWidth={1.5} />
@@ -86,7 +86,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.8, delay: idx * 0.1, ease: EASE_PREMIUM }}
-              className="snap-start shrink-0 w-[300px] md:w-[400px] bg-clinic-sand rounded-2xl p-10 shadow-soft-md border border-secondary/5 relative group hover:border-primary/20 transition-all duration-700 flex flex-col"
+              className="snap-start shrink-0 w-[300px] md:w-[400px] bg-surface rounded-2xl p-10 shadow-soft-md border border-primary/5 relative group hover:border-primary/20 transition-all duration-700 flex flex-col"
             >
               <div className="flex gap-1 text-primary/40 mb-10" role="img" aria-label={`${t('rating')}: 5/5`}>
                 {[...Array(5)].map((_, i) => (
@@ -94,16 +94,16 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              <p className="font-display text-2xl md:text-3xl text-secondary leading-snug mb-12 italic">
+              <p className="font-display text-2xl md:text-3xl text-primary leading-snug mb-12 italic">
                 &ldquo;{testimonial.quote}&rdquo;
               </p>
 
-              <footer className="mt-auto pt-8 border-t border-secondary/5">
+              <footer className="mt-auto pt-8 border-t border-primary/5">
                 <cite className="not-italic flex flex-col gap-2">
-                  <span className="block font-sans text-secondary text-[10px] uppercase tracking-ultra-wide font-bold">
+                  <span className="block font-sans text-primary text-[10px] uppercase tracking-[0.2em] font-light">
                     {testimonial.author.split('·')[0].trim()}
                   </span>
-                  <span className="block font-sans text-primary text-[10px] tracking-airy uppercase font-bold opacity-60">
+                  <span className="block font-sans text-primary text-[10px] tracking-[0.15em] uppercase font-light opacity-50">
                     {testimonial.author.split('·')[1]?.trim() || 'Verified Patient'}
                   </span>
                 </cite>

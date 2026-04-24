@@ -21,7 +21,7 @@ export default function WhyFabClinic() {
   ];
 
   return (
-    <section className="py-section-y bg-clinic-beige/40 border-y border-secondary/5 overflow-hidden" aria-label={t('label')}>
+    <section className="py-section-y bg-background-light/40 border-y border-primary/5 overflow-hidden" aria-label={t('label')}>
       <Container>
         <SectionHeader
           label={t('label')}
@@ -40,15 +40,15 @@ export default function WhyFabClinic() {
                 transition={{ duration: 0.8, delay: index * 0.1, ease: EASE_PREMIUM }}
                 className="group flex flex-col items-center text-center"
               >
-                <div className="w-16 h-16 mb-8 flex items-center justify-center text-secondary/40 group-hover:text-primary transition-all duration-700" aria-hidden="true">
+                <div className="w-16 h-16 mb-8 flex items-center justify-center text-primary/30 group-hover:text-primary transition-all duration-700" aria-hidden="true">
                   <Icon className="w-10 h-10" strokeWidth={1} />
                 </div>
 
-                <h3 className="font-sans text-secondary text-[10px] tracking-ultra-wide uppercase mb-4 font-bold group-hover:text-secondary/80 transition-colors duration-500">
+                <h3 className="font-sans text-primary text-[10px] tracking-[0.2em] uppercase mb-4 font-light group-hover:text-primary transition-colors duration-500">
                   {t(`${usp.key}_title`)}
                 </h3>
 
-                <p className="font-sans font-light text-secondary/60 text-xs leading-relaxed max-w-[180px] uppercase tracking-wider">
+                <p className="font-sans font-light text-primary/60 text-xs leading-relaxed max-w-[180px] uppercase tracking-[0.1em]">
                   {t(`${usp.key}_desc`)}
                 </p>
               </motion.div>

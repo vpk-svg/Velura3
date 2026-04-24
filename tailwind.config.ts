@@ -8,34 +8,37 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      /* ── Colour Tokens ─────────────────────────────── */
+      /* ── Colour Tokens: Warm Luxury Clinic ────────────── */
       colors: {
-        // Base Palette
+        // Override default white to warm parchment — never pure white
+        white: "#FAF5EB",
+        // Base Palette - Warm Linen & Espresso
         clinic: {
-          beige: "#F8F5F2", // Global background - soft warm cream
-          taupe: "#4A4440", // Primary text & borders - deep muted taupe
-          sand: "#FEFBF9", // Cards & Sections - pale sand/ivory
-          gold: "#D4AF37", // Metallic gold highlights
-          champagne: "#E7DCD0", // Soft secondary highlighting
-          mocha: "#6B5E55", // Deep accent
-          clay: "#B8A99A", // Muted secondary
+          linen: "#EDE3D5",    // Global background - warm linen cream
+          espresso: "#6B4226", // Primary text & borders - deep espresso warm brown
+          taupe: "#A89080",    // Mid-tone taupe for secondary elements
+          sand: "#D4C4B0",     // Muted sand for subtle highlights
+          parchment: "#F5EDE0", // Lighter cream for cards/sections
+          deep: "#4A2E1A",     // Deepest brown for emphasis
         },
         // Semantic Mappings
-        primary: "#D4AF37", // clinic-gold
-        "primary-light": "#E0C56E",
-        "primary-dark": "#B08D2F",
-        secondary: "#4A4440", // clinic-taupe
-        "secondary-deep": "#35302D",
-        ivory: "#FEFBF9", // clinic-sand
-        "background-light": "#F8F5F2", // clinic-beige
-        "background-dark": "#35302D",
-        "surface": "#FEFBF9",
-        "surface-elevated": "#FFFFFF",
-        "border-subtle": "rgba(74, 68, 64, 0.08)",
-        "mint": "#E8F5EE",
-        "rose-soft": "#FDF2F2",
-        "amber-soft": "#FEF9EC",
-        "champagne": "#E7DCD0",
+        primary: "#6B4226",     // clinic-espresso
+        "primary-light": "#8B6246",
+        "primary-dark": "#4A2E1A",
+        secondary: "#6B4226",   // Same as primary for monochromatic
+        "secondary-deep": "#4A2E1A",
+        ivory: "#F5EDE0",       // clinic-parchment
+        "background-light": "#EDE3D5", // clinic-linen
+        "background-dark": "#4A2E1A",
+        "surface": "#F5EDE0",
+        "surface-elevated": "#FAF5EB",
+        "border-subtle": "rgba(107, 66, 38, 0.1)",
+        "page-fillers": "#F5EDE0",  // Warm parchment for treatment page sections
+        "page-medicatie": "#EDE3D5", // Linen for medicatie page sections
+        "mint": "#E8F5EE",      // Kept for specific medical contexts
+        "rose-soft": "#FDF2F2", // Kept for specific medical contexts
+        "amber-soft": "#FEF9EC", // Kept for specific medical contexts
+        "champagne": "#D4C4B0", // clinic-sand
       },
 
       /* ── Typography ────────────────────────────────── */
@@ -53,6 +56,7 @@ const config: Config = {
       letterSpacing: {
         "ultra-wide": "0.25em",
         "airy": "0.15em",
+        "wide-caps": "0.2em",
       },
 
       /* ── Spacing ────────────────────────────── */
@@ -70,13 +74,13 @@ const config: Config = {
         pill: "9999px",
       },
 
-      /* ── Shadows – Minimal & Airy ─────────── */
+      /* ── Shadows – Minimal & Airy, Warm Tones ─────────── */
       boxShadow: {
-        "soft-sm": "0 2px 8px -2px rgba(74, 68, 64, 0.03)",
-        "soft-md": "0 12px 32px -4px rgba(74, 68, 64, 0.05)",
-        "soft-lg": "0 20px 48px -8px rgba(74, 68, 64, 0.08)",
-        "soft-xl": "0 32px 64px -12px rgba(74, 68, 64, 0.12)",
-        "gold-glow": "0 8px 24px -4px rgba(212, 175, 55, 0.2)",
+        "soft-sm": "0 2px 8px -2px rgba(107, 66, 38, 0.04)",
+        "soft-md": "0 12px 32px -4px rgba(107, 66, 38, 0.06)",
+        "soft-lg": "0 20px 48px -8px rgba(107, 66, 38, 0.08)",
+        "soft-xl": "0 32px 64px -12px rgba(107, 66, 38, 0.12)",
+        "warm-glow": "0 8px 24px -4px rgba(107, 66, 38, 0.15)",
       },
 
       /* ── Max-widths ────────────────────────────────── */
@@ -95,7 +99,7 @@ const config: Config = {
 
       /* ── Transition Timing ─────────────────────────── */
       transitionTimingFunction: {
-        premium: "cubic-bezier(0.23, 1, 0.32, 1)", // More breathable ease
+        premium: "cubic-bezier(0.23, 1, 0.32, 1)",
       },
 
       /* ── Keyframes & Animations ────────────────────── */

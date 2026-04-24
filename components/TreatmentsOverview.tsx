@@ -55,23 +55,23 @@ export default function TreatmentsOverview() {
                 key={item.key}
                 href={item.href}
                 variants={itemVariants}
-                className="bg-clinic-sand rounded-xl p-10 shadow-soft-sm hover:shadow-soft-xl border border-secondary/5 hover:border-primary/20 transition-all duration-700 group flex flex-col items-center text-center"
+                className="bg-surface rounded-xl p-10 shadow-soft-sm hover:shadow-soft-xl border border-primary/5 hover:border-primary/20 transition-all duration-700 group flex flex-col items-center text-center"
               >
-                <div className="w-16 h-16 mb-8 flex items-center justify-center text-secondary/60 group-hover:text-primary transition-all duration-700">
+                <div className="w-16 h-16 mb-8 flex items-center justify-center text-primary/50 group-hover:text-primary transition-all duration-700">
                   <Icon className="w-8 h-8" strokeWidth={1} />
                 </div>
 
-                <h3 className="font-display text-2xl text-secondary mb-4 italic group-hover:text-secondary/80 transition-colors duration-500">
+                <h3 className="font-display text-2xl text-primary mb-4 italic group-hover:text-primary transition-colors duration-500">
                   {t(`${item.key}_title`)}
                 </h3>
 
-                <div className="w-12 h-px bg-secondary/10 mb-6 group-hover:w-20 group-hover:bg-primary/30 transition-all duration-700" />
+                <div className="w-12 h-px bg-primary/10 mb-6 group-hover:w-20 group-hover:bg-primary/30 transition-all duration-700" />
 
-                <p className="font-sans font-light text-secondary/60 text-sm leading-relaxed flex-grow mb-8 px-2">
+                <p className="font-sans font-light text-primary/60 text-sm leading-relaxed flex-grow mb-8 px-2">
                   {t(`${item.key}_desc`)}
                 </p>
 
-                <span className="inline-flex items-center gap-3 font-sans text-[10px] uppercase tracking-ultra-wide text-primary font-bold">
+                <span className="inline-flex items-center gap-3 font-sans text-[10px] uppercase tracking-[0.2em] text-primary font-light">
                   {t('view_cta')} <div className="w-6 h-px bg-primary/40 group-hover:w-10 transition-all duration-700" />
                 </span>
               </MotionLink>

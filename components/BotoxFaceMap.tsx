@@ -26,18 +26,18 @@ const GROUPS = [
 ];
 
 const FACE_MAP_ZONES: FaceMapZone[] = [
-  { id: 'voorhoofd',    nameKey: 'facemap_voorhoofd',    descKey: 'facemap_voorhoofd_desc',    extraKey: 'facemap_voorhoofd_extra',    priceKey: 'facemap_voorhoofd_price',    group: 'boven',  icon: '〰' },
-  { id: 'frons',        nameKey: 'facemap_frons',        descKey: 'facemap_frons_desc',        extraKey: 'facemap_frons_extra',        priceKey: 'facemap_frons_price',        group: 'boven',  icon: '눈' },
-  { id: 'wenkbrauwen',  nameKey: 'facemap_wenkbrauwen',  descKey: 'facemap_wenkbrauwen_desc',  extraKey: 'facemap_wenkbrauwen_extra',  priceKey: 'facemap_wenkbrauwen_price',  group: 'boven',  icon: '⌒' },
+  { id: 'voorhoofd', nameKey: 'facemap_voorhoofd', descKey: 'facemap_voorhoofd_desc', extraKey: 'facemap_voorhoofd_extra', priceKey: 'facemap_voorhoofd_price', group: 'boven', icon: '〰' },
+  { id: 'frons', nameKey: 'facemap_frons', descKey: 'facemap_frons_desc', extraKey: 'facemap_frons_extra', priceKey: 'facemap_frons_price', group: 'boven', icon: '눈' },
+  { id: 'wenkbrauwen', nameKey: 'facemap_wenkbrauwen', descKey: 'facemap_wenkbrauwen_desc', extraKey: 'facemap_wenkbrauwen_extra', priceKey: 'facemap_wenkbrauwen_price', group: 'boven', icon: '⌒' },
   { id: 'kraaienpootjes', nameKey: 'facemap_kraaienpootjes', descKey: 'facemap_kraaienpootjes_desc', extraKey: 'facemap_kraaienpootjes_extra', priceKey: 'facemap_kraaienpootjes_price', group: 'midden', icon: '☀' },
-  { id: 'bunny-lines',  nameKey: 'facemap_bunny_lines',  descKey: 'facemap_bunny_lines_desc',  extraKey: 'facemap_bunny_lines_extra',  priceKey: 'facemap_bunny_lines_price',  group: 'midden', icon: '≋' },
-  { id: 'gummy-smile',  nameKey: 'facemap_gummy_smile',  descKey: 'facemap_gummy_smile_desc',  extraKey: 'facemap_gummy_smile_extra',  priceKey: 'facemap_gummy_smile_price',  group: 'midden', icon: '◡' },
-  { id: 'lip-flip',     nameKey: 'facemap_lip_flip',     descKey: 'facemap_lip_flip_desc',     extraKey: 'facemap_lip_flip_extra',     priceKey: 'facemap_lip_flip_price',     group: 'midden', icon: '◞' },
-  { id: 'masseter',     nameKey: 'facemap_masseter',     descKey: 'facemap_masseter_desc',     extraKey: 'facemap_masseter_extra',     priceKey: 'facemap_masseter_price',     group: 'onder',  icon: '▽' },
-  { id: 'kin',          nameKey: 'facemap_kin',          descKey: 'facemap_kin_desc',          extraKey: 'facemap_kin_extra',          priceKey: 'facemap_kin_price',          group: 'onder',  icon: '◡' },
-  { id: 'hals',         nameKey: 'facemap_hals',         descKey: 'facemap_hals_desc',         extraKey: 'facemap_hals_extra',         priceKey: 'facemap_hals_price',         group: 'hals',   icon: '⌇' },
-  { id: 'nefertiti',   nameKey: 'facemap_nefertiti',    descKey: 'facemap_nefertiti_desc',    extraKey: 'facemap_nefertiti_extra',    priceKey: 'facemap_nefertiti_price',    group: 'hals',   icon: '✦' },
-  { id: 'hyperhidrose', nameKey: 'facemap_hyperhidrose', descKey: 'facemap_hyperhidrose_desc', extraKey: 'facemap_hyperhidrose_extra', priceKey: 'facemap_hyperhidrose_price', group: 'hals',   icon: '◈' },
+  { id: 'bunny-lines', nameKey: 'facemap_bunny_lines', descKey: 'facemap_bunny_lines_desc', extraKey: 'facemap_bunny_lines_extra', priceKey: 'facemap_bunny_lines_price', group: 'midden', icon: '≋' },
+  { id: 'gummy-smile', nameKey: 'facemap_gummy_smile', descKey: 'facemap_gummy_smile_desc', extraKey: 'facemap_gummy_smile_extra', priceKey: 'facemap_gummy_smile_price', group: 'midden', icon: '◡' },
+  { id: 'lip-flip', nameKey: 'facemap_lip_flip', descKey: 'facemap_lip_flip_desc', extraKey: 'facemap_lip_flip_extra', priceKey: 'facemap_lip_flip_price', group: 'midden', icon: '◞' },
+  { id: 'masseter', nameKey: 'facemap_masseter', descKey: 'facemap_masseter_desc', extraKey: 'facemap_masseter_extra', priceKey: 'facemap_masseter_price', group: 'onder', icon: '▽' },
+  { id: 'kin', nameKey: 'facemap_kin', descKey: 'facemap_kin_desc', extraKey: 'facemap_kin_extra', priceKey: 'facemap_kin_price', group: 'onder', icon: '◡' },
+  { id: 'hals', nameKey: 'facemap_hals', descKey: 'facemap_hals_desc', extraKey: 'facemap_hals_extra', priceKey: 'facemap_hals_price', group: 'hals', icon: '⌇' },
+  { id: 'nefertiti', nameKey: 'facemap_nefertiti', descKey: 'facemap_nefertiti_desc', extraKey: 'facemap_nefertiti_extra', priceKey: 'facemap_nefertiti_price', group: 'hals', icon: '✦' },
+  { id: 'hyperhidrose', nameKey: 'facemap_hyperhidrose', descKey: 'facemap_hyperhidrose_desc', extraKey: 'facemap_hyperhidrose_extra', priceKey: 'facemap_hyperhidrose_price', group: 'hals', icon: '◈' },
 ];
 
 function TreatmentCard({
@@ -175,11 +175,10 @@ function InfoModal({
                 handleCloseModal();
               }}
               disabled={isInCart}
-              className={`flex items-center justify-center w-11 h-11 rounded-full border-2 transition-all duration-200 ${
-                isInCart
-                  ? 'border-green-500 bg-green-50 text-green-600'
+              className={`flex items-center justify-center w-11 h-11 rounded-full border-2 transition-all duration-200 ${isInCart
+                  ? 'border-primary bg-primary/10 text-primary'
                   : 'border-primary bg-white text-primary hover:bg-primary hover:text-white shadow-soft-sm hover:shadow-gold-glow active:scale-95'
-              }`}
+                }`}
               aria-label={isInCart ? 'Toegevoegd' : 'Toevoegen aan winkelwagen'}
             >
               {isInCart ? <Check size={20} strokeWidth={2.5} /> : <Plus size={20} strokeWidth={2.5} />}

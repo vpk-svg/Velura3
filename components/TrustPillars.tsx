@@ -33,7 +33,7 @@ export default function TrustPillars() {
   ];
 
   return (
-    <section className="py-section-y bg-background-light border-y border-secondary/5" aria-labelledby="trust-heading">
+    <section className="py-section-y bg-background-light border-y border-primary/5" aria-labelledby="trust-heading">
       <Container>
         <h2 id="trust-heading" className="sr-only">{t('sr_heading')}</h2>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 list-none p-0 m-0" role="list">
@@ -49,10 +49,10 @@ export default function TrustPillars() {
               <div className="text-primary mb-6 transition-transform duration-300 ease-premium group-hover:scale-110 group-hover:rotate-6" aria-hidden="true">
                 {pillar.icon}
               </div>
-              <h3 className="font-sans text-secondary text-sm tracking-[0.3em] uppercase mb-3 font-semibold group-hover:text-primary transition-colors duration-300">
+              <h3 className="font-sans text-primary text-sm tracking-[0.25em] uppercase mb-3 font-light group-hover:text-primary transition-colors duration-300">
                 {pillar.title}
               </h3>
-              <p className="font-sans font-light text-muted-strong text-base leading-relaxed max-w-xs transition-colors duration-300 group-hover:text-secondary">
+              <p className="font-sans font-light text-primary/70 text-base leading-relaxed max-w-xs transition-colors duration-300 group-hover:text-primary">
                 {pillar.desc}
               </p>
             </motion.li>

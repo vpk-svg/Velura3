@@ -25,7 +25,7 @@ export default function FullWidthHeaderImage() {
         <section
             ref={containerRef}
             aria-label={t('label')}
-            className="relative w-full min-h-[75vh] md:min-h-screen overflow-hidden bg-clinic-beige flex items-center"
+            className="relative w-full min-h-[75vh] md:min-h-screen overflow-hidden bg-background-light flex items-center"
         >
             {/* Parallax background - Softened */}
             <motion.div style={{ scale, y }} className="absolute inset-0 z-0">
@@ -34,10 +34,10 @@ export default function FullWidthHeaderImage() {
                     alt="FAB Clinic"
                     fill
                     priority
-                    className="object-cover opacity-30 grayscale-[0.2]"
+                    className="object-cover opacity-25 grayscale-[0.15]"
                     sizes="100vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-clinic-beige/40 via-transparent to-clinic-beige/80" />
+                <div className="absolute inset-0 bg-gradient-to-b from-background-light/50 via-transparent to-background-light/80" />
             </motion.div>
 
             {/* Centered Hero Content */}
@@ -49,31 +49,31 @@ export default function FullWidthHeaderImage() {
                     transition={{ duration: 1.2, ease: EASE_PREMIUM }}
                 >
                     <div className="flex flex-col items-center gap-4 mb-10">
-                        <span className="font-sans text-primary text-xs md:text-sm tracking-ultra-wide uppercase font-semibold">
+                        <span className="font-sans text-primary text-xs md:text-sm tracking-[0.25em] uppercase font-light">
                             {t('label')}
                         </span>
-                        <div className="h-px w-16 bg-primary/40" />
+                        <div className="h-px w-16 bg-primary/30" />
                     </div>
 
-                    <h1 className="font-display text-display-xl text-secondary leading-[1] mb-10">
-                        {t('title1')} <span className="font-script text-primary text-7xl lowercase relative top-2 ml-2 -mr-2">and</span> <br />
+                    <h1 className="font-display text-display-xl text-primary leading-[1] mb-10">
+                        {t('title1')} <span className="font-script text-primary/70 text-7xl lowercase relative top-2 ml-2 -mr-2">and</span> <br />
                         <span className="italic font-light">{t('title2')}</span>
                     </h1>
 
-                    <p className="font-sans font-light text-secondary/80 text-lg md:text-xl leading-relaxed tracking-wide max-w-2xl mx-auto mb-14 px-4">
+                    <p className="font-sans font-light text-primary/70 text-lg md:text-xl leading-relaxed tracking-wide max-w-2xl mx-auto mb-14 px-4">
                         {t('hero_subtitle')}
                     </p>
 
                     <div className="flex flex-wrap items-center justify-center gap-6">
                         <Link
                             href={`/${locale}/behandelingen`}
-                            className="btn-premium inline-flex items-center justify-center gap-3 rounded-full font-sans uppercase font-bold px-12 py-5 text-[11px] tracking-airy bg-secondary text-white shadow-soft-lg"
+                            className="btn-primary inline-flex items-center justify-center gap-3 px-12 py-5"
                         >
                             {t('cta_treatments')}
                         </Link>
                         <Link
                             href={`/${locale}/trajecten`}
-                            className="btn-premium inline-flex items-center justify-center gap-3 rounded-full font-sans uppercase font-bold px-12 py-5 text-[11px] tracking-airy border border-secondary/20 text-secondary"
+                            className="btn-ghost inline-flex items-center justify-center gap-3 px-12 py-5"
                         >
                             {t('explore')}
                         </Link>
@@ -83,8 +83,8 @@ export default function FullWidthHeaderImage() {
 
             {/* Soft decorative element */}
             <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40">
-                <span className="font-sans text-[10px] uppercase tracking-ultra-wide">Scroll</span>
-                <div className="w-px h-12 bg-gradient-to-b from-secondary to-transparent" />
+                <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-light">Scroll</span>
+                <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent" />
             </div>
         </section>
     );

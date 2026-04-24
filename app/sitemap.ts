@@ -58,7 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'kaaklijn-fillers',
     'neus-fillers',
     'kin-fillers',
-    'traan-door-fillers',
+    'traangoot-fillers',
     'temple-fillers',
     'liquid-bbl',
     'eyelid-correction',

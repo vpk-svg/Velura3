@@ -208,7 +208,7 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
             </div>
 
             {/* Advice Box */}
-              <div className="bg-secondary p-6 md:p-8 rounded-md text-center text-white relative overflow-hidden shadow-soft-xl">
+            <div className="bg-secondary p-6 md:p-8 rounded-md text-center text-white relative overflow-hidden shadow-soft-xl">
               <div className="absolute top-0 right-0 w-48 h-48 bg-primary/20 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 opacity-50" aria-hidden="true" />
               <h4 className="font-sans text-primary text-[10px] tracking-widest uppercase mb-4 font-semibold">
                 {t('advice_title')}
@@ -218,7 +218,7 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
               </p>
               <a
                 href={getAdvice(bmiResult).link}
-                className="inline-flex px-8 py-3.5 bg-primary text-white rounded-pill font-sans text-[10px] tracking-[0.3em] uppercase font-semibold hover:bg-white hover:text-secondary transition-colors duration-300 shadow-gold-glow focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+                className="inline-flex px-8 py-3.5 bg-primary text-white rounded-pill font-sans text-[10px] tracking-[0.3em] uppercase font-semibold hover:bg-ivory hover:text-secondary transition-colors duration-300 shadow-gold-glow focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
               >
                 {getAdvice(bmiResult).cta}
               </a>

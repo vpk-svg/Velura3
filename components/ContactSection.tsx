@@ -19,7 +19,7 @@ export default function ContactSection() {
     ];
 
     return (
-        <section id="contact" className="py-section-y bg-secondary text-background-light overflow-hidden">
+        <section id="contact" className="py-section-y bg-primary-dark text-background-light overflow-hidden">
             <Container>
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
@@ -29,7 +29,7 @@ export default function ContactSection() {
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-5 block font-semibold"
+                            className="font-sans text-primary text-xs tracking-[0.25em] uppercase mb-5 block font-light"
                         >
                             {t('label')}
                         </motion.span>
@@ -54,13 +54,13 @@ export default function ContactSection() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: 0.15 + idx * 0.08, ease: EASE_PREMIUM }}
-                                        className="group flex items-start gap-5 p-8 rounded-md border border-white/5 hover:border-primary/20 transition-all duration-300 ease-premium hover:bg-white/5 shadow-soft-sm hover:shadow-soft-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                                        className="group flex items-start gap-5 p-8 rounded-md border border-background-light/10 hover:border-primary/30 transition-all duration-300 ease-premium hover:bg-background-light/5 shadow-soft-sm hover:shadow-soft-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                                     >
-                                        <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-primary transition-colors duration-300 text-white" aria-hidden="true">
+                                        <div className="p-3 bg-background-light/5 rounded-2xl group-hover:bg-primary transition-colors duration-300 text-background-light" aria-hidden="true">
                                             {item.icon}
                                         </div>
                                         <div>
-                                            <h4 className="font-sans text-xs tracking-[0.2em] text-primary uppercase mb-2 font-semibold">{item.title}</h4>
+                                            <h4 className="font-sans text-xs tracking-[0.2em] text-primary uppercase mb-2 font-light">{item.title}</h4>
                                             <p className="font-sans text-lg text-background-light/80 group-hover:text-background-light transition-colors">{item.desc}</p>
                                         </div>
                                     </Tag>
@@ -83,7 +83,7 @@ export default function ContactSection() {
                             className="h-full w-full relative"
                         >
                             <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" aria-hidden="true" />
-                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-secondary to-transparent z-10" aria-hidden="true" />
+                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-primary-dark to-transparent z-10" aria-hidden="true" />
                             <Image
                                 src="/images/spares/turkish-woman-face-closeup-with-elegant-updo-white-top-gray-background-beauty-studio-promo-with-syringe-needle-touching-lip-lip-augmentation-fashion-editorial-style-image.jpg"
                                 alt="Contact FAB Clinic"

@@ -109,7 +109,7 @@ export default function AiChatbot() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 left-6 z-floating w-14 h-14 bg-secondary text-primary rounded-full flex items-center justify-center shadow-soft-lg border border-primary/20"
+            className="fixed bottom-6 left-6 z-floating w-14 h-14 bg-primary text-ivory rounded-full flex items-center justify-center shadow-warm-glow border border-primary/20"
             aria-label="Open chat"
           >
             <MessageSquare size={24} />
@@ -125,17 +125,17 @@ export default function AiChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: EASE_PREMIUM }}
-            className="fixed bottom-6 left-6 z-floating w-[360px] max-w-[calc(100vw-3rem)] h-[500px] max-h-[70vh] bg-white rounded-xl shadow-panel ring-1 ring-secondary/[0.06] flex flex-col overflow-hidden"
+            className="fixed bottom-6 left-6 z-floating w-[360px] max-w-[calc(100vw-3rem)] h-[500px] max-h-[70vh] bg-surface rounded-xl shadow-soft-xl ring-1 ring-primary/[0.08] flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 bg-secondary text-background-light shrink-0">
+            <div className="flex items-center justify-between px-5 py-4 bg-primary text-ivory shrink-0">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Bot size={16} className="text-primary" />
+                <div className="w-8 h-8 rounded-full bg-ivory/20 flex items-center justify-center">
+                  <Bot size={16} className="text-ivory" />
                 </div>
                 <div>
-                  <p className="font-sans text-sm font-semibold">{locale === 'en' ? 'Quick Help' : 'Snel Antwoord'}</p>
-                  <p className="font-sans text-[10px] text-background-light/50 uppercase tracking-widest">Online</p>
+                  <p className="font-sans text-sm font-light">{locale === 'en' ? 'Quick Help' : 'Snel Antwoord'}</p>
+                  <p className="font-sans text-[10px] text-ivory/60 uppercase tracking-[0.15em]">Online</p>
                 </div>
               </div>
               <button
@@ -159,8 +159,8 @@ export default function AiChatbot() {
                   <div
                     className={`max-w-[80%] px-4 py-3 rounded-xl font-sans text-sm leading-relaxed ${
                       msg.role === 'user'
-                        ? 'bg-primary text-white rounded-br-sm'
-                        : 'bg-secondary/[0.04] text-secondary rounded-bl-sm'
+                        ? 'bg-primary text-ivory rounded-br-sm'
+                        : 'bg-primary/[0.04] text-primary rounded-bl-sm'
                     }`}
                   >
                     {msg.content}
@@ -169,11 +169,11 @@ export default function AiChatbot() {
               ))}
               {isTyping && (
                 <div className="flex justify-start">
-                  <div className="bg-secondary/[0.04] px-4 py-3 rounded-xl rounded-bl-sm">
+                  <div className="bg-primary/[0.04] px-4 py-3 rounded-xl rounded-bl-sm">
                     <div className="flex gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-secondary/20 animate-subtle-pulse" />
-                      <span className="w-2 h-2 rounded-full bg-secondary/20 animate-subtle-pulse" style={{ animationDelay: '0.2s' }} />
-                      <span className="w-2 h-2 rounded-full bg-secondary/20 animate-subtle-pulse" style={{ animationDelay: '0.4s' }} />
+                      <span className="w-2 h-2 rounded-full bg-primary/30 animate-subtle-pulse" />
+                      <span className="w-2 h-2 rounded-full bg-primary/30 animate-subtle-pulse" style={{ animationDelay: '0.2s' }} />
+                      <span className="w-2 h-2 rounded-full bg-primary/30 animate-subtle-pulse" style={{ animationDelay: '0.4s' }} />
                     </div>
                   </div>
                 </div>
@@ -182,7 +182,7 @@ export default function AiChatbot() {
             </div>
 
             {/* Input */}
-            <div className="shrink-0 px-4 py-3 border-t border-secondary/[0.06] bg-surface">
+            <div className="shrink-0 px-4 py-3 border-t border-primary/[0.06] bg-surface">
               <div className="flex items-center gap-2">
                 <input
                   type="text"
@@ -190,7 +190,7 @@ export default function AiChatbot() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={locale === 'en' ? 'Ask a question...' : 'Stel uw vraag...'}
-                  className="flex-grow px-4 py-2.5 rounded-pill border border-secondary/[0.08] bg-white font-sans text-sm text-secondary outline-none placeholder:text-secondary/30 focus:border-primary/30 transition-colors"
+                  className="flex-grow px-4 py-2.5 rounded-pill border border-primary/[0.1] bg-surface font-sans text-sm text-primary outline-none placeholder:text-primary/30 focus:border-primary/30 transition-colors"
                 />
                 <button
                   onClick={handleSend}

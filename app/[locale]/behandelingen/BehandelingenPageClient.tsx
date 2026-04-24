@@ -34,7 +34,7 @@ const TREATMENTS = [
     nl: {
       title: 'Fillers',
       desc: 'Volume herstellen en contouren verfijnen voor een natuurlijk resultaat.',
-      items: ['Lipfillers', 'Kaaklijn', 'Wangen', 'Tranengroeven', 'Neus'],
+      items: ['Lipfillers', 'Kaaklijn', 'Wangen', 'Traangoot', 'Neus'],
     },
     en: {
       title: 'Fillers',
