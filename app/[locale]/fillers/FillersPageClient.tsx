@@ -187,7 +187,7 @@ export default function FillersPage() {
               transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
               className="font-display text-display-xl text-background-light mb-6"
             >
-              {t('hero_title')} <span className="italic font-light text-primary">{t('hero_title_accent')}</span>
+              {t('hero_title')} {t('hero_title_accent')}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -239,7 +239,7 @@ export default function FillersPage() {
         zones={FILLERS_GROUPS}
         namespace="fillers_page"
         label={t('map_label')}
-        title={<>{t('map_title')} <span className="italic font-light text-primary">{t('map_title_accent')}</span></>}
+        title={<>{t('map_title')} {t('map_title_accent')}</>}
         onAddToCart={addToCartFromPopup}
         cartZoneIds={selectedZones}
       />
@@ -251,7 +251,7 @@ export default function FillersPage() {
         <Container>
           <SectionHeader
             label={t('zones_label')}
-            title={<>{t('zones_title')} <span className="italic font-light text-primary">{t('zones_title_accent')}</span></>}
+            title={<>{t('zones_title')} {t('zones_title_accent')}</>}
           />
 
           {/* Facial Zones - 5 cards in a refined grid */}
@@ -299,9 +299,7 @@ export default function FillersPage() {
                   <Sparkles className="w-7 h-7 text-primary" strokeWidth={1.5} />
                 </div>
                 <div className="flex-1">
-                  <span className="font-sans text-primary text-[10px] tracking-[0.25em] uppercase font-semibold mb-2 block">
-                    {t('bbl_label')}
-                  </span>
+                  {t('bbl_label')}
                   <h3 className="font-display text-2xl md:text-3xl text-background-light italic mb-3">
                     {t('zone6_title')}
                   </h3>
@@ -328,7 +326,7 @@ export default function FillersPage() {
             <div className="max-w-xl mx-auto">
               <SectionHeader
                 label={locale === 'nl' ? 'Datum kiezen' : 'Choose date'}
-                title={<>{locale === 'nl' ? 'Kies uw ' : 'Choose your '}<span className="italic font-light text-primary">{locale === 'nl' ? 'zaterdag' : 'Saturday'}</span></>}
+                title={<>{locale === 'nl' ? 'Kies uw ' : 'Choose your '}{locale === 'nl' ? 'zaterdag' : 'Saturday'}</>}
               />
               <div className="glass rounded-2xl border border-primary/10 p-8 md:p-10 shadow-soft-lg">
                 <BookingSlotSelector
@@ -361,7 +359,7 @@ export default function FillersPage() {
             <div className="max-w-xl mx-auto">
               <SectionHeader
                 label={t('details_label')}
-                title={<>{t('details_title')} <span className="italic font-light text-primary">{t('details_title_accent')}</span></>}
+                title={<>{t('details_title')} {t('details_title_accent')}</>}
               />
               <DetailsForm
                 onSubmit={handleDetailsSubmit}
@@ -412,7 +410,7 @@ export default function FillersPage() {
             <div className="flex-1 w-full">
               <SectionHeader
                 label={t('what_label')}
-                title={<>{t('what_title')} <span className="italic font-light text-primary">{t('what_title_accent')}</span></>}
+                title={<>{t('what_title')} {t('what_title_accent')}</>}
                 align="left"
               />
               <motion.p
@@ -437,7 +435,7 @@ export default function FillersPage() {
           <div className="max-w-4xl mx-auto text-center">
             <SectionHeader
               label={t('philosophy_label')}
-              title={<>{t('philosophy_title')} <span className="italic font-light text-primary">{t('philosophy_title_accent')}</span></>}
+              title={<>{t('philosophy_title')} {t('philosophy_title_accent')}</>}
               subtitle={t('philosophy_desc')}
             />
             <motion.div
@@ -504,7 +502,7 @@ export default function FillersPage() {
             <div className="flex-1 w-full">
               <SectionHeader
                 label={t('safety_label')}
-                title={<>{t('safety_title')} <span className="italic font-light text-primary">{t('safety_title_accent')}</span></>}
+                title={<>{t('safety_title')} {t('safety_title_accent')}</>}
                 subtitle={t('safety_desc')}
                 align="left"
               />
@@ -535,7 +533,7 @@ export default function FillersPage() {
         <Container>
           <SectionHeader
             label={t('process_label')}
-            title={<>{t('process_title')} <span className="italic font-light text-primary">{t('process_title_accent')}</span></>}
+            title={<>{t('process_title')} {t('process_title_accent')}</>}
           />
 
           <motion.div
@@ -589,7 +587,7 @@ export default function FillersPage() {
         <Container>
           <SectionHeader
             label={t('aftercare_label')}
-            title={<>{t('aftercare_title')} <span className="italic font-light text-primary">{t('aftercare_title_accent')}</span></>}
+            title={<>{t('aftercare_title')} {t('aftercare_title_accent')}</>}
             subtitle={t('aftercare_desc')}
           />
           <motion.div

@@ -38,11 +38,9 @@ export default function WeightlossFeatured() {
           transition={{ duration: 0.8, ease: EASE_PREMIUM }}
           className="text-center mb-12 md:mb-16"
         >
-          <span className="font-sans text-primary text-xs tracking-[0.2em] uppercase mb-6 block font-semibold">
-            {t('label')}
-          </span>
+          {t('label')}
           <h2 className="font-display text-display-lg text-secondary mb-6">
-            {t('title')} <span className="italic font-light text-primary">{t('title_accent')}</span>
+            {t('title')} {t('title_accent')}
           </h2>
           <p className="font-sans font-light text-muted text-xl leading-relaxed max-w-2xl mx-auto">
             {t('subtitle')}

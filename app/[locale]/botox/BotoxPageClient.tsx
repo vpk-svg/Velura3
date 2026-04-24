@@ -139,7 +139,7 @@ export default function BotoxPage() {
               transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
               className="font-display text-display-xl text-background-light mb-6"
             >
-              {t('hero_title')} <span className="italic font-light text-primary">{t('hero_title_accent')}</span>
+              {t('hero_title')} {t('hero_title_accent')}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -193,7 +193,7 @@ export default function BotoxPage() {
           zones={BOTOX_ZONES}
           namespace="botox_page"
           label={t('zones_label')}
-          title={<>{t('zones_title')} <span className="italic font-light text-primary">{t('zones_title_accent')}</span></>}
+          title={<>{t('zones_title')} {t('zones_title_accent')}</>}
           onAddToCart={addToCartFromPopup}
           cartZoneIds={selectedZones}
         />
@@ -206,7 +206,7 @@ export default function BotoxPage() {
         <Container>
           <SectionHeader
             label={t('zones_label')}
-            title={<>{t('zones_title')} <span className="italic font-light text-primary">{t('zones_title_accent')}</span></>}
+            title={<>{t('zones_title')} {t('zones_title_accent')}</>}
           />
 
           {/* Facial Zones - 5 cards in a refined grid */}
@@ -266,7 +266,7 @@ export default function BotoxPage() {
             <div className="flex-1 w-full">
               <SectionHeader
                 label={t('what_label')}
-                title={<>{t('what_title')} <span className="italic font-light text-primary">{t('what_title_accent')}</span></>}
+                title={<>{t('what_title')} {t('what_title_accent')}</>}
                 align="left"
               />
               <motion.p
@@ -291,7 +291,7 @@ export default function BotoxPage() {
           <div className="max-w-4xl mx-auto text-center">
             <SectionHeader
               label={t('philosophy_label')}
-              title={<>{t('philosophy_title')} <span className="italic font-light text-primary">{t('philosophy_title_accent')}</span></>}
+              title={<>{t('philosophy_title')} {t('philosophy_title_accent')}</>}
               subtitle={t('philosophy_desc')}
             />
             <motion.div
@@ -358,7 +358,7 @@ export default function BotoxPage() {
             <div className="flex-1 w-full">
               <SectionHeader
                 label={t('safety_label')}
-                title={<>{t('safety_title')} <span className="italic font-light text-primary">{t('safety_title_accent')}</span></>}
+                title={<>{t('safety_title')} {t('safety_title_accent')}</>}
                 subtitle={t('safety_desc')}
                 align="left"
               />
@@ -389,7 +389,7 @@ export default function BotoxPage() {
         <Container>
           <SectionHeader
             label={t('process_label')}
-            title={<>{t('process_title')} <span className="italic font-light text-primary">{t('process_title_accent')}</span></>}
+            title={<>{t('process_title')} {t('process_title_accent')}</>}
           />
 
           <motion.div
@@ -443,7 +443,7 @@ export default function BotoxPage() {
         <Container>
           <SectionHeader
             label={t('aftercare_label')}
-            title={<>{t('aftercare_title')} <span className="italic font-light text-primary">{t('aftercare_title_accent')}</span></>}
+            title={<>{t('aftercare_title')} {t('aftercare_title_accent')}</>}
             subtitle={t('aftercare_desc')}
           />
           <motion.div
@@ -489,7 +489,7 @@ export default function BotoxPage() {
               transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
               className="font-display text-display-lg text-background-light mb-6"
             >
-              {locale === 'nl' ? 'Zet de eerste stap naar een ' : 'Take the first step towards a '}<span className="italic font-light text-primary">{locale === 'nl' ? 'natuurlijk resultaat' : 'natural result'}</span>
+              {locale === 'nl' ? 'Zet de eerste stap naar een ' : 'Take the first step towards a '}{locale === 'nl' ? 'natuurlijk resultaat' : 'natural result'}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 16 }}

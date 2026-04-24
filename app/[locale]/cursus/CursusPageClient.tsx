@@ -214,7 +214,7 @@ export default function CursusPageClient() {
                 className="font-display text-display-xl text-background-light mb-6"
               >
                 {t('hero_title')}
-                <span className="italic font-light text-primary">{t('hero_title_accent')}</span>
+                {t('hero_title_accent')}
               </motion.h1>
 
               <motion.p
@@ -238,7 +238,7 @@ export default function CursusPageClient() {
                     <Star key={i} size={14} className="text-primary fill-primary" />
                   ))}
                 </span>
-                <span className="font-sans text-sm text-background-light/60">{t('social_proof')}</span>
+                {t('social_proof')}
               </motion.div>
 
               <motion.div
@@ -346,7 +346,7 @@ export default function CursusPageClient() {
                     className="flex items-start gap-3"
                   >
                     <CheckCircle2 size={18} className="text-emerald-600 shrink-0 mt-0.5" />
-                    <span className="font-sans text-secondary/80 leading-relaxed">{t(key)}</span>
+                    {t(key)}
                   </motion.li>
                 ))}
               </ul>
@@ -369,7 +369,7 @@ export default function CursusPageClient() {
                     className="flex items-start gap-3"
                   >
                     <Shield size={18} className="text-primary shrink-0 mt-0.5" />
-                    <span className="font-sans text-secondary/80 leading-relaxed">{t(key)}</span>
+                    {t(key)}
                   </motion.li>
                 ))}
               </ul>
@@ -846,12 +846,8 @@ export default function CursusPageClient() {
               <div className="rounded-2xl bg-gradient-to-br from-secondary to-burgundy p-8 text-background-light shadow-soft-xl flex-1 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-sans text-xs uppercase tracking-[0.25em] text-primary block">
-                      {t('pricing_label')}
-                    </span>
-                    <span className="text-[10px] uppercase tracking-[0.15em] font-semibold bg-primary/20 text-primary px-3 py-1 rounded-pill">
-                      {t('pricing_early_bird')}
-                    </span>
+                    {t('pricing_label')}
+                    {t('pricing_early_bird')}
                   </div>
 
                   <p className="font-display text-6xl text-background-light mb-1">{t('pricing_amount')}</p>
@@ -863,7 +859,7 @@ export default function CursusPageClient() {
                     {PRICING_INCLUSIONS.map((key) => (
                       <div key={key} className="flex items-center gap-3">
                         <Check size={14} className="text-primary shrink-0" />
-                        <span className="font-sans text-background-light/80 text-sm leading-snug">{t(key)}</span>
+                        {t(key)}
                       </div>
                     ))}
                   </div>

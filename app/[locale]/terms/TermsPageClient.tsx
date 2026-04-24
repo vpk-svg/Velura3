@@ -168,7 +168,7 @@ export default function TermsPage() {
               transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
               className="font-display text-display-xl text-background-light mb-6"
             >
-              Algemene <span className="italic font-light text-primary">Voorwaarden</span>
+              Algemene Voorwaarden
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}

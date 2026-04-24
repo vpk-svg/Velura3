@@ -66,7 +66,7 @@ export default function TreatmentCart({ zones, selectedZones, onRemove, onRestor
               exit={{ opacity: 0, height: 0 }}
               className="flex items-center justify-between px-5 py-3"
             >
-              <span className="font-sans text-sm text-secondary">{t(item.nameKey)}</span>
+              {t(item.nameKey)}
               <div className="flex items-center gap-3">
                 <span className="font-sans text-sm text-primary font-semibold">
                   €{(item.priceCents / 100).toFixed(0)}
@@ -86,7 +86,7 @@ export default function TreatmentCart({ zones, selectedZones, onRemove, onRestor
 
       <div className="px-5 py-4 border-t border-primary/10 bg-primary/[0.02]">
         <div className="flex items-center justify-between">
-          <span className="font-sans text-sm font-semibold text-secondary uppercase tracking-wider">{t('cart_total')}</span>
+          {t('cart_total')}
           <span className="font-display text-2xl text-primary font-semibold">
             €{(totalCents / 100).toFixed(0)}
           </span>

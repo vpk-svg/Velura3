@@ -79,7 +79,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative transition-all duration-500 ease-premium text-[10px] font-light uppercase tracking-[0.2em] hover:text-primary focus-visible:text-primary ${isActive ? 'text-primary' : 'text-primary/60'}`}
+                  className={`relative transition-all duration-500 ease-premium font-display text-sm uppercase tracking-[0.15em] hover:text-primary focus-visible:text-primary ${isActive ? 'text-primary' : 'text-primary/60'}`}
                   aria-current={isActive ? 'page' : undefined}
                 >
                   {link.name}
@@ -137,7 +137,7 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-xl font-display italic text-primary/70 hover:text-primary tracking-[0.15em] transition-all duration-300"
+              className="text-2xl font-display uppercase tracking-[0.15em] text-primary/80 hover:text-primary transition-all duration-300"
             >
               {link.name}
             </Link>

@@ -65,9 +65,7 @@ function TreatmentCard({
       </div>
       {!hidePricing && zone.priceCents > 0 && (
         <div className="mt-auto pt-4 border-t border-secondary/5 flex items-center justify-between">
-          <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/40 font-semibold">
-            {t('facemap_price_from')}
-          </span>
+          {t('facemap_price_from')}
           <div className="flex items-baseline gap-1">
             <span className="font-sans text-xs text-primary font-medium">€</span>
             <span className="font-display text-2xl text-primary font-semibold">
@@ -152,9 +150,7 @@ function InfoModal({
         <div className="flex flex-col h-full">
           <div className="inline-flex items-center gap-2.5 mb-6">
             <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-            <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
-              {t('facemap_modal_label')}
-            </span>
+            {t('facemap_modal_label')}
           </div>
 
           <h3 className="font-display text-4xl italic text-secondary mb-6 leading-tight">

@@ -49,15 +49,13 @@ export default function FullWidthHeaderImage() {
                     transition={{ duration: 1.2, ease: EASE_PREMIUM }}
                 >
                     <div className="flex flex-col items-center gap-4 mb-10">
-                        <span className="font-sans text-primary text-xs md:text-sm tracking-[0.25em] uppercase font-light">
-                            {t('label')}
-                        </span>
+                        {t('label')}
                         <div className="h-px w-16 bg-primary/30" />
                     </div>
 
                     <h1 className="font-display text-display-xl text-primary leading-[1] mb-10">
                         {t('title1')} <span className="font-script text-primary/70 text-7xl lowercase relative top-2 ml-2 -mr-2">and</span> <br />
-                        <span className="italic font-light">{t('title2')}</span>
+                        {t('title2')}
                     </h1>
 
                     <p className="font-sans font-light text-primary/70 text-lg md:text-xl leading-relaxed tracking-wide max-w-2xl mx-auto mb-14 px-4">

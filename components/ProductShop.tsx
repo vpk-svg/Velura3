@@ -170,9 +170,7 @@ export default function ProductShop() {
                       onClick={() => setExpandedProduct(expandedProduct === product.id ? null : product.id)}
                       className="w-full flex items-center justify-between rounded-2xl border border-primary/10 bg-secondary/[0.02] px-4 py-3 transition-colors hover:bg-secondary/[0.05]"
                     >
-                      <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-secondary/60 font-semibold">
-                        {t('detail_toggle')}
-                      </span>
+                      {t('detail_toggle')}
                       <ChevronDown size={16} className={`text-primary transition-transform duration-300 ${expandedProduct === product.id ? 'rotate-180' : ''}`} />
                     </button>
                     <AnimatePresence>
@@ -231,9 +229,7 @@ export default function ProductShop() {
                   {/* Price */}
                   <div className="flex items-end gap-2.5 mb-2">
                     <span className="font-display text-4xl text-secondary leading-none">{product.price}</span>
-                    <span className="font-sans font-semibold text-[10px] text-secondary/40 uppercase tracking-[0.2em] mb-1">
-                      {t('per_month')}
-                    </span>
+                    {t('per_month')}
                   </div>
                   <p className="font-sans text-[11px] text-secondary/40 mb-8">{t('price_includes')}</p>
 

@@ -80,7 +80,7 @@ export default function TrajectenPage() {
               transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
               className="font-display text-display-xl text-background-light mb-8"
             >
-              {t('hero_title')} <span className="italic font-light text-primary">{t('hero_title_accent')}</span>
+              {t('hero_title')} {t('hero_title_accent')}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -108,7 +108,7 @@ export default function TrajectenPage() {
         <Container>
           <SectionHeader
             label={t('phase_label')}
-            title={<>{t('phase_title')} <span className="italic font-light text-primary">{t('phase_title_accent')}</span></>}
+            title={<>{t('phase_title')} {t('phase_title_accent')}</>}
             subtitle={t('phase_desc')}
           />
 
@@ -185,7 +185,7 @@ export default function TrajectenPage() {
             <div className="flex-1 w-full">
               <SectionHeader
                 label={t('lifestyle_label')}
-                title={<>{t('lifestyle_title')} <br /><span className="italic font-light text-primary">{t('lifestyle_title_accent')}</span></>}
+                title={<>{t('lifestyle_title')} <br />{t('lifestyle_title_accent')}</>}
                 subtitle={t('lifestyle_desc')}
                 align="left"
               />
@@ -219,7 +219,7 @@ export default function TrajectenPage() {
         <Container>
           <SectionHeader
             label={t('trust_label')}
-            title={<>{t('trust_title')} <span className="italic font-light text-primary">{t('trust_title_accent')}</span></>}
+            title={<>{t('trust_title')} {t('trust_title_accent')}</>}
           />
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"

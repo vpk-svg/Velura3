@@ -103,7 +103,7 @@ export default function MedicatiePage() {
               className="font-display text-display-xl text-background-light leading-[0.85] mb-8"
             >
               {t('hero_title')} <br />
-              <span className="italic font-light text-primary">{t('hero_title_accent')}</span>
+              {t('hero_title_accent')}
             </motion.h1>
 
             <div className="w-20 h-px bg-primary/50 mx-auto mb-8" />
@@ -126,9 +126,7 @@ export default function MedicatiePage() {
               role="status"
             >
               <Pill size={16} className="text-primary" aria-hidden="true" />
-              <span className="font-sans text-xs tracking-[0.15em] uppercase text-background-light/80 font-semibold">
-                {t('rx_notice')}
-              </span>
+              {t('rx_notice')}
             </motion.div>
 
             <motion.div
@@ -160,7 +158,7 @@ export default function MedicatiePage() {
             title={
               <>
                 {t('how_title')}{' '}
-                <span className="italic font-light text-primary">{t('how_title_accent')}</span>
+                {t('how_title_accent')}
               </>
             }
             subtitle={t('how_desc')}
@@ -210,7 +208,7 @@ export default function MedicatiePage() {
               title={
                 <>
                   {t('compare_title')}{' '}
-                  <span className="italic font-light text-primary">{t('compare_title_accent')}</span>
+                  {t('compare_title_accent')}
                 </>
               }
               subtitle={t('compare_desc')}
@@ -222,9 +220,9 @@ export default function MedicatiePage() {
                 title={
                   <>
                     {tWeight('products_title')}{' '}
-                    <span className="italic font-light text-primary">
+                    
                       {tWeight('products_title_accent')}
-                    </span>
+                    
                   </>
                 }
                 subtitle={tWeight('products_subtitle')}
@@ -251,12 +249,10 @@ export default function MedicatiePage() {
             transition={{ duration: 0.8, ease: EASE_PREMIUM }}
             className="max-w-3xl mx-auto text-center mb-12 md:mb-16"
           >
-            <span className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-6 block font-semibold">
-              {t('safety_label')}
-            </span>
+            {t('safety_label')}
             <h2 id="safety-title" className="font-display text-display-lg text-background-light mb-6">
               {t('safety_title')}{' '}
-              <span className="italic font-light text-primary">{t('safety_title_accent')}</span>
+              {t('safety_title_accent')}
             </h2>
             <p className="font-sans font-light text-background-light/60 text-lg leading-relaxed max-w-2xl mx-auto">
               {t('safety_desc')}
@@ -311,9 +307,7 @@ export default function MedicatiePage() {
             transition={{ duration: 0.8, ease: EASE_PREMIUM }}
             className="max-w-2xl mx-auto text-center"
           >
-            <span className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-6 block font-semibold">
-              {t('cta_label')}
-            </span>
+            {t('cta_label')}
             <h2 id="med-cta-title" className="font-display text-display-md text-secondary mb-6">
               {t('cta_title')}
             </h2>

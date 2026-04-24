@@ -111,7 +111,7 @@ export default function SkinboostersPageClient() {
                             transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
                             className="font-display text-display-xl text-background-light mb-6"
                         >
-                            {t('hero_title')} <span className="italic font-light text-primary">{t('hero_title_accent')}</span>
+                            {t('hero_title')} {t('hero_title_accent')}
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 16 }}
@@ -150,7 +150,7 @@ export default function SkinboostersPageClient() {
                     zones={SKINBOOSTERS_ZONES}
                     namespace="skinboosters_page"
                     label={t('map_label')}
-                    title={<>{t('map_title')} <span className="italic font-light text-primary">{t('map_title_accent')}</span></>}
+                    title={<>{t('map_title')} {t('map_title_accent')}</>}
                     hidePricing
                 />
             </section>
@@ -162,7 +162,7 @@ export default function SkinboostersPageClient() {
                 <Container>
                     <SectionHeader
                         label={t('zones_label')}
-                        title={<>{t('zones_title')} <span className="italic font-light text-primary">{t('zones_title_accent')}</span></>}
+                        title={<>{t('zones_title')} {t('zones_title_accent')}</>}
                     />
 
                     <motion.div
@@ -221,7 +221,7 @@ export default function SkinboostersPageClient() {
                         <div className="flex-1 w-full">
                             <SectionHeader
                                 label={t('what_label')}
-                                title={<>{t('what_title')} <span className="italic font-light text-primary">{t('what_title_accent')}</span></>}
+                                title={<>{t('what_title')} {t('what_title_accent')}</>}
                                 align="left"
                             />
                             <motion.p
@@ -264,7 +264,7 @@ export default function SkinboostersPageClient() {
                         <div className="flex-1 w-full">
                             <SectionHeader
                                 label={t('safety_label')}
-                                title={<>{t('safety_title')} <span className="italic font-light text-primary">{t('safety_title_accent')}</span></>}
+                                title={<>{t('safety_title')} {t('safety_title_accent')}</>}
                                 subtitle={t('safety_desc')}
                                 align="left"
                             />
@@ -295,7 +295,7 @@ export default function SkinboostersPageClient() {
                 <Container>
                     <SectionHeader
                         label={t('process_label')}
-                        title={<>{t('process_title')} <span className="italic font-light text-primary">{t('process_title_accent')}</span></>}
+                        title={<>{t('process_title')} {t('process_title_accent')}</>}
                     />
 
                     <motion.div
@@ -347,7 +347,7 @@ export default function SkinboostersPageClient() {
                 <Container>
                     <SectionHeader
                         label={t('aftercare_label')}
-                        title={<>{t('aftercare_title')} <span className="italic font-light text-primary">{t('aftercare_title_accent')}</span></>}
+                        title={<>{t('aftercare_title')} {t('aftercare_title_accent')}</>}
                         subtitle={t('aftercare_desc')}
                     />
                     <motion.div
@@ -393,7 +393,7 @@ export default function SkinboostersPageClient() {
                             transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
                             className="font-display text-display-lg text-background-light mb-6"
                         >
-                            {locale === 'nl' ? 'Zet de eerste stap naar een ' : 'Take the first step towards a '}<span className="italic font-light text-primary">{locale === 'nl' ? 'natuurlijk resultaat' : 'natural result'}</span>
+                            {locale === 'nl' ? 'Zet de eerste stap naar een ' : 'Take the first step towards a '}{locale === 'nl' ? 'natuurlijk resultaat' : 'natural result'}
                         </motion.h2>
                         <motion.p
                             initial={{ opacity: 0, y: 16 }}

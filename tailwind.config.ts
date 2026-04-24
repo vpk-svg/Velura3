@@ -10,8 +10,6 @@ const config: Config = {
     extend: {
       /* ── Colour Tokens: Warm Luxury Clinic ────────────── */
       colors: {
-        // Override default white to warm parchment — never pure white
-        white: "#FAF5EB",
         // Base Palette - Warm Linen & Espresso
         clinic: {
           linen: "#EDE3D5",    // Global background - warm linen cream

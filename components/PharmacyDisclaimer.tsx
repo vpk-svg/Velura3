@@ -19,9 +19,7 @@ export default function PharmacyDisclaimer() {
           transition={{ duration: 0.8, ease: EASE_PREMIUM }}
           className="max-w-4xl mx-auto text-center"
         >
-          <span className="font-sans text-primary text-xs tracking-[0.25em] uppercase mb-6 block font-light">
-            {t('label')}
-          </span>
+          {t('label')}
           <h2 id="pharmacy-title" className="font-display text-display-md text-background-light mb-6">
             {t('title')}
           </h2>

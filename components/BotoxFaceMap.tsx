@@ -67,12 +67,8 @@ function TreatmentCard({
         {t(zone.extraKey)}
       </p>
       <div className="mt-auto pt-2 border-t border-secondary/5 flex items-center justify-between">
-        <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/40 font-semibold">
-          {t('facemap_price_from')}
-        </span>
-        <span className="font-display text-lg text-primary font-semibold">
-          {t(zone.priceKey)}
-        </span>
+        {t('facemap_price_from')}
+        {t(zone.priceKey)}
       </div>
     </motion.button>
   );
@@ -138,9 +134,7 @@ function InfoModal({
 
         <div className="inline-flex items-center gap-2 mb-5">
           <span className="h-2 w-2 rounded-full bg-primary" />
-          <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-primary font-semibold">
-            {t('facemap_modal_label')}
-          </span>
+          {t('facemap_modal_label')}
         </div>
 
         <h3 className="font-display text-3xl italic text-secondary mb-4">
@@ -158,12 +152,8 @@ function InfoModal({
 
         <div className="flex items-center justify-between p-4 bg-primary/5 rounded-xl border border-primary/10">
           <div className="flex items-end gap-3">
-            <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-semibold">
-              {t('facemap_price_from')}
-            </span>
-            <span className="font-display text-3xl font-bold text-primary">
-              {t(zone.priceKey)}
-            </span>
+            {t('facemap_price_from')}
+            {t(zone.priceKey)}
           </div>
           {onAddToCart && (
             <button
@@ -219,7 +209,7 @@ export default function BotoxFaceMap({ activeExternalZoneId, onAddToCart, cartZo
       <Container>
         <SectionHeader
           label={t('facemap_label')}
-          title={<>{t('facemap_title')} <span className="italic font-light text-primary">{t('facemap_title_accent')}</span></>}
+          title={<>{t('facemap_title')} {t('facemap_title_accent')}</>}
           subtitle={t('facemap_subtitle')}
         />
 

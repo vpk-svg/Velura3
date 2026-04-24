@@ -83,7 +83,7 @@ export default function WeightlossPage() {
               transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
               className="font-display text-display-xl text-background-light mb-8"
             >
-              {t('hero_title')} <span className="italic font-light text-primary">{t('hero_title_accent')}</span>
+              {t('hero_title')} {t('hero_title_accent')}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -120,7 +120,7 @@ export default function WeightlossPage() {
                   <Star key={i} className="w-3.5 h-3.5 fill-current" />
                 ))}
               </div>
-              <span className="font-sans text-xs tracking-wide text-background-light/80">{t('hero_social_proof')}</span>
+              {t('hero_social_proof')}
             </motion.div>
           </div>
         </Container>
@@ -131,7 +131,7 @@ export default function WeightlossPage() {
         <Container>
           <SectionHeader
             label={t('products_label')}
-            title={<>{t('products_title')} <span className="italic font-light text-primary">{t('products_title_accent')}</span></>}
+            title={<>{t('products_title')} {t('products_title_accent')}</>}
             subtitle={t('products_subtitle')}
           />
 
@@ -242,7 +242,7 @@ export default function WeightlossPage() {
             <div className="flex-1 w-full">
               <SectionHeader
                 label={t('why_label')}
-                title={<>{t('why_title')} <span className="italic font-light text-primary">{t('why_title_accent')}</span></>}
+                title={<>{t('why_title')} {t('why_title_accent')}</>}
                 align="left"
               />
               <ul className="space-y-5">
@@ -326,7 +326,7 @@ export default function WeightlossPage() {
                     <Star key={i} className="w-3 h-3 fill-current" />
                   ))}
                 </div>
-                <span className="font-sans text-xs text-secondary/50">{t('cta_social_proof')}</span>
+                {t('cta_social_proof')}
               </div>
             </motion.div>
           </div>

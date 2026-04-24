@@ -131,9 +131,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         <NextIntlClientProvider messages={messages} locale={resolvedParams.locale}>
           <CartProvider>
             <SurveyProvider>
-              <a href="#main-content" className="skip-link">
-                Skip to main content
-              </a>
               <CustomCursor />
               <ScrollProgress />
               <Navbar />

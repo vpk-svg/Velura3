@@ -22,9 +22,7 @@ export default function BottomCta() {
           className="text-center max-w-4xl mx-auto bg-surface rounded-3xl p-12 md:p-20 border border-primary/5 shadow-soft-xl"
         >
           <div className="flex flex-col items-center gap-4 mb-8">
-            <span className="font-sans text-primary text-xs tracking-[0.2em] uppercase font-light">
-              {t('label')}
-            </span>
+            {t('label')}
             <div className="h-px w-12 bg-primary/30" />
           </div>
 

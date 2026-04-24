@@ -40,7 +40,7 @@ export default function ContactSection() {
                             transition={{ delay: 0.1 }}
                             className="font-display text-display-xl text-background-light tracking-tighter mb-12"
                         >
-                            {t('title')} <span className="italic font-light text-primary">{t('subtitle')}</span>
+                            {t('title')} {t('subtitle')}
                         </motion.h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">

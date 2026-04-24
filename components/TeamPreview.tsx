@@ -27,11 +27,9 @@ export default function TeamPreview() {
           transition={{ duration: 0.8, ease: EASE_PREMIUM }}
           className="text-center mb-12"
         >
-          <span className="font-sans text-primary text-xs tracking-[0.2em] uppercase mb-6 block font-semibold">
-            {t('label')}
-          </span>
+          {t('label')}
           <h2 className="font-display text-display-lg text-secondary mb-4">
-            {t('title')} <span className="italic font-light text-primary">{t('title_accent')}</span>
+            {t('title')} {t('title_accent')}
           </h2>
         </motion.div>
 

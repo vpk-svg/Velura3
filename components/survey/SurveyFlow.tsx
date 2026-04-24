@@ -504,7 +504,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                       className="mt-0.5 h-4 w-4 accent-primary"
                       aria-label={t(key)}
                     />
-                    <span className="text-sm font-medium">{t(key)}</span>
+                    {t(key)}
                   </label>
               ))}
             </div>
@@ -610,7 +610,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                       onChange={() => updateField('duration', key)}
                       className="h-4 w-4 accent-primary"
                     />
-                    <span className="text-sm font-medium text-secondary">{t(key)}</span>
+                    {t(key)}
                   </label>
               ))}
             </div>
@@ -633,7 +633,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                       className="mt-0.5 h-4 w-4 accent-primary"
                       aria-label={t(key)}
                     />
-                    <span className="text-sm font-medium text-secondary">{t(key)}</span>
+                    {t(key)}
                   </label>
               ))}
             </div>
@@ -656,7 +656,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                       className="mt-0.5 h-4 w-4 accent-primary"
                       aria-label={t(key)}
                     />
-                    <span className="text-sm font-medium text-secondary">{t(key)}</span>
+                    {t(key)}
                   </label>
               ))}
             </div>
@@ -679,7 +679,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                       className="mt-0.5 h-4 w-4 accent-primary"
                       aria-label={t(key)}
                     />
-                    <span className="text-sm font-medium text-secondary">{t(key)}</span>
+                    {t(key)}
                   </label>
               ))}
             </div>
@@ -702,7 +702,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                       onChange={() => updateField('maintenanceChallenge', key)}
                       className="h-4 w-4 accent-primary"
                     />
-                    <span className="text-sm font-medium text-secondary">{t(key)}</span>
+                    {t(key)}
                   </label>
               ))}
             </div>
@@ -907,7 +907,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                       className="mt-0.5 h-4 w-4 accent-primary"
                       aria-label={t(key)}
                     />
-                    <span className="text-sm font-medium text-secondary">{t(key)}</span>
+                    {t(key)}
                   </label>
               ))}
             </div>
@@ -931,7 +931,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                 className="mt-0.5 h-4 w-4 accent-primary"
                 aria-label={t('marketing_opt_in')}
               />
-              <span className="text-sm font-medium text-secondary">{t('marketing_opt_in')}</span>
+              {t('marketing_opt_in')}
             </label>
           </QuestionSection>
         );
@@ -950,7 +950,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                   onChange={() => updateField('legalPersonalUse', !form.legalPersonalUse)}
                   className="mt-0.5 h-4 w-4 accent-primary"
                 />
-                <span className="text-sm font-medium text-secondary">{t('legal_personal_use')}</span>
+                {t('legal_personal_use')}
               </label>
               <ErrorText message={errors.legalPersonalUse} />
 
@@ -963,7 +963,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                   onChange={() => updateField('legalOffLabel', !form.legalOffLabel)}
                   className="mt-0.5 h-4 w-4 accent-primary"
                 />
-                <span className="text-sm font-medium text-secondary">{t('legal_off_label')}</span>
+                {t('legal_off_label')}
               </label>
               <ErrorText message={errors.legalOffLabel} />
 
@@ -976,7 +976,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                   onChange={() => updateField('legalTruthfulAnswers', !form.legalTruthfulAnswers)}
                   className="mt-0.5 h-4 w-4 accent-primary"
                 />
-                <span className="text-sm font-medium text-secondary">{t('legal_truthful')}</span>
+                {t('legal_truthful')}
               </label>
               <ErrorText message={errors.legalTruthfulAnswers} />
 
@@ -989,7 +989,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
                   onChange={() => updateField('legalGpNotification', !form.legalGpNotification)}
                   className="mt-0.5 h-4 w-4 accent-primary"
                 />
-                <span className="text-sm font-medium text-secondary">{t('legal_gp')}</span>
+                {t('legal_gp')}
               </label>
               <ErrorText message={errors.legalGpNotification} />
             </div>

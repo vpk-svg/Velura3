@@ -70,9 +70,7 @@ export default function NewsletterSection() {
                 className="w-5 h-5 text-primary border-primary/30 rounded bg-transparent focus:ring-primary"
                 required
               />
-              <span className="font-sans font-light text-xs text-background-light/50 group-hover:text-background-light/80 transition-colors uppercase tracking-[0.15em]">
-                {t('consent')}
-              </span>
+              {t('consent')}
             </label>
           </motion.form>
         </div>

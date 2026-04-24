@@ -25,7 +25,7 @@ export default function WhyFabClinic() {
       <Container>
         <SectionHeader
           label={t('label')}
-          title={<>{t('title')} <span className="font-script text-primary text-4xl lowercase relative -top-1 ml-1">{t('title_accent')}</span></>}
+          title={<>{t('title')} {t('title_accent')}</>}
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">

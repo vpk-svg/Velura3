@@ -142,11 +142,11 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
             <div className="flex gap-8 mt-3 h-full items-center">
               <label className="flex items-center gap-3 cursor-pointer group">
                 <input type="radio" value="male" {...(unit === 'metric' ? registerMetric('gender') : registerImperial('gender'))} className="w-5 h-5 text-primary focus:ring-primary bg-transparent border-secondary/20 transition-colors" />
-                <span className="font-sans text-xs uppercase tracking-widest text-secondary/70 group-hover:text-primary transition-colors font-semibold">{t('male')}</span>
+                {t('male')}
               </label>
               <label className="flex items-center gap-3 cursor-pointer group">
                 <input type="radio" value="female" {...(unit === 'metric' ? registerMetric('gender') : registerImperial('gender'))} className="w-5 h-5 text-primary focus:ring-primary bg-transparent border-secondary/20 transition-colors" />
-                <span className="font-sans text-xs uppercase tracking-widest text-secondary/70 group-hover:text-primary transition-colors font-semibold">{t('female')}</span>
+                {t('female')}
               </label>
             </div>
             {(unit === 'metric' ? metricErrors.gender : imperialErrors.gender) && <p className={errorClasses} role="alert">Required</p>}
@@ -237,9 +237,7 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
     return (
       <div className="w-full">
         <div className="mb-8">
-          <span className="font-sans text-primary text-[10px] tracking-[0.2em] uppercase mb-3 block font-semibold">
-            {t('label')}
-          </span>
+          {t('label')}
           <h3 className="font-display text-3xl md:text-4xl text-secondary italic">
             BMI <span className="text-primary not-italic">Calculator</span>
           </h3>
@@ -254,7 +252,7 @@ export default function BmiCalculator({ isEmbed = false }: { isEmbed?: boolean }
       <Container>
         <SectionHeader
           label={t('label')}
-          title={<>{t('title')} <span className="italic font-light text-primary">Calculator</span></>}
+          title={<>{t('title')} Calculator</>}
           subtitle={t('subtitle')}
         />
         {innerContent}

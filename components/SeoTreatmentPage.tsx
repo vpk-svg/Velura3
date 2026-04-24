@@ -268,7 +268,7 @@ export default function SeoTreatmentPage({ treatment }: SeoTreatmentPageProps) {
             </span>
             <h2 className="font-display text-display-lg text-secondary">
               {locale === 'nl' ? 'Voor & ' : 'Before & '}
-              <span className="italic font-light text-primary">{locale === 'nl' ? 'Na' : 'After'}</span>
+              {locale === 'nl' ? 'Na' : 'After'}
             </h2>
           </div>
 

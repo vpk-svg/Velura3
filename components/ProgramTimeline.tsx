@@ -34,7 +34,7 @@ export default function ProgramTimeline() {
       <Container>
         <SectionHeader
           label={t('label')}
-          title={<>{t('title')} <span className="italic font-light text-primary">{t('title_accent')}</span></>}
+          title={<>{t('title')} {t('title_accent')}</>}
           subtitle={t('subtitle')}
         />
 

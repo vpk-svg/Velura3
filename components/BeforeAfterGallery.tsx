@@ -213,7 +213,7 @@ export default function BeforeAfterGallery() {
           title={
             <>
               Before &amp;{' '}
-              <span className="italic font-light text-primary">After</span>
+              After
             </>
           }
         />

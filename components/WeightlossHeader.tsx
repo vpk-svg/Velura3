@@ -43,7 +43,7 @@ export default function WeightlossHeader() {
             transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
             className="font-display text-display-xl text-background-light mb-8"
           >
-            {t('title')} <span className="italic font-light text-primary">{t('title_accent')}</span>
+            {t('title')} {t('title_accent')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}

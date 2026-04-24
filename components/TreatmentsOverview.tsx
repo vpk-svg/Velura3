@@ -37,7 +37,7 @@ export default function TreatmentsOverview() {
       <Container>
         <SectionHeader
           label={t('label')}
-          title={<>{t('title')} <span className="font-script text-primary text-4xl lower-case relative -top-1 ml-1">{t('title_accent')}</span></>}
+          title={<>{t('title')} {t('title_accent')}</>}
           subtitle={t('subtitle')}
         />
 

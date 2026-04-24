@@ -163,7 +163,7 @@ export default function ShapePage() {
               className="font-display text-display-xl text-background-light mb-8"
             >
               {t('hero_title')}{' '}
-              <span className="italic font-light text-primary">{t('hero_title_accent')}</span>
+              {t('hero_title_accent')}
             </motion.h1>
 
             <motion.p
@@ -223,7 +223,7 @@ export default function ShapePage() {
                   <span className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center text-primary">
                     {badge.icon}
                   </span>
-                  <span className="font-sans text-xs tracking-wide">{t(badge.key)}</span>
+                  {t(badge.key)}
                 </div>
               ))}
             </motion.div>
@@ -264,9 +264,7 @@ export default function ShapePage() {
                 </p>
                 <div className="flex items-center gap-4 text-primary mb-8">
                   <ShieldCheck size={32} aria-hidden="true" />
-                  <span className="font-sans uppercase tracking-widest text-sm font-semibold">
-                    {t('safety_badge')}
-                  </span>
+                  {t('safety_badge')}
                 </div>
                 <ConsultTrigger
                   className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-pill text-sm font-semibold tracking-wide hover:bg-primary/90 transition-colors"
@@ -352,7 +350,7 @@ export default function ShapePage() {
         zones={SHAPE_VARIANTS_FLAT}
         namespace="shape_page"
         label={t('map_label')}
-        title={<>{t('map_title')} <span className="italic font-light text-primary">{t('map_title_accent')}</span></>}
+        title={<>{t('map_title')} {t('map_title_accent')}</>}
         subtitle={locale === 'nl' ? 'Klik op een behandeling voor meer informatie en voeg deze toe aan uw selectie.' : 'Click a treatment for more information and add it to your selection.'}
         onAddToCart={addToCart}
         cartZoneIds={selectedVariants}
@@ -366,7 +364,7 @@ export default function ShapePage() {
             <div className="max-w-xl mx-auto">
               <SectionHeader
                 label={locale === 'nl' ? 'Datum kiezen' : 'Choose date'}
-                title={<>{locale === 'nl' ? 'Kies uw ' : 'Choose your '}<span className="italic font-light text-primary">{locale === 'nl' ? 'zaterdag' : 'Saturday'}</span></>}
+                title={<>{locale === 'nl' ? 'Kies uw ' : 'Choose your '}{locale === 'nl' ? 'zaterdag' : 'Saturday'}</>}
               />
               <div className="glass rounded-2xl border border-primary/10 p-8 md:p-10 shadow-soft-lg">
                 <BookingSlotSelector
@@ -399,7 +397,7 @@ export default function ShapePage() {
             <div className="max-w-xl mx-auto">
               <SectionHeader
                 label={t('details_label')}
-                title={<>{t('details_title')} <span className="italic font-light text-primary">{t('details_title_accent')}</span></>}
+                title={<>{t('details_title')} {t('details_title_accent')}</>}
               />
               <div className="glass rounded-2xl border border-primary/10 p-8 md:p-10 shadow-soft-lg">
                 <DetailsForm
@@ -457,9 +455,7 @@ export default function ShapePage() {
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.15, ease: EASE_PREMIUM }}
             >
-              <span className="font-sans text-primary text-xs tracking-[0.2em] uppercase mb-6 block font-semibold">
-                {t('intro_label')}
-              </span>
+              {t('intro_label')}
               <h2 className="font-display text-display-lg text-secondary mb-8">{t('intro_title')}</h2>
               <div className="space-y-6 text-secondary/70 text-lg leading-relaxed font-light">
                 <p>{t('intro_p1')}</p>
@@ -549,9 +545,7 @@ export default function ShapePage() {
                 </span>
 
                 <div className="absolute bottom-8 left-8 right-8 text-background-light">
-                  <span className="font-sans text-primary text-[10px] tracking-[0.3em] uppercase mb-2 block font-semibold">
-                    {t('method_step_label', { num: step.num })}
-                  </span>
+                  {t('method_step_label', { num: step.num })}
                   <h3 className="font-display text-3xl mb-2">{t(`method_${step.key}_title`)}</h3>
                   <p className="text-sm text-background-light/80 leading-relaxed">{t(`method_${step.key}_desc`)}</p>
                 </div>
@@ -623,9 +617,7 @@ export default function ShapePage() {
                   </div>
 
                   <div className="bg-surface-elevated p-6 rounded-xl shadow-soft-sm">
-                    <span className="font-sans text-primary text-[10px] tracking-[0.2em] uppercase font-semibold block mb-1">
-                      {t(`recovery_${milestone}_period`)}
-                    </span>
+                    {t(`recovery_${milestone}_period`)}
                     <h3 className="font-display text-xl text-secondary mb-2">{t(`recovery_${milestone}_title`)}</h3>
                     <p className="text-secondary/60 font-light text-sm leading-relaxed">{t(`recovery_${milestone}_desc`)}</p>
                   </div>

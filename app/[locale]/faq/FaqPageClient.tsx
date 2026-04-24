@@ -31,7 +31,7 @@ export default function FaqPage() {
               transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
               className="font-display text-display-xl text-background-light mb-6"
             >
-              {t('hero_title')} <span className="italic font-light text-primary">{t('hero_title_accent')}</span>
+              {t('hero_title')} {t('hero_title_accent')}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}

@@ -49,7 +49,7 @@ export default function HowItWorks() {
       <Container>
         <SectionHeader
           label={t('label')}
-          title={<>{t('title')} <span className="italic font-light text-primary">{t('subtitle')}</span></>}
+          title={<>{t('title')} {t('subtitle')}</>}
           subtitle={t('desc')}
         />
 

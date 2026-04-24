@@ -109,7 +109,7 @@ export default function BehandelingenPage() {
             className="font-display text-display-xl text-background-light mb-6"
           >
             {locale === 'nl' ? 'Ontdek onze ' : 'Discover our '}
-            <span className="italic font-light text-primary">{locale === 'nl' ? 'behandelingen' : 'treatments'}</span>
+            {locale === 'nl' ? 'behandelingen' : 'treatments'}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -131,8 +131,8 @@ export default function BehandelingenPage() {
             label={locale === 'nl' ? 'SPECIALISATIES' : 'SPECIALIZATIONS'}
             title={
               locale === 'nl'
-                ? <>Kies uw <span className="italic font-light text-primary">categorie</span></>
-                : <>Choose your <span className="italic font-light text-primary">category</span></>
+                ? <>Kies uw categorie</>
+                : <>Choose your category</>
             }
           />
 

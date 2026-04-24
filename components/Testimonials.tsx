@@ -51,7 +51,7 @@ export default function Testimonials() {
       <Container>
         <SectionHeader
           label={t('label')}
-          title={<>{t('title')} <span className="font-script text-primary text-4xl lowercase relative -top-1 ml-1">{t('subtitle')}</span></>}
+          title={<>{t('title')} {t('subtitle')}</>}
         />
 
         {/* Navigation arrows - Refined */}

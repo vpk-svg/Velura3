@@ -47,7 +47,7 @@ export default function LifestyleSection() {
                     <div className="flex-1 w-full">
                         <SectionHeader
                             label={t('label')}
-                            title={<>{t('title')} <br /><span className="italic font-light text-primary">{t('subtitle')}</span></>}
+                            title={<>{t('title')} <br />{t('subtitle')}</>}
                             align="left"
                         />
 

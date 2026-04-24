@@ -38,9 +38,7 @@ export default function TreatmentsDualRow() {
                                 <span className="absolute top-8 left-8 text-secondary/[0.07] font-display text-8xl pointer-events-none group-hover:opacity-40 transition-opacity italic select-none" aria-hidden="true">01</span>
                             </figure>
                             <div className="p-8 md:p-10 flex flex-col flex-grow">
-                                <span className="font-sans text-primary-dark text-xs tracking-[0.2em] uppercase mb-6 block font-semibold">
-                                    {t('botox_title')}
-                                </span>
+                                {t('botox_title')}
                                 <h3 className="font-display text-display-md text-secondary mb-8 italic">
                                     {t('botox_subtitle')}
                                 </h3>
@@ -75,9 +73,7 @@ export default function TreatmentsDualRow() {
                                 <span className="absolute top-8 right-8 text-secondary/[0.07] font-display text-8xl pointer-events-none group-hover:opacity-40 transition-opacity italic select-none" aria-hidden="true">02</span>
                             </figure>
                             <div className="p-8 md:p-10 flex flex-col flex-grow">
-                                <span className="font-sans text-primary-dark text-xs tracking-[0.2em] uppercase mb-6 block font-semibold">
-                                    {t('fillers_title')}
-                                </span>
+                                {t('fillers_title')}
                                 <h3 className="font-display text-display-md text-secondary mb-8 italic">
                                     {t('fillers_subtitle')}
                                 </h3>

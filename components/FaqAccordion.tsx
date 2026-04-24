@@ -60,9 +60,7 @@ export default function FaqAccordion({ namespace = 'faq_page' }: FaqAccordionPro
                 className="w-full flex items-center justify-between py-6 text-left group"
                 aria-expanded={isOpen}
               >
-                <span className="font-display text-lg md:text-xl text-secondary italic font-bold group-hover:text-primary transition-colors pr-4">
-                  {t(item.questionKey)}
-                </span>
+                {t(item.questionKey)}
                 <motion.span
                   animate={{ rotate: isOpen ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
