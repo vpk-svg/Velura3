@@ -13,9 +13,9 @@ export default function WeightlossFeatured() {
   const t = useTranslations('weightloss_featured');
 
   const products = [
-    { key: 'mounjaro', image: '/images/products/mounjaro-pen.webp', price: '€425' },
-    { key: 'ozempic', image: '/images/products/ozempic-pen.webp', price: '€299' },
-    { key: 'glp1', image: '/images/products/wegovy-pen.webp', price: '€399' },
+    { key: 'mounjaro', image: '/images/products/mounjaro-pen.webp', price: 'v.a. €425' },
+    { key: 'ozempic', image: '/images/products/ozempic-pen.webp', price: 'v.a. €299' },
+    { key: 'glp1', image: '/images/products/wegovy-pen.webp', price: 'v.a. €399' },
   ];
 
   const containerVariants: Variants = {
