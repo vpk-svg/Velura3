@@ -122,7 +122,7 @@ export default function MedicatiePage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3, ease: EASE_PREMIUM }}
-              className="inline-flex items-center gap-3 bg-white/10 border border-white/20 rounded-pill px-8 py-4 mb-10"
+              className="inline-flex items-center gap-3 bg-white/10 border border-white/20 rounded-pill px-8 py-4 mb-10 text-white"
               role="status"
             >
               <Pill size={16} className="text-primary" aria-hidden="true" />
@@ -220,9 +220,9 @@ export default function MedicatiePage() {
                 title={
                   <>
                     {tWeight('products_title')}{' '}
-                    
-                      {tWeight('products_title_accent')}
-                    
+
+                    {tWeight('products_title_accent')}
+
                   </>
                 }
                 subtitle={tWeight('products_subtitle')}

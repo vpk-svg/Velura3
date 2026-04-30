@@ -5,7 +5,7 @@ import { Cormorant_Garamond, Jost, Pinyon_Script } from 'next/font/google';
 import '../../src/index.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import CustomCursor from '@/components/CustomCursor';
+
 import ScrollProgress from '@/components/ScrollProgress';
 import AiChatbot from '@/components/AiChatbot';
 import SocialProofPopup from '@/components/SocialProofPopup';
@@ -127,11 +127,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased min-h-screen flex flex-col cursor-dot-active bg-background-light text-secondary">
+      <body className="font-sans antialiased min-h-screen flex flex-col bg-background-light text-secondary">
         <NextIntlClientProvider messages={messages} locale={resolvedParams.locale}>
           <CartProvider>
             <SurveyProvider>
-              <CustomCursor />
+
               <ScrollProgress />
               <Navbar />
               <main id="main-content" className="flex-grow">
