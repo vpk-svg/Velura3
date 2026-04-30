@@ -8,6 +8,7 @@ import Card from './ui/Card';
 import { ArrowRight } from 'lucide-react';
 import { EASE_PREMIUM } from '@/lib/motion';
 import { Link } from '@/lib/navigation';
+import ProductShop from './ProductShop';
 
 export default function WeightlossFeatured() {
   const t = useTranslations('weightloss_featured');
@@ -47,43 +48,7 @@ export default function WeightlossFeatured() {
           </p>
         </motion.div>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-        >
-          {products.map((product) => (
-            <motion.div key={product.key} variants={itemVariants}>
-              <Card className="group">
-                <div className="relative aspect-[4/3] bg-secondary/5 overflow-hidden">
-                  <Image
-                    src={product.image}
-                    alt={t(`${product.key}_title`)}
-                    fill
-                    className="object-contain p-8 transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                <div className="p-8">
-                  <h3 className="font-display text-2xl text-secondary italic font-bold mb-2 group-hover:text-primary transition-colors">
-                    {t(`${product.key}_title`)}
-                  </h3>
-                  <p className="font-sans font-light text-muted text-sm leading-relaxed mb-4">
-                    {t(`${product.key}_desc`)}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="font-sans text-primary font-semibold text-lg">{product.price}<span className="text-xs text-secondary/40 font-light">/mnd</span></span>
-                    <Link href="/weightloss" className="inline-flex items-center gap-1.5 font-sans text-[10px] uppercase tracking-[0.15em] text-primary font-bold hover:underline">
-                      {t('cta')} <ArrowRight size={12} />
-                    </Link>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+        <ProductShop />
       </Container>
     </section>
   );

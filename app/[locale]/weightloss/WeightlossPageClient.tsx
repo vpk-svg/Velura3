@@ -13,15 +13,7 @@ import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import SurveyAutoOpen from '@/components/SurveyAutoOpen';
 import { PRODUCTS as PRODUCT_DATA } from '@/lib/products';
 import { EASE_PREMIUM } from '@/lib/motion';
-
-const PRODUCT_KEYS = ['mounjaro', 'ozempic', 'wegovy'] as const;
-
-const PRODUCTS = PRODUCT_KEYS.map((key) => ({
-  key,
-  image: `/images/products/${key}.webp`,
-  price: `v.a. €${Math.round(PRODUCT_DATA[key].priceCents / 100)} incl. Begeleiding`,
-  productId: key,
-}));
+import ProductShop from '@/components/ProductShop';
 
 export default function WeightlossPage() {
   const t = useTranslations('weightloss_page');
@@ -127,91 +119,18 @@ export default function WeightlossPage() {
       </section>
 
       {/* Products */}
-      <section id="producten" className="py-section-y bg-page-weight overflow-hidden">
+      <section id="producten" className="pt-section-y bg-page-weight overflow-hidden">
         <Container>
           <SectionHeader
             label={t('products_label')}
             title={<>{t('products_title')} {t('products_title_accent')}</>}
             subtitle={t('products_subtitle')}
           />
-
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-          >
-            {PRODUCTS.map((product) => (
-              <motion.div
-                key={product.key}
-                variants={itemVariants}
-                whileHover={{ y: -8, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
-                className="bg-white rounded-md p-6 shadow-soft-sm hover:shadow-soft-lg border border-primary/5 hover:border-primary/25 transition-all duration-300 group flex flex-col"
-              >
-                <div className="relative w-full aspect-square mb-6 bg-secondary/[0.04] rounded-lg overflow-hidden">
-                  <Image
-                    src={product.image}
-                    alt={t(`product_${product.key}_name`)}
-                    fill
-                    className="object-contain p-3 group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
-                  />
-                </div>
-                <h3 className="font-display text-xl text-secondary italic font-bold mb-1 group-hover:text-primary transition-colors">
-                  {t(`product_${product.key}_name`)}
-                </h3>
-                <p className="font-sans text-sm text-secondary/60 leading-relaxed mb-4 flex-grow">
-                  {t(`product_${product.key}_desc`)}
-                </p>
-                <div className="mb-4">
-                  <button
-                    type="button"
-                    onClick={() => setExpandedProduct(expandedProduct === product.key ? null : product.key)}
-                    className="w-full flex items-center justify-between rounded-2xl border border-primary/10 bg-secondary/[0.02] px-4 py-3 transition-colors hover:bg-secondary/[0.05]"
-                  >
-                    <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-secondary/60 font-semibold">
-                      {tShop('detail_toggle')}
-                    </span>
-                    <ChevronDown size={16} className={`text-primary transition-transform duration-300 ${expandedProduct === product.key ? 'rotate-180' : ''}`} />
-                  </button>
-                  <AnimatePresence>
-                    {expandedProduct === product.key && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: EASE_PREMIUM }}
-                        className="overflow-hidden"
-                      >
-                        <div className="rounded-b-2xl border border-t-0 border-primary/10 bg-secondary/[0.02] p-4 space-y-2.5">
-                          <div className="flex items-center justify-between gap-3 mb-1">
-                            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-secondary/60 font-semibold">
-                              {tMed(`detail_${product.key}_title`)}
-                            </p>
-                            <span className="rounded-pill bg-primary/10 px-3 py-1 font-sans text-[10px] uppercase tracking-[0.18em] text-primary font-semibold">
-                              {tMed(`detail_${product.key}_frequency`)}
-                            </span>
-                          </div>
-                          <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_how')}:</span> {tMed(`detail_${product.key}_how`)}</p>
-                          <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_side')}:</span> {tMed(`detail_${product.key}_side`)}</p>
-                          <p className="font-sans text-xs leading-relaxed text-secondary/70"><span className="font-semibold text-secondary">{tMed('detail_tab_storage')}:</span> {tMed(`detail_${product.key}_storage`)}</p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-secondary/5">
-                  <span className="font-display text-2xl text-primary font-semibold">{product.price}</span>
-                  <ConsultTrigger className="inline-flex items-center gap-2 font-sans text-xs text-primary font-semibold uppercase tracking-wider hover:gap-3 transition-all">
-                    {t('product_cta')} <ArrowRight size={14} />
-                  </ConsultTrigger>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
         </Container>
       </section>
+      <div className="-mt-12 bg-page-weight">
+        <ProductShop />
+      </div>
 
       {/* How It Works - Timeline */}
       <ProgramTimeline />
