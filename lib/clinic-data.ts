@@ -716,9 +716,8 @@ function getSaturdayOnOrAfter(date: Date): Date {
   return result;
 }
 
-function deterministicBookedCount(seed: string): 0 | 1 | 2 {
-  const total = [...seed].reduce((acc, char, index) => acc + char.charCodeAt(0) * (index + 1), 0);
-  return (total % 3) as 0 | 1 | 2;
+function deterministicBookedCount(_seed: string): 0 {
+  return 0;
 }
 
 export function generateSaturdaySlots(seedDate?: string): BookingSlot[] {
