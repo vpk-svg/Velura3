@@ -29,7 +29,6 @@ export default function Navbar() {
     '/botox',
     '/fillers',
     '/shape',
-    '/skinboosters',
     '/cursus',
     '/faq',
     '/terms',
