@@ -305,18 +305,7 @@ export default function SkinboostersPageClient() {
                 </Container>
             </section>
 
-            {/* ─── thin charcoal footer strip ─── */}
-            <footer className="bg-[#1a1a1a] py-8 border-t border-white/5">
-                <Container>
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <span className="font-display text-white/80 text-lg italic tracking-wide">FAB CLINIC</span>
-                        <nav className="flex items-center gap-6">
-                            <a href="/nl/privacy" className="font-sans text-white/35 text-[11px] tracking-widest uppercase hover:text-[#c2a36d] transition-colors">Privacy</a>
-                            <a href="/nl/contact" className="font-sans text-white/35 text-[11px] tracking-widest uppercase hover:text-[#c2a36d] transition-colors">Contact</a>
-                        </nav>
-                    </div>
-                </Container>
-            </footer>
+
 
 
         </main>
