@@ -282,38 +282,6 @@ export default function FillersPage() {
               </motion.article>
             ))}
           </motion.div>
-
-          {/* Liquid BBL - Separate highlighted card for body treatment */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: EASE_PREMIUM }}
-            className="mt-12"
-          >
-            <div className="relative rounded-md overflow-hidden bg-gradient-to-r from-secondary to-secondary/95 p-8 md:p-12 shadow-soft-lg">
-              <div className="absolute inset-0 opacity-[0.04]" aria-hidden="true">
-                <Image src="/images/spares/skincare-woman-beauty-butt-studio-with-wellness-underwear-fitness-cosmetics-liposuction-bum-cellulite-treatment-female-body-with-isolated-white-background-cosmetology.jpg" alt="" fill className="object-cover" sizes="100vw" />
-              </div>
-              <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12">
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <Sparkles className="w-7 h-7 text-primary" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  {t('bbl_label')}
-                  <h3 className="font-display text-2xl md:text-3xl text-background-light italic mb-3">
-                    {t('zone6_title')}
-                  </h3>
-                  <p className="font-sans font-light text-background-light/70 text-base leading-relaxed max-w-xl">
-                    {t('zone6_desc')}
-                  </p>
-                </div>
-                <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-4 text-[10px] tracking-[0.2em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97] shrink-0">
-                  {t('bbl_cta')}
-                </ConsultTrigger>
-              </div>
-            </div>
-          </motion.div>
         </Container>
       </section>
 
