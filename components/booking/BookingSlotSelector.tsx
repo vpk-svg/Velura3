@@ -19,11 +19,11 @@ export default function BookingSlotSelector({ locale, treatmentName, onSlotSelec
     [selectedSlotId, slots],
   );
 
-  const title = locale === 'nl' ? 'Kies uw zaterdag-slot' : 'Choose your Saturday slot';
+  const title = locale === 'nl' ? 'Kies uw tijdslot' : 'Choose your time slot';
   const helper =
     locale === 'nl'
-      ? 'Beschikbaar op zaterdag van 10:00 tot 18:00, elke 10 minuten. Maximaal 2 boekingen per tijdslot.'
-      : 'Available on Saturdays from 10:00 to 18:00, every 10 minutes. Maximum 2 bookings per slot.';
+      ? 'Beschikbaar op vrijdag (14:00-19:00) en zaterdag (10:00-18:00), elke 10 minuten. Maximaal 2 boekingen per tijdslot.'
+      : 'Available on Fridays (14:00-19:00) and Saturdays (10:00-18:00), every 10 minutes. Maximum 2 bookings per slot.';
 
   return (
     <div className="rounded-md border border-primary/15 bg-background-light p-6">
@@ -44,13 +44,12 @@ export default function BookingSlotSelector({ locale, treatmentName, onSlotSelec
                 }
               }}
               disabled={!slot.isAvailable}
-              className={`rounded-2xl border px-3 py-3 text-left transition-all duration-200 ${
-                slot.isAvailable
+              className={`rounded-2xl border px-3 py-3 text-left transition-all duration-200 ${slot.isAvailable
                   ? isSelected
                     ? 'border-primary bg-primary text-white shadow-gold-glow'
                     : 'border-primary/20 bg-white hover:border-primary/50'
                   : 'border-secondary/10 bg-secondary/5 opacity-50 cursor-not-allowed'
-              }`}
+                }`}
             >
               <div className="font-sans text-xs uppercase tracking-[0.15em] mb-1">{slot.time}</div>
               <div className="font-sans text-xs flex items-center gap-1.5">

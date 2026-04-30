@@ -40,7 +40,7 @@ export default function ConsultTrigger({ children, className, from }: ConsultTri
       } else if (source === 'bbl') {
         addItem({ id: 'consult:bbl', type: 'shape', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0 });
       } else {
-        addItem({ id: 'consult:general', type: 'botox', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0 });
+        addItem({ id: 'consult:general', type: 'consult', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0 });
       }
     }
 

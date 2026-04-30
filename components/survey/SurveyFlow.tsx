@@ -4,7 +4,7 @@ import { useCallback, useContext, useEffect, useMemo, useState, createContext, t
 import { X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-const SurveyCtx = createContext<{ open: () => void }>({ open: () => {} });
+const SurveyCtx = createContext<{ open: (medName?: string) => void }>({ open: () => { } });
 
 export const useSurvey = () => useContext(SurveyCtx);
 
@@ -27,6 +27,7 @@ type SurveyStep =
   | 'q13_preferences'
   | 'q14_marketing'
   | 'q15_legal'
+  | 'q16_intake'
   | 'loading'
   | 'results';
 
@@ -46,6 +47,7 @@ const STEPS: SurveyStep[] = [
   'q13_preferences',
   'q14_marketing',
   'q15_legal',
+  'q16_intake',
 ];
 
 /* ── Phase grouping for progress display ─────────────────── */
@@ -53,7 +55,7 @@ const PHASE_KEYS = [
   { labelKey: 'phase_goals', steps: ['q1_reasons', 'q2_bio', 'q3_duration'] },
   { labelKey: 'phase_history', steps: ['q4_past_attempts', 'q5_exercise_challenges', 'q6_eating_challenges', 'q7_maintenance'] },
   { labelKey: 'phase_screening', steps: ['q8_critical', 'q9_history', 'q10_current_meds', 'q11_glp1', 'q12_allergies'] },
-  { labelKey: 'phase_preferences', steps: ['q13_preferences', 'q14_marketing', 'q15_legal'] },
+  { labelKey: 'phase_preferences', steps: ['q13_preferences', 'q14_marketing', 'q15_legal', 'q16_intake'] },
 ] as const;
 
 function getPhaseForStep(step: SurveyStep): { phaseIndex: number; phaseLabelKey: string } {
@@ -178,6 +180,12 @@ interface FormState {
   legalOffLabel: boolean;
   legalTruthfulAnswers: boolean;
   legalGpNotification: boolean;
+  name: string;
+  email: string;
+  dob: string;
+  phone: string;
+  description: string;
+  selectedMed: string;
 }
 
 const initialMedicalHistory: Record<string, YesNo> = HISTORY_KEYS.reduce((acc, key) => {
@@ -207,6 +215,12 @@ const initialForm: FormState = {
   legalOffLabel: false,
   legalTruthfulAnswers: false,
   legalGpNotification: false,
+  name: '',
+  email: '',
+  dob: '',
+  phone: '',
+  description: '',
+  selectedMed: '',
 };
 
 type ErrorMap = Record<string, string>;
@@ -313,6 +327,13 @@ function getStepErrors(step: SurveyStep, form: FormState, t: (key: string) => st
     if (!form.legalGpNotification) errors.legalGpNotification = t('err_required');
   }
 
+  if (step === 'q16_intake') {
+    if (!form.name.trim()) errors.name = 'Verplicht veld';
+    if (!form.email.trim() || !form.email.includes('@')) errors.email = 'Ongeldig e-mailadres';
+    if (!form.dob) errors.dob = 'Verplicht veld';
+    if (!form.phone.trim()) errors.phone = 'Verplicht veld';
+  }
+
   return errors;
 }
 
@@ -330,11 +351,10 @@ function Progress({ currentStep, step, t }: { currentStep: number; step: SurveyS
         {PHASE_KEYS.map((phase, i) => (
           <span
             key={phase.labelKey}
-            className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider transition-colors ${
-              i < phaseIndex ? 'bg-secondary text-white' :
+            className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider transition-colors ${i < phaseIndex ? 'bg-secondary text-white' :
               i === phaseIndex ? 'bg-secondary text-white' :
-              'bg-[#F5F0E8] text-secondary/50'
-            }`}
+                'bg-[#F5F0E8] text-secondary/50'
+              }`}
           >
             {t(phase.labelKey)}
           </span>
@@ -374,7 +394,7 @@ function QuestionSection({
   );
 }
 
-function SurveyOverlay({ onClose }: { onClose: () => void }) {
+function SurveyOverlay({ onClose, initialMed }: { onClose: () => void, initialMed?: string }) {
   const t = useTranslations('survey_flow');
 
   // Restore from localStorage
@@ -385,7 +405,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState<SurveyStep>(
     savedData?.step && STEPS.includes(savedData.step) ? savedData.step : 'q1_reasons'
   );
-  const [form, setForm] = useState<FormState>(savedData?.form ?? initialForm);
+  const [form, setForm] = useState<FormState>(savedData?.form ?? { ...initialForm, selectedMed: initialMed || '' });
   const [errors, setErrors] = useState<ErrorMap>({});
   const [isLoadingResult, setIsLoadingResult] = useState(false);
 
@@ -464,7 +484,13 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
       return;
     }
 
-    if (step === 'q15_legal') {
+    if (step === 'q16_intake') {
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, treatment: form.selectedMed || 'Gewichtsverlies Survey', consent: true })
+      }).catch(() => { });
+
       setStep('loading');
       clearSaved();
       return;
@@ -494,18 +520,18 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           >
             <div className="grid gap-2">
               {REASON_KEYS.map((key) => (
-                  <label key={key} htmlFor={`reason-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 text-secondary hover:bg-[#FAF8F4]">
-                    <input
-                      id={`reason-${key}`}
-                      type="checkbox"
-                      tabIndex={0}
-                      checked={form.reasons.includes(key)}
-                      onChange={() => updateField('reasons', toggleArrayValue(form.reasons, key))}
-                      className="mt-0.5 h-4 w-4 accent-primary"
-                      aria-label={t(key)}
-                    />
-                    {t(key)}
-                  </label>
+                <label key={key} htmlFor={`reason-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 text-secondary hover:bg-[#FAF8F4]">
+                  <input
+                    id={`reason-${key}`}
+                    type="checkbox"
+                    tabIndex={0}
+                    checked={form.reasons.includes(key)}
+                    onChange={() => updateField('reasons', toggleArrayValue(form.reasons, key))}
+                    className="mt-0.5 h-4 w-4 accent-primary"
+                    aria-label={t(key)}
+                  />
+                  {t(key)}
+                </label>
               ))}
             </div>
             <ErrorText message={errors.reasons} />
@@ -600,18 +626,18 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <QuestionSection question={t('q3_title')}>
             <div className="grid gap-2">
               {DURATION_KEYS.map((key) => (
-                  <label key={key} htmlFor={`duration-${key}`} className="flex cursor-pointer items-center gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
-                    <input
-                      id={`duration-${key}`}
-                      name="duration"
-                      type="radio"
-                      tabIndex={0}
-                      checked={form.duration === key}
-                      onChange={() => updateField('duration', key)}
-                      className="h-4 w-4 accent-primary"
-                    />
-                    {t(key)}
-                  </label>
+                <label key={key} htmlFor={`duration-${key}`} className="flex cursor-pointer items-center gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
+                  <input
+                    id={`duration-${key}`}
+                    name="duration"
+                    type="radio"
+                    tabIndex={0}
+                    checked={form.duration === key}
+                    onChange={() => updateField('duration', key)}
+                    className="h-4 w-4 accent-primary"
+                  />
+                  {t(key)}
+                </label>
               ))}
             </div>
             <ErrorText message={errors.duration} />
@@ -623,18 +649,18 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <QuestionSection question={t('q4_title')}>
             <div className="grid gap-2">
               {PAST_ATTEMPT_KEYS.map((key) => (
-                  <label key={key} htmlFor={`past-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
-                    <input
-                      id={`past-${key}`}
-                      type="checkbox"
-                      tabIndex={0}
-                      checked={form.pastAttempts.includes(key)}
-                      onChange={() => updateField('pastAttempts', toggleArrayValue(form.pastAttempts, key))}
-                      className="mt-0.5 h-4 w-4 accent-primary"
-                      aria-label={t(key)}
-                    />
-                    {t(key)}
-                  </label>
+                <label key={key} htmlFor={`past-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
+                  <input
+                    id={`past-${key}`}
+                    type="checkbox"
+                    tabIndex={0}
+                    checked={form.pastAttempts.includes(key)}
+                    onChange={() => updateField('pastAttempts', toggleArrayValue(form.pastAttempts, key))}
+                    className="mt-0.5 h-4 w-4 accent-primary"
+                    aria-label={t(key)}
+                  />
+                  {t(key)}
+                </label>
               ))}
             </div>
             <ErrorText message={errors.pastAttempts} />
@@ -646,18 +672,18 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <QuestionSection question={t('q5_title')}>
             <div className="grid gap-2">
               {EXERCISE_CHALLENGE_KEYS.map((key) => (
-                  <label key={key} htmlFor={`exercise-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
-                    <input
-                      id={`exercise-${key}`}
-                      type="checkbox"
-                      tabIndex={0}
-                      checked={form.exerciseChallenges.includes(key)}
-                      onChange={() => updateField('exerciseChallenges', toggleArrayValue(form.exerciseChallenges, key))}
-                      className="mt-0.5 h-4 w-4 accent-primary"
-                      aria-label={t(key)}
-                    />
-                    {t(key)}
-                  </label>
+                <label key={key} htmlFor={`exercise-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
+                  <input
+                    id={`exercise-${key}`}
+                    type="checkbox"
+                    tabIndex={0}
+                    checked={form.exerciseChallenges.includes(key)}
+                    onChange={() => updateField('exerciseChallenges', toggleArrayValue(form.exerciseChallenges, key))}
+                    className="mt-0.5 h-4 w-4 accent-primary"
+                    aria-label={t(key)}
+                  />
+                  {t(key)}
+                </label>
               ))}
             </div>
             <ErrorText message={errors.exerciseChallenges} />
@@ -669,18 +695,18 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <QuestionSection question={t('q6_title')}>
             <div className="grid gap-2">
               {EATING_CHALLENGE_KEYS.map((key) => (
-                  <label key={key} htmlFor={`eating-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
-                    <input
-                      id={`eating-${key}`}
-                      type="checkbox"
-                      tabIndex={0}
-                      checked={form.eatingChallenges.includes(key)}
-                      onChange={() => updateField('eatingChallenges', toggleArrayValue(form.eatingChallenges, key))}
-                      className="mt-0.5 h-4 w-4 accent-primary"
-                      aria-label={t(key)}
-                    />
-                    {t(key)}
-                  </label>
+                <label key={key} htmlFor={`eating-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
+                  <input
+                    id={`eating-${key}`}
+                    type="checkbox"
+                    tabIndex={0}
+                    checked={form.eatingChallenges.includes(key)}
+                    onChange={() => updateField('eatingChallenges', toggleArrayValue(form.eatingChallenges, key))}
+                    className="mt-0.5 h-4 w-4 accent-primary"
+                    aria-label={t(key)}
+                  />
+                  {t(key)}
+                </label>
               ))}
             </div>
             <ErrorText message={errors.eatingChallenges} />
@@ -692,18 +718,18 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <QuestionSection question={t('q7_title')}>
             <div className="grid gap-2">
               {MAINTENANCE_KEYS.map((key) => (
-                  <label key={key} htmlFor={`maintenance-${key}`} className="flex cursor-pointer items-center gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
-                    <input
-                      id={`maintenance-${key}`}
-                      name="maintenance"
-                      type="radio"
-                      tabIndex={0}
-                      checked={form.maintenanceChallenge === key}
-                      onChange={() => updateField('maintenanceChallenge', key)}
-                      className="h-4 w-4 accent-primary"
-                    />
-                    {t(key)}
-                  </label>
+                <label key={key} htmlFor={`maintenance-${key}`} className="flex cursor-pointer items-center gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
+                  <input
+                    id={`maintenance-${key}`}
+                    name="maintenance"
+                    type="radio"
+                    tabIndex={0}
+                    checked={form.maintenanceChallenge === key}
+                    onChange={() => updateField('maintenanceChallenge', key)}
+                    className="h-4 w-4 accent-primary"
+                  />
+                  {t(key)}
+                </label>
               ))}
             </div>
             <ErrorText message={errors.maintenanceChallenge} />
@@ -897,18 +923,18 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           <QuestionSection question={t('q13_title')}>
             <div className="grid gap-2">
               {PREFERENCE_KEYS.map((key) => (
-                  <label key={key} htmlFor={`pref-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
-                    <input
-                      id={`pref-${key}`}
-                      type="checkbox"
-                      tabIndex={0}
-                      checked={form.preferences.includes(key)}
-                      onChange={() => updateField('preferences', toggleArrayValue(form.preferences, key))}
-                      className="mt-0.5 h-4 w-4 accent-primary"
-                      aria-label={t(key)}
-                    />
-                    {t(key)}
-                  </label>
+                <label key={key} htmlFor={`pref-${key}`} className="flex cursor-pointer items-start gap-3 rounded-md border border-primary/20 p-3 hover:bg-[#FAF8F4]">
+                  <input
+                    id={`pref-${key}`}
+                    type="checkbox"
+                    tabIndex={0}
+                    checked={form.preferences.includes(key)}
+                    onChange={() => updateField('preferences', toggleArrayValue(form.preferences, key))}
+                    className="mt-0.5 h-4 w-4 accent-primary"
+                    aria-label={t(key)}
+                  />
+                  {t(key)}
+                </label>
               ))}
             </div>
             <ErrorText message={errors.preferences} />
@@ -996,6 +1022,44 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
           </QuestionSection>
         );
 
+      case 'q16_intake':
+        return (
+          <QuestionSection question="Persoonlijke Gegevens" hint="Vul uw gegevens in zodat onze artsen contact met u kunnen opnemen.">
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-semibold mb-1">Behandeling / Medicatie</label>
+                <input type="text" value={form.selectedMed} readOnly className="w-full rounded-md border border-primary/20 bg-secondary/5 px-3 py-2 text-secondary outline-none" placeholder="Weet ik nog niet" />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold mb-1">Naam *</label>
+                <input type="text" value={form.name} onChange={(e) => updateField('name', e.target.value)} className="w-full rounded-md border border-primary/20 px-3 py-2 text-secondary outline-none focus:border-primary" />
+                <ErrorText message={errors.name} />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold mb-1">E-mail *</label>
+                <input type="email" value={form.email} onChange={(e) => updateField('email', e.target.value)} className="w-full rounded-md border border-primary/20 px-3 py-2 text-secondary outline-none focus:border-primary" />
+                <ErrorText message={errors.email} />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold mb-1">Geboortedatum *</label>
+                  <input type="date" value={form.dob} onChange={(e) => updateField('dob', e.target.value)} className="w-full rounded-md border border-primary/20 px-3 py-2 text-secondary outline-none focus:border-primary" />
+                  <ErrorText message={errors.dob} />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-1">Telefoon *</label>
+                  <input type="tel" value={form.phone} onChange={(e) => updateField('phone', e.target.value)} className="w-full rounded-md border border-primary/20 px-3 py-2 text-secondary outline-none focus:border-primary" />
+                  <ErrorText message={errors.phone} />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold mb-1">Omschrijving (optioneel)</label>
+                <textarea rows={3} value={form.description} onChange={(e) => updateField('description', e.target.value)} className="w-full rounded-md border border-primary/20 px-3 py-2 text-secondary outline-none focus:border-primary" />
+              </div>
+            </div>
+          </QuestionSection>
+        );
+
       case 'loading':
         return (
           <div className="rounded-lg border border-primary/20 bg-white p-8 text-center" aria-live="polite">
@@ -1036,18 +1100,16 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
             ) : (
               /* ── Qualified results ────────── */
               <>
-                <h2 className="mb-2 text-xl font-bold text-secondary">{t('results_title')}</h2>
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 ring-1 ring-primary/30">
+                  <span className="text-2xl text-primary font-bold">✓</span>
+                </div>
+                <h2 className="mb-2 text-xl font-bold text-secondary">Verzoek Ontvangen</h2>
                 <p className="mb-4 text-sm text-secondary/80">
-                  {t('results_eligible_desc')}
+                  Dank u wel. Onze artsen zullen uw intake beoordelen en binnen 48 uur contact met u opnemen met de uitslag.
                 </p>
                 <div className="mb-4 rounded-md border border-primary/20 bg-[#FAF8F4] p-3">
                   <p className="text-sm font-semibold text-secondary">{t('results_bmi')}</p>
                   <p className="text-2xl font-bold text-secondary">{bmi ?? t('results_na')}</p>
-                </div>
-                <div className="space-y-1 text-sm text-secondary/90">
-                  <p>{t('results_critical')}<strong>{t('no')}</strong></p>
-                  <p>{t('results_meds')}<strong>{form.usesCurrentMeds === 'yes' ? t('yes') : t('no')}</strong></p>
-                  <p>{t('results_glp1')}<strong>{form.usesOtherGlp1 === 'yes' ? t('yes') : t('no')}</strong></p>
                 </div>
               </>
             )}
@@ -1110,7 +1172,7 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
               className="rounded-md bg-secondary px-4 py-2 text-sm font-semibold text-white hover:bg-secondary/90 disabled:cursor-not-allowed disabled:bg-primary/50"
               tabIndex={0}
             >
-              {step === 'q15_legal' ? t('submit') : t('next')}
+              {step === 'q16_intake' ? (t('submit') || 'Verstuur') : t('next')}
             </button>
           )}
 
@@ -1132,14 +1194,18 @@ function SurveyOverlay({ onClose }: { onClose: () => void }) {
 
 export function SurveyProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [med, setMed] = useState<string>('');
 
-  const open = useCallback(() => setIsOpen(true), []);
+  const open = useCallback((m?: string) => {
+    if (m) setMed(m);
+    setIsOpen(true);
+  }, []);
   const close = useCallback(() => setIsOpen(false), []);
 
   return (
     <SurveyCtx.Provider value={{ open }}>
       {children}
-      {isOpen && <SurveyOverlay onClose={close} />}
+      {isOpen && <SurveyOverlay onClose={close} initialMed={med} />}
     </SurveyCtx.Provider>
   );
 }
@@ -1148,7 +1214,7 @@ export function SurveyTrigger({ children, className }: { children: ReactNode; cl
   const { open } = useSurvey();
 
   return (
-    <button type="button" onClick={open} className={className} tabIndex={0}>
+    <button type="button" onClick={() => open()} className={className} tabIndex={0}>
       {children}
     </button>
   );

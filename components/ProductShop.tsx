@@ -4,16 +4,15 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import Container from './ui/Container';
-import { ShieldCheck, Info, Thermometer, ChevronDown, ArrowRight, HelpCircle, Plus, Check } from 'lucide-react';
+import { ShieldCheck, Info, Thermometer, ChevronDown, ArrowRight, HelpCircle } from 'lucide-react';
 import { EASE_PREMIUM } from '@/lib/motion';
-import { useCart } from '@/lib/cart-context';
+import { useSurvey } from '@/components/survey/SurveyFlow';
 
 export default function ProductShop() {
   const t = useTranslations('shop');
   const tMed = useTranslations('medicatie_page');
-  const cart = useCart();
+  const { open } = useSurvey();
   const [expandedProduct, setExpandedProduct] = useState<string | null>(null);
   const products = [
     {
@@ -226,47 +225,15 @@ export default function ProductShop() {
                     </AnimatePresence>
                   </div>
 
-                  {/* Price */}
-                  <div className="flex items-end gap-2.5 mb-2">
-                    <span className="font-display text-4xl text-secondary leading-none">{product.price}</span>
-                    {t('per_month')}
-                  </div>
-                  <p className="font-sans text-[11px] text-secondary/40 mb-8">{t('price_includes')}</p>
-
-                  {/* CTA - route to consult, NOT direct checkout for Rx meds */}
-                  <ConsultTrigger
-                    from="medicatie"
-                    className="w-full py-5 rounded-full font-sans text-[11px] tracking-[0.2em] uppercase transition-all duration-500 flex items-center justify-center gap-2 overflow-hidden font-semibold bg-primary text-white shadow-xl hover:shadow-primary/40 hover:-translate-y-1 active:scale-95 text-center"
-                  >
-                    {t('cta')} <ArrowRight size={14} />
-                  </ConsultTrigger>
-
-                  {/* Add to cart */}
+                  {/* Replaced pricing and generic CTA with direct survey trigger */}
                   <button
                     type="button"
                     onClick={() => {
-                      if (!cart.hasItem(product.id)) {
-                        cart.addItem({
-                          id: product.id,
-                          type: 'medicatie',
-                          nameKey: `${product.id}_name`,
-                          namespace: 'shop',
-                          priceCents: product.priceCents,
-                        });
-                      } else {
-                        cart.removeItem(product.id);
-                      }
+                      open(product.name);
                     }}
-                    className={`w-full mt-3 py-3 rounded-full font-sans text-[11px] tracking-[0.15em] uppercase transition-all duration-300 flex items-center justify-center gap-2 font-semibold border cursor-pointer ${cart.hasItem(product.id)
-                      ? 'border-primary bg-primary/10 text-primary'
-                      : 'border-secondary/15 text-secondary/60 hover:border-primary hover:text-primary'
-                      }`}
+                    className="w-full py-4 mt-auto rounded-pill font-sans text-[11px] tracking-[0.2em] uppercase transition-all duration-500 bg-primary text-white font-semibold hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/40"
                   >
-                    {cart.hasItem(product.id) ? (
-                      <><Check size={14} /> {tMed.has('added_to_cart') ? tMed('added_to_cart') : 'Toegevoegd'}</>
-                    ) : (
-                      <><Plus size={14} /> {tMed.has('add_to_cart') ? tMed('add_to_cart') : 'Toevoegen aan selectie'}</>
-                    )}
+                    Start Intake & Bekijk Prijs <ArrowRight size={14} className="inline ml-1" />
                   </button>
                 </div>
               </motion.article>
@@ -287,12 +254,13 @@ export default function ProductShop() {
             <p className="font-display text-lg text-secondary font-bold italic mb-1">{t('help_choose')}</p>
             <p className="font-sans text-sm text-secondary/60">{t('help_choose_desc')}</p>
           </div>
-          <ConsultTrigger
-            from="medicatie"
+          <button
+            type="button"
+            onClick={() => open()}
             className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-8 py-4 font-sans text-[11px] tracking-[0.2em] uppercase font-semibold shadow-xl hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-500 whitespace-nowrap"
           >
             {t('help_choose_cta')} <ArrowRight size={14} />
-          </ConsultTrigger>
+          </button>
         </motion.div>
       </Container>
     </section>

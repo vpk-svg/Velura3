@@ -35,7 +35,6 @@ import {
 const TEAM_MEMBERS = [
   { nameKey: 'member2_name', roleKey: 'member2_role', bigKey: 'member2_big', img: '/images/Newteam/Ava.jpg' },
   { nameKey: 'member3_name', roleKey: 'member3_role', bigKey: 'member3_big', img: '/images/Newteam/Elissa.jpg' },
-  { nameKey: 'member4_name', roleKey: 'member4_role', bigKey: 'member4_big', img: '/images/Newteam/Mevlut.jpg' },
 ] as const;
 
 const INPUT_CLASSES =

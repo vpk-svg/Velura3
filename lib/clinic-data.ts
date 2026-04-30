@@ -722,36 +722,49 @@ function deterministicBookedCount(seed: string): 0 | 1 | 2 {
 }
 
 export function generateSaturdaySlots(seedDate?: string): BookingSlot[] {
-  const startDate = getSaturdayOnOrAfter(parseSeedDate(seedDate));
-  const dayLabel = toIsoDate(startDate);
+  const parsed = parseSeedDate(seedDate);
+
+  const friday = new Date(parsed);
+  friday.setDate(friday.getDate() + ((5 - friday.getDay() + 7) % 7));
+  friday.setHours(0, 0, 0, 0);
+
+  const saturday = new Date(parsed);
+  saturday.setDate(saturday.getDate() + ((6 - saturday.getDay() + 7) % 7));
+  saturday.setHours(0, 0, 0, 0);
 
   const slots: BookingSlot[] = [];
-  const startHour = 10;
-  const endHour = 17;
 
-  for (let hour = startHour; hour <= endHour; hour += 1) {
-    for (let minute = 0; minute < 60; minute += 10) {
-      if (hour === endHour && minute > 50) break;
+  const addSlotsForDay = (dateObj: Date, sHour: number, eHour: number, labelPrefix: string) => {
+    const dayLabel = toIsoDate(dateObj);
+    for (let hour = sHour; hour <= eHour; hour += 1) {
+      for (let minute = 0; minute < 60; minute += 10) {
+        // for eHour, we stop at 50 to complete the hour block correctly depending on the required end time.
+        // If eHour is 18 (e.g. 19:00 end), we stop at 18:50
+        if (hour === eHour && minute > 50) break;
 
-      const time = `${`${hour}`.padStart(2, '0')}:${`${minute}`.padStart(2, '0')}`;
-      const slotDate = new Date(startDate);
-      slotDate.setHours(hour, minute, 0, 0);
+        const time = `${`${hour}`.padStart(2, '0')}:${`${minute}`.padStart(2, '0')}`;
+        const slotDate = new Date(dateObj);
+        slotDate.setHours(hour, minute, 0, 0);
 
-      const booked = deterministicBookedCount(`${dayLabel}-${time}`);
-      const remaining = 2 - booked;
+        const booked = deterministicBookedCount(`${dayLabel}-${time}`);
+        const remaining = 2 - booked;
 
-      slots.push({
-        id: `slot-${dayLabel}-${time}`,
-        date: dayLabel,
-        time,
-        startIso: slotDate.toISOString(),
-        capacity: 2,
-        booked,
-        remaining,
-        isAvailable: remaining > 0,
-      });
+        slots.push({
+          id: `slot-${dayLabel}-${time}`,
+          date: `${labelPrefix} ${dayLabel}`,
+          time,
+          startIso: slotDate.toISOString(),
+          capacity: 2,
+          booked,
+          remaining,
+          isAvailable: remaining > 0,
+        });
+      }
     }
-  }
+  };
+
+  addSlotsForDay(friday, 14, 18, 'Vr');
+  addSlotsForDay(saturday, 10, 17, 'Za');
 
   return slots;
 }

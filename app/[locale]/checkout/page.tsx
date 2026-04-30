@@ -22,8 +22,8 @@ function ItemName({ item }: { item: CartItem }) {
 
 /** Human-friendly labels per category */
 const TYPE_LABELS: Record<string, Record<string, string>> = {
-    nl: { botox: 'Botox', fillers: 'Fillers', shape: 'Body Contouring (BBL)', medicatie: 'Medicatie' },
-    en: { botox: 'Botox', fillers: 'Fillers', shape: 'Body Contouring (BBL)', medicatie: 'Medication' },
+    nl: { botox: 'Botox', fillers: 'Fillers', shape: 'Body Contouring (BBL)', medicatie: 'Medicatie', consult: 'Consult' },
+    en: { botox: 'Botox', fillers: 'Fillers', shape: 'Body Contouring (BBL)', medicatie: 'Medication', consult: 'Consult' },
 };
 
 export default function CheckoutPage() {

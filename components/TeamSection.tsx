@@ -34,13 +34,7 @@ export default function TeamSection() {
             bio: t('member3_bio'),
             img: "/images/Newteam/Elissa.jpg",
         },
-        {
-            name: t('member4_name'),
-            role: t('member4_role'),
-            big: t('member4_big'),
-            bio: t('member4_bio'),
-            img: "/images/Newteam/Mevlut.jpg",
-        },
+
         {
             name: t('member5_name'),
             role: t('member5_role'),
