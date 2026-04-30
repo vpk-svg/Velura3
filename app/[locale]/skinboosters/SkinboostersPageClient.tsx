@@ -78,69 +78,234 @@ export default function SkinboostersPageClient() {
 
     return (
         <main>
-            {/* =============================================
-          HERO
-          ============================================= */}
-            <section className="relative w-full min-h-[85vh] flex items-center overflow-hidden bg-secondary">
-                <div className="absolute inset-0 z-0">
+            {/* ═══════════════════════════════════════════════
+          HERO — light, airy, marble & bottles
+        ═══════════════════════════════════════════════ */}
+            <section className="relative w-full min-h-[92vh] flex items-center overflow-hidden bg-[#FAF8F4]">
+                {/* Right-side image panel */}
+                <div className="absolute inset-y-0 right-0 w-full lg:w-[52%] z-0">
                     <Image
-                        src="/images/spares/high-angle-woman-getting-lip-fillers.jpg"
-                        alt=""
+                        src="/images/skinbooster-hero.png"
+                        alt="Skinbooster — luxe glazen flacons op marmer"
                         fill
                         priority
-                        className="object-cover opacity-12"
-                        sizes="100vw"
-                        aria-hidden="true"
+                        className="object-cover object-center"
+                        sizes="(max-width: 1024px) 100vw, 52vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/95 to-secondary/75" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/[0.03] to-transparent" aria-hidden="true" />
+                    {/* Left-side fade so text stays readable */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#FAF8F4] via-[#FAF8F4]/60 to-transparent" />
                 </div>
+
                 <Container>
-                    <div className="relative z-10 max-w-3xl py-40">
+                    <div className="relative z-10 max-w-xl py-44 lg:py-52">
                         <motion.span
-                            initial={{ opacity: 0, y: 16 }}
+                            initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-                            className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-6 block font-semibold"
+                            className="block font-sans text-[#c2a36d] text-[10px] tracking-[0.35em] uppercase font-semibold mb-5"
                         >
-                            {t('hero_label')}
+                            Medische Esthetiek
                         </motion.span>
+
                         <motion.h1
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 22 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
-                            className="font-display text-display-xl text-background-light mb-6"
+                            transition={{ duration: 0.9, delay: 0.06, ease: EASE_PREMIUM }}
+                            className="font-display text-[clamp(2.8rem,6vw,5rem)] leading-[1.08] text-[#1a1a1a] mb-7"
                         >
-                            {t('hero_title')} {t('hero_title_accent')}
+                            Onze<br />
+                            <em className="text-[#c2a36d]">Skinbooster</em>
                         </motion.h1>
+
                         <motion.p
-                            initial={{ opacity: 0, y: 16 }}
+                            initial={{ opacity: 0, y: 14 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-                            className="font-sans font-light text-background-light/70 text-lg md:text-xl leading-relaxed max-w-2xl mb-12"
+                            transition={{ duration: 0.7, delay: 0.12, ease: EASE_PREMIUM }}
+                            className="font-sans font-light text-[#1a1a1a]/65 text-base md:text-lg leading-relaxed mb-10 max-w-md"
                         >
-                            {t('hero_desc')}
+                            Herstel de natuurlijke glans en elasticiteit van uw huid met onze geavanceerde hydratatie-technieken. Deze intensieve behandeling werkt diep in de huidlagen om vocht terug te herstellen, rimpels te verfijnen en de huid een directe lift te geven — voor een stralende, natuurlijke schoonheid van binnenuit.
                         </motion.p>
+
                         <motion.div
-                            initial={{ opacity: 0, y: 16 }}
+                            initial={{ opacity: 0, y: 14 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
-                            className="flex flex-wrap items-center gap-4"
+                            transition={{ duration: 0.6, delay: 0.18, ease: EASE_PREMIUM }}
                         >
-                            <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
-                                {t('hero_cta')}
+                            <ConsultTrigger className="inline-flex items-center justify-center rounded-full font-sans uppercase font-semibold px-10 py-4 text-[10px] tracking-[0.3em] bg-[#c2a36d] text-white hover:bg-[#a8894d] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                                Maak een afspraak
                             </ConsultTrigger>
-                            <a
-                                href="#zones"
-                                className="inline-flex items-center gap-2 rounded-pill font-sans uppercase font-bold px-8 py-5 text-xs tracking-[0.25em] border border-background-light/20 text-background-light/80 hover:border-primary hover:text-primary transition-all duration-300"
-                            >
-                                {t('hero_cta_book')}
-                                <ArrowDown className="w-3.5 h-3.5" strokeWidth={2} />
-                            </a>
                         </motion.div>
                     </div>
                 </Container>
             </section>
+
+            {/* ═══════════════════════════════════════════════
+          TAILORMADE CONCEPT — two-column, white bg
+        ═══════════════════════════════════════════════ */}
+            <section className="py-28 bg-white overflow-hidden">
+                <Container>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                        {/* Left: text */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+                        >
+                            <span className="block font-sans text-[#c2a36d] text-[10px] tracking-[0.35em] uppercase font-semibold mb-5">
+                                Maatwerk
+                            </span>
+                            <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] leading-[1.12] text-[#1a1a1a] mb-7">
+                                Tailormade Concept
+                            </h2>
+                            <p className="font-sans font-light text-[#1a1a1a]/65 text-[15px] leading-relaxed mb-8">
+                                Bij FAB Clinic geloven we dat elke huid een uniek ecosysteem met eigen behoeften en uitdagingen heeft. Daarom leveren we een persoonlijke aanpak en kiezen wij voor harmonieuze en natuurlijk esthetisch resultaat. Door onze jarenlange expertise te combineren met een grondige analyse, stellen wij een behandelingsplan dat perfect aansluit bij uw specifieke wensen.
+                            </p>
+                            <blockquote className="border-l-2 border-[#c2a36d] pl-6">
+                                <p className="font-display text-lg italic text-[#1a1a1a]/75 leading-relaxed">
+                                    &ldquo;Bij FAB alles op maat.&rdquo;
+                                </p>
+                            </blockquote>
+                        </motion.div>
+
+                        {/* Right: tool image */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+                            className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-2xl"
+                        >
+                            <Image
+                                src="/images/skinbooster-tool.png"
+                                alt="Medisch precisie-apparaat voor skinbooster behandeling"
+                                fill
+                                loading="lazy"
+                                className="object-cover"
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                            />
+                        </motion.div>
+                    </div>
+                </Container>
+            </section>
+
+            {/* ═══════════════════════════════════════════════
+          INNOVATION SPOTLIGHT — dark charcoal bg
+        ═══════════════════════════════════════════════ */}
+            <section className="py-28 bg-[#1a1a1a] overflow-hidden">
+                <Container>
+                    {/* Section label */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, ease: EASE_PREMIUM }}
+                        className="text-center mb-16"
+                    >
+                        <span className="font-sans text-[#c2a36d] text-[10px] tracking-[0.45em] uppercase font-semibold">
+                            Innovation Spotlight
+                        </span>
+                        <h2 className="font-display text-[clamp(1.8rem,4vw,3rem)] text-white mt-4 leading-[1.1]">
+                            Focus op Polynucleotides
+                        </h2>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+                        {/* Left: grey box */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+                            className="bg-white/[0.06] rounded-lg p-10 border border-white/10"
+                        >
+                            <h3 className="font-display text-2xl italic text-white mb-5">
+                                Wat zijn het?
+                            </h3>
+                            <p className="font-sans font-light text-white/60 text-[15px] leading-relaxed mb-6">
+                                Polynucleotides zijn stukken enzymbehandeld DNA verkrijgbaar uit de natuurlijke RNA-fragmenten van DNA-werken dat op uw huid ingebracht wordt. Het blijkt bruikbaar te zijn elimineren, als herstelbod, niet alleen de aanmaak van collageen en elastaan, maar ook om een hele velerlei natuurlijke groeifactoren te stimuleren, wat leidt tot een stralend, fris resultaat dat uw huid verjongt met een scala aan uitstekende bio-regenererende eigenschappen.
+                            </p>
+                            <a
+                                href="#zones"
+                                className="inline-flex items-center font-sans text-[10px] tracking-[0.3em] uppercase text-[#c2a36d] font-semibold hover:text-white transition-colors duration-200 group"
+                            >
+                                Lees meer over de wetenschap
+                                <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
+                            </a>
+                        </motion.div>
+
+                        {/* Right: portrait with overlay text */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+                            className="relative aspect-[3/4] rounded-lg overflow-hidden shadow-2xl"
+                        >
+                            <Image
+                                src="/images/skinbooster-portrait.png"
+                                alt="Resultaat skinbooster — portret met stralende huid"
+                                fill
+                                loading="lazy"
+                                className="object-cover"
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                            />
+                            {/* Overlay text box */}
+                            <div className="absolute bottom-6 left-6 right-6 bg-[#1a1a1a]/80 backdrop-blur-sm rounded-md p-5 border border-white/10">
+                                <p className="font-sans text-white/90 text-sm leading-relaxed">
+                                    <strong className="text-[#c2a36d] block font-semibold text-[10px] tracking-[0.25em] uppercase mb-1">De standaard lupger</strong>
+                                    Polynucleotiden verklaart: Polynucleotiden voor élke ingrijpende verbetering van de huidtextuur met de lichte Line: liftend en (vet). Het is de basis oplossing voor wratp die u van meer t Prot die u als duidelijk verlening van uw slaapkamer, met echte huid als natuurlijk, voor stralende gloed gebiedt voor hanteertuner.
+                                </p>
+                            </div>
+                        </motion.div>
+                    </div>
+                </Container>
+            </section>
+
+            {/* ═══════════════════════════════════════════════
+          FINAL CTA — white, centered
+        ═══════════════════════════════════════════════ */}
+            <section className="py-28 bg-white overflow-hidden">
+                <Container>
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+                        className="text-center max-w-2xl mx-auto"
+                    >
+                        <span className="block font-sans text-[#c2a36d] text-[10px] tracking-[0.35em] uppercase font-semibold mb-5">
+                            Uw behandeling
+                        </span>
+                        <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] leading-[1.12] text-[#1a1a1a] mb-7">
+                            Klaar voor een stralende huid?
+                        </h2>
+                        <p className="font-sans font-light text-[#1a1a1a]/60 text-base leading-relaxed mb-10">
+                            Boek een gratis consult en ontdek welke skinbooster bij u past. Onze artsen stellen een behandelplan op maat voor u samen.
+                        </p>
+                        <ConsultTrigger className="inline-flex items-center justify-center rounded-full font-sans uppercase font-semibold px-10 py-4 text-[10px] tracking-[0.3em] bg-[#c2a36d] text-white hover:bg-[#a8894d] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                            Boek uw consult
+                        </ConsultTrigger>
+                    </motion.div>
+                </Container>
+            </section>
+
+            {/* ─── thin charcoal footer strip ─── */}
+            <footer className="bg-[#1a1a1a] py-8 border-t border-white/5">
+                <Container>
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <span className="font-display text-white/80 text-lg italic tracking-wide">FAB CLINIC</span>
+                        <nav className="flex items-center gap-6">
+                            <a href="/nl/privacy" className="font-sans text-white/35 text-[11px] tracking-widest uppercase hover:text-[#c2a36d] transition-colors">Privacy</a>
+                            <a href="/nl/contact" className="font-sans text-white/35 text-[11px] tracking-widest uppercase hover:text-[#c2a36d] transition-colors">Contact</a>
+                        </nav>
+                    </div>
+                </Container>
+            </footer>
+
+            {/* ─────────────────────────────────────────────────
+          ALL EXISTING CONTENT BELOW (pushed down)
+        ───────────────────────────────────────────────── */}
 
             {/* =============================================
           TREATMENT MAP - Clickable cards with popup
