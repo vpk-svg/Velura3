@@ -41,6 +41,7 @@ export default function FillersPage() {
   const [selectedZones, setSelectedZones] = useState<string[]>([]);
   const [step, setStep] = useState<'select' | 'date' | 'details' | 'done'>('select');
   const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
+  const handleSlotSelect = (slot: import('@/lib/clinic-data').BookingSlot | null) => setSelectedSlotId(slot?.id ?? null);
   const [isLoading, setIsLoading] = useState(false);
 
   /* Sync local selections to global cart */
@@ -335,7 +336,7 @@ export default function FillersPage() {
                     const z = FILLERS_ZONES.find((fz) => fz.id === id);
                     return z ? t(z.nameKey) : id;
                   }).join(', ')}
-                  onSlotSelect={setSelectedSlotId}
+                  onSlotSelect={handleSlotSelect}
                 />
                 <motion.button
                   initial={{ opacity: 0, y: 8 }}

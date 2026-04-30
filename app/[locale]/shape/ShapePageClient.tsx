@@ -56,6 +56,7 @@ export default function ShapePage() {
   const [selectedVariants, setSelectedVariants] = useState<string[]>([]);
   const [step, setStep] = useState<'select' | 'date' | 'details' | 'done'>('select');
   const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
+  const handleSlotSelect = (slot: import('@/lib/clinic-data').BookingSlot | null) => setSelectedSlotId(slot?.id ?? null);
   const [isLoading, setIsLoading] = useState(false);
 
   const shapeFaqs: FaqItem[] = FAQ_ITEMS.filter((item) => item.category === 'shape');
@@ -373,7 +374,7 @@ export default function ShapePage() {
                     const v = SHAPE_VARIANTS_FLAT.find((sv) => sv.id === id);
                     return v ? t(v.nameKey) : id;
                   }).join(', ')}
-                  onSlotSelect={setSelectedSlotId}
+                  onSlotSelect={handleSlotSelect}
                 />
                 <motion.button
                   initial={{ opacity: 0, y: 8 }}

@@ -42,6 +42,7 @@ export default function CheckoutPage() {
         notes: '',
     });
     const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+    const handleSlotSelect = (slot: import('@/lib/clinic-data').BookingSlot | null) => setSelectedSlot(slot?.id ?? null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => setMounted(true), []);
@@ -399,7 +400,7 @@ export default function CheckoutPage() {
                                     <BookingSlotSelector
                                         locale={locale}
                                         treatmentName={treatmentDisplayNames}
-                                        onSlotSelect={setSelectedSlot}
+                                        onSlotSelect={handleSlotSelect}
                                     />
                                 </motion.div>
                             </div>

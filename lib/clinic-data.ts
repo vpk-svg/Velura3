@@ -738,8 +738,6 @@ export function generateSaturdaySlots(seedDate?: string): BookingSlot[] {
     const dayLabel = toIsoDate(dateObj);
     for (let hour = sHour; hour <= eHour; hour += 1) {
       for (let minute = 0; minute < 60; minute += 10) {
-        // for eHour, we stop at 50 to complete the hour block correctly depending on the required end time.
-        // If eHour is 18 (e.g. 19:00 end), we stop at 18:50
         if (hour === eHour && minute > 50) break;
 
         const time = `${`${hour}`.padStart(2, '0')}:${`${minute}`.padStart(2, '0')}`;
@@ -768,6 +766,101 @@ export function generateSaturdaySlots(seedDate?: string): BookingSlot[] {
 
   return slots;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   NEW: Generate available days (Fri + Sat) for 8 weeks
+   starting from Saturday 31 May 2026 (first open day).
+   Returns an array of AvailableDay objects with slots.
+───────────────────────────────────────────────────────────── */
+export interface AvailableDay {
+  dateIso: string;          // e.g. "2026-05-30"
+  dayName: string;          // "Vrijdag" | "Zaterdag"
+  dayNameEn: string;        // "Friday" | "Saturday"
+  displayDate: string;      // e.g. "za 30 mei"
+  dayOfWeek: 5 | 6;         // 5=Friday, 6=Saturday
+  slots: BookingSlot[];
+}
+
+export function generateAvailableDays(weeksAhead = 8): AvailableDay[] {
+  // Hard start: Saturday 30 May 2026
+  const START = new Date('2026-05-30T00:00:00');
+
+  const NL_MONTHS = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+  const days: AvailableDay[] = [];
+
+  // From the start date, walk week-by-week collecting Fri + Sat pairs
+  // Start date is a Saturday, so first Friday is the following week (6 Jun)
+  // But Saturday 30 May is available, so we push it first then cycle Fri→Sat.
+  const cursor = new Date(START);
+
+  for (let week = 0; week < weeksAhead; week++) {
+    // For week 0: only Saturday (30 May). For week 1+: Friday first, then Saturday
+    if (week === 0) {
+      // Saturday 30 May
+      const saturday = new Date(cursor); // cursor is Sat 30 May
+      days.push(buildDay(saturday, 6, NL_MONTHS));
+      // Advance cursor to next Friday
+      cursor.setDate(cursor.getDate() + 6); // Sat → next Fri (+6)
+    } else {
+      // Friday
+      const friday = new Date(cursor);
+      days.push(buildDay(friday, 5, NL_MONTHS));
+      // Saturday (+1)
+      const saturday = new Date(cursor);
+      saturday.setDate(saturday.getDate() + 1);
+      days.push(buildDay(saturday, 6, NL_MONTHS));
+      // Advance cursor to next Friday (+7)
+      cursor.setDate(cursor.getDate() + 7);
+    }
+  }
+
+  return days;
+}
+
+function buildDay(dateObj: Date, dayOfWeek: 5 | 6, nlMonths: string[]): AvailableDay {
+  const isFriday = dayOfWeek === 5;
+  const dateIso = toIsoDate(dateObj);
+  const d = dateObj.getDate();
+  const m = nlMonths[dateObj.getMonth()];
+  const prefix = isFriday ? 'vr' : 'za';
+  const displayDate = `${prefix} ${d} ${m}`;
+
+  const slots: BookingSlot[] = [];
+  const sHour = isFriday ? 14 : 10;
+  const eHour = isFriday ? 18 : 17;
+
+  for (let hour = sHour; hour <= eHour; hour++) {
+    for (let minute = 0; minute < 60; minute += 10) {
+      if (hour === eHour && minute > 50) break;
+      const time = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+      const slotDate = new Date(dateObj);
+      slotDate.setHours(hour, minute, 0, 0);
+      const booked = deterministicBookedCount(`${dateIso}-${time}`);
+      const remaining = 2 - booked;
+      slots.push({
+        id: `slot-${dateIso}-${time}`,
+        date: displayDate,
+        time,
+        startIso: slotDate.toISOString(),
+        capacity: 2,
+        booked,
+        remaining,
+        isAvailable: remaining > 0,
+      });
+    }
+  }
+
+  return {
+    dateIso,
+    dayName: isFriday ? 'Vrijdag' : 'Zaterdag',
+    dayNameEn: isFriday ? 'Friday' : 'Saturday',
+    displayDate,
+    dayOfWeek,
+    slots,
+  };
+}
+
+
 
 type FaqTopic = 'botox' | 'fillers' | 'weightloss' | 'buttlift';
 

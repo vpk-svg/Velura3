@@ -73,6 +73,7 @@ export default function ConsultPlanPage() {
     notes: '',
   });
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+  const handleSlotSelect = (slot: import('@/lib/clinic-data').BookingSlot | null) => setSelectedSlot(slot?.id ?? null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   /* ── Data ────────────────────────────────────────────────── */
@@ -453,7 +454,7 @@ export default function ConsultPlanPage() {
                 <BookingSlotSelector
                   locale={locale}
                   treatmentName={summaryLabel}
-                  onSlotSelect={setSelectedSlot}
+                  onSlotSelect={handleSlotSelect}
                 />
               </motion.div>
             </div>
