@@ -196,13 +196,13 @@ export default function CursusPageClient() {
         </div>
 
         <Container>
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+            <div className="flex flex-col justify-center py-6">
               <motion.span
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-                className="inline-block rounded-pill bg-primary/20 text-primary font-sans text-xs tracking-[0.3em] uppercase px-4 py-2 mb-6 font-semibold"
+                className="inline-block rounded-pill bg-primary/20 text-primary font-sans text-xs tracking-[0.3em] uppercase px-4 py-2 mb-6 font-semibold self-start"
               >
                 {t('badge')}
               </motion.span>
@@ -231,11 +231,11 @@ export default function CursusPageClient() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.12, ease: EASE_PREMIUM }}
-                className="flex items-center gap-2 mb-8"
+                className="flex items-center gap-2 mb-8 text-white"
               >
                 <span className="flex -space-x-1">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} className="text-primary fill-primary" />
+                    <Star key={i} size={14} className="text-white fill-white" />
                   ))}
                 </span>
                 {t('social_proof')}
@@ -252,12 +252,6 @@ export default function CursusPageClient() {
                   className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-4 text-xs tracking-[0.2em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300"
                 >
                   {t('cta_register')}
-                </a>
-                <a
-                  href="#curriculum"
-                  className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-4 text-xs tracking-[0.2em] border border-background-light/20 text-background-light/80 hover:bg-background-light/10 transition-all duration-300"
-                >
-                  {t('cta_curriculum')}
                 </a>
               </motion.div>
 
@@ -276,7 +270,7 @@ export default function CursusPageClient() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: EASE_PREMIUM }}
-              className="relative aspect-[4/3] lg:aspect-[4/3] aspect-video rounded-2xl overflow-hidden shadow-soft-xl"
+              className="relative h-full min-h-[400px] aspect-auto rounded-2xl overflow-hidden shadow-soft-xl"
             >
               <Image
                 src="/images/spares/unrecognizable-beautiful-female-face-with-small-pink-syringe-mouth-close-up-attractive-womans.jpg"
@@ -415,133 +409,7 @@ export default function CursusPageClient() {
         </Container>
       </section>
 
-      {/* ════════════════════════════ CURRICULUM ════════════════════════════ */}
-      <section id="curriculum" className="py-section-y bg-white scroll-mt-24">
-        <Container>
-          <SectionHeader
-            label={t('curriculum_label')}
-            title={t('curriculum_title')}
-            subtitle={t('curriculum_subtitle')}
-          />
 
-          <p className="text-center max-w-2xl mx-auto font-sans text-secondary/50 text-sm mb-6 -mt-2">
-            {t('curriculum_duration')}
-          </p>
-
-          <div className="max-w-3xl mx-auto space-y-3">
-            {CURRICULUM.map((mod, i) => {
-              const isOpen = openCurriculum === mod.id;
-              return (
-                <motion.div
-                  key={mod.id}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.06 * i, ease: EASE_PREMIUM }}
-                  className="rounded-2xl border border-primary/10 bg-background-light overflow-hidden shadow-soft-sm"
-                >
-                  <button
-                    type="button"
-                    onClick={() => setOpenCurriculum(isOpen ? null : mod.id)}
-                    aria-expanded={isOpen}
-                    aria-controls={`mod-panel-${mod.id}`}
-                    className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-primary/[0.03] transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
-                  >
-                    <div className="flex items-center gap-4 min-w-0">
-                      <span className="font-sans text-xs text-secondary/40 tracking-wide whitespace-nowrap w-24 shrink-0">
-                        <Clock size={12} className="inline mr-1.5 -mt-0.5" />
-                        {mod.timeSlot}
-                      </span>
-                      <h3 className="font-display text-lg text-secondary truncate">
-                        {t(mod.titleKey)}
-                      </h3>
-                    </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      {mod.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className={`hidden sm:inline-block text-[10px] uppercase tracking-[0.15em] font-semibold px-2.5 py-1 rounded-pill ${TAG_COLORS[tag] ?? 'bg-secondary/5 text-secondary/50'}`}
-                        >
-                          {t(tag)}
-                        </span>
-                      ))}
-                      <ChevronDown
-                        size={18}
-                        className={`text-secondary/30 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-                      />
-                    </div>
-                  </button>
-
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        id={`mod-panel-${mod.id}`}
-                        role="region"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: EASE_PREMIUM }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-5 pb-5 pt-0">
-                          <div className="border-t border-primary/5 pt-4">
-                            <p className="font-sans text-secondary/70 leading-relaxed text-[15px]">
-                              {t(mod.descKey)}
-                            </p>
-                            {/* Mobile tags */}
-                            <div className="flex flex-wrap gap-2 mt-3 sm:hidden">
-                              {mod.tags.map((tag) => (
-                                <span
-                                  key={tag}
-                                  className={`text-[10px] uppercase tracking-[0.15em] font-semibold px-2.5 py-1 rounded-pill ${TAG_COLORS[tag] ?? 'bg-secondary/5 text-secondary/50'}`}
-                                >
-                                  {t(tag)}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
-          </div>
-        </Container>
-      </section>
-
-      {/* ════════════════════════════ TESTIMONIALS ════════════════════════════ */}
-      <section className="py-section-y bg-white">
-        <Container>
-          <SectionHeader
-            label={t('testimonials_label')}
-            title={t('testimonials_title')}
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {COURSE_TESTIMONIALS.map((item, i) => (
-              <motion.blockquote
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 + i * 0.1, ease: EASE_PREMIUM }}
-                className="rounded-2xl bg-background-light p-6 shadow-soft-sm border border-primary/5 flex flex-col"
-              >
-                <Quote size={24} className="text-primary/30 mb-3 shrink-0" />
-                <p className="font-sans text-secondary/80 leading-relaxed italic flex-1 text-[15px]">
-                  &ldquo;{t(item.quoteKey)}&rdquo;
-                </p>
-                <footer className="mt-4 pt-4 border-t border-primary/5">
-                  <p className="font-display text-secondary font-semibold">{t(item.nameKey)}</p>
-                  <p className="font-sans text-xs text-secondary/50">{t(item.roleKey)}</p>
-                </footer>
-              </motion.blockquote>
-            ))}
-          </div>
-        </Container>
-      </section>
 
       {/* ════════════════════════════ COURSE DATES ════════════════════════════ */}
       <section className="py-section-y bg-page-cursus">
@@ -575,67 +443,7 @@ export default function CursusPageClient() {
         </Container>
       </section>
 
-      {/* ════════════════════════════ COURSE FAQ ════════════════════════════ */}
-      <section className="py-section-y bg-white">
-        <Container>
-          <SectionHeader
-            label={t('faq_label')}
-            title={t('faq_title')}
-          />
 
-          <div className="max-w-3xl mx-auto space-y-3">
-            {COURSE_FAQ.map((faq, i) => {
-              const isOpen = openFaq === faq.id;
-              return (
-                <motion.div
-                  key={faq.id}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.06 * i, ease: EASE_PREMIUM }}
-                  className="rounded-2xl border border-primary/10 bg-background-light overflow-hidden shadow-soft-sm"
-                >
-                  <button
-                    type="button"
-                    onClick={() => setOpenFaq(isOpen ? null : faq.id)}
-                    aria-expanded={isOpen}
-                    aria-controls={`faq-panel-${faq.id}`}
-                    className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-primary/[0.03] transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
-                  >
-                    <h3 className="font-sans text-secondary font-medium text-[15px]">
-                      {t(faq.questionKey)}
-                    </h3>
-                    <ChevronDown
-                      size={18}
-                      className={`text-secondary/30 transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
-                    />
-                  </button>
-
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        id={`faq-panel-${faq.id}`}
-                        role="region"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: EASE_PREMIUM }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-5 pb-5">
-                          <p className="font-sans text-secondary/70 leading-relaxed text-[15px]">
-                            {t(faq.answerKey)}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
-          </div>
-        </Container>
-      </section>
 
       {/* ════════════════════════════ SIGNUP + PRICING ════════════════════════════ */}
       <section id="aanmelden" className="py-section-y bg-page-cursus scroll-mt-24">
@@ -758,9 +566,8 @@ export default function CursusPageClient() {
                         required
                         value={form.date}
                         onChange={(e) => updateField('date', e.target.value)}
-                        className={`w-full rounded-lg border bg-background-light px-4 py-3 text-sm font-sans outline-none transition-all duration-200 focus:ring-2 focus:ring-primary/30 focus:border-primary ${
-                          errors.date ? 'border-rose-400' : 'border-secondary/20'
-                        }`}
+                        className={`w-full rounded-lg border bg-background-light px-4 py-3 text-sm font-sans outline-none transition-all duration-200 focus:ring-2 focus:ring-primary/30 focus:border-primary ${errors.date ? 'border-rose-400' : 'border-secondary/20'
+                          }`}
                         aria-describedby={errors.date ? 'reg-date-err' : undefined}
                       >
                         <option value="">{t('field_date_placeholder')}</option>
@@ -892,6 +699,68 @@ export default function CursusPageClient() {
           </div>
         </Container>
       </section>
+
+      {/* ════════════════════════════ COURSE FAQ ════════════════════════════ */}
+      <section className="py-section-y bg-white">
+        <Container>
+          <SectionHeader
+            label={t('faq_label')}
+            title={t('faq_title')}
+          />
+
+          <div className="max-w-3xl mx-auto space-y-3">
+            {COURSE_FAQ.map((faq, i) => {
+              const isOpen = openFaq === faq.id;
+              return (
+                <motion.div
+                  key={faq.id}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.06 * i, ease: EASE_PREMIUM }}
+                  className="rounded-2xl border border-primary/10 bg-background-light overflow-hidden shadow-soft-sm"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(isOpen ? null : faq.id)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-panel-${faq.id}`}
+                    className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-primary/[0.03] transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
+                  >
+                    <h3 className="font-sans text-secondary font-medium text-[15px]">
+                      {t(faq.questionKey)}
+                    </h3>
+                    <ChevronDown
+                      size={18}
+                      className={`text-secondary/30 transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        id={`faq-panel-${faq.id}`}
+                        role="region"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: EASE_PREMIUM }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 pb-5">
+                          <p className="font-sans text-secondary/70 leading-relaxed text-[15px]">
+                            {t(faq.answerKey)}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
     </>
   );
 }
@@ -940,9 +809,8 @@ function InputField({
         required={required}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={`w-full rounded-lg border bg-background-light px-4 py-3 text-sm font-sans outline-none transition-all duration-200 focus:ring-2 focus:ring-primary/30 focus:border-primary ${
-          error ? 'border-rose-400' : 'border-secondary/20'
-        }`}
+        className={`w-full rounded-lg border bg-background-light px-4 py-3 text-sm font-sans outline-none transition-all duration-200 focus:ring-2 focus:ring-primary/30 focus:border-primary ${error ? 'border-rose-400' : 'border-secondary/20'
+          }`}
         aria-describedby={error ? `${id}-err` : undefined}
         aria-invalid={error ? 'true' : undefined}
       />

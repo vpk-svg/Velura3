@@ -648,47 +648,19 @@ export function getCourseDates(locale: Locale): CourseDate[] {
     ? [
       {
         id: 'course-1',
-        title: 'Injectables Cursus - 1 juli 2026',
-        dateLabel: '1 juli 2026 - bijna vol',
-        status: 'almost_full',
-        percentFilled: 92,
-      },
-      {
-        id: 'course-2',
-        title: 'Injectables Cursus - 30 september 2026',
-        dateLabel: '30 september 2026 - 80% geboekt',
-        status: 'limited',
-        percentFilled: 80,
-      },
-      {
-        id: 'course-3',
-        title: 'Injectables Cursus - 20 december 2026',
-        dateLabel: '20 december 2026 - beschikbaar',
+        title: 'Injectables Cursus - Zaterdag 30 mei 2026',
+        dateLabel: 'Zaterdag 30 mei 2026',
         status: 'open',
-        percentFilled: 35,
+        percentFilled: 0,
       },
     ]
     : [
       {
         id: 'course-1',
-        title: 'Injectables Course - 1 July 2026',
-        dateLabel: '1 July 2026 - almost full',
-        status: 'almost_full',
-        percentFilled: 92,
-      },
-      {
-        id: 'course-2',
-        title: 'Injectables Course - 30 September 2026',
-        dateLabel: '30 September 2026 - 80% booked',
-        status: 'limited',
-        percentFilled: 80,
-      },
-      {
-        id: 'course-3',
-        title: 'Injectables Course - 20 December 2026',
-        dateLabel: '20 December 2026 - available',
+        title: 'Injectables Course - Saturday 30 May 2026',
+        dateLabel: 'Saturday 30 May 2026',
         status: 'open',
-        percentFilled: 35,
+        percentFilled: 0,
       },
     ];
 }
