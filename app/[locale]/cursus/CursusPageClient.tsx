@@ -652,15 +652,7 @@ export default function CursusPageClient() {
             <div className="flex flex-col gap-6">
               <div className="rounded-2xl bg-gradient-to-br from-secondary to-burgundy p-8 text-background-light shadow-soft-xl flex-1 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    {t('pricing_label')}
-                    {t('pricing_early_bird')}
-                  </div>
-
-                  <p className="font-display text-6xl text-background-light mb-1">{t('pricing_amount')}</p>
-                  <p className="font-sans text-background-light/50 text-sm mb-2">{t('pricing_vat')}</p>
-                  <p className="font-sans text-primary/80 text-xs mb-2">{t('pricing_early_bird_note')}</p>
-                  <p className="font-sans text-background-light/40 text-xs mb-8">{t('pricing_early_bird_deadline')}</p>
+                  <p className="font-display text-6xl text-background-light mb-8">{t('pricing_amount')}</p>
 
                   <div className="space-y-2.5">
                     {PRICING_INCLUSIONS.map((key) => (

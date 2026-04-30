@@ -201,7 +201,7 @@ export default function ShapePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.22, ease: EASE_PREMIUM }}
-              className="inline-flex items-center gap-2 font-sans text-xs text-primary/80 hover:text-primary transition-colors underline underline-offset-4"
+              className="inline-flex items-center gap-2 font-sans text-xs text-white/80 hover:text-white transition-colors underline underline-offset-4"
             >
               {t('hero_compare')}
             </motion.a>
@@ -220,8 +220,8 @@ export default function ShapePage() {
                 { icon: <Shield size={16} />, key: 'trust_safe' },
                 { icon: <Stethoscope size={16} />, key: 'trust_specialist' },
               ].map((badge) => (
-                <div key={badge.key} className="flex items-center gap-2 text-background-light/60">
-                  <span className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center text-primary">
+                <div key={badge.key} className="flex items-center gap-2 text-white">
+                  <span className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center text-white">
                     {badge.icon}
                   </span>
                   {t(badge.key)}
@@ -263,7 +263,7 @@ export default function ShapePage() {
                 <p className="text-lg text-background-light/70 font-light mb-8 leading-relaxed">
                   {t('safety_desc')}
                 </p>
-                <div className="flex items-center gap-4 text-primary mb-8">
+                <div className="flex items-center gap-4 text-white mb-8">
                   <ShieldCheck size={32} aria-hidden="true" />
                   {t('safety_badge')}
                 </div>
