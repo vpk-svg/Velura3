@@ -209,28 +209,44 @@ export default function SkinboostersPageClient() {
                         </h2>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
                         {/* Left: grey box */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-                            className="bg-white/[0.06] rounded-lg p-10 border border-white/10"
+                            className="bg-white/[0.06] rounded-lg p-10 border border-white/10 h-full flex flex-col justify-center gap-6"
                         >
-                            <h3 className="font-display text-2xl italic text-white mb-5">
-                                Wat zijn het?
-                            </h3>
-                            <p className="font-sans font-light text-white/60 text-[15px] leading-relaxed mb-6">
-                                Polynucleotides zijn stukken enzymbehandeld DNA verkrijgbaar uit de natuurlijke RNA-fragmenten van DNA-werken dat op uw huid ingebracht wordt. Het blijkt bruikbaar te zijn elimineren, als herstelbod, niet alleen de aanmaak van collageen en elastaan, maar ook om een hele velerlei natuurlijke groeifactoren te stimuleren, wat leidt tot een stralend, fris resultaat dat uw huid verjongt met een scala aan uitstekende bio-regenererende eigenschappen.
-                            </p>
-                            <a
-                                href="#zones"
-                                className="inline-flex items-center font-sans text-[10px] tracking-[0.3em] uppercase text-[#c2a36d] font-semibold hover:text-white transition-colors duration-200 group"
-                            >
-                                Lees meer over de wetenschap
-                                <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
-                            </a>
+                            <div className="space-y-5">
+                                <h3 className="font-display text-2xl italic text-white">
+                                    Wat zijn het?
+                                </h3>
+                                <p className="font-sans font-light text-white/60 text-[15px] leading-relaxed">
+                                    Polynucleotides zijn stukken enzymbehandeld DNA verkrijgbaar uit de natuurlijke RNA-fragmenten van DNA-werken dat op uw huid ingebracht wordt. Het blijkt bruikbaar te zijn elimineren, als herstelbod, niet alleen de aanmaak van collageen en elastaan, maar ook om een hele velerlei natuurlijke groeifactoren te stimuleren, wat leidt tot een stralend, fris resultaat dat uw huid verjongt met een scala aan uitstekende bio-regenererende eigenschappen.
+                                </p>
+                            </div>
+
+                            <div className="h-px w-full bg-white/10 my-2" />
+
+                            <div className="space-y-4">
+                                <h4 className="font-sans text-[#c2a36d] text-[10px] tracking-[0.25em] uppercase font-semibold">
+                                    Belangrijkste Voordelen
+                                </h4>
+                                <ul className="space-y-3">
+                                    {[
+                                        'Stimuleert natuurlijke celvernieuwing',
+                                        'Herstelt elasticiteit en huidstructuur',
+                                        'Diepe antioxidant werking en bescherming',
+                                        'Langdurige hydratatie en ongekende glow'
+                                    ].map((benefit, idx) => (
+                                        <li key={idx} className="flex items-start gap-3">
+                                            <span className="text-[#c2a36d] mt-1 text-sm">✦</span>
+                                            <span className="font-sans font-light text-white/80 text-[14px] leading-relaxed">{benefit}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </motion.div>
 
                         {/* Right: portrait with overlay text */}
