@@ -127,7 +127,7 @@ export default function GlobalFloatingCart() {
                           </span>
                           <div className="flex items-center gap-3">
                             <span className="font-sans text-sm text-primary font-semibold">
-                              €{((item.priceCents * item.quantity) / 100).toFixed(0)}
+                              {item.priceCents === 0 ? (locale === 'nl' ? 'Gratis' : 'Free') : `€${((item.priceCents * item.quantity) / 100).toFixed(0)}`}
                             </span>
                             <button
                               type="button"
@@ -152,7 +152,7 @@ export default function GlobalFloatingCart() {
                     Totaal
                   </span>
                   <span className="font-display text-2xl text-primary font-semibold">
-                    €{(totalCents / 100).toFixed(0)}
+                    {totalCents === 0 ? (locale === 'nl' ? 'Gratis' : 'Free') : `€${(totalCents / 100).toFixed(0)}`}
                   </span>
                 </div>
                 <a

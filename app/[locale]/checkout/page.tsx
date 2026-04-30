@@ -145,7 +145,9 @@ export default function CheckoutPage() {
                             {locale === 'nl' ? 'VOLTOOI UW BOEKING' : 'COMPLETE YOUR BOOKING'}
                         </span>
                         <h1 className="font-display text-display-lg text-secondary mb-3 italic">
-                            {locale === 'nl' ? 'Checkout' : 'Checkout'}
+                            {totalCents === 0
+                                ? (locale === 'nl' ? 'Consult Bevestigen' : 'Confirm Consult')
+                                : (locale === 'nl' ? 'Checkout' : 'Checkout')}
                         </h1>
                         <p className="font-sans text-secondary/60 font-light text-lg">
                             {locale === 'nl'
@@ -194,7 +196,9 @@ export default function CheckoutPage() {
                                 >
                                     <h2 className="font-sans text-[10px] uppercase tracking-[0.25em] text-primary font-bold mb-6 flex items-center gap-2">
                                         <ShoppingBag size={14} />
-                                        {locale === 'nl' ? 'GEKOZEN BEHANDELINGEN' : 'SELECTED TREATMENTS'}
+                                        {totalCents === 0
+                                            ? (locale === 'nl' ? 'GEKOZEN CONSULT' : 'CHOSEN CONSULT')
+                                            : (locale === 'nl' ? 'GEKOZEN BEHANDELINGEN' : 'SELECTED TREATMENTS')}
                                     </h2>
 
                                     <div className="space-y-4">
@@ -212,9 +216,11 @@ export default function CheckoutPage() {
                                                                 </span>
                                                             </div>
                                                             <div className="flex items-center gap-3">
-                                                                <span className="font-sans text-sm font-medium text-secondary">
-                                                                    €{(item.priceCents / 100).toLocaleString()}
-                                                                </span>
+                                                                {Number(item.priceCents) !== 0 && (
+                                                                    <span className="font-sans text-sm font-medium text-secondary">
+                                                                        {`€${(Number(item.priceCents) / 100).toLocaleString()}`}
+                                                                    </span>
+                                                                )}
                                                                 <button
                                                                     onClick={() => removeItem(item.id)}
                                                                     className="text-secondary/20 hover:text-rose-500 transition-colors"
@@ -229,10 +235,12 @@ export default function CheckoutPage() {
                                         ))}
                                     </div>
 
-                                    <div className="mt-4 pt-4 border-t border-secondary/5 flex justify-between items-center">
-                                        <span className="font-sans text-xs uppercase tracking-widest text-secondary/40 font-semibold">Totaal</span>
-                                        <span className="font-display text-xl text-primary font-bold">€{(totalCents / 100).toLocaleString()}</span>
-                                    </div>
+                                    {totalCents > 0 && (
+                                        <div className="mt-4 pt-4 border-t border-secondary/5 flex justify-between items-center">
+                                            <span className="font-sans text-xs uppercase tracking-widest text-secondary/40 font-semibold">Totaal</span>
+                                            <span className="font-display text-xl text-primary font-bold">{`€${(totalCents / 100).toLocaleString()}`}</span>
+                                        </div>
+                                    )}
                                 </motion.div>
 
                                 {/* Personal Data Form */}
@@ -405,16 +413,18 @@ export default function CheckoutPage() {
                                     className="bg-white rounded-3xl border border-primary/10 overflow-hidden shadow-soft-xl"
                                 >
                                     <div className="p-8 space-y-6">
-                                        <div className="space-y-4">
-                                            <div className="flex justify-between items-center pb-4 border-b border-secondary/5">
-                                                <span className="font-sans text-xs uppercase tracking-widest text-secondary/40 font-bold">Subtotaal</span>
-                                                <span className="font-sans text-lg text-secondary font-medium whitespace-nowrap">€{(totalCents / 100).toLocaleString()}</span>
+                                        {totalCents > 0 && (
+                                            <div className="space-y-4">
+                                                <div className="flex justify-between items-center pb-4 border-b border-secondary/5">
+                                                    <span className="font-sans text-xs uppercase tracking-widest text-secondary/40 font-bold">Subtotaal</span>
+                                                    <span className="font-sans text-lg text-secondary font-medium whitespace-nowrap">{`€${(totalCents / 100).toLocaleString()}`}</span>
+                                                </div>
+                                                <div className="flex justify-between items-center pt-2">
+                                                    <span className="font-sans text-sm uppercase tracking-[0.2em] text-secondary font-bold">Totaal</span>
+                                                    <span className="font-display text-4xl text-primary font-bold">{`€${(totalCents / 100).toLocaleString()}`}</span>
+                                                </div>
                                             </div>
-                                            <div className="flex justify-between items-center pt-2">
-                                                <span className="font-sans text-sm uppercase tracking-[0.2em] text-secondary font-bold">Totaal</span>
-                                                <span className="font-display text-4xl text-primary font-bold">€{(totalCents / 100).toLocaleString()}</span>
-                                            </div>
-                                        </div>
+                                        )}
 
                                         <button
                                             onClick={handleProceedToPayment}
@@ -427,22 +437,26 @@ export default function CheckoutPage() {
                                                 ) : (
                                                     <CreditCard size={16} />
                                                 )}
-                                                {locale === 'nl' ? 'Afrekenen' : 'Complete checkout'}
+                                                {totalCents === 0
+                                                    ? (locale === 'nl' ? 'Consult Bevestigen' : 'Confirm Consult')
+                                                    : (locale === 'nl' ? 'Afrekenen' : 'Complete checkout')}
                                             </span>
                                             <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                                         </button>
 
                                         <div className="space-y-4 pt-4">
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center shrink-0">
-                                                    <Lock size={14} className="text-primary/60" />
+                                            {totalCents > 0 && (
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center shrink-0">
+                                                        <Lock size={14} className="text-primary/60" />
+                                                    </div>
+                                                    <p className="font-sans text-[11px] text-secondary/50 leading-tight">
+                                                        {locale === 'nl'
+                                                            ? 'Beveiligde betaling via Stripe. Uw gegevens zijn 100% veilig.'
+                                                            : 'Secure payment via Stripe. Your data is 100% safe.'}
+                                                    </p>
                                                 </div>
-                                                <p className="font-sans text-[11px] text-secondary/50 leading-tight">
-                                                    {locale === 'nl'
-                                                        ? 'Beveiligde betaling via Stripe. Uw gegevens zijn 100% veilig.'
-                                                        : 'Secure payment via Stripe. Your data is 100% safe.'}
-                                                </p>
-                                            </div>
+                                            )}
                                             <div className="flex items-center gap-3">
                                                 <div className="w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center shrink-0">
                                                     <ShieldCheck size={14} className="text-primary/60" />
