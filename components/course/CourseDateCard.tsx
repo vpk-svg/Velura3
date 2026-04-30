@@ -38,12 +38,10 @@ export default function CourseDateCard({ locale, item, selected, onSelect, index
       tabIndex={0}
       onClick={() => onSelect?.(item.id)}
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect?.(item.id); } }}
-      className={`rounded-2xl border-2 bg-white p-6 cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft-lg focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none ${
-        selected ? 'border-primary shadow-gold-glow' : 'border-primary/10 shadow-soft-sm'
-      }`}
+      className={`rounded-2xl border-2 bg-white flex flex-col items-center justify-center text-center p-6 cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft-lg focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none ${selected ? 'border-primary shadow-gold-glow' : 'border-primary/10 shadow-soft-sm'
+        }`}
     >
-      <div className="flex items-center justify-between gap-3 mb-3">
-        <h3 className="font-display text-xl italic text-secondary">{item.title}</h3>
+      <div className="flex flex-col items-center gap-3 mb-3">
         <span
           className={`text-[10px] uppercase tracking-[0.2em] font-semibold px-3 py-1.5 rounded-pill whitespace-nowrap ${statusColorMap[item.status]}`}
           aria-label={t(statusKey)}
@@ -52,13 +50,13 @@ export default function CourseDateCard({ locale, item, selected, onSelect, index
         </span>
       </div>
 
-      <div className="flex items-center gap-2 mb-4">
-        <CalendarDays size={14} className="text-secondary/40" />
-        <p className="font-sans text-sm text-secondary/70">{item.dateLabel}</p>
+      <div className="flex items-center justify-center gap-2 mb-4">
+        <CalendarDays size={18} className="text-secondary/60" />
+        <p className="font-sans text-base font-medium text-secondary">{item.dateLabel}</p>
       </div>
 
       <div
-        className="h-2 w-full rounded-full bg-secondary/10 overflow-hidden"
+        className="h-2 w-full max-w-[200px] mx-auto rounded-full bg-secondary/10 overflow-hidden"
         role="progressbar"
         aria-valuenow={item.percentFilled}
         aria-valuemin={0}
@@ -72,7 +70,7 @@ export default function CourseDateCard({ locale, item, selected, onSelect, index
           transition={{ duration: 1.2, delay: 0.3 + index * 0.1, ease: EASE_PREMIUM }}
         />
       </div>
-      <p className="font-sans text-xs text-secondary/50 mt-2 tracking-wide">
+      <p className="font-sans text-xs text-secondary/60 mt-2 tracking-wide font-medium">
         {item.percentFilled}% {t('filled_label')}
       </p>
     </motion.article>

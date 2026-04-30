@@ -134,7 +134,7 @@ export default function ShapePage() {
       <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden bg-secondary">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/placeholders/1-800x600.png"
+            src="/images/BBL/bbl-header.jpg"
             alt=""
             fill
             priority
@@ -246,14 +246,14 @@ export default function ShapePage() {
           >
             <div className="absolute inset-0 z-0">
               <Image
-                src="/images/placeholders/3-800x600.png"
+                src="/images/BBL/bbl-square.jpg"
                 alt="BBL Safety Background"
                 fill
                 quality={85}
                 className="object-cover opacity-20 mix-blend-overlay grayscale"
                 sizes="100vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-secondary/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-secondary/50 to-transparent" />
             </div>
             <div className="relative z-10 flex flex-col md:flex-row gap-12 items-center">
               <div className="md:w-1/2">
