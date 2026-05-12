@@ -106,7 +106,7 @@ export default function BehandelingenPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
-            className="font-display text-display-xl text-background-light mb-6"
+            className="font-display text-display-xl text-background-light mb-6 md:mb-8"
           >
             {locale === 'nl' ? 'Ontdek onze ' : 'Discover our '}
             {locale === 'nl' ? 'behandelingen' : 'treatments'}
@@ -115,7 +115,7 @@ export default function BehandelingenPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-            className="font-sans font-light text-background-light/70 text-lg max-w-2xl"
+            className="font-sans font-light text-background-light/70 text-lg md:text-xl leading-relaxed max-w-2xl"
           >
             {locale === 'nl'
               ? 'Van injectables tot medisch gewichtsverlies: alle behandelingen worden uitgevoerd door BIG-geregistreerde artsen in onze kliniek in Ede.'

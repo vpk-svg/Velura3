@@ -33,6 +33,7 @@ import TreatmentMapGrid from '@/components/treatments/TreatmentMapGrid';
 import BookingSlotSelector from '@/components/booking/BookingSlotSelector';
 import { type Locale } from '@/lib/clinic-data';
 import { useCart } from '@/lib/cart-context';
+import PageHero from '@/components/PageHero';
 
 export default function FillersPage() {
   const t = useTranslations('fillers_page');
@@ -157,81 +158,44 @@ export default function FillersPage() {
       {/* =============================================
           HERO - Refined with layered depth & scroll hint
           ============================================= */}
-      <section className="relative w-full min-h-[85vh] flex items-center overflow-hidden bg-secondary">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/spares/spare 2/Women reviewing notes in consultation.png"
-            alt=""
-            fill
-            priority
-            className="object-cover opacity-12"
-            sizes="100vw"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/95 to-secondary/75" />
-          {/* Subtle warm-shimmer overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/[0.03] to-transparent" aria-hidden="true" />
-        </div>
-        <Container>
-          <div className="relative z-10 max-w-3xl py-40">
-            <motion.span
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-              className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-6 block font-semibold"
+      <PageHero
+        align="center"
+        backgroundImageSrc="/images/spares/spare 2/Women reviewing notes in consultation.png"
+        backgroundImageClassName="object-cover opacity-12"
+        overlayClassName="bg-gradient-to-br from-secondary via-secondary/95 to-secondary/75"
+        label={t('hero_label')}
+        title={<>{t('hero_title')} {t('hero_title_accent')}</>}
+        description={t('hero_desc')}
+        actions={
+          <>
+            <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+              {t('hero_cta')}
+            </ConsultTrigger>
+            <a
+              href="#book"
+              className="inline-flex items-center gap-2 rounded-pill font-sans uppercase font-bold px-8 py-5 text-xs tracking-[0.25em] border border-background-light/20 text-background-light/80 hover:border-primary hover:text-primary transition-all duration-300"
             >
-              {t('hero_label')}
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
-              className="font-display text-display-xl text-background-light mb-6"
-            >
-              {t('hero_title')} {t('hero_title_accent')}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-              className="font-sans font-light text-background-light/70 text-lg md:text-xl leading-relaxed max-w-2xl mb-12"
-            >
-              {t('hero_desc')}
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
-              className="flex flex-wrap items-center gap-4"
-            >
-              <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
-                {t('hero_cta')}
-              </ConsultTrigger>
-              <a
-                href="#book"
-                className="inline-flex items-center gap-2 rounded-pill font-sans uppercase font-bold px-8 py-5 text-xs tracking-[0.25em] border border-background-light/20 text-background-light/80 hover:border-primary hover:text-primary transition-all duration-300"
-              >
-                {t('hero_cta_book')}
-                <ArrowDown className="w-3.5 h-3.5" strokeWidth={2} />
-              </a>
-            </motion.div>
-          </div>
-        </Container>
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-          aria-hidden="true"
-        >
+              {t('hero_cta_book')}
+              <ArrowDown className="w-3.5 h-3.5" strokeWidth={2} />
+            </a>
+          </>
+        }
+        bottomDecoration={
           <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-[1px] h-10 bg-gradient-to-b from-primary/40 to-transparent"
-          />
-        </motion.div>
-      </section>
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+            aria-hidden="true"
+          >
+            <motion.div
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-[1px] h-10 bg-gradient-to-b from-primary/40 to-transparent"
+            />
+          </motion.div>
+        }
+      />
 
       {/* =============================================
           TREATMENT MAP - Clickable cards with popup + add to cart

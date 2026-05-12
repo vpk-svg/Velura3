@@ -21,6 +21,7 @@ import TreatmentMapGrid from '@/components/treatments/TreatmentMapGrid';
 import BookingSlotSelector from '@/components/booking/BookingSlotSelector';
 import DetailsForm, { type DetailsFormData } from '@/components/treatments/DetailsForm';
 import { useCart } from '@/lib/cart-context';
+import PageHero from '@/components/PageHero';
 
 /* ── Lucide icon map (replaces Material Symbols dependency) ── */
 const BENEFIT_ICONS: Record<string, React.ReactNode> = {
@@ -131,71 +132,33 @@ export default function ShapePage() {
       {/* ═══════════════════════════════════════════════════════
           HERO - Full-viewport immersive hero with trust badges
           ═══════════════════════════════════════════════════════ */}
-      <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden bg-secondary">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/BBL/bbl-header.jpg"
-            alt=""
-            fill
-            priority
-            quality={85}
-            className="object-cover opacity-30 mix-blend-overlay"
-            sizes="100vw"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/80 to-transparent" />
-        </div>
-
-        <Container className="relative z-10 py-40">
-          <div className="max-w-3xl">
-            <motion.span
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-              className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-6 block font-semibold"
+      <PageHero
+        align="center"
+        backgroundImageSrc="/images/BBL/bbl-header.jpg"
+        backgroundImageClassName="object-cover opacity-30 mix-blend-overlay"
+        overlayClassName="bg-gradient-to-r from-secondary/80 to-transparent"
+        minHeightClassName="min-h-[82vh] md:min-h-[86vh]"
+        label={t('hero_label')}
+        title={<>{t('hero_title')} {t('hero_title_accent')}</>}
+        description={t('hero_desc')}
+        actions={
+          <>
+            <ConsultTrigger
+              from="bbl"
+              className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
             >
-              {t('hero_label')}
-            </motion.span>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
-              className="font-display text-display-xl text-background-light mb-8"
+              {t('hero_cta')}
+            </ConsultTrigger>
+            <a
+              href="#pricing"
+              className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-5 text-xs tracking-[0.3em] border-2 border-background-light/20 text-background-light hover:border-primary hover:text-primary transition-all duration-300"
             >
-              {t('hero_title')}{' '}
-              {t('hero_title_accent')}
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-              className="font-sans font-light text-background-light/80 text-lg md:text-xl leading-relaxed max-w-2xl mb-10"
-            >
-              {t('hero_desc')}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
-              className="flex flex-wrap gap-4 mb-12"
-            >
-              <ConsultTrigger
-                from="bbl"
-                className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
-              >
-                {t('hero_cta')}
-              </ConsultTrigger>
-              <a
-                href="#pricing"
-                className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-10 py-5 text-xs tracking-[0.3em] border-2 border-background-light/20 text-background-light hover:border-primary hover:text-primary transition-all duration-300"
-              >
-                {t('hero_cta_pricing')}
-              </a>
-            </motion.div>
-
+              {t('hero_cta_pricing')}
+            </a>
+          </>
+        }
+        meta={
+          <>
             <motion.a
               href="#safety"
               initial={{ opacity: 0 }}
@@ -206,15 +169,7 @@ export default function ShapePage() {
               {t('hero_compare')}
             </motion.a>
 
-            <div className="mt-8" />
-
-            {/* Trust badges */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: EASE_PREMIUM }}
-              className="flex flex-wrap gap-6"
-            >
+            <div className="mt-8 flex flex-wrap gap-6">
               {[
                 { icon: <BadgeCheck size={16} />, key: 'trust_big' },
                 { icon: <Shield size={16} />, key: 'trust_safe' },
@@ -227,10 +182,10 @@ export default function ShapePage() {
                   {t(badge.key)}
                 </div>
               ))}
-            </motion.div>
-          </div>
-        </Container>
-      </section>
+            </div>
+          </>
+        }
+      />
 
       {/* ═══════════════════════════════════════════════════════
           SAFETY COMPARISON - Surgical BBL vs. Filler BBL

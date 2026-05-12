@@ -1,9 +1,7 @@
 'use client';
 
-import { motion, type Variants, useScroll, useTransform } from 'motion/react';
+import { motion, type Variants } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import { useRef } from 'react';
 import {
   ShieldCheck,
   ArrowRight,
@@ -21,6 +19,7 @@ import ProductShop from '@/components/ProductShop';
 import PharmacyDisclaimer from '@/components/PharmacyDisclaimer';
 import ConsultTrigger from '@/components/consult/ConsultTrigger';
 import { EASE_PREMIUM } from '@/lib/motion';
+import PageHero from '@/components/PageHero';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -39,13 +38,6 @@ const SAFETY_ICONS = [Pill, Truck, Stethoscope, Phone] as const;
 export default function MedicatiePage() {
   const t = useTranslations('medicatie_page');
   const tWeight = useTranslations('weightloss_page');
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start end', 'end start'],
-  });
-  const heroY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
-  const heroScale = useTransform(scrollYProgress, [0, 0.5], [1.12, 1]);
 
   const howItems = [
     { icon: HOW_ICONS[0], title: t('how_item1_title'), desc: t('how_item1_desc') },
@@ -65,85 +57,36 @@ export default function MedicatiePage() {
       {/* ═══════════════════════════════════════════════
           HERO - Medication-specific, dark clinical hero
           ═══════════════════════════════════════════════ */}
-      <section
-        ref={heroRef}
-        aria-labelledby="med-hero-title"
-        className="relative w-full pt-40 pb-section-y overflow-hidden bg-secondary"
-      >
-        <motion.div style={{ scale: heroScale, y: heroY }} className="absolute inset-0 z-0">
-          <Image
-            src="/images/spares/f41827a0-e243-47b5-8a11-3e354b930092.jpg"
-            alt=""
-            fill
-            priority
-            className="object-cover opacity-20"
-            sizes="100vw"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-secondary via-secondary/95 to-secondary/80" />
-        </motion.div>
-
-        <Container>
-          <div className="relative z-10 max-w-3xl mx-auto text-center">
-            <motion.span
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-              className="inline-flex items-center gap-2 font-sans text-primary text-xs tracking-[0.3em] uppercase mb-8 font-semibold"
-            >
-              <ShieldCheck size={14} aria-hidden="true" />
-              {t('hero_label')}
-            </motion.span>
-
-            <motion.h1
-              id="med-hero-title"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: EASE_PREMIUM }}
-              className="font-display text-display-xl text-background-light leading-[0.85] mb-8"
-            >
-              {t('hero_title')} <br />
-              {t('hero_title_accent')}
-            </motion.h1>
-
+      <PageHero
+        titleId="med-hero-title"
+        align="center"
+        backgroundImageSrc="/images/spares/f41827a0-e243-47b5-8a11-3e354b930092.jpg"
+        backgroundImageClassName="object-cover opacity-20"
+        overlayClassName="bg-gradient-to-b from-secondary via-secondary/95 to-secondary/80"
+        label={<><ShieldCheck size={14} aria-hidden="true" />{t('hero_label')}</>}
+        title={<>{t('hero_title')} {t('hero_title_accent')}</>}
+        description={t('hero_desc')}
+        actions={
+          <a
+            href="#shop"
+            className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
+          >
+            {t('hero_cta')} <ArrowRight size={14} aria-hidden="true" />
+          </a>
+        }
+        meta={
+          <>
             <div className="w-20 h-px bg-primary/50 mx-auto mb-8" />
-
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: EASE_PREMIUM }}
-              className="font-sans font-light text-background-light/80 text-lg md:text-xl leading-relaxed tracking-wide max-w-2xl mx-auto mb-10"
-            >
-              {t('hero_desc')}
-            </motion.p>
-
-            {/* Rx notice - prominent for medical compliance */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3, ease: EASE_PREMIUM }}
-              className="inline-flex items-center gap-3 bg-white/10 border border-white/20 rounded-pill px-8 py-4 mb-10 text-white"
+            <div
+              className="inline-flex items-center gap-3 bg-white/10 border border-white/20 rounded-pill px-8 py-4 text-white"
               role="status"
             >
               <Pill size={16} className="text-primary" aria-hidden="true" />
               {t('rx_notice')}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.35, ease: EASE_PREMIUM }}
-            >
-              <a
-                href="#shop"
-                className="inline-flex items-center justify-center gap-2 rounded-pill font-sans uppercase font-bold px-10 py-4 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]"
-              >
-                {t('hero_cta')} <ArrowRight size={14} aria-hidden="true" />
-              </a>
-            </motion.div>
-          </div>
-        </Container>
-      </section>
+            </div>
+          </>
+        }
+      />
 
       {/* ═══════════════════════════════════════════════
           HOW GLP-1 WORKS - 3 mechanism cards
@@ -249,12 +192,14 @@ export default function MedicatiePage() {
             transition={{ duration: 0.8, ease: EASE_PREMIUM }}
             className="max-w-3xl mx-auto text-center mb-12 md:mb-16"
           >
-            {t('safety_label')}
-            <h2 id="safety-title" className="font-display text-display-lg text-background-light mb-6">
+            <span className="font-sans text-primary text-xs tracking-[0.2em] uppercase block font-light mb-4">
+              {t('safety_label')}
+            </span>
+            <h2 id="safety-title" className="font-display text-display-lg text-background-light mb-6 leading-[1.1]">
               {t('safety_title')}{' '}
               {t('safety_title_accent')}
             </h2>
-            <p className="font-sans font-light text-background-light/60 text-lg leading-relaxed max-w-2xl mx-auto">
+            <p className="font-sans font-light text-background-light/60 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
               {t('safety_desc')}
             </p>
           </motion.div>
@@ -307,13 +252,34 @@ export default function MedicatiePage() {
             transition={{ duration: 0.8, ease: EASE_PREMIUM }}
             className="max-w-2xl mx-auto text-center"
           >
-            {t('cta_label')}
-            <h2 id="med-cta-title" className="font-display text-display-md text-secondary mb-6">
+            <motion.span
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: EASE_PREMIUM }}
+              className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-6 block font-semibold"
+            >
+              {t('cta_label')}
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
+              id="med-cta-title"
+              className="font-display text-display-lg text-secondary mb-6"
+            >
               {t('cta_title')}
-            </h2>
-            <p className="font-sans font-light text-secondary/60 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
+              className="font-sans font-light text-secondary/70 text-lg md:text-xl leading-relaxed mb-10"
+            >
               {t('cta_desc')}
-            </p>
+            </motion.p>
             <ConsultTrigger
               from="medicatie"
               className="inline-flex items-center justify-center gap-2.5 rounded-pill font-sans uppercase font-bold px-12 py-5 text-[11px] tracking-[0.25em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"

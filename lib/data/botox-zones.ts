@@ -23,4 +23,6 @@ export const BOTOX_ZONES: BotoxZone[] = [
   { id: 'kin', nameKey: 'zone_kin', shortDescKey: 'zone_kin_short', whyKey: 'zone_kin_why', priceCents: 8000, svgPathId: 'chin' },
   { id: 'hyperhidrose', nameKey: 'zone_hyperhidrose', shortDescKey: 'zone_hyperhidrose_short', whyKey: 'zone_hyperhidrose_why', priceCents: 40000, svgPathId: 'hyperhidrosis' },
   { id: 'nefertiti', nameKey: 'zone_nefertiti', shortDescKey: 'zone_nefertiti_short', whyKey: 'zone_nefertiti_why', priceCents: 24000, svgPathId: 'nefertiti' },
+  { id: 'traptox', nameKey: 'zone_traptox', shortDescKey: 'zone_traptox_short', whyKey: 'zone_traptox_why', priceCents: 48000, svgPathId: '' },
+  { id: 'migraine', nameKey: 'zone_migraine', shortDescKey: 'zone_migraine_short', whyKey: 'zone_migraine_why', priceCents: 10000, svgPathId: '' },
 ];

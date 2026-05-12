@@ -143,8 +143,6 @@ export const COURSE_FAQ: CourseFaqItem[] = [
   { id: 'cfaq-5', questionKey: 'faq_5_q', answerKey: 'faq_5_a' },
   { id: 'cfaq-6', questionKey: 'faq_6_q', answerKey: 'faq_6_a' },
   { id: 'cfaq-7', questionKey: 'faq_7_q', answerKey: 'faq_7_a' },
-  { id: 'cfaq-8', questionKey: 'faq_8_q', answerKey: 'faq_8_a' },
-  { id: 'cfaq-9', questionKey: 'faq_9_q', answerKey: 'faq_9_a' },
 ];
 
 /* ── Pricing inclusions (10 items) ── */

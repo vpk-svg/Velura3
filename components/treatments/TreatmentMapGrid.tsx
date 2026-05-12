@@ -44,12 +44,9 @@ function TreatmentCard({
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1">
-          <h3 className="font-display text-xl italic leading-tight text-secondary group-hover:text-primary transition-colors duration-200 mb-2">
+          <h3 className="font-display text-xl italic leading-tight text-secondary group-hover:text-primary transition-colors duration-200">
             {t(zone.nameKey)}
           </h3>
-          <p className="font-sans text-xs text-secondary/60 line-clamp-2 leading-relaxed">
-            {t(zone.shortDescKey)}
-          </p>
         </div>
         <div className="shrink-0 pt-1">
           {isInCart ? (
@@ -156,13 +153,6 @@ function InfoModal({
           </h3>
 
           <div className="space-y-8 mb-10">
-            {/* Short Description */}
-            <div>
-              <p className="font-sans text-lg text-secondary/80 leading-relaxed italic border-l-2 border-primary/30 pl-5">
-                {t(zone.shortDescKey)}
-              </p>
-            </div>
-
             {/* Why This Treatment */}
             <div className="bg-secondary/[0.02] rounded-3xl p-6 border border-secondary/5">
               <h4 className="font-sans text-[10px] uppercase tracking-[0.25em] text-secondary/40 font-bold mb-3 flex items-center gap-2">

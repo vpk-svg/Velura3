@@ -38,52 +38,63 @@ const pinyon = Pinyon_Script({
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://fabclinic.be';
 
-export const metadata: Metadata = {
-  title: 'FAB CLINIC | Medische Esthetiek & Welzijn',
-  description: 'Premium kliniek voor fillers, botox, GLP-1 afslanktrajecten en lifestyle transformatie. Medisch verantwoord, resultaatgericht.',
-  metadataBase: new URL(BASE_URL),
-  alternates: {
-    canonical: '/',
-    languages: {
-      'nl': '/nl',
-      'en': '/en',
-    },
-  },
-  openGraph: {
-    title: 'FAB CLINIC | Medische Esthetiek & Welzijn',
-    description: 'Premium kliniek voor fillers, botox, GLP-1 afslanktrajecten en lifestyle transformatie.',
-    url: BASE_URL,
-    siteName: 'FAB CLINIC',
-    locale: 'nl_NL',
-    alternateLocale: 'en_US',
-    type: 'website',
-    images: [
-      {
-        url: '/images/og-cover.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'FAB CLINIC - Medische Esthetiek & Welzijn',
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const isNl = locale === 'nl';
+
+  return {
+    title: isNl ? 'FAB CLINIC | Medische Esthetiek & Welzijn' : 'FAB CLINIC | Medical Aesthetics & Wellness',
+    description: isNl
+      ? 'Premium kliniek voor fillers, botox, GLP-1 afslanktrajecten en lifestyle transformatie. Medisch verantwoord, resultaatgericht.'
+      : 'Premium clinic for fillers, botox, GLP-1 weight loss programmes and lifestyle transformation. Medically responsible, results-driven.',
+    metadataBase: new URL(BASE_URL),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        'nl': '/nl',
+        'en': '/en',
       },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'FAB CLINIC | Medische Esthetiek & Welzijn',
-    description: 'Premium kliniek voor fillers, botox, GLP-1 afslanktrajecten en lifestyle transformatie.',
-    images: ['/images/og-cover.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    },
+    openGraph: {
+      title: isNl ? 'FAB CLINIC | Medische Esthetiek & Welzijn' : 'FAB CLINIC | Medical Aesthetics & Wellness',
+      description: isNl
+        ? 'Premium kliniek voor fillers, botox, GLP-1 afslanktrajecten en lifestyle transformatie.'
+        : 'Premium clinic for fillers, botox, GLP-1 weight loss programmes and lifestyle transformation.',
+      url: `${BASE_URL}/${locale}`,
+      siteName: 'FAB CLINIC',
+      locale: isNl ? 'nl_NL' : 'en_US',
+      alternateLocale: isNl ? 'en_US' : 'nl_NL',
+      type: 'website',
+      images: [
+        {
+          url: '/images/og-cover.jpg',
+          width: 1200,
+          height: 630,
+          alt: isNl ? 'FAB CLINIC - Medische Esthetiek & Welzijn' : 'FAB CLINIC - Medical Aesthetics & Wellness',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: isNl ? 'FAB CLINIC | Medische Esthetiek & Welzijn' : 'FAB CLINIC | Medical Aesthetics & Wellness',
+      description: isNl
+        ? 'Premium kliniek voor fillers, botox, GLP-1 afslanktrajecten en lifestyle transformatie.'
+        : 'Premium clinic for fillers, botox, GLP-1 weight loss programmes and lifestyle transformation.',
+      images: ['/images/og-cover.jpg'],
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
-};
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

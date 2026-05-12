@@ -6,44 +6,22 @@ import Link from 'next/link';
 import Container from '@/components/ui/Container';
 import FaqAccordion from '@/components/FaqAccordion';
 import { EASE_PREMIUM } from '@/lib/motion';
+import PageHero from '@/components/PageHero';
 
 export default function FaqPage() {
   const t = useTranslations('faq_page');
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative w-full pt-40 pb-section-y overflow-hidden bg-secondary">
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/95 to-secondary/80" />
-        <Container>
-          <div className="relative z-10 max-w-3xl mx-auto text-center">
-            <motion.span
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-              className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-6 block font-semibold"
-            >
-              {t('hero_label')}
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
-              className="font-display text-display-xl text-background-light mb-6"
-            >
-              {t('hero_title')} {t('hero_title_accent')}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-              className="font-sans font-light text-background-light/70 text-lg md:text-xl leading-relaxed"
-            >
-              {t('hero_desc')}
-            </motion.p>
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        align="center"
+        overlayClassName="bg-gradient-to-br from-secondary via-secondary/95 to-secondary/80"
+        label={t('hero_label')}
+        title={<>{t('hero_title')} {t('hero_title_accent')}</>}
+        description={t('hero_desc')}
+        contentWidthClassName="max-w-3xl"
+        descriptionWidthClassName="max-w-2xl"
+      />
 
       {/* FAQ Accordion */}
       <section className="py-section-y bg-page-faq overflow-hidden">

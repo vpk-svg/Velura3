@@ -59,7 +59,7 @@ export default async function SkinboostersPage({ params }: PageProps) {
                 url: 'https://fabclinic.nl',
                 address: {
                     '@type': 'PostalAddress',
-                    streetAddress: 'Nieuwe Stationsstraat 20',
+                    streetAddress: 'Achterdoelen 96-102',
                     addressLocality: 'Ede',
                     addressCountry: 'NL',
                 },

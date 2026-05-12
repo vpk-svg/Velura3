@@ -1,16 +1,16 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { ShieldCheck, Award, ArrowRight } from 'lucide-react';
 import Container from './ui/Container';
 import SectionHeader from './ui/SectionHeader';
-import ConsultTrigger from './consult/ConsultTrigger';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function TeamSection() {
     const t = useTranslations('team');
+    const locale = useLocale();
 
     const team = [
         {
@@ -42,7 +42,18 @@ export default function TeamSection() {
             bio: t('member5_bio'),
             img: "/images/Newteam/Fleur.jpg",
         },
+        {
+            name: t('member6_name'),
+            role: t('member6_role'),
+            big: t('member6_big'),
+            bio: t('member6_bio'),
+            img: "/images/Newteam/drAniel.jpeg",
+        },
     ];
+
+    const handleBookDoctor = (doctorName: string) => {
+        window.location.href = `/${locale}/checkout?doctor=${encodeURIComponent(doctorName)}`;
+    };
 
     return (
         <section id="team" className="py-section-y bg-page-team overflow-hidden" aria-labelledby="team-title">
@@ -90,13 +101,14 @@ export default function TeamSection() {
                                     {member.big}
                                 </p>
                             )}
-                            {member.name !== t('member5_name') && member.name !== t('member1_name') && (
-                                <ConsultTrigger
-                                    from="other"
+                            {member.name !== t('member5_name') && (
+                                <button
+                                    type="button"
+                                    onClick={() => handleBookDoctor(member.name)}
                                     className="inline-flex items-center gap-2 font-sans text-xs text-primary font-semibold uppercase tracking-wider mt-5 hover:gap-3 transition-all"
                                 >
                                     {t('cta_book', { name: member.name.split(' ')[0] })} <ArrowRight size={14} />
-                                </ConsultTrigger>
+                                </button>
                             )}
                         </motion.li>
                     ))}

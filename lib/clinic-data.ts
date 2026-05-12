@@ -496,7 +496,7 @@ export function getClinicContactInfo(locale: Locale): ClinicContactInfo {
   return locale === 'nl'
     ? {
       clinicName: 'FabClinic EDE',
-      address: 'Nieuwe Stationsstraat 20, 6711 AG Ede',
+      address: 'Achterdoelen 96-102, 6711 AV Ede',
       email: 'shots@fabclinic.eu',
       phone: '', /* TODO: add real phone number when available */
       openingHours: 'Zaterdag (alleen op afspraak)',
@@ -505,7 +505,7 @@ export function getClinicContactInfo(locale: Locale): ClinicContactInfo {
     }
     : {
       clinicName: 'FabClinic EDE',
-      address: 'Nieuwe Stationsstraat 20, 6711 AG Ede, The Netherlands',
+      address: 'Achterdoelen 96-102, 6711 AV Ede, The Netherlands',
       email: 'shots@fabclinic.eu',
       phone: '', /* TODO: add real phone number when available */
       openingHours: 'Saturday (by appointment only)',

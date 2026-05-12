@@ -12,6 +12,8 @@ export interface CartItem {
   namespace: string;
   priceCents: number;
   quantity: number;
+  /** Optional doctor name for consult items */
+  doctor?: string;
 }
 
 interface CartContextValue {

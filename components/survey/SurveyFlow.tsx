@@ -361,7 +361,7 @@ function Progress({ currentStep, step, t }: { currentStep: number; step: SurveyS
         ))}
       </div>
       <div className="flex items-center justify-between mb-2">
-        <p className="text-sm font-semibold text-secondary/80">{t('step_of').replace('{current}', String(currentStep)).replace('{total}', String(STEPS.length))}</p>
+        
         {currentStep === 1 && (
           <p className="text-xs text-secondary/50">~4 min</p>
         )}

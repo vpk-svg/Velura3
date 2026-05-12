@@ -10,6 +10,7 @@ interface ConsultTriggerProps {
   children: ReactNode;
   className?: string;
   from?: ConsultSubject;
+  doctor?: string;
 }
 
 function subjectFromPath(pathname: string): ConsultSubject {
@@ -22,7 +23,7 @@ function subjectFromPath(pathname: string): ConsultSubject {
   return 'other';
 }
 
-export default function ConsultTrigger({ children, className, from }: ConsultTriggerProps) {
+export default function ConsultTrigger({ children, className, from, doctor }: ConsultTriggerProps) {
   const router = useRouter();
   const pathname = usePathname();
   const { addItem, count } = useCart();
@@ -34,13 +35,13 @@ export default function ConsultTrigger({ children, className, from }: ConsultTri
     // If cart is empty, add a general consultation item based on the source
     if (count === 0) {
       if (source === 'botox') {
-        addItem({ id: 'consult:botox', type: 'botox', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0 });
+        addItem({ id: 'consult:botox', type: 'botox', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0, doctor });
       } else if (source === 'fillers') {
-        addItem({ id: 'consult:fillers', type: 'fillers', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0 });
+        addItem({ id: 'consult:fillers', type: 'fillers', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0, doctor });
       } else if (source === 'bbl') {
-        addItem({ id: 'consult:bbl', type: 'shape', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0 });
+        addItem({ id: 'consult:bbl', type: 'shape', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0, doctor });
       } else {
-        addItem({ id: 'consult:general', type: 'consult', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0 });
+        addItem({ id: 'consult:general', type: 'consult', nameKey: 'first-consult', namespace: 'consult_plan', priceCents: 0, doctor });
       }
     }
 

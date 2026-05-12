@@ -12,6 +12,7 @@ import { EASE_PREMIUM } from '@/lib/motion';
 import { ArrowRight } from 'lucide-react';
 import TreatmentCatalog from '@/components/treatments/TreatmentCatalog';
 import { getBotoxTreatments, type Locale } from '@/lib/clinic-data';
+import PageHero from '@/components/PageHero';
 
 export default function TrajectenPage() {
   const t = useTranslations('trajecten_page');
@@ -51,57 +52,20 @@ export default function TrajectenPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative w-full pt-40 pb-section-y overflow-hidden bg-secondary">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/spares/cheery-attractive-brunette-slender-millennial-woman-wearing-huge-jeans.jpg"
-            alt=""
-            fill
-            className="object-cover opacity-20"
-            sizes="100vw"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/90 to-secondary/70" />
-        </div>
-        <Container>
-          <div className="relative z-10 max-w-4xl">
-            <motion.span
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-              className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-6 block font-semibold"
-            >
-              {t('hero_label')}
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
-              className="font-display text-display-xl text-background-light mb-8"
-            >
-              {t('hero_title')} {t('hero_title_accent')}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-              className="font-sans font-light text-background-light/70 text-lg md:text-xl leading-relaxed max-w-2xl mb-10"
-            >
-              {t('hero_desc')}
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
-            >
-              <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
-                {t('hero_cta')}
-              </ConsultTrigger>
-            </motion.div>
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        align="center"
+        backgroundImageSrc="/images/spares/cheery-attractive-brunette-slender-millennial-woman-wearing-huge-jeans.jpg"
+        backgroundImageClassName="object-cover opacity-20"
+        overlayClassName="bg-gradient-to-r from-secondary via-secondary/90 to-secondary/70"
+        label={t('hero_label')}
+        title={<>{t('hero_title')} {t('hero_title_accent')}</>}
+        description={t('hero_desc')}
+        actions={
+          <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-xs tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+            {t('hero_cta')}
+          </ConsultTrigger>
+        }
+      />
 
       {/* Four Phases */}
       <section className="py-section-y bg-page-trajecten overflow-hidden">

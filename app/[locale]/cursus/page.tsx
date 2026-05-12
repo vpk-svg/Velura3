@@ -57,7 +57,7 @@ export default async function CursusPage({ params }: PageProps) {
       url: 'https://fabclinic.nl',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Nieuwe Stationsstraat 20',
+        streetAddress: 'Achterdoelen 96-102',
         addressLocality: 'Ede',
         addressCountry: 'NL',
       },
@@ -84,7 +84,7 @@ export default async function CursusPage({ params }: PageProps) {
         name: 'FAB Clinic',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Nieuwe Stationsstraat 20',
+          streetAddress: 'Achterdoelen 96-102',
           addressLocality: 'Ede',
           addressCountry: 'NL',
         },

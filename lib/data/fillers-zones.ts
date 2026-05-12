@@ -25,13 +25,16 @@ export const FILLERS_ZONES: FillersZone[] = [
   { id: 'chin-20-ml', nameKey: 'zone_chin_20ml', shortDescKey: 'zone_chin_short', whyKey: 'zone_chin_why', priceCents: 58000 },
   { id: 'neus-lippenplooi-10-ml', nameKey: 'zone_neus_lippenplooi_10ml', shortDescKey: 'zone_neus_lippenplooi_short', whyKey: 'zone_neus_lippenplooi_why', priceCents: 29000 },
   { id: 'neus-lippenplooi-20-ml', nameKey: 'zone_neus_lippenplooi_20ml', shortDescKey: 'zone_neus_lippenplooi_short', whyKey: 'zone_neus_lippenplooi_why', priceCents: 58000 },
-  { id: 'traangoot', nameKey: 'zone_traangoot_ml', shortDescKey: 'zone_traangoot_short', whyKey: 'zone_traangoot_why', priceCents: 29000 },
+  { id: 'traangoot', nameKey: 'zone_traangoot_ml', shortDescKey: 'zone_traangoot_short', whyKey: 'zone_traangoot_why', priceCents: 40000 },
   { id: 'signature-20-ml', nameKey: 'zone_signature_20ml', shortDescKey: 'zone_signature_short', whyKey: 'zone_signature_why', priceCents: 58000 },
   { id: 'signature-30-ml', nameKey: 'zone_signature_30ml', shortDescKey: 'zone_signature_short', whyKey: 'zone_signature_why', priceCents: 87000 },
   { id: 'signature-40-ml', nameKey: 'zone_signature_40ml', shortDescKey: 'zone_signature_short', whyKey: 'zone_signature_why', priceCents: 116000 },
   { id: 'signature-50-ml', nameKey: 'zone_signature_50ml', shortDescKey: 'zone_signature_short', whyKey: 'zone_signature_why', priceCents: 145000 },
   { id: 'buttfiller-100ml', nameKey: 'zone_buttfiller_100ml', shortDescKey: 'zone_buttfiller_short', whyKey: 'zone_buttfiller_why', priceCents: 275000 },
-  { id: 'fillers-oplossen', nameKey: 'zone_fillers_oplossen', shortDescKey: 'zone_fillers_oplossen_short', whyKey: 'zone_fillers_oplossen_why', priceCents: 8000 },
+  { id: 'fillers-oplossen', nameKey: 'zone_fillers_oplossen', shortDescKey: 'zone_fillers_oplossen_short', whyKey: 'zone_fillers_oplossen_why', priceCents: 14000 },
+  { id: 'radiesse-15-ml', nameKey: 'zone_radiesse_15ml', shortDescKey: 'zone_radiesse_short', whyKey: 'zone_radiesse_why', priceCents: 35000 },
+  { id: 'sculptura', nameKey: 'zone_sculptura', shortDescKey: 'zone_sculptura_short', whyKey: 'zone_sculptura_why', priceCents: 35000 },
+  { id: 'neusfillers', nameKey: 'zone_neusfillers', shortDescKey: 'zone_neusfillers_short', whyKey: 'zone_neusfillers_why', priceCents: 45000 },
 ];
 
 export interface TreatmentVariant {
@@ -113,9 +116,9 @@ export const FILLERS_GROUPS: FillersGroup[] = [
     nameKey: 'zone_traangoot_ml',
     shortDescKey: 'zone_traangoot_short',
     whyKey: 'zone_traangoot_why',
-    priceCents: 29000,
+    priceCents: 40000,
     variants: [
-      { id: 'traangoot', volumeLabel: 'Standaard', priceCents: 29000 }
+      { id: 'traangoot', volumeLabel: 'Standaard', priceCents: 40000 }
     ]
   },
   {
@@ -146,6 +149,27 @@ export const FILLERS_GROUPS: FillersGroup[] = [
     nameKey: 'zone_fillers_oplossen',
     shortDescKey: 'zone_fillers_oplossen_short',
     whyKey: 'zone_fillers_oplossen_why',
-    priceCents: 8000,
-  }
+    priceCents: 14000,
+  },
+  {
+    id: 'radiesse-group',
+    nameKey: 'zone_radiesse_15ml',
+    shortDescKey: 'zone_radiesse_short',
+    whyKey: 'zone_radiesse_why',
+    priceCents: 35000,
+  },
+  {
+    id: 'sculptura-group',
+    nameKey: 'zone_sculptura',
+    shortDescKey: 'zone_sculptura_short',
+    whyKey: 'zone_sculptura_why',
+    priceCents: 35000,
+  },
+  {
+    id: 'neusfillers-group',
+    nameKey: 'zone_neusfillers',
+    shortDescKey: 'zone_neusfillers_short',
+    whyKey: 'zone_neusfillers_why',
+    priceCents: 45000,
+  },
 ];

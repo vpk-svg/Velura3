@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLocale, useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { ShoppingBag, Trash2, ArrowLeft, ShieldCheck, Lock, CreditCard, User, Mail, Phone as PhoneIcon, Calendar as CalendarIcon, MessageSquare } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import { useCart, type CartItem } from '@/lib/cart-context';
@@ -29,6 +30,8 @@ const TYPE_LABELS: Record<string, Record<string, string>> = {
 export default function CheckoutPage() {
     const { items, removeItem, totalCents, count, clearAll } = useCart();
     const locale = useLocale() as 'nl' | 'en';
+    const searchParams = useSearchParams();
+    const doctorParam = searchParams.get('doctor');
     const tForm = useTranslations('shape_page'); // Using existing form translations
     const [mounted, setMounted] = useState(false);
 
@@ -150,6 +153,11 @@ export default function CheckoutPage() {
                                 ? (locale === 'nl' ? 'Consult Bevestigen' : 'Confirm Consult')
                                 : (locale === 'nl' ? 'Checkout' : 'Checkout')}
                         </h1>
+                        {doctorParam && (
+                            <p className="font-sans text-primary font-semibold text-sm mb-2">
+                                {locale === 'nl' ? `Arts: ${doctorParam}` : `Doctor: ${doctorParam}`}
+                            </p>
+                        )}
                         <p className="font-sans text-secondary/60 font-light text-lg">
                             {locale === 'nl'
                                 ? 'Vul uw gegevens in en kies een moment voor uw behandeling.'
@@ -209,10 +217,15 @@ export default function CheckoutPage() {
                                                     {typeItems.map((item) => (
                                                         <div key={item.id} className="flex-1 flex items-center justify-between gap-4">
                                                             <div className="min-w-0">
-                                                                <h3 className="font-display text-base text-secondary italic">
-                                                                    <ItemName item={item} />
-                                                                </h3>
-                                                                <span className="font-sans text-[10px] text-primary/60 uppercase tracking-widest leading-none">
+                                                                 <h3 className="font-display text-base text-secondary italic">
+                                                                     <ItemName item={item} />
+                                                                 </h3>
+                                                                 {item.doctor && (
+                                                                     <p className="font-sans text-xs text-secondary/50 mt-0.5">
+                                                                         {locale === 'nl' ? `Arts: ${item.doctor}` : `Doctor: ${item.doctor}`}
+                                                                     </p>
+                                                                 )}
+                                                                 <span className="font-sans text-[10px] text-primary/60 uppercase tracking-widest leading-none">
                                                                     {labels[type]}
                                                                 </span>
                                                             </div>

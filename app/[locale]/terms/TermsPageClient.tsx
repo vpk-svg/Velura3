@@ -166,7 +166,7 @@ export default function TermsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
-              className="font-display text-display-xl text-background-light mb-6"
+              className="font-display text-display-xl text-background-light mb-6 md:mb-8"
             >
               Algemene Voorwaarden
             </motion.h1>
@@ -174,7 +174,7 @@ export default function TermsPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-              className="font-sans font-light text-background-light/70 text-lg leading-relaxed"
+              className="font-sans font-light text-background-light/70 text-lg md:text-xl leading-relaxed"
             >
               Golden Palm Europe B.V., handelend onder de naam FAB Clinic - KvK 70926468 - Achterdoelen 63, Ede
             </motion.p>

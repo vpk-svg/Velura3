@@ -65,7 +65,7 @@ export async function POST(request: Request) {
           <p>Wij hebben uw intake voor <strong>${escapeHtml(treatment)}</strong> in goede orde ontvangen.</p>
           <p>Ons team neemt binnen <strong>24 uur</strong> contact met u op om een afspraak in te plannen.</p>
           <hr style="border:none;border-top:1px solid #e5e5e5;margin:24px 0;" />
-          <p style="font-size:12px;color:#888;">FAB Clinic - Nieuwe Stationsstraat 20, 6711 AG Ede</p>
+          <p style="font-size:12px;color:#888;">FAB Clinic - Achterdoelen 96-102, 6711 AV Ede</p>
         </div>
       `,
     });

@@ -207,11 +207,22 @@ export default function CursusPageClient() {
                 {t('badge')}
               </motion.span>
 
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.03, ease: EASE_PREMIUM }}
+                className="mb-4"
+              >
+                <span className="font-display text-display-sm text-primary/90">
+                  {t('hero_focus')}
+                </span>
+              </motion.div>
+
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
-                className="font-display text-display-xl text-background-light mb-6"
+                className="font-display text-display-xl text-background-light mb-6 md:mb-8"
               >
                 {t('hero_title')}
                 {t('hero_title_accent')}
@@ -221,7 +232,7 @@ export default function CursusPageClient() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-                className="font-sans font-light text-background-light/70 text-lg max-w-xl mb-4"
+                className="font-sans font-light text-background-light/70 text-lg md:text-xl leading-relaxed max-w-xl mb-4"
               >
                 {t('hero_desc')}
               </motion.p>
@@ -673,6 +684,25 @@ export default function CursusPageClient() {
                   className="mt-8 w-full inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-8 py-4 text-xs tracking-[0.2em] border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300"
                 >
                   {t('pricing_cta')}
+                </a>
+              </div>
+
+              {/* Contact info */}
+              <div className="rounded-2xl bg-white border border-primary/10 p-5 shadow-soft-sm">
+                <p className="font-sans text-xs uppercase tracking-[0.15em] text-secondary/40 font-semibold mb-2">
+                  {t('contact_heading')}
+                </p>
+                <a
+                  href="tel:+31653575551"
+                  className="block font-sans text-secondary/80 hover:text-primary transition-colors mb-1"
+                >
+                  {t('contact_phone')}
+                </a>
+                <a
+                  href="mailto:shots@fabclinic.eu"
+                  className="block font-sans text-secondary/80 hover:text-primary transition-colors"
+                >
+                  {t('contact_email')}
                 </a>
               </div>
 

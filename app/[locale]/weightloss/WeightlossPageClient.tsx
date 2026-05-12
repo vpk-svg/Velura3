@@ -14,6 +14,7 @@ import SurveyAutoOpen from '@/components/SurveyAutoOpen';
 import { PRODUCTS as PRODUCT_DATA } from '@/lib/products';
 import { EASE_PREMIUM } from '@/lib/motion';
 import ProductShop from '@/components/ProductShop';
+import PageHero from '@/components/PageHero';
 
 export default function WeightlossPage() {
   const t = useTranslations('weightloss_page');
@@ -44,79 +45,39 @@ export default function WeightlossPage() {
     <>
       <SurveyAutoOpen />
 
-      {/* Hero */}
-      <section className="relative w-full pt-40 pb-section-y overflow-hidden bg-secondary" aria-labelledby="weightloss-hero-title">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/spares/female-fitness-model-holding-tape-measurer-around-her-waist-weightloss-concept.jpg"
-            alt=""
-            fill
-            priority
-            className="object-cover opacity-20"
-            sizes="100vw"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/95 to-secondary/80" />
-        </div>
-        <Container>
-          <div className="relative z-10 max-w-4xl">
-            <motion.span
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-              className="font-sans text-primary text-xs tracking-[0.3em] uppercase mb-6 block font-semibold"
+      <PageHero
+        align="center"
+        titleId="weightloss-hero-title"
+        backgroundImageSrc="/images/spares/female-fitness-model-holding-tape-measurer-around-her-waist-weightloss-concept.jpg"
+        backgroundImageClassName="object-cover opacity-20"
+        overlayClassName="bg-gradient-to-r from-secondary via-secondary/95 to-secondary/80"
+        label={t('hero_label')}
+        title={<>{t('hero_title')} {t('hero_title_accent')}</>}
+        description={t('hero_desc')}
+        actions={
+          <>
+            <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-sm tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
+              {t('hero_cta_survey')}
+            </ConsultTrigger>
+            <Link
+              href="#producten"
+              className="inline-flex items-center justify-center gap-2 font-sans uppercase font-semibold text-xs tracking-[0.2em] text-background-light/70 hover:text-primary transition-colors duration-300"
             >
-              {t('hero_label')}
-            </motion.span>
-            <motion.h1
-              id="weightloss-hero-title"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.05, ease: EASE_PREMIUM }}
-              className="font-display text-display-xl text-background-light mb-8"
-            >
-              {t('hero_title')} {t('hero_title_accent')}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: EASE_PREMIUM }}
-              className="font-sans font-light text-background-light/70 text-lg md:text-xl leading-relaxed max-w-2xl mb-10"
-            >
-              {t('hero_desc')}
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: EASE_PREMIUM }}
-              className="flex flex-wrap gap-4 sm:gap-5"
-            >
-              <ConsultTrigger className="inline-flex items-center justify-center rounded-pill font-sans uppercase font-bold px-12 py-5 text-sm tracking-[0.3em] bg-primary text-white shadow-gold-glow hover:shadow-soft-xl transition-all duration-300 active:scale-[0.97]">
-                {t('hero_cta_survey')}
-              </ConsultTrigger>
-              <Link
-                href="#producten"
-                className="inline-flex items-center justify-center gap-2 font-sans uppercase font-semibold text-xs tracking-[0.2em] text-background-light/70 hover:text-primary transition-colors duration-300"
-              >
-                {t('hero_cta_products')} <ArrowRight size={14} />
-              </Link>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: EASE_PREMIUM }}
-              className="mt-8 inline-flex items-center gap-3 bg-white/10 rounded-pill px-6 py-2.5"
-            >
-              <div className="flex text-primary" aria-hidden="true">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                ))}
-              </div>
-              {t('hero_social_proof')}
-            </motion.div>
+              {t('hero_cta_products')} <ArrowRight size={14} />
+            </Link>
+          </>
+        }
+        meta={
+          <div className="inline-flex items-center gap-3 bg-white/10 rounded-pill px-6 py-2.5 text-white">
+            <div className="flex text-primary" aria-hidden="true">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-3.5 h-3.5 fill-current" />
+              ))}
+            </div>
+            {t('hero_social_proof')}
           </div>
-        </Container>
-      </section>
+        }
+      />
 
       {/* Products */}
       <section id="producten" className="pt-section-y bg-page-weight overflow-hidden">
