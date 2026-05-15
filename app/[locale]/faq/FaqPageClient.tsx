@@ -9,21 +9,23 @@ import { EASE_PREMIUM } from '@/lib/motion';
 import { Link } from '@/lib/navigation';
 import PageHero from '@/components/PageHero';
 import {
-  FAQ_CATEGORY_LABELS,
   FAQ_CATEGORY_ORDER,
-  FAQ_ENTRIES,
+  getFaqCategoryLabels,
+  getFaqEntries,
   type FaqCategory,
 } from './faq-content';
 
 export default function FaqPage() {
   const locale = useLocale();
   const isNl = locale === 'nl';
+  const faqEntries = useMemo(() => getFaqEntries(locale), [locale]);
+  const categoryLabels = useMemo(() => getFaqCategoryLabels(locale), [locale]);
   const [activeCategory, setActiveCategory] = useState<FaqCategory>('fillers');
   const [openId, setOpenId] = useState<number | null>(1);
 
   const activeItems = useMemo(
-    () => FAQ_ENTRIES.filter((item) => item.category === activeCategory),
-    [activeCategory]
+    () => faqEntries.filter((item) => item.category === activeCategory),
+    [activeCategory, faqEntries]
   );
 
   return (
@@ -63,7 +65,7 @@ export default function FaqPage() {
           <div className="mx-auto max-w-6xl">
             <div className="mb-10 grid gap-4 md:grid-cols-3">
               {FAQ_CATEGORY_ORDER.map((category, index) => {
-                const items = FAQ_ENTRIES.filter((item) => item.category === category);
+                const items = faqEntries.filter((item) => item.category === category);
                 const isActive = category === activeCategory;
 
                 return (
@@ -87,7 +89,7 @@ export default function FaqPage() {
                       {String(index + 1).padStart(2, '0')}
                     </p>
                     <h2 className="mt-3 font-display text-3xl text-secondary">
-                      {FAQ_CATEGORY_LABELS[category]}
+                      {categoryLabels[category]}
                     </h2>
                     <p className="mt-3 font-sans text-sm leading-relaxed text-secondary/65">
                       {items.length} {isNl ? 'vragen in deze reeks' : 'questions in this chapter'}
@@ -105,7 +107,7 @@ export default function FaqPage() {
                       {isNl ? 'Hoofdstuk' : 'Chapter'}
                     </p>
                     <h3 className="mt-2 font-display text-4xl text-secondary">
-                      {FAQ_CATEGORY_LABELS[activeCategory]}
+                      {categoryLabels[activeCategory]}
                     </h3>
                   </div>
                   <p className="font-sans text-xs uppercase tracking-[0.2em] text-secondary/45">
@@ -127,7 +129,7 @@ export default function FaqPage() {
                         >
                           <div>
                             <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.25em] text-primary/70">
-                              Vraag {item.id}
+                              {isNl ? 'Vraag' : 'Question'} {item.id}
                             </p>
                             <h4 className="font-sans text-base font-medium leading-relaxed text-secondary md:text-lg">
                               {item.question}

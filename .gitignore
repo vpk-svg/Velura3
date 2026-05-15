@@ -10,3 +10,5 @@ coverage/
 node_modules
 .env.local
 .DS_Store
+.playwright-mcp/
+tsconfig.tsbuildinfo
