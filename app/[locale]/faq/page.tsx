@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
 import FaqPageClient from './FaqPageClient';
 
 interface PageProps {
@@ -8,10 +7,11 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'faq_page' });
-
-  const title = t('meta_title');
-  const description = t('meta_desc');
+  const isNl = locale === 'nl';
+  const title = isNl ? 'FAQ Fillers, Botox en Obesitas | FAB Clinic' : 'FAQ Fillers, Botox and Obesity Treatment | FAB Clinic';
+  const description = isNl
+    ? 'Lees 90 veelgestelde vragen over fillers, botox en obesitasbehandeling bij FAB Clinic.'
+    : 'Browse 90 frequently asked questions about fillers, botox and obesity treatment at FAB Clinic.';
 
   return {
     title,
@@ -35,6 +35,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function FaqPage() {
-  return <FaqPageClient />;
+export default async function FaqPage({ params }: PageProps) {
+  const { locale } = await params;
+
+  return <FaqPageClient key={locale} />;
 }
