@@ -143,8 +143,7 @@ export default function SkinboostersPageClient() {
         ═══════════════════════════════════════════════ */}
             <section className="py-28 bg-white overflow-hidden">
                 <Container>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-                        {/* Left: text */}
+                    <div className="max-w-5xl">
                         <motion.div
                             initial={{ opacity: 0, x: -40 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -157,7 +156,7 @@ export default function SkinboostersPageClient() {
                             <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] leading-[1.12] text-[#1a1a1a] mb-7">
                                 Tailormade Concept
                             </h2>
-                            <p className="font-sans font-light text-[#1a1a1a]/65 text-[15px] leading-relaxed mb-8">
+                            <p className="font-sans font-light text-[#1a1a1a]/65 text-[15px] leading-relaxed mb-8 max-w-none">
                                 Bij FAB Clinic geloven we dat elke huid een uniek ecosysteem met eigen behoeften en uitdagingen heeft. Daarom leveren we een persoonlijke aanpak en kiezen wij voor harmonieuze en natuurlijk esthetisch resultaat. Door onze jarenlange expertise te combineren met een grondige analyse, stellen wij een behandelingsplan dat perfect aansluit bij uw specifieke wensen.
                             </p>
                             <blockquote className="border-l-2 border-[#c2a36d] pl-6">
@@ -165,24 +164,6 @@ export default function SkinboostersPageClient() {
                                     &ldquo;Bij FAB alles op maat.&rdquo;
                                 </p>
                             </blockquote>
-                        </motion.div>
-
-                        {/* Right: tool image */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 40 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-                            className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-2xl"
-                        >
-                            <Image
-                                src="/images/skinbooster-tool.png"
-                                alt="Medisch precisie-apparaat voor skinbooster behandeling"
-                                fill
-                                loading="lazy"
-                                className="object-cover"
-                                sizes="(max-width: 1024px) 100vw, 50vw"
-                            />
                         </motion.div>
                     </div>
                 </Container>
