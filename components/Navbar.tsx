@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'motion/react';
+import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { Menu, X } from 'lucide-react';
-import LogoSvg from './LogoSvg';
 import LanguageToggle from './LanguageToggle';
 import Container from './ui/Container';
 import ConsultTrigger from './consult/ConsultTrigger';
@@ -56,7 +56,6 @@ export default function Navbar() {
   }, [handleKeyDown, mobileMenuOpen]);
 
   const navLinks = [
-    { name: t('home'), href: '/' },
     { name: t('team'), href: '/team' },
     { name: t('weightloss'), href: '/weightloss' },
     { name: locale === 'nl' ? 'Medicatie' : 'Medicine', href: '/medicatie' },
@@ -64,8 +63,6 @@ export default function Navbar() {
     { name: t('fillers'), href: '/fillers' },
     { name: 'BBL', href: '/shape' },
     { name: 'Skinboosters', href: '/skinboosters' },
-    { name: locale === 'nl' ? 'Cursus' : 'Course', href: '/cursus' },
-    { name: t('contact'), href: '/contact' },
   ];
 
   return (
@@ -83,7 +80,14 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center group -ml-4" aria-label="FAB CLINIC - Home">
-            <LogoSvg className={`h-9 w-auto md:h-11 transition-all duration-700 group-hover:scale-105 ${useLightText ? 'text-background-light' : 'text-black'}`} useCurrentColor={true} />
+            <Image
+              src="/images/logo.png"
+              alt="FABCLINIC"
+              width={450}
+              height={103}
+              priority
+              className="h-9 w-auto transition-all duration-700 group-hover:scale-105 md:h-11"
+            />
           </Link>
 
           {/* Desktop Nav */}
