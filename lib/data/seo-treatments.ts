@@ -27,7 +27,7 @@ export const SEO_TREATMENTS: SeoTreatment[] = [
   { slug: 'traangoot-fillers', category: 'fillers', titleKey: 'tranen_title', descKey: 'tranen_desc', heroImage: '/images/spares/high-angle-woman-getting-lip-fillers.jpg', priceFrom: '€400', features: ['tranen_f1', 'tranen_f2', 'tranen_f3'] },
   { slug: 'neus-fillers', category: 'fillers', titleKey: 'neus_title', descKey: 'neus_desc', heroImage: '/images/spares/high-angle-woman-getting-lip-fillers.jpg', priceFrom: '€350', features: ['neus_f1', 'neus_f2', 'neus_f3'] },
   // Shape
-  { slug: 'bbl-brazilian-butt-lift', category: 'shape', titleKey: 'bbl_title', descKey: 'bbl_desc', heroImage: '/images/spares/liposculpture-slim-woman-white-underwear-with-dashed-lines-body-collage.jpg', priceFrom: '€2.200', features: ['bbl_f1', 'bbl_f2', 'bbl_f3'] },
+  { slug: 'bbl-brazilian-butt-lift', category: 'shape', titleKey: 'bbl_title', descKey: 'bbl_desc', heroImage: '/images/spares/liposculpture-slim-woman-white-underwear-with-dashed-lines-body-collage.jpg', priceFrom: 'v.a. €2.250', features: ['bbl_f1', 'bbl_f2', 'bbl_f3'] },
   { slug: 'ooglidcorrectie', category: 'shape', titleKey: 'eyelid_title', descKey: 'eyelid_desc', heroImage: '/images/spares/liposculpture-slim-woman-white-underwear-with-dashed-lines-body-collage.jpg', priceFrom: '€1.200', features: ['eyelid_f1', 'eyelid_f2', 'eyelid_f3'] },
   { slug: 'onderkin-behandeling', category: 'shape', titleKey: 'chin_title', descKey: 'chin_desc', heroImage: '/images/spares/liposculpture-slim-woman-white-underwear-with-dashed-lines-body-collage.jpg', priceFrom: '€800', features: ['chin_f1', 'chin_f2', 'chin_f3'] },
   // Weightloss

@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     });
 
     /* ── Send notification email to clinic ────────── */
-    const clinicEmail = process.env.CLINIC_EMAIL || 'shots@fabclinic.eu';
+    const clinicEmail = process.env.CLINIC_EMAIL || 'info@fabclinic.eu';
     await sendEmail({
       to: clinicEmail,
       subject: `Nieuwe intake: ${name} - ${treatment}`,

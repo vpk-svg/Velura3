@@ -699,7 +699,7 @@ export default function CursusPageClient() {
                   {t('contact_phone')}
                 </a>
                 <a
-                  href="mailto:shots@fabclinic.eu"
+                  href="mailto:info@fabclinic.eu"
                   className="block font-sans text-secondary/80 hover:text-primary transition-colors"
                 >
                   {t('contact_email')}

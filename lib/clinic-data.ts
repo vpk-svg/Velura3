@@ -65,6 +65,9 @@ export interface ClinicContactInfo {
   address: string;
   email: string;
   phone: string;
+  phoneDisplay: string;
+  instagramUrl: string;
+  routeUrl: string;
   openingHours: string;
   mapsEmbedUrl: string;
 }
@@ -497,20 +500,26 @@ export function getClinicContactInfo(locale: Locale): ClinicContactInfo {
     ? {
       clinicName: 'FabClinic EDE',
       address: 'Achterdoelen 96-102, 6711 AV Ede',
-      email: 'shots@fabclinic.eu',
-      phone: '', /* TODO: add real phone number when available */
+      email: 'info@fabclinic.eu',
+      phone: '0653575551',
+      phoneDisplay: '06 53575551',
+      instagramUrl: 'https://www.instagram.com/fabclinic.eu',
+      routeUrl: 'https://www.google.com/maps/dir/?api=1&destination=Achterdoelen+96-102,+6711+AV+Ede',
       openingHours: 'Zaterdag (alleen op afspraak)',
       mapsEmbedUrl:
-        'https://www.google.com/maps?q=Nieuwe+Stationsstraat+20,+Ede&output=embed',
+        'https://www.google.com/maps?q=Achterdoelen+96-102,+6711+AV+Ede&output=embed',
     }
     : {
       clinicName: 'FabClinic EDE',
       address: 'Achterdoelen 96-102, 6711 AV Ede, The Netherlands',
-      email: 'shots@fabclinic.eu',
-      phone: '', /* TODO: add real phone number when available */
+      email: 'info@fabclinic.eu',
+      phone: '0653575551',
+      phoneDisplay: '06 53575551',
+      instagramUrl: 'https://www.instagram.com/fabclinic.eu',
+      routeUrl: 'https://www.google.com/maps/dir/?api=1&destination=Achterdoelen+96-102,+6711+AV+Ede',
       openingHours: 'Saturday (by appointment only)',
       mapsEmbedUrl:
-        'https://www.google.com/maps?q=Nieuwe+Stationsstraat+20,+Ede&output=embed',
+        'https://www.google.com/maps?q=Achterdoelen+96-102,+6711+AV+Ede&output=embed',
     };
 }
 

@@ -1,16 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { ShieldCheck, Award, ArrowRight } from 'lucide-react';
 import Container from './ui/Container';
 import SectionHeader from './ui/SectionHeader';
+import TeamContactModal from './TeamContactModal';
 import { EASE_PREMIUM } from '@/lib/motion';
 
 export default function TeamSection() {
     const t = useTranslations('team');
-    const locale = useLocale();
+    const [selectedDoctor, setSelectedDoctor] = useState<string | null>(null);
 
     const team = [
         {
@@ -51,8 +53,8 @@ export default function TeamSection() {
         },
     ];
 
-    const handleBookDoctor = (doctorName: string) => {
-        window.location.href = `/${locale}/checkout?doctor=${encodeURIComponent(doctorName)}`;
+    const openDoctorForm = (doctorName: string) => {
+        setSelectedDoctor(doctorName);
     };
 
     return (
@@ -85,9 +87,13 @@ export default function TeamSection() {
                                 />
                                 <div className="absolute inset-0 bg-secondary/20 mix-blend-multiply opacity-40 group-hover:opacity-0 transition-opacity duration-500" aria-hidden="true" />
                             </div>
-                            <h3 className="font-display text-2xl md:text-3xl text-secondary mb-3 italic group-hover:text-primary transition-colors duration-300">
+                            <button
+                                type="button"
+                                onClick={() => openDoctorForm(member.name)}
+                                className="font-display text-2xl md:text-3xl text-secondary mb-3 italic group-hover:text-primary transition-colors duration-300"
+                            >
                                 {member.name}
-                            </h3>
+                            </button>
                             <p className="font-sans text-primary text-[11px] tracking-[0.3em] uppercase font-semibold">
                                 {member.role}
                             </p>
@@ -104,7 +110,7 @@ export default function TeamSection() {
                             {member.name !== t('member5_name') && (
                                 <button
                                     type="button"
-                                    onClick={() => handleBookDoctor(member.name)}
+                                    onClick={() => openDoctorForm(member.name)}
                                     className="inline-flex items-center gap-2 font-sans text-xs text-primary font-semibold uppercase tracking-wider mt-5 hover:gap-3 transition-all"
                                 >
                                     {t('cta_book', { name: member.name.split(' ')[0] })} <ArrowRight size={14} />
@@ -114,6 +120,11 @@ export default function TeamSection() {
                     ))}
                 </ul>
             </Container>
+            <TeamContactModal
+                doctorName={selectedDoctor}
+                isOpen={selectedDoctor !== null}
+                onClose={() => setSelectedDoctor(null)}
+            />
         </section>
     );
 }

@@ -8,7 +8,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   Instagram,
-  Facebook,
   Mail,
   MapPin,
   Clock,
@@ -18,6 +17,7 @@ import {
   ClipboardList,
   PhoneCall,
   CalendarCheck,
+  Route,
 } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeader from '@/components/ui/SectionHeader';
@@ -443,6 +443,17 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
+                  <PhoneCall size={18} className="text-primary shrink-0 mt-0.5" aria-hidden="true" />
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.2em] text-primary mb-1">{t('clinic_phone_label')}</dt>
+                    <dd>
+                      <a href={`tel:${contact.phone}`} className="hover:text-primary transition-colors">
+                        {contact.phoneDisplay}
+                      </a>
+                    </dd>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
                   <Clock size={18} className="text-primary shrink-0 mt-0.5" aria-hidden="true" />
                   <div>
                     <dt className="text-xs uppercase tracking-[0.2em] text-primary mb-1">{t('clinic_hours_label')}</dt>
@@ -453,11 +464,11 @@ export default function ContactPage() {
 
               {/* Social media icons */}
               <div className="flex gap-3 mt-6">
-                <a href="https://www.instagram.com/fabclinic.nl" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-secondary/50 hover:text-primary hover:border-primary transition-all duration-300">
+                <a href={contact.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-secondary/50 hover:text-primary hover:border-primary transition-all duration-300">
                   <Instagram size={18} />
                 </a>
-                <a href="https://www.facebook.com/fabclinic" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-secondary/50 hover:text-primary hover:border-primary transition-all duration-300">
-                  <Facebook size={18} />
+                <a href={contact.routeUrl} target="_blank" rel="noopener noreferrer" aria-label="Route" className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-secondary/50 hover:text-primary hover:border-primary transition-all duration-300">
+                  <Route size={18} />
                 </a>
               </div>
 

@@ -30,7 +30,7 @@ export const FILLERS_ZONES: FillersZone[] = [
   { id: 'signature-30-ml', nameKey: 'zone_signature_30ml', shortDescKey: 'zone_signature_short', whyKey: 'zone_signature_why', priceCents: 87000 },
   { id: 'signature-40-ml', nameKey: 'zone_signature_40ml', shortDescKey: 'zone_signature_short', whyKey: 'zone_signature_why', priceCents: 116000 },
   { id: 'signature-50-ml', nameKey: 'zone_signature_50ml', shortDescKey: 'zone_signature_short', whyKey: 'zone_signature_why', priceCents: 145000 },
-  { id: 'buttfiller-100ml', nameKey: 'zone_buttfiller_100ml', shortDescKey: 'zone_buttfiller_short', whyKey: 'zone_buttfiller_why', priceCents: 275000 },
+  { id: 'buttfiller-100ml', nameKey: 'zone_buttfiller_100ml', shortDescKey: 'zone_buttfiller_short', whyKey: 'zone_buttfiller_why', priceCents: 225000 },
   { id: 'fillers-oplossen', nameKey: 'zone_fillers_oplossen', shortDescKey: 'zone_fillers_oplossen_short', whyKey: 'zone_fillers_oplossen_why', priceCents: 14000 },
   { id: 'radiesse-15-ml', nameKey: 'zone_radiesse_15ml', shortDescKey: 'zone_radiesse_short', whyKey: 'zone_radiesse_why', priceCents: 35000 },
   { id: 'sculptura', nameKey: 'zone_sculptura', shortDescKey: 'zone_sculptura_short', whyKey: 'zone_sculptura_why', priceCents: 35000 },
@@ -139,9 +139,9 @@ export const FILLERS_GROUPS: FillersGroup[] = [
     nameKey: 'zone_buttfiller',
     shortDescKey: 'zone_buttfiller_short',
     whyKey: 'zone_buttfiller_why',
-    priceCents: 275000,
+    priceCents: 225000,
     variants: [
-      { id: 'buttfiller-100ml', volumeLabel: '100 ML', priceCents: 275000 },
+      { id: 'buttfiller-100ml', volumeLabel: '100 ML', priceCents: 225000 },
     ]
   },
   {

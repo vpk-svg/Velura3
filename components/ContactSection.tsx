@@ -7,14 +7,16 @@ import Image from 'next/image';
 import Container from './ui/Container';
 import Button from './ui/Button';
 import { EASE_PREMIUM } from '@/lib/motion';
+import { getClinicContactInfo } from '@/lib/clinic-data';
 
 export default function ContactSection() {
     const t = useTranslations('contact');
+    const contact = getClinicContactInfo('nl');
 
     const contactItems = [
-        { icon: <Mail className="text-primary" />, title: t('email'), desc: 'shots@fabclinic.eu', href: 'mailto:shots@fabclinic.eu' },
-        { icon: <MessageCircle className="text-primary" />, title: t('whatsapp'), desc: 'WhatsApp', href: 'https://wa.me/31600000000' }, /* TODO: replace with real WhatsApp number */
-        { icon: <MapPin className="text-primary" />, title: t('visit'), desc: t('address'), href: 'https://maps.google.com/?q=Nieuwe+Stationsstraat+20+Ede' },
+        { icon: <Mail className="text-primary" />, title: t('email'), desc: contact.email, href: `mailto:${contact.email}` },
+        { icon: <MessageCircle className="text-primary" />, title: t('whatsapp'), desc: contact.phoneDisplay, href: `tel:${contact.phone}` },
+        { icon: <MapPin className="text-primary" />, title: t('visit'), desc: t('address'), href: contact.routeUrl },
         { icon: <Clock className="text-primary" />, title: t('hours'), desc: t('hours_desc'), href: undefined }
     ];
 

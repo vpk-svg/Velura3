@@ -25,7 +25,7 @@ export default function StickyMobileActions() {
           {t('consult')}
         </Link>
         <a
-          href="https://wa.me/31600000000"
+          href="tel:0653575551"
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 inline-flex items-center justify-center gap-2 rounded-pill bg-[#25D366] text-white font-sans text-[11px] uppercase tracking-[0.15em] font-bold py-3.5 shadow-soft-md transition-all active:scale-[0.97]"
