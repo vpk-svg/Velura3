@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  fabclinic:
+    build: .
+    container_name: fabclinic-app
+    restart: unless-stopped
+    ports:
+      - "3003:3000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - nginx-network
+
+networks:
+  nginx-network:
+    external: true
