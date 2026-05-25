@@ -96,6 +96,7 @@ export default function Footer() {
                 { href: '/weightloss', label: t('link_weightloss') },
                 { href: '/medicatie', label: t('link_medicatie') },
                 { href: '/trajecten', label: t('link_wellness') },
+                { href: '/cursus', label: locale === 'nl' ? 'Cursus' : 'Course' },
               ]
             },
             {
